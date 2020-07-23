@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.scanf.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一、列表List1.1 ArrayList 特点：非同步，基于Object对象数组实现。访问效率高。 适用场景：随机访问, 适用于经常访问数据元素的场景。因删除和插入的操作会经历大量数据元素的移动的过程，时间复杂度较高，故不适用于经常有删除和插入操作的场景。  1.2 LinkedList 特点：非同步，基于双向链表实现。 适用场景：顺序访问，访问数据元素的效率不高，适用于经常删除、插入和移动元素">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java集合框架">
+<meta property="og:url" content="http://blog.scanf.top/archives/9753a2e.html">
+<meta property="og:site_name" content="Ken&#39;s Blog">
+<meta property="og:description" content="一、列表List1.1 ArrayList 特点：非同步，基于Object对象数组实现。访问效率高。 适用场景：随机访问, 适用于经常访问数据元素的场景。因删除和插入的操作会经历大量数据元素的移动的过程，时间复杂度较高，故不适用于经常有删除和插入操作的场景。  1.2 LinkedList 特点：非同步，基于双向链表实现。 适用场景：顺序访问，访问数据元素的效率不高，适用于经常删除、插入和移动元素">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-29T12:01:28.000Z">
+<meta property="article:modified_time" content="2020-07-19T08:15:56.830Z">
+<meta property="article:author" content="Ken Luo">
+<meta property="article:tag" content="java笔记">
+<meta property="article:tag" content="集合">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.scanf.top/archives/9753a2e.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java集合框架 | Ken's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Ken's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ken's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Java noob & 互联网炮灰</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/9753a2e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java集合框架
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-29 12:01:28" itemprop="dateCreated datePublished" datetime="2020-04-29T12:01:28Z">2020-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、列表List"><a href="#一、列表List" class="headerlink" title="一、列表List"></a>一、列表List</h1><h2 id="1-1-ArrayList"><a href="#1-1-ArrayList" class="headerlink" title="1.1 ArrayList"></a>1.1 ArrayList</h2><ul>
+<li>特点：非同步，基于Object对象数组实现。访问效率高。</li>
+<li>适用场景：随机访问, 适用于经常访问数据元素的场景。因删除和插入的操作会经历大量数据元素的移动的过程，时间复杂度较高，故不适用于经常有删除和插入操作的场景。</li>
+</ul>
+<h2 id="1-2-LinkedList"><a href="#1-2-LinkedList" class="headerlink" title="1.2 LinkedList"></a>1.2 LinkedList</h2><ul>
+<li>特点：非同步，基于双向链表实现。</li>
+<li>适用场景：顺序访问，访问数据元素的效率不高，适用于经常删除、插入和移动元素的场景。</li>
+</ul>
+<h2 id="1-3-Vector"><a href="#1-3-Vector" class="headerlink" title="1.3 Vector"></a>1.3 Vector</h2><ul>
+<li>特点：同步的，基于Object数组实现。</li>
+<li>适用场景：与ArrayList几乎一样。</li>
+</ul>
+<h1 id="二、集合Set"><a href="#二、集合Set" class="headerlink" title="二、集合Set"></a>二、集合Set</h1><p>Set的三大性质：</p>
+<blockquote>
+<ol>
+<li><p>确定性：给定一个集合，任给一个元素，该元素或者属于或者不属于该集合，二者必居其一，不允许有模棱两可的情况出现。</p>
+</li>
+<li><p>互异性： 一个集合中，任何两个元素都认为是不相同的，即每个元素只能出现一次。</p>
+</li>
+<li><p>无序性：一个集合中，每个元素的地位都是相同的,元素之间是无序的。</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="2-1-HashSet"><a href="#2-1-HashSet" class="headerlink" title="2.1 HashSet"></a>2.1 HashSet</h2><ul>
+<li>特点：不支持同步，基于HashMap实现，无序（元素遍历输出的顺序和插入顺序不一致），可以容纳null元素。</li>
+</ul>
+<h2 id="2-2-TreeSet"><a href="#2-2-TreeSet" class="headerlink" title="2.2 TreeSet"></a>2.2 TreeSet</h2><ul>
+<li>特点：不支持同步，基于HashMap实现，可排序（默认按照字典顺序排序），可容纳null元素。</li>
+</ul>
+<h2 id="2-3-LinkedHashSet"><a href="#2-3-LinkedHashSet" class="headerlink" title="2.3 LinkedHashSet"></a>2.3 LinkedHashSet</h2><ul>
+<li>特点：不支持同步，基于TreeMap实现，排序（默认按照插入顺序排序），不可以容纳null元素。</li>
+</ul>
+<hr>
+<h2 id="2-4-判断重复元素"><a href="#2-4-判断重复元素" class="headerlink" title="2.4 判断重复元素"></a>2.4 判断重复元素</h2><ul>
+<li>HashSet和LinkedList根据hashCode()和equals()方法判断重复元素。</li>
+<li>TreeSet根据重写的compareTo()方法判断重复元素</li>
+</ul>
+<hr>
+<p>三者都可以通过Collections工具实现同步，方法如下：</p>
+<pre><code>Set s = Collections.synchronizedSet( new HashSet() );</code></pre><p>该方法可以获得一个支持同步的Set对象。</p>
+<h1 id="三、映射Map"><a href="#三、映射Map" class="headerlink" title="三、映射Map"></a>三、映射Map</h1><h2 id="3-1-Hashtable"><a href="#3-1-Hashtable" class="headerlink" title="3.1 Hashtable"></a>3.1 Hashtable</h2><ul>
+<li>特点：同步的，速度较慢，适用于数据量较小的场景。K-V军不允许出现null。遍历顺序和put顺序无关。</li>
+</ul>
+<h2 id="3-2-HashMap"><a href="#3-2-HashMap" class="headerlink" title="3.2 HashMap"></a>3.2 HashMap</h2><ul>
+<li>特点：不支持同步，速度较快，适用于数据量较大的场景。K-V允许为null。这是一个新的类，不支持Enumeration遍历。可以用Collections工具将HashMap对象转化为支持同步的Map对象。遍历顺序和put顺序无关。</li>
+</ul>
+<h2 id="3-3-ProperTies"><a href="#3-3-ProperTies" class="headerlink" title="3.3 ProperTies"></a>3.3 ProperTies</h2><ul>
+<li>特点：同步的，文件的形式保存K-V对，适用于数据量较小的场景。</li>
+</ul>
+<h2 id="3-4-LinkedHashMap"><a href="#3-4-LinkedHashMap" class="headerlink" title="3.4 LinkedHashMap"></a>3.4 LinkedHashMap</h2><ul>
+<li>特点：基于双向链表维持插入顺序。遍历顺序和插入顺序一致。</li>
+</ul>
+<h2 id="3-5-TreeMap"><a href="#3-5-TreeMap" class="headerlink" title="3.5 TreeMap"></a>3.5 TreeMap</h2><ul>
+<li>特点：基于红黑树的Map，可以根据key的自然顺序排序或者根据compareTo方法排序。</li>
+</ul>
+<h1 id="四、工具类"><a href="#四、工具类" class="headerlink" title="四、工具类"></a>四、工具类</h1><p>不存储数据，而是在数据容器上，实现高效的操作。</p>
+<h2 id="4-1-Arrays"><a href="#4-1-Arrays" class="headerlink" title="4.1 Arrays"></a>4.1 Arrays</h2><p>处理数组，常用方法：</p>
+<ul>
+<li>sort 分类</li>
+<li>binarySearch 二分查找</li>
+<li>copyOf 从源数组批量复制元素到目标数组</li>
+<li>fill 对数组进行批量赋值</li>
+<li>equals 判定两数组内容是否相同</li>
+</ul>
+<h2 id="4-2-Collections"><a href="#4-2-Collections" class="headerlink" title="4.2 Collections"></a>4.2 Collections</h2><p>处理collection类及其子类，常用方法：</p>
+<ul>
+<li>sort 分类</li>
+<li>binarySearch 二分查找</li>
+<li>max、min</li>
+<li>fill 对数组进行批量赋值</li>
+<li>reverse 将List反序排列</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java%E7%AC%94%E8%AE%B0/" rel="tag"># java笔记</a>
+              <a href="/tags/%E9%9B%86%E5%90%88/" rel="tag"># 集合</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/7997a0cc.html" rel="prev" title="网络编程 - TCP">
+      <i class="fa fa-chevron-left"></i> 网络编程 - TCP
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/136b1ea2.html" rel="next" title="深入理解Java集合框架【转】">
+      深入理解Java集合框架【转】 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、列表List"><span class="nav-number">1.</span> <span class="nav-text">一、列表List</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-ArrayList"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 ArrayList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-LinkedList"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 LinkedList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Vector"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Vector</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、集合Set"><span class="nav-number">2.</span> <span class="nav-text">二、集合Set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-HashSet"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 HashSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-TreeSet"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 TreeSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-LinkedHashSet"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 LinkedHashSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-判断重复元素"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 判断重复元素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、映射Map"><span class="nav-number">3.</span> <span class="nav-text">三、映射Map</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Hashtable"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Hashtable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-HashMap"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-ProperTies"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 ProperTies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-LinkedHashMap"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 LinkedHashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-TreeMap"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 TreeMap</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、工具类"><span class="nav-number">4.</span> <span class="nav-text">四、工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Arrays"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Collections"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Collections</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Luo"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ken Luo</p>
+  <div class="site-description" itemprop="description">记录学习历程</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shaofei2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shaofei2019" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ken@scanf.top" title="E-Mail → mailto:ken@scanf.top" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Luo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

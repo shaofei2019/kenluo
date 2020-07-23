@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.scanf.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一. float类型的取值范围范    围 [-3.4E+38,3.4E+38] 二. 计算方法: 前置概念接下来会详细介绍这个范围是怎么计算出来的, 不过在介绍具体的计算方法前, 必须先了解一些概念. 只有了解了这些概念, 才能真正的理解浮点数的取值范围是如何计算出来的. 而理解这些概念之前, 请务必确定你已经对IEEE754的基础概念和浮点数在内存中的存储方式有所了解, 也可以参考本系列的第一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言中float类型的取值范围">
+<meta property="og:url" content="http://blog.scanf.top/archives/eedadecf.html">
+<meta property="og:site_name" content="Ken&#39;s Blog">
+<meta property="og:description" content="一. float类型的取值范围范    围 [-3.4E+38,3.4E+38] 二. 计算方法: 前置概念接下来会详细介绍这个范围是怎么计算出来的, 不过在介绍具体的计算方法前, 必须先了解一些概念. 只有了解了这些概念, 才能真正的理解浮点数的取值范围是如何计算出来的. 而理解这些概念之前, 请务必确定你已经对IEEE754的基础概念和浮点数在内存中的存储方式有所了解, 也可以参考本系列的第一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.scanf.top/wp-content/uploads/2019/07/3856786-cdff01ea6080e00b.png">
+<meta property="article:published_time" content="2019-07-29T18:41:59.000Z">
+<meta property="article:modified_time" content="2020-07-19T08:15:56.705Z">
+<meta property="article:author" content="Ken Luo">
+<meta property="article:tag" content="C&#x2F;C++笔记">
+<meta property="article:tag" content="float">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.scanf.top/wp-content/uploads/2019/07/3856786-cdff01ea6080e00b.png">
+
+<link rel="canonical" href="http://blog.scanf.top/archives/eedadecf.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C语言中float类型的取值范围 | Ken's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Ken's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ken's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Java noob & 互联网炮灰</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/eedadecf.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C语言中float类型的取值范围
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-29 18:41:59" itemprop="dateCreated datePublished" datetime="2019-07-29T18:41:59Z">2019-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一-float类型的取值范围"><a href="#一-float类型的取值范围" class="headerlink" title="一. float类型的取值范围"></a>一. float类型的取值范围</h2><p>范    围 [-3.4E+38,3.4E+38]</p>
+<h2 id="二-计算方法-前置概念"><a href="#二-计算方法-前置概念" class="headerlink" title="二. 计算方法: 前置概念"></a>二. 计算方法: 前置概念</h2><p>接下来会详细介绍这个范围是怎么计算出来的, 不过在介绍具体的计算方法前, 必须先了解一些概念. 只有了解了这些概念, 才能真正的理解浮点数的取值范围是如何计算出来的. 而理解这些概念之前, 请务必确定你已经对IEEE754的基础概念和浮点数在内存中的存储方式有所了解, 也可以参考本系列的第一篇文章: <a href="https://www.scanf.top/cnotes/80.html" target="_blank" rel="noopener external nofollow noreferrer">C语言中float类型的存储方式</a></p>
+<h3 id="概念一-subnormal-number"><a href="#概念一-subnormal-number" class="headerlink" title="概念一: subnormal number"></a>概念一: subnormal number</h3><p>根据IEEE754的规定, 按照尾数位隐藏的整数部分是1.还是0. 可以将浮点数划分为两类 下面以32位浮点数为例来解释这些概念. <strong>normal number:</strong> 尾数位隐藏的整数部分是<strong>1.</strong>的数, 叫做normal number, 即正常的数 一般来说, 我们遇到的都是normal number 比如20.5在内存中表示为: 0  1000 0011  <strong>0100 1000 0000 0000 000</strong> 其中尾数部分(即上面的加粗部分), 去掉后面补的零之后为: 01001 这其实表示尾数是: 1.01001, 因为前面省略了整数部分1. <strong>subnormal number:</strong> 尾数位隐藏的整数部分为<strong>0.</strong>的数, 叫做sunormal number, 也叫作denormal number, 即低于正常的数 之所以引入subnormal number这个概念, 是为了在浮点数下溢时, 可以逐位的损失精度, 以尽可能精确的表达0附近的极小数(如0.0000001) 为了表示subnormal number, IEEE754规定: <strong>如果将指数位全部填充为0, 则表示这个数是个subnormal number</strong> 即以32位float为例, 当你看到类似于 * <strong>00000000</strong> *********************** 这样内存状态的数时, (即指数位全部为0的数), 就应该知道, 这是个subnormal number, 此时这个数的尾数位隐藏的整数不是<strong>1.</strong>  而是<strong>0.</strong></p>
+<h3 id="概念二-non-number"><a href="#概念二-non-number" class="headerlink" title="概念二: non-number"></a>概念二: non-number</h3><p>和subnormal number类似, IEEE754对于指数位全为1的状态也做了特殊规定: <strong>当指数位全部被1填充, 即指数位表示的值为255时, 用于表示这个浮点数处在一种非正常数(non-number)的状态: 即这个数可能是±infinity或NaN.</strong> (Infinity和NaN是两个特殊值, 分别表示无穷和Not a Number)</p>
+<blockquote>
+<p>The biased-exponent field is filled with all 1 bits to indicate either infinity or an invalid result of a computation.</p>
+</blockquote>
+<h2 id="三-计算方法"><a href="#三-计算方法" class="headerlink" title="三. 计算方法"></a>三. 计算方法</h2><p>在了解了上面两个概念之后, 再看计算方法就很简单了. 如上所述, IEEE754规定, 当指数位全部为0或者全部为1时, 用于表示两种特殊状态的数: subnormal number 和 non-number, 所以现在可以得到如下示意图, 以32位单精度浮点数为例:</p>
+<p><img src="https://www.scanf.top/wp-content/uploads/2019/07/3856786-cdff01ea6080e00b.png" alt=""></p>
+<p>这就是理解单精度浮点数取值范围的关键: <strong>当我们讨论浮点数的取值范围时, 实际上讨论的是:</strong> <strong>normal number (上图中绿色部分)的范围.</strong> 可以看出, 32位浮点数的指数其实是无法取到-127和128的, 因为用于表示-127的0000 0000被用来表示subnormal number了, 而用于表示128的1111 1111被用来表示non-number了. <strong>所以实际上32位浮点数的指数部分只能取到只能取到[-126, 127]</strong> 下面来看看尾数: 对于normal number, 尾数前隐藏的整数部分始终保持1. 所以尾数(含隐藏的整数部分)表示值的范围其实是 [1.00…00, 1.11…11], 这个二进制数, 约等于十进制的[1, 2), 因为1.11..11非常逼近十进制的2 好啦, 现在我们知道, 对于32位flaot而言: 尾数(含隐藏的整数部分)的可取值为: [1 ,2), 指数位可取值[-126, 127] 且浮点数可正可负, 所以32位float的取值范围是: [-2*2^127,2*2^127] 约等于: [-3.4*10^38, 3.4 * 10^38] 浮点数的取值范围即这样计算出来的.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-C-%E7%AC%94%E8%AE%B0/" rel="tag"># C/C++笔记</a>
+              <a href="/tags/float/" rel="tag"># float</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/ba2f607c.html" rel="prev" title="QQ截图20190729183819">
+      <i class="fa fa-chevron-left"></i> QQ截图20190729183819
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/2a58c444.html" rel="next" title="3856786-cdff01ea6080e00b">
+      3856786-cdff01ea6080e00b <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-float类型的取值范围"><span class="nav-number">1.</span> <span class="nav-text">一. float类型的取值范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-计算方法-前置概念"><span class="nav-number">2.</span> <span class="nav-text">二. 计算方法: 前置概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念一-subnormal-number"><span class="nav-number">2.1.</span> <span class="nav-text">概念一: subnormal number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概念二-non-number"><span class="nav-number">2.2.</span> <span class="nav-text">概念二: non-number</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-计算方法"><span class="nav-number">3.</span> <span class="nav-text">三. 计算方法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Luo"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ken Luo</p>
+  <div class="site-description" itemprop="description">记录学习历程</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shaofei2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shaofei2019" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ken@scanf.top" title="E-Mail → mailto:ken@scanf.top" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Luo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

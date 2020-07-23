@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.scanf.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="多线程的目的：较好的利用计算机CPU资源。  1 什么是线程、进程和多线程 线程 &gt; 线程是进程的一个循序控制流。 进程 &gt; 进程是程序运行的一个实例， 一个进程可以有多个线程。 多线程 &gt; Java多线程编程是一种机制，它允许在程序中并发执行多个指令流，每个指令流都是一个线程，彼此之间相互独立。  2 线程的生命周期线程可以有五个状态，新建、就绪、运行、阻塞和消亡状态。  1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识Java多线程编程">
+<meta property="og:url" content="http://blog.scanf.top/archives/22330b77.html">
+<meta property="og:site_name" content="Ken&#39;s Blog">
+<meta property="og:description" content="多线程的目的：较好的利用计算机CPU资源。  1 什么是线程、进程和多线程 线程 &gt; 线程是进程的一个循序控制流。 进程 &gt; 进程是程序运行的一个实例， 一个进程可以有多个线程。 多线程 &gt; Java多线程编程是一种机制，它允许在程序中并发执行多个指令流，每个指令流都是一个线程，彼此之间相互独立。  2 线程的生命周期线程可以有五个状态，新建、就绪、运行、阻塞和消亡状态。  1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_bcfc7815219ad1201f5ca052e97f057e.jpg">
+<meta property="article:published_time" content="2020-04-20T23:05:03.000Z">
+<meta property="article:modified_time" content="2020-07-19T08:15:57.007Z">
+<meta property="article:author" content="Ken Luo">
+<meta property="article:tag" content="java笔记">
+<meta property="article:tag" content="多线程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_bcfc7815219ad1201f5ca052e97f057e.jpg">
+
+<link rel="canonical" href="http://blog.scanf.top/archives/22330b77.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>初识Java多线程编程 | Ken's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Ken's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ken's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Java noob & 互联网炮灰</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/22330b77.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          初识Java多线程编程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-20 23:05:03" itemprop="dateCreated datePublished" datetime="2020-04-20T23:05:03Z">2020-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p><strong>多线程的目的：</strong>较好的利用计算机CPU资源。</p>
+</blockquote>
+<h1 id="1-什么是线程、进程和多线程"><a href="#1-什么是线程、进程和多线程" class="headerlink" title="1 什么是线程、进程和多线程"></a><strong>1 什么是线程、进程和多线程</strong></h1><ul>
+<li>线程 &gt; 线程是进程的一个循序控制流。</li>
+<li>进程 &gt; 进程是程序运行的一个实例， 一个进程可以有多个线程。</li>
+<li>多线程 &gt; Java多线程编程是一种机制，它允许在程序中并发执行多个指令流，每个指令流都是一个线程，彼此之间相互独立。</li>
+</ul>
+<h1 id="2-线程的生命周期"><a href="#2-线程的生命周期" class="headerlink" title="2 线程的生命周期"></a><strong>2 线程的生命周期</strong></h1><p>线程可以有五个状态，新建、就绪、运行、阻塞和消亡状态。 <img src="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_bcfc7815219ad1201f5ca052e97f057e.jpg" alt="线程生命周期"> 1. 新建：采用new语句创建完成。 2. 就绪：执行Start()方法后。 3. 运行：执行run()方法后，占用CPU时间。 4. 阻塞：阻塞是指在运行的线程没有运行结束，但是让出了CPU资源，这时其他处于就绪状态的线程就可以获得CPU时间，从而进入运行状态。Java线程中sleep(),suspend(),wait()等可以让线程阻塞，阻塞完成后，不会直接进入运行状态，而是要进入就绪队列等待，得到CPU资源后才可以运行。</p>
+<h1 id="3-Java中实现多线程的两种方法"><a href="#3-Java中实现多线程的两种方法" class="headerlink" title="3 Java中实现多线程的两种方法"></a><strong>3 Java中实现多线程的两种方法</strong></h1><h2 id="3-1-方法一：继承Thread类，并覆写run-方法"><a href="#3-1-方法一：继承Thread类，并覆写run-方法" class="headerlink" title="3.1 方法一：继承Thread类，并覆写run()方法"></a><strong>3.1 方法一：继承Thread类，并覆写run()方法</strong></h2><p>代码演示：</p>
+<pre><code>package top.scanf.Demo;
+
+public class ThreadTest {
+    public static void main(String[] args) {
+        //Thread thread = new Thread(new Thread1(),&quot;线程一呀&quot;);
+        Thread1 thread1 = new Thread1();//新建一个线程
+        thread1.start();//让线程进入就绪状态
+        System.out.println(&quot;main线程结束&quot;);
+    }
+}
+class Thread1 extends Thread {
+    @Override
+    public void run() {
+        int time = 0;
+        while (time &lt;= 10) {
+            System.out.println(&quot;线程一运行中&quot; + time);
+            time++;
+            try {
+                Thread.sleep(100);//休眠100ms
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(&quot;线程一结束&quot;);
+    }
+}</code></pre><h2 id="3-2-方法二：实现Runnable接口，并实现run-方法"><a href="#3-2-方法二：实现Runnable接口，并实现run-方法" class="headerlink" title="3.2 方法二：实现Runnable接口，并实现run()方法"></a><strong>3.2 方法二：实现Runnable接口，并实现run()方法</strong></h2><p>代码演示：</p>
+<pre><code>package top.scanf.Demo;
+
+public class RunnableTest {
+    public static void main(String[] args) {
+        //新建一个MyRunnable对象，并将该对象包装成Thread对象
+        Thread newThread = new Thread(new MyRunnable(),&quot;Runnable1&quot;);
+        newThread.start();//让线程进入就绪状态
+        System.out.println(&quot;主线程结束&quot;);
+
+    }
+}
+class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        int time = 0;
+        while (time &lt; 10) {
+            System.out.println(&quot;线程一运行中&quot; + time);
+            time++;
+            try {
+                Thread.sleep(300);//休眠300ms
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(&quot;Runnable线程结束&quot;);
+    }
+}</code></pre><h1 id="4-线程的调度和同步问题"><a href="#4-线程的调度和同步问题" class="headerlink" title="4 线程的调度和同步问题"></a><strong>4 线程的调度和同步问题</strong></h1><h2 id="4-1-线程的调度"><a href="#4-1-线程的调度" class="headerlink" title="4.1 线程的调度"></a><strong>4.1 线程的调度</strong></h2><p>线程的调度模型：</p>
+<ol>
+<li><p>分时调度模型：所有线程轮流使用CPU的使用权，平均分配每个线程占用CPU的时间片。</p>
+</li>
+<li><p>抢占式调度模型：优先让优先级高的线程使用CPU,如果线程的优先级相同，则随机选择一个．</p>
+</li>
+</ol>
+<p><strong>Java使用抢占式调度模型:</strong>一共有10个级别的线程优先级,可取1-10之间的整数,数值越大优先级越高,默认优先级是5,优先级越高的线程越容易被操作系统选择执行,但是优先级高的不一定先执行.</p>
+<h2 id="4-2-线程的同步"><a href="#4-2-线程的同步" class="headerlink" title="4.2 线程的同步"></a><strong>4.2 线程的同步</strong></h2><p>为了解决多个线程访问同一个资源时可能会引发一些安全问题,需要实现多线程的同步,即限制某个资源在同一时刻只能被同一个线程访问. 经常使用synchronized关键字修饰同步方法或同步块. 被synchronized修饰的代码块或方法,同一时刻只能被一个线程调用,后来的线程必须等待第一个线程调用该方法结束后才能继续运行.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java%E7%AC%94%E8%AE%B0/" rel="tag"># java笔记</a>
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"># 多线程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/85a7966c.html" rel="prev" title="顺序表的基本操作">
+      <i class="fa fa-chevron-left"></i> 顺序表的基本操作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/37145c3c.html" rel="next" title="网络编程 - UDP">
+      网络编程 - UDP <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是线程、进程和多线程"><span class="nav-number">1.</span> <span class="nav-text">1 什么是线程、进程和多线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-线程的生命周期"><span class="nav-number">2.</span> <span class="nav-text">2 线程的生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Java中实现多线程的两种方法"><span class="nav-number">3.</span> <span class="nav-text">3 Java中实现多线程的两种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-方法一：继承Thread类，并覆写run-方法"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 方法一：继承Thread类，并覆写run()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-方法二：实现Runnable接口，并实现run-方法"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 方法二：实现Runnable接口，并实现run()方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-线程的调度和同步问题"><span class="nav-number">4.</span> <span class="nav-text">4 线程的调度和同步问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-线程的调度"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 线程的调度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-线程的同步"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 线程的同步</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Luo"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ken Luo</p>
+  <div class="site-description" itemprop="description">记录学习历程</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shaofei2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shaofei2019" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ken@scanf.top" title="E-Mail → mailto:ken@scanf.top" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Luo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

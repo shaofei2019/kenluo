@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ken&#39;s Blog</title>
+  <icon>http://blog.scanf.top/icon.png</icon>
+  <subtitle>Java noob &amp; 互联网炮灰</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.scanf.top/"/>
+  <updated>2020-07-19T08:15:56.769Z</updated>
+  <id>http://blog.scanf.top/</id>
+  
+  <author>
+    <name>Ken Luo</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://blog.scanf.top/archives/4a17b156.html"/>
+    <id>http://blog.scanf.top/archives/4a17b156.html</id>
+    <published>2020-07-19T07:59:24.122Z</published>
+    <updated>2020-07-19T08:15:56.769Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener external nofollow noreferrer&quot;&gt;Hexo&lt;/a&gt;! This is your very first
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>bean的作用范围</title>
+    <link href="http://blog.scanf.top/archives/eea3a450.html"/>
+    <id>http://blog.scanf.top/archives/eea3a450.html</id>
+    <published>2020-07-17T19:33:51.000Z</published>
+    <updated>2020-07-19T08:15:56.655Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;下表描述了受支持的bean范围：&lt;/p&gt;
+&lt;p&gt;范围&lt;/p&gt;
+&lt;p&gt;描述&lt;/p&gt;
+&lt;p&gt;singleton&lt;/p&gt;
+&lt;p&gt;在spring
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="lifecycle" scheme="http://blog.scanf.top/tags/lifecycle/"/>
+    
+      <category term="scope" scheme="http://blog.scanf.top/tags/scope/"/>
+    
+      <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>依赖注入的两种方式</title>
+    <link href="http://blog.scanf.top/archives/620ddfc8.html"/>
+    <id>http://blog.scanf.top/archives/620ddfc8.html</id>
+    <published>2020-07-17T10:18:15.000Z</published>
+    <updated>2020-07-19T08:15:56.981Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一-什么是依赖注入&quot;&gt;&lt;a href=&quot;#一-什么是依赖注入&quot; class=&quot;headerlink&quot; title=&quot;一 什么是依赖注入&quot;&gt;&lt;/a&gt;一
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
+    
+      <category term="DI" scheme="http://blog.scanf.top/tags/DI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实例化Bean的三种方式</title>
+    <link href="http://blog.scanf.top/archives/da03f5c5.html"/>
+    <id>http://blog.scanf.top/archives/da03f5c5.html</id>
+    <published>2020-07-16T17:44:29.000Z</published>
+    <updated>2020-07-19T08:15:57.107Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、对相关概念的了解：&quot;&gt;&lt;a href=&quot;#一、对相关概念的了解：&quot; class=&quot;headerlink&quot; title=&quot;一、对相关概念的了解：&quot;&gt;&lt;/a&gt;一、对相关概念的了解：&lt;/h2&gt;&lt;p&gt;bean是应用的主要部分，并由IoC
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
+    
+      <category term="IoC" scheme="http://blog.scanf.top/tags/IoC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初识控制反转（IoC）与依赖注入（DI）</title>
+    <link href="http://blog.scanf.top/archives/9c51ba7b.html"/>
+    <id>http://blog.scanf.top/archives/9c51ba7b.html</id>
+    <published>2020-07-16T16:42:36.000Z</published>
+    <updated>2020-07-19T08:15:57.018Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;文章链接：&lt;a href=&quot;https://www.jianshu.com/p/07af9dbbbc4b&quot; target=&quot;_blank&quot; rel=&quot;noopener external nofollow noreferrer&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
+    
+      <category term="DI" scheme="http://blog.scanf.top/tags/DI/"/>
+    
+      <category term="IoC" scheme="http://blog.scanf.top/tags/IoC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis自定义类型处理器TypeHandler</title>
+    <link href="http://blog.scanf.top/archives/ed6def66.html"/>
+    <id>http://blog.scanf.top/archives/ed6def66.html</id>
+    <published>2020-07-05T22:35:17.000Z</published>
+    <updated>2020-07-19T08:15:56.836Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;MyBatis 在设置预处理语句（PreparedStatement）中的参数或从结果集中取出一个值时， 都会用类型处理器将获取到的值以合适的方式转换成 Java
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="MyBatis" scheme="http://blog.scanf.top/tags/MyBatis/"/>
+    
+      <category term="mybatis" scheme="http://blog.scanf.top/tags/mybatis/"/>
+    
+      <category term="TypeHandler" scheme="http://blog.scanf.top/tags/TypeHandler/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在MyBatis中使用Log4j输出日志</title>
+    <link href="http://blog.scanf.top/archives/9a61816b.html"/>
+    <id>http://blog.scanf.top/archives/9a61816b.html</id>
+    <published>2020-07-05T00:27:37.000Z</published>
+    <updated>2020-07-19T08:15:57.054Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、指定MyBatis的日志工具&quot;&gt;&lt;a href=&quot;#一、指定MyBatis的日志工具&quot; class=&quot;headerlink&quot; title=&quot;一、指定MyBatis的日志工具&quot;&gt;&lt;/a&gt;一、指定MyBatis的日志工具&lt;/h2&gt;&lt;p&gt;在 MyBatis
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="MyBatis" scheme="http://blog.scanf.top/tags/MyBatis/"/>
+    
+      <category term="mybatis" scheme="http://blog.scanf.top/tags/mybatis/"/>
+    
+      <category term="log4j" scheme="http://blog.scanf.top/tags/log4j/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并发与并行的区别</title>
+    <link href="http://blog.scanf.top/archives/6292c650.html"/>
+    <id>http://blog.scanf.top/archives/6292c650.html</id>
+    <published>2020-05-09T17:07:00.000Z</published>
+    <updated>2020-07-19T08:15:57.101Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;你吃饭吃到一半，电话来了，你一直到吃完了以后才去接，这就说明你不支持并发也不支持并行。 你吃饭吃到一半，电话来了，你停了下来接了电话，接完后继续吃饭，这说明你支持并发。 你吃饭吃到一半，电话来了，你一边打电话一边吃饭，这说明你支持并行。
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="并发" scheme="http://blog.scanf.top/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="并行" scheme="http://blog.scanf.top/tags/%E5%B9%B6%E8%A1%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>缓冲流的存在有什么意义？</title>
+    <link href="http://blog.scanf.top/archives/4115c28f.html"/>
+    <id>http://blog.scanf.top/archives/4115c28f.html</id>
+    <published>2020-04-29T21:54:48.000Z</published>
+    <updated>2020-07-19T08:15:57.197Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;BufferedInputStream和BufferedoutputStream是FilterInputStream和FilterOutputStream的子类，可以避免每次发送或者写数据的时候，进行实际的写操作，使用的是缓冲区；
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="缓冲流" scheme="http://blog.scanf.top/tags/%E7%BC%93%E5%86%B2%E6%B5%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解Java集合框架【转】</title>
+    <link href="http://blog.scanf.top/archives/136b1ea2.html"/>
+    <id>http://blog.scanf.top/archives/136b1ea2.html</id>
+    <published>2020-04-29T12:05:06.000Z</published>
+    <updated>2020-07-19T08:15:57.171Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;关于_C++标准模板库(Standard Template
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="集合" scheme="http://blog.scanf.top/tags/%E9%9B%86%E5%90%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java集合框架</title>
+    <link href="http://blog.scanf.top/archives/9753a2e.html"/>
+    <id>http://blog.scanf.top/archives/9753a2e.html</id>
+    <published>2020-04-29T12:01:28.000Z</published>
+    <updated>2020-07-19T08:15:56.830Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一、列表List&quot;&gt;&lt;a href=&quot;#一、列表List&quot; class=&quot;headerlink&quot; title=&quot;一、列表List&quot;&gt;&lt;/a&gt;一、列表List&lt;/h1&gt;&lt;h2 id=&quot;1-1-ArrayList&quot;&gt;&lt;a href=&quot;#1-1-ArrayList&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="集合" scheme="http://blog.scanf.top/tags/%E9%9B%86%E5%90%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络编程 - TCP</title>
+    <link href="http://blog.scanf.top/archives/7997a0cc.html"/>
+    <id>http://blog.scanf.top/archives/7997a0cc.html</id>
+    <published>2020-04-27T23:09:52.000Z</published>
+    <updated>2020-07-19T08:15:57.227Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一、-TCP编程&quot;&gt;&lt;a href=&quot;#一、-TCP编程&quot; class=&quot;headerlink&quot; title=&quot;一、 TCP编程&quot;&gt;&lt;/a&gt;一、 TCP编程&lt;/h1&gt;&lt;h2 id=&quot;1-1-了解TCP协议&quot;&gt;&lt;a href=&quot;#1-1-了解TCP协议&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="TCP" scheme="http://blog.scanf.top/tags/TCP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络编程 - UDP</title>
+    <link href="http://blog.scanf.top/archives/37145c3c.html"/>
+    <id>http://blog.scanf.top/archives/37145c3c.html</id>
+    <published>2020-04-27T22:17:45.000Z</published>
+    <updated>2020-07-19T08:15:57.235Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一、UDP编程&quot;&gt;&lt;a href=&quot;#一、UDP编程&quot; class=&quot;headerlink&quot; title=&quot;一、UDP编程&quot;&gt;&lt;/a&gt;一、UDP编程&lt;/h1&gt;&lt;h2 id=&quot;1-1-UDP基础知识&quot;&gt;&lt;a href=&quot;#1-1-UDP基础知识&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="UDP" scheme="http://blog.scanf.top/tags/UDP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初识Java多线程编程</title>
+    <link href="http://blog.scanf.top/archives/22330b77.html"/>
+    <id>http://blog.scanf.top/archives/22330b77.html</id>
+    <published>2020-04-20T23:05:03.000Z</published>
+    <updated>2020-07-19T08:15:57.007Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;多线程的目的：&lt;/strong&gt;较好的利用计算机CPU资源。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-什么是线程、进程和多线程&quot;&gt;&lt;a href=&quot;#1-什么是线程、进程和多线程&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="多线程" scheme="http://blog.scanf.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>顺序表的基本操作</title>
+    <link href="http://blog.scanf.top/archives/85a7966c.html"/>
+    <id>http://blog.scanf.top/archives/85a7966c.html</id>
+    <published>2020-04-20T00:34:14.000Z</published>
+    <updated>2020-07-19T08:15:57.202Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一、线性表&quot;&gt;&lt;a href=&quot;#一、线性表&quot; class=&quot;headerlink&quot; title=&quot;一、线性表&quot;&gt;&lt;/a&gt;一、线性表&lt;/h1&gt;&lt;h2 id=&quot;1-1-线性表的定义&quot;&gt;&lt;a href=&quot;#1-1-线性表的定义&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="数据结构与算法" scheme="http://blog.scanf.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="线性表" scheme="http://blog.scanf.top/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1</title>
+    <link href="http://blog.scanf.top/archives/83dcefb7.html"/>
+    <id>http://blog.scanf.top/archives/83dcefb7.html</id>
+    <published>2020-04-06T18:55:17.000Z</published>
+    <updated>2020-07-19T08:15:56.562Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>取模运算和取余运算的区别</title>
+    <link href="http://blog.scanf.top/archives/8b930033.html"/>
+    <id>http://blog.scanf.top/archives/8b930033.html</id>
+    <published>2020-02-25T10:29:03.000Z</published>
+    <updated>2020-07-19T08:15:57.037Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;strong&gt;对于整型数a，b来说，取模运算或者求余运算的方法都是：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1.求 整数商： c = a/b;&lt;/p&gt;
+&lt;p&gt;2.计算模或者余数： r = a - c*b.&lt;/p&gt;
+&lt;p&gt;求模运算和求余运算在第一步不同:
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="取余" scheme="http://blog.scanf.top/tags/%E5%8F%96%E4%BD%99/"/>
+    
+      <category term="取模" scheme="http://blog.scanf.top/tags/%E5%8F%96%E6%A8%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>G48I@4W{4XLTNFXM_D2M`)L</title>
+    <link href="http://blog.scanf.top/archives/348690ac.html"/>
+    <id>http://blog.scanf.top/archives/348690ac.html</id>
+    <published>2020-02-23T14:54:18.000Z</published>
+    <updated>2020-07-19T08:15:56.757Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>byte类型的取值为什么是-128~127</title>
+    <link href="http://blog.scanf.top/archives/370b7f8.html"/>
+    <id>http://blog.scanf.top/archives/370b7f8.html</id>
+    <published>2020-02-19T15:19:01.000Z</published>
+    <updated>2020-07-19T08:15:56.671Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Java的byte类型取值范围是-128~127为什么是-128到127呢 &lt;img src=&quot;https://scanf.top/wp-content/uploads/2020/02/6d92da42982fdc702b0297ff13f4de64.png&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="整型byte" scheme="http://blog.scanf.top/tags/%E6%95%B4%E5%9E%8Bbyte/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第一个java程序，从环境配置开始</title>
+    <link href="http://blog.scanf.top/archives/425566db.html"/>
+    <id>http://blog.scanf.top/archives/425566db.html</id>
+    <published>2020-02-17T23:13:15.000Z</published>
+    <updated>2020-07-19T08:15:57.189Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;先了解几个java术语：&lt;/strong&gt; 1、JDK (Java Development Kit)：Java开发工具包 2、JRE (Java Runtime Environment)：运行Java程序的环境 3、JVM
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="java" scheme="http://blog.scanf.top/tags/java/"/>
+    
+      <category term="JDK" scheme="http://blog.scanf.top/tags/JDK/"/>
+    
+  </entry>
+  
+</feed>

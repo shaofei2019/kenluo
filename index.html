@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.scanf.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="记录学习历程">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ken&#39;s Blog">
+<meta property="og:url" content="http://blog.scanf.top/index.html">
+<meta property="og:site_name" content="Ken&#39;s Blog">
+<meta property="og:description" content="记录学习历程">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Ken Luo">
+<meta property="article:tag" content="个人博客">
+<meta property="article:tag" content="Ken">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.scanf.top/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Ken's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Ken's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ken's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Java noob & 互联网炮灰</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/4a17b156.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/4a17b156.html" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-19 07:59:24 / 修改时间：08:15:56" itemprop="dateCreated datePublished" datetime="2020-07-19T07:59:24Z">2020-07-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener external nofollow noreferrer">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener external nofollow noreferrer">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener external nofollow noreferrer">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener external nofollow noreferrer">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener external nofollow noreferrer">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener external nofollow noreferrer">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener external nofollow noreferrer">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener external nofollow noreferrer">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/eea3a450.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/eea3a450.html" class="post-title-link" itemprop="url">bean的作用范围</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 19:33:51" itemprop="dateCreated datePublished" datetime="2020-07-17T19:33:51Z">2020-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>下表描述了受支持的bean范围：</p>
+<p>范围</p>
+<p>描述</p>
+<p>singleton</p>
+<p>在spring IoC容器仅存在一个Bean实例，Bean以单例方式存在，bean作用域范围的默认值。</p>
+<p>prototype</p>
+<p>每次从容器中调用Bean时，都返回一个新的实例，即每次调用getBean()时，相当于执行newXxxBean()。</p>
+<p>request</p>
+<p>每次HTTP请求都会创建一个新的Bean，该作用域仅适用于web的Spring WebApplicationContext环境。</p>
+<p>session</p>
+<p>同一个HTTP Session共享一个Bean，不同Session使用不同的Bean。该作用域仅适用于web的Spring WebApplicationContext环境。</p>
+<p>application</p>
+<p>限定一个Bean的作用域为ServletContext的生命周期。该作用域仅适用于web的Spring WebApplicationContext环境。</p>
+<p>websocket</p>
+<p>将单个bean定义的作用域限定为WebSocket的生命周期。该作用域仅适用于web的Spring WebApplicationContext环境。</p>
+<h2 id="一-singleton"><a href="#一-singleton" class="headerlink" title="一 singleton"></a>一 singleton</h2><p>当你将一个bean的<code>scope</code>定义为<code>singleton</code>范围后，Spring IoC容器将为该bean所定义的对象创建一个实例。该单个实例存储在此类单例bean的缓存中，并且对该命名bean的所有后续请求和引用都返回缓存的对象。下图显示了单例作用域如何工作： <a href="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_1619d0a0724317ea5bf2d6109b1cdcfb.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_1619d0a0724317ea5bf2d6109b1cdcfb.jpg" alt=""></a> 这意味着，如果您在单个Spring容器中为特定类定义一个bean，且将作用范围指明为singleton，则Spring容器将创建该bean定义所定义的类的实例有且只有一个。单例作用域是Spring中的默认作用域。要将bean定义为XML中的单例。 单例案例： <strong>1 来个bean</strong></p>
+<pre><code>package com.example.demo.pojo;
+
+public class DemoBean {
+    private String msg;
+
+    public String getMsg() {
+        System.out.println(&quot;msg = &quot; + msg);
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+}</code></pre><p><strong>2 bean定义in xml</strong></p>
+<pre><code>&lt;bean id=&quot;singletonDemo&quot; class=&quot;com.example.demo.pojo.DemoBean&quot; scope=&quot;singleton&quot;/&gt;</code></pre><p><strong>3 测试方法</strong></p>
+<pre><code>@Test
+public void test1(){
+    ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
+    DemoBean demoA = (DemoBean) context.getBean(&quot;singletonDemo&quot;);
+    DemoBean demoB = (DemoBean) context.getBean(&quot;singletonDemo&quot;);
+    if (demoA == demoB){
+        System.out.println(&quot;==&quot;);
+    }
+}</code></pre><p><strong>4 输出结果</strong></p>
+<pre><code>17:55:42.284 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+17:55:42.406 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 2 bean definitions from class path resource [spring.xml]
+17:55:42.430 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;singletonDemo&apos;
+==</code></pre><p>测试方法中，获取了两次id为<code>singletonDemo</code>的bean定义的对象，分别为demoA和demoB，然后对这两个对象做出==判断，单元测试结果输出如上，说明两次获得的对象为同一个。</p>
+<h2 id="二-prototype"><a href="#二-prototype" class="headerlink" title="二 prototype"></a>二 prototype</h2><p>当一个bean的作用域为<code>prototype</code>，表示一个bean定义对应多个对象实例。声明为<code>prototype</code>作用域的bean会导致在每次对该bean请求（将其注入到另一个bean中，或者以程序的方式调用容器的getBean()方法）时都会创建一个新的bean实例。 <code>prototype</code>是原型类型，它在我们创建容器的时候并没有实例化，而是当我们获取bean的时候才会去创建一个对象，而且我们每次获取到的对象都不是同一个对象。 根据经验，对有状态的bean应该使用prototype作用域，而对无状态的bean则应该使用singleton作用域。 下图说明了Spring原型范围： <a href="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_f8c376ab883e6cb8d08d89bac9ebf7f6.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_f8c376ab883e6cb8d08d89bac9ebf7f6.jpg" alt=""></a> <strong>单例案例：</strong> <strong>1 来个bean</strong></p>
+<pre><code>package com.example.demo.pojo;
+
+public class DemoBean {
+    private String msg;
+
+    public String getMsg() {
+        System.out.println(&quot;msg = &quot; + msg);
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+}</code></pre><p><strong>2 bean定义in xml</strong></p>
+<pre><code>&lt;bean id=&quot;prototypeDemo&quot; class=&quot;com.example.demo.pojo.DemoBean&quot; scope=&quot;prototype&quot;/&gt;</code></pre><p><strong>3 测试方法</strong></p>
+<pre><code>@Test
+public void test1(){
+    ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
+    DemoBean demoA = (DemoBean) context.getBean(&quot;prototypeDemo&quot;);
+    DemoBean demoB = (DemoBean) context.getBean(&quot;prototypeDemo&quot;);
+    if (demoA == demoB){
+        System.out.println(&quot;==&quot;);
+    }else{
+        System.out.println(&quot;!=&quot;);
+    }
+}</code></pre><p><strong>4 输出结果</strong></p>
+<pre><code>17:59:20.579 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+17:59:20.694 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 2 bean definitions from class path resource [spring.xml]
+17:59:20.723 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;singletonDemo&apos;
+!=</code></pre><p>测试方法中，获取了两次id为<code>prototypeDemo</code>的bean定义的对象，分别为demoA和demoB，然后对这两个对象做出==判断，单元测试结果输出如上，说明两次获得的对象不是同一个。 <strong><em>继续阅读，你需要了解Spring官方给出的如下提示：</em></strong></p>
+<blockquote>
+<p>The <code>request</code>, <code>session</code>, <code>application</code>, and <code>websocket</code> scopes are available only if you use a web-aware Spring <code>ApplicationContext</code> implementation (such as <code>XmlWebApplicationContext</code>). If you use these scopes with regular Spring IoC containers, such as the <code>ClassPathXmlApplicationContext</code>, an <code>IllegalStateException</code> that complains about an unknown bean scope is thrown.</p>
+</blockquote>
+<p>这意味着，如果你试图用常规的Spring IoC容器（例如<code>ClassPathXmlApplicationContext</code>）来装载上述作用范围的bean，将会抛出<code>IllegalStateException</code>异常来说明使用了未知的作用域。你应该使用<code>XmlWebApplicationContext</code>容器代替。</p>
+<h2 id="三-request"><a href="#三-request" class="headerlink" title="三 request"></a>三 request</h2><p>请求作用域参考如下的Bean定义</p>
+<pre><code>&lt;bean id=&quot;loginAction&quot; class=&quot;com.foo.LoginAction&quot; scope=&quot;request&quot;/&gt;</code></pre><p>Spring容器会在每次用到loginAction来处理每个HTTP请求的时候都会创建一个新的LoginAction实例。也就是说，loginActionBean的作用域是HTTP Request级别的。  当http请求调用作用域为request的bean的时候，每增加一个HTTP请求，Spring就会创建一个新的bean，在请求处理完成之后便及时销毁这个bean。开发者可以随意改变实例的状态，因为通过loginAction请求来创建的其他实例根本看不到开发者改变的实例状态，所有创建的Bean实例都是根据独立的请求来的。</p>
+<h2 id="四-session"><a href="#四-session" class="headerlink" title="四 session"></a>四 session</h2><p>会话作用域参考如下的Bean定义</p>
+<pre><code>&lt;bean id=&quot;userPreferences&quot; class=&quot;com.foo.UserPreferences&quot; scope=&quot;session&quot;/&gt;</code></pre><p>Spring容器会在每次调用到userPreferences时，在一个单独的HTTP会话周期来创建一个新的UserPreferences实例。换言之，userPreferencesBean的作用域是HTTP Session级别的。 Session中所有http请求共享同一个请求的bean实例。Session结束后就销毁bean。 在request-scoped作用域的Bean上，开发者可以随意的更改实例的状态。同样，使用从同一个userPreferences bean定义创建的其他HTTP Session实例在看不到不是自己的内部状态的修改，因为他们是单个的HTTP会话。每个Session请求都会创建新的userPreferences实例，所以开发者更改一个Bean的状态，对于其他的Bean仍然是不可见的。</p>
+<h2 id="五-application"><a href="#五-application" class="headerlink" title="五 application"></a>五 application</h2><p>全局作用域参考如下的Bean定义</p>
+<pre><code>&lt;bean id=&quot;appPreferences&quot; class=&quot;com.foo.AppPreferences&quot; scope=&quot;application&quot;/&gt;</code></pre><p>Spring容器会在整个web应用范围使用到appPreferences的时候创建一个新的AppPreferences的实例。也就是说，appPreferencesBean是在ServletContext级别的，作为常规的ServletContext属性。这种作用域在一些程度上来说和Spring的单例作用域相似，但是也有如下不同之处： 1.application作用域是每个ServletContext中包含一个，而不是每个SpringApplicationContext之中包含一个（某些应用中可能包含不止一个ApplicationContext）。 2.application作用域仅仅作为ServletContext的属性可见，单例Bean是ApplicationContext可见。 接下来再来简单的学习下在Spring当中如何自定义作用域： 在Spring 2.0中，Spring的Bean作用域机制是可以扩展的，这意味着，你不仅可以使用Spring提供的预定义Bean作用域，还可以定义自己的作用域，甚至重新定义现有的作用域（不提倡这么做，而且你不能覆盖内置的singleton和prototype作用域） 本文部分参考了：<a href="https://blog.csdn.net/kongmin_123/article/details/82048392" target="_blank" rel="noopener external nofollow noreferrer" title="https://blog.csdn.net/kongmin_123/article/details/82048392">https://blog.csdn.net/kongmin_123/article/details/82048392</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/620ddfc8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/620ddfc8.html" class="post-title-link" itemprop="url">依赖注入的两种方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 10:18:15" itemprop="dateCreated datePublished" datetime="2020-07-17T10:18:15Z">2020-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一-什么是依赖注入"><a href="#一-什么是依赖注入" class="headerlink" title="一 什么是依赖注入"></a>一 什么是依赖注入</h2><p>依赖注入是一个过程，通过该过程可以解决对象依赖问题。现假设一个场景，有类A和类B，类A依赖类B，以往在我们实例化类A时，需要先拥有类B的实例化对象，利用这个对象才能完成类A的实例化。现在，类B的实例化任务由IoC容器接管了，我们可以直接获取类A的实例化对象，而无需顾及类B的实例化过程，我们需要做的仅是类A和类B的依赖关系的声明。</p>
+<h2 id="二-依赖注入的两种方式"><a href="#二-依赖注入的两种方式" class="headerlink" title="二 依赖注入的两种方式"></a>二 依赖注入的两种方式</h2><p>有两种依赖注入的方式，其一基于非静态的setter方法，其二基于构造方法，下面列举两个实例。</p>
+<h3 id="1-setter-based-DI"><a href="#1-setter-based-DI" class="headerlink" title="1 setter-based DI"></a>1 setter-based DI</h3><p>实例化类和该类的相关依赖：</p>
+<pre><code>//Person.java
+package com.example.demo.pojo;
+
+public class Person {
+    private Integer id;
+    private Cat cat;
+    private Car car;
+
+   /* public Person(Integer id, Cat cat, Car car) {
+        this.id = id;
+        this.cat = cat;
+        this.car = car;
+    }*/
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setCat(Cat cat) {
+        this.cat = cat;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public void catWork(){
+        cat.work();
+    }
+
+    public void carWork(){
+        car.work();
+    }
+}
+
+//Cat.java
+package com.example.demo.pojo;
+
+public class Cat {
+    public void work(){
+        System.out.println(&quot;喵喵喵。。。&quot;);
+    }
+}
+//Car.java
+package com.example.demo.pojo;
+
+public class Car {
+    public void work(){
+        System.out.println(&quot;汽车行驶中。。。&quot;);
+    }
+}</code></pre><p>配置文件：</p>
+<pre><code>&lt;bean id=&quot;person&quot; class=&quot;com.example.demo.pojo.Person&quot;&gt;
+        &lt;property name=&quot;id&quot; value=&quot;1&quot; /&gt;
+        &lt;property name=&quot;car&quot; ref=&quot;car&quot; /&gt;
+        &lt;property name=&quot;cat&quot; ref=&quot;cat&quot; /&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;cat&quot; class=&quot;com.example.demo.pojo.Cat&quot;/&gt;
+&lt;bean id=&quot;car&quot; class=&quot;com.example.demo.pojo.Car&quot;/&gt;</code></pre><p>测试方法:</p>
+<pre><code>public void test1(){
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
+        Person person = (Person) context.getBean(&quot;person&quot;);
+        person.catWork();
+        person.carWork();
+    }</code></pre><p>输出结果：</p>
+<pre><code>21:17:07.766 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+21:17:07.895 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]
+21:17:07.923 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
+21:17:07.968 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;car&apos;
+21:17:07.969 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
+喵喵喵。。。
+汽车行驶中。。。</code></pre><h3 id="2-constructor-based-DI"><a href="#2-constructor-based-DI" class="headerlink" title="2 constructor-based DI"></a>2 constructor-based DI</h3><p>实例化类和该类的相关依赖：</p>
+<pre><code>//Person.java
+package com.example.demo.pojo;
+
+public class Person {
+    private Integer id;
+    private Cat cat;
+    private Car car;
+
+    public Person(Integer id, Cat cat, Car car) {
+        this.id = id;
+        this.cat = cat;
+        this.car = car;
+    }
+
+    public void catWork(){
+        cat.work();
+    }
+
+    public void carWork(){
+        car.work();
+    }
+}
+//Cat.java
+package com.example.demo.pojo;
+
+public class Cat {
+    public void work(){
+        System.out.println(&quot;喵喵喵。。。&quot;);
+    }
+}
+//Car.java
+package com.example.demo.pojo;
+
+public class Car {
+    public void work(){
+        System.out.println(&quot;汽车行驶中。。。&quot;);
+    }
+}</code></pre><p>配置文件：</p>
+<pre><code>&lt;bean id=&quot;person&quot; class=&quot;com.example.demo.pojo.Person&quot;&gt;
+        &lt;constructor-arg type=&quot;java.lang.Integer&quot; value=&quot;1&quot; /&gt;
+        &lt;constructor-arg ref=&quot;cat&quot; /&gt;
+        &lt;constructor-arg ref=&quot;car&quot; /&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;cat&quot; class=&quot;com.example.demo.pojo.Cat&quot;/&gt;
+&lt;bean id=&quot;car&quot; class=&quot;com.example.demo.pojo.Car&quot;/&gt;</code></pre><p>测试方法:</p>
+<pre><code>public void test1(){
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
+        Person person = (Person) context.getBean(&quot;person&quot;);
+        person.catWork();
+        person.carWork();
+    }</code></pre><p>输出结果：</p>
+<pre><code>21:06:07.375 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12d3a4e9
+21:06:07.483 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]
+21:06:07.514 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
+21:06:07.525 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
+21:06:07.527 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;car&apos;
+喵喵喵。。。
+汽车行驶中。。。</code></pre><h2 id="三-区别"><a href="#三-区别" class="headerlink" title="三 区别"></a>三 区别</h2><p>两者可以混合使用，可将Constructor-based用于强制性依赖项，Setter-based用于可选性依赖性。可在setter方法上标注<code>@Required</code>注解，使其成为必需依赖项。</p>
+<h2 id="四-循环依赖问题"><a href="#四-循环依赖问题" class="headerlink" title="四 循环依赖问题"></a>四 循环依赖问题</h2><p>假设一个会出现循环依赖问题的场景，类A通过构造方法注入类B的实例，类B通过构造方法注入类A的实例。如果你为类A和类B的相互注入而配置了bean，则Spring IoC容器回在运行时检测到循环引用，抛出<code>BeanCurrentlyInCreationException</code>异常，如下所示。</p>
+<pre><code>WARN org.springframework.context.support.ClassPathXmlApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;a&apos; defined in class path resource [spring.xml]: Cannot resolve reference to bean &apos;b&apos; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;b&apos; defined in class path resource [spring.xml]: Cannot resolve reference to bean &apos;a&apos; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name &apos;a&apos;: Requested bean is currently in creation: Is there an unresolvable circular reference?</code></pre><p>解决这个问题的方案是，修改类A和类B的依赖注入方式，从构造方法注入修改为setter注入，实例如下。 相关类：</p>
+<pre><code>//A.java
+package com.example.demo.pojo;
+
+public class A {
+    public String name;
+    public B b;
+
+    /*public A(String name, B b) {
+        this.name = name;
+        this.b = b;
+    }*/
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setB(B b){
+        this.b = b;
+    }
+
+    public void work(){
+        System.out.println(&quot;FROM-A: A.name = &quot; + this.name + &quot; B.name = &quot; + b.name);
+    }
+}
+
+//B.java
+package com.example.demo.pojo;
+
+public class B {
+    public String name;
+    public A a;
+
+  /*  public B(String name, A a) {
+        this.name = name;
+        this.a = a;
+    }*/
+  public void setName(String name) {
+      this.name = name;
+  }
+    public void setA(A a){
+        this.a = a;
+    }
+
+    public void work(){
+        System.out.println(&quot;FROM-B: B.name = &quot; + this.name + &quot; A.name = &quot; + a.name);
+    }
+}</code></pre><p>配置文件：</p>
+<pre><code>&lt;bean id=&quot;a&quot; class=&quot;com.example.demo.pojo.A&quot;&gt;
+        &lt;property name=&quot;name&quot; value=&quot;A&quot;/&gt;
+        &lt;property name=&quot;b&quot; ref=&quot;b&quot;/&gt;
+    &lt;/bean&gt;
+    &lt;bean id=&quot;b&quot; class=&quot;com.example.demo.pojo.B&quot;&gt;
+        &lt;property name=&quot;name&quot; value=&quot;B&quot;/&gt;
+        &lt;property name=&quot;a&quot; ref=&quot;a&quot;/&gt;
+    &lt;/bean&gt;</code></pre><p>测试方法：</p>
+<pre><code>public void test1(){
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
+        A a = (A)context.getBean(&quot;a&quot;);
+        a.work();
+        B b = (B)context.getBean(&quot;b&quot;);
+        b.work();
+    }</code></pre><p>测试结果：</p>
+<pre><code>10:15:09.428 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+10:15:09.549 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 2 bean definitions from class path resource [spring.xml]
+10:15:09.580 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;a&apos;
+10:15:09.620 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;b&apos;
+FROM-A: A.name = A B.name = B
+FROM-B: B.name = B A.name = A</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/da03f5c5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/da03f5c5.html" class="post-title-link" itemprop="url">实例化Bean的三种方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-16 17:44:29" itemprop="dateCreated datePublished" datetime="2020-07-16T17:44:29Z">2020-07-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、对相关概念的了解："><a href="#一、对相关概念的了解：" class="headerlink" title="一、对相关概念的了解："></a>一、对相关概念的了解：</h2><p>bean是应用的主要部分，并由IoC Container组装（assemble）、实例化（instantiate）和管理。 ApplicationContext代表IoC容器，它根据读取的“配置元数据”（Configuration matedata）来获取组装、实例化和管理bean的指令。配置元数据的表示方式有：XML配置文件、注解、Java程序。</p>
+<h2 id="二、实例化bean的方法"><a href="#二、实例化bean的方法" class="headerlink" title="二、实例化bean的方法"></a>二、实例化bean的方法</h2><h3 id="1-用构造函数实例化"><a href="#1-用构造函数实例化" class="headerlink" title="1 用构造函数实例化"></a>1 用构造函数实例化</h3><p>此方法最为简单常用，仅需给出简单的bean类，并配置id即可直接实例化bean。 实例化类：</p>
+<pre><code>package com.example.demo.pojo;
+
+public class User {
+    public void show(){
+        System.out.println(&quot;hello,Spring&quot;);
+    }
+}</code></pre><p>配置文件：</p>
+<pre><code>&lt;bean id=&quot;user&quot; class=&quot;com.example.demo.pojo.User&quot;/&gt;</code></pre><p>测试方法：</p>
+<pre><code>public void test3(){
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);
+        User user = (User) context.getBean(&quot;user&quot;);
+        user.show();
+    }</code></pre><p>输出结果：</p>
+<pre><code>17:05:50.365 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+17:05:50.488 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [service.xml]
+17:05:50.518 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
+17:05:50.528 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
+17:05:50.567 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user&apos;
+hello,Spring</code></pre><h3 id="2-用静态工厂方法实例化"><a href="#2-用静态工厂方法实例化" class="headerlink" title="2 用静态工厂方法实例化"></a>2 用静态工厂方法实例化</h3><p>该方法较为复杂，实例化的类中需包含一个静态的方法。该方法直接new一个类对象并返回，并在配置文件中声明该bean类，同时指明factory-method，即上述返回类对象的静态方法的名称。 实例化类：</p>
+<pre><code>package com.example.demo.pojo;
+
+public class User2 {
+    private User2() {}
+
+    public void show(){
+        System.out.println(&quot;hello,Spring&quot;);
+    }
+    public static User2 getInstance(){
+        return new User2();
+    }
+}</code></pre><p>配置文件：</p>
+<pre><code>&lt;bean id=&quot;user2&quot; class=&quot;com.example.demo.pojo.User2&quot; factory-method=&quot;getInstance&quot;/&gt;</code></pre><p>测试方法：</p>
+<pre><code>public void test4(){
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);
+        User2 user2 = (User2) context.getBean(&quot;user2&quot;);
+        user2.show();
+    }</code></pre><p>输出结果：</p>
+<pre><code>17:17:52.576 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+17:17:52.691 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 4 bean definitions from class path resource [service.xml]
+17:17:52.723 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
+17:17:52.734 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
+17:17:52.760 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user&apos;
+17:17:52.760 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user2&apos;
+hello,Spring</code></pre><h3 id="3-用实例工厂方法实例化"><a href="#3-用实例工厂方法实例化" class="headerlink" title="3 用实例工厂方法实例化"></a>3 用实例工厂方法实例化</h3><p>该方法更为复杂，通过工厂类中的非静态方法实例化类对象。 实例化类：</p>
+<pre><code>package com.example.demo.pojo;
+
+public class User3 {
+    public void show(){
+        System.out.println(&quot;hello,Spring&quot;);
+    }
+
+}</code></pre><p>工厂类：</p>
+<pre><code>package com.example.demo.pojo;
+
+public class User3Factory {
+    public User3 getUser3(){
+        return new User3();
+    }
+}</code></pre><p>配置文件： 第一个bean标签指明工厂类。第二个bean标签指明实例化类，并说明工厂类和工厂类中的方法。</p>
+<pre><code>&lt;bean id=&quot;user3factory&quot; class=&quot;com.example.demo.pojo.User3Factory&quot;/&gt;
+&lt;bean id=&quot;user3&quot; factory-bean=&quot;user3factory&quot; factory-method=&quot;getUser3&quot; /&gt;</code></pre><p>测试方法：</p>
+<pre><code>public void test5(){
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);
+        User3 user3 = (User3) context.getBean(&quot;user3&quot;);
+        user3.show();
+    }</code></pre><p>输出结果：</p>
+<pre><code>17:34:53.967 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+17:34:54.083 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 6 bean definitions from class path resource [service.xml]
+17:34:54.120 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
+17:34:54.132 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
+17:34:54.155 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user&apos;
+17:34:54.155 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user2&apos;
+17:34:54.157 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user3factory&apos;
+17:34:54.157 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user3&apos;
+hello,Spring</code></pre><h2 id="另外，如何给相关方法传递参数？？？"><a href="#另外，如何给相关方法传递参数？？？" class="headerlink" title="另外，如何给相关方法传递参数？？？"></a>另外，如何给相关方法传递参数？？？</h2><p>该部分可能涉及了依赖注入的知识，暂且搁置，应该会在后面的文章中体现。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/9c51ba7b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/9c51ba7b.html" class="post-title-link" itemprop="url">初识控制反转（IoC）与依赖注入（DI）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-16 16:42:36" itemprop="dateCreated datePublished" datetime="2020-07-16T16:42:36Z">2020-07-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>文章链接：<a href="https://www.jianshu.com/p/07af9dbbbc4b" target="_blank" rel="noopener external nofollow noreferrer" title="https://www.jianshu.com/p/07af9dbbbc4b">https://www.jianshu.com/p/07af9dbbbc4b</a> 本文有助于对控制反转（Inversion of Control）和依赖注入（Dependency Injection）基本概念的理解。并举例说明了使用IoC Container解决的生产问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/ed6def66.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/ed6def66.html" class="post-title-link" itemprop="url">MyBatis自定义类型处理器TypeHandler</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-05 22:35:17" itemprop="dateCreated datePublished" datetime="2020-07-05T22:35:17Z">2020-07-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>MyBatis 在设置预处理语句（PreparedStatement）中的参数或从结果集中取出一个值时， 都会用类型处理器将获取到的值以合适的方式转换成 Java 类型。</p>
+</blockquote>
+<p>如果你试图直接将java对象设置为预处理语句PreparedStatement的参数。这样做，在执行sql语句的时候会出现一个问题，java类型的数据如何与数据库类型兼容。对此MyBatis提供了类型处理器，并且实现了一些常用类型的转换。可点击<a href="https://mybatis.org/mybatis-3/zh/configuration.html#typeHandlers" target="_blank" rel="noopener external nofollow noreferrer" title="这里">这里</a>查看。 你可以重写已有的类型处理器或创建你自己的类型处理器来处理不支持的或非标准的类型。 具体做法为：实现 org.apache.ibatis.type.TypeHandler 接口， 或继承一个很便利的类 org.apache.ibatis.type.BaseTypeHandler， 并且可以（可选地）将它映射到一个 JDBC 类型。比如：</p>
+<pre><code>// ExampleTypeHandler.java
+@MappedJdbcTypes(JdbcType.VARCHAR)
+public class ExampleTypeHandler extends BaseTypeHandler&lt;String&gt; {
+
+  @Override
+  public void setNonNullParameter(PreparedStatement ps, int i, String parameter, JdbcType jdbcType) throws SQLException {
+    ps.setString(i, parameter);
+  }
+
+  @Override
+  public String getNullableResult(ResultSet rs, String columnName) throws SQLException {
+    return rs.getString(columnName);
+  }
+
+  @Override
+  public String getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
+    return rs.getString(columnIndex);
+  }
+
+  @Override
+  public String getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
+    return cs.getString(columnIndex);
+  }
+}
+
+
+&lt;!-- mybatis-config.xml --&gt;
+&lt;typeHandlers&gt;
+  &lt;typeHandler handler=&quot;org.mybatis.example.ExampleTypeHandler&quot;/&gt;
+&lt;/typeHandlers&gt;</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/9a61816b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/9a61816b.html" class="post-title-link" itemprop="url">在MyBatis中使用Log4j输出日志</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-05 00:27:37" itemprop="dateCreated datePublished" datetime="2020-07-05T00:27:37Z">2020-07-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、指定MyBatis的日志工具"><a href="#一、指定MyBatis的日志工具" class="headerlink" title="一、指定MyBatis的日志工具"></a>一、指定MyBatis的日志工具</h2><p>在 MyBatis 配置文件 mybatis-config.xml 里面添加一项 setting 来选择其它日志实现。</p>
+<pre><code>&lt;settings&gt;
+        &lt;setting name=&quot;logImpl&quot; value=&quot;LOG4J&quot;/&gt;
+&lt;/settings&gt;</code></pre><p>注意，settings标签在configuration标签中的位置，应当符合当前xml文件的约束。</p>
+<blockquote>
+<p>The content of element type “configuration” must match “(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?)”.</p>
+</blockquote>
+<h2 id="二、导入log4j相关依赖"><a href="#二、导入log4j相关依赖" class="headerlink" title="二、导入log4j相关依赖"></a>二、导入log4j相关依赖</h2><ul>
+<li><p>maven项目，在pom.xml文件中添加以下坐标</p>
+<dependency>
+     <groupId>log4j</groupId>
+     <artifactId>log4j</artifactId>
+     <version>1.2.17</version>
+</dependency>
+
+
+</li>
+</ul>
+<ul>
+<li>其他项目，导入log4j的jar包，可在 <a href="https://logging.apache.org/log4j/2.x/download.html" target="_blank" rel="noopener external nofollow noreferrer" title="log4j">log4j</a> 网站下载</li>
+</ul>
+<h2 id="三、配置log4j的属性文件"><a href="#三、配置log4j的属性文件" class="headerlink" title="三、配置log4j的属性文件"></a>三、配置log4j的属性文件</h2><p>在应用的类路径中创建一个名为 log4j.properties 的文件，文件的具体内容如下：</p>
+<pre><code># 全局日志配置
+log4j.rootLogger=ERROR, stdout
+# MyBatis 日志配置
+log4j.logger.org.mybatis.example.BlogMapper=TRACE
+# 控制台输出
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre><p>上述配置将使 Log4J 详细打印 org.mybatis.example.BlogMapper 的日志，对于应用的其它部分，只打印错误信息。 为了实现更细粒度的日志输出，你也可以只打印特定语句的日志。以下配置将只打印语句 selectBlog 的日志：</p>
+<pre><code>log4j.logger.org.mybatis.example.BlogMapper.selectBlog=TRACE</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/6292c650.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/6292c650.html" class="post-title-link" itemprop="url">并发与并行的区别</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-09 17:07:00" itemprop="dateCreated datePublished" datetime="2020-05-09T17:07:00Z">2020-05-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>你吃饭吃到一半，电话来了，你一直到吃完了以后才去接，这就说明你不支持并发也不支持并行。 你吃饭吃到一半，电话来了，你停了下来接了电话，接完后继续吃饭，这说明你支持并发。 你吃饭吃到一半，电话来了，你一边打电话一边吃饭，这说明你支持并行。 并发的关键是你有处理多个任务的能力，不一定要同时。并行的关键是你有同时处理多个任务的能力。所以我认为它们最关键的点就是：是否是『同时』。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/4115c28f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/4115c28f.html" class="post-title-link" itemprop="url">缓冲流的存在有什么意义？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-29 21:54:48" itemprop="dateCreated datePublished" datetime="2020-04-29T21:54:48Z">2020-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>BufferedInputStream和BufferedoutputStream是FilterInputStream和FilterOutputStream的子类，可以避免每次发送或者写数据的时候，进行实际的写操作，使用的是缓冲区； 不应用缓冲区的时候，每次读取一个字节，写入一个字节，由于操作磁盘比内存慢的很多，所以不应用缓冲区效率很低； 应用缓冲区，可以一次读取多个字节，先不写入磁盘，而是放入内存之中，到了缓冲区大小的时候，在写入磁盘，减少了对磁盘的操作，效率高； 应用缓冲流，在结束的时候，调用flush和close方法，将缓冲区的数据都清理出来，，写入磁盘，否则可能无数据； 当写文件需要flush()的效果时，需要  FileOutputStream fos = new FileOutputStream(“c:\a.txt”);  BufferedOutputStream bos = new BufferedOutputStream(fos);  也就是说，需要将FileOutputStream作为BufferedOutputStream构造函数的参数传入，然后对BufferedOutputStream进行写入操作，才能利用缓冲及flush()。 1.BufferedOutputStream在close()时会自动flush  2.BufferedOutputStream在不调用close()的情况下，缓冲区不满，又需要把缓冲区的内容写入到文件或通过网络发送到别的机器时，才需要调用flush. ———————————————— 原文链接：<a href="https://blog.csdn.net/HEB\_ZZQ/java/article/details/80944570" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/HEB\_ZZQ/java/article/details/80944570</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/136b1ea2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/136b1ea2.html" class="post-title-link" itemprop="url">深入理解Java集合框架【转】</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-29 12:05:06" itemprop="dateCreated datePublished" datetime="2020-04-29T12:05:06Z">2020-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>关于_C++标准模板库(Standard Template Library, STL)_的书籍和资料有很多，关于_Java集合框架(Java Collections Framework, JCF)_的资料却很少，甚至很难找到一本专门介绍它的书籍，这给Java学习者们带来不小的麻烦。我深深的不解其中的原因。<strong>虽然JCF设计参考了STL，但其定位不是Java版的STL，而是要实现一个精简紧凑的容器框架</strong>，对STL的介绍自然不能替代对JCF的介绍。 本系列文章主要从<strong>数据结构和算法</strong>层面分析JCF中List, Set, Map, Stack, Queue等典型容器，<strong>结合生动图解和源代码，帮助读者对Java集合框架建立清晰而深入的理解</strong>。本文并不特意介绍Java的语言特性，但会在需要的时候做出简洁的解释。</p>
+<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><p>具体内容安排如下：</p>
+<ol>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5414253.html" target="_blank" rel="noopener external nofollow noreferrer">Java Collections Framework概览</a> 对Java Collections Framework，以及Java语言特性做出基本介绍。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5419880.html" target="_blank" rel="noopener external nofollow noreferrer">Java ArrayList源码剖析</a> 结合源码对_ArrayList_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5457150.html" target="_blank" rel="noopener external nofollow noreferrer">Java LinkedList源码剖析</a> 结合源码对_LinkedList_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5468803.html" target="_blank" rel="noopener external nofollow noreferrer">Java ArrayDeque源码剖析</a> 以_AarryDeque_为例讲解_Stack_和_Queue_。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5503882.html" target="_blank" rel="noopener external nofollow noreferrer">史上最清晰的红黑树讲解（上）</a>和<a href="http://www.cnblogs.com/CarpenterLee/p/5525688.html" target="_blank" rel="noopener external nofollow noreferrer">史上最清晰的红黑树讲解（下）</a> 结合源码对_TreeSet_和_TreeMap_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5440428.html" target="_blank" rel="noopener external nofollow noreferrer">Java HashSet和HashMap源码剖析</a> 结合源码对_HashSet_和_HashMap_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5541111.html" target="_blank" rel="noopener external nofollow noreferrer">Java集合框架源码剖析：LinkedHashSet 和 LinkedHashMap</a> 结合源码对_LinkedHashSet_和_LinkedHashMap_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5488070.html" target="_blank" rel="noopener external nofollow noreferrer">深入理解Java PriorityQueue</a> 结合源码对_PriorityQueue_进行讲解。</li>
+<li><a href="https://github.com/CarpenterLee/JCFInternals/blob/master/markdown/9-WeakHashMap.md" target="_blank" rel="noopener external nofollow noreferrer">浅谈WeakHashMap</a> 对_WeakHashMap_做出基本介绍。</li>
+</ol>
+<blockquote>
+<p>本文转载自：<a href="https://www.cnblogs.com/CarpenterLee/p/5545987.html" target="_blank" rel="noopener external nofollow noreferrer">https://www.cnblogs.com/CarpenterLee/p/5545987.html</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ken Luo"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ken Luo</p>
+  <div class="site-description" itemprop="description">记录学习历程</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shaofei2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shaofei2019" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ken@scanf.top" title="E-Mail → mailto:ken@scanf.top" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ken Luo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
