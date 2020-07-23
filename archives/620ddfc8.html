@@ -28,7 +28,7 @@
 <meta property="og:description" content="一 什么是依赖注入依赖注入是一个过程，通过该过程可以解决对象依赖问题。现假设一个场景，有类A和类B，类A依赖类B，以往在我们实例化类A时，需要先拥有类B的实例化对象，利用这个对象才能完成类A的实例化。现在，类B的实例化任务由IoC容器接管了，我们可以直接获取类A的实例化对象，而无需顾及类B的实例化过程，我们需要做的仅是类A和类B的依赖关系的声明。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-17T10:18:15.000Z">
-<meta property="article:modified_time" content="2020-07-23T16:04:19.461Z">
+<meta property="article:modified_time" content="2020-07-23T16:30:59.660Z">
 <meta property="article:author" content="Ken Luo">
 <meta property="article:tag" content="Spring">
 <meta property="article:tag" content="DI">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-23 16:04:19" itemprop="dateModified" datetime="2020-07-23T16:04:19Z">2020-07-23</time>
+                <time title="修改时间：2020-07-23 16:30:59" itemprop="dateModified" datetime="2020-07-23T16:30:59Z">2020-07-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,7 +239,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/SSM/" itemprop="url" rel="index"><span itemprop="name">SSM</span></a>
                 </span>
             </span>
 
@@ -256,14 +260,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7k</span>
+              <span>7.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -280,203 +284,56 @@
 
 <h2 id="二-依赖注入的两种方式"><a href="#二-依赖注入的两种方式" class="headerlink" title="二 依赖注入的两种方式"></a>二 依赖注入的两种方式</h2><p>有两种依赖注入的方式，其一基于非静态的setter方法，其二基于构造方法，下面列举两个实例。</p>
 <h3 id="1-setter-based-DI"><a href="#1-setter-based-DI" class="headerlink" title="1 setter-based DI"></a>1 setter-based DI</h3><p>实例化类和该类的相关依赖：</p>
-<pre><code>//Person.java
-package com.example.demo.pojo;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Person.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="keyword">private</span> Car car;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/* public Person(Integer id, Cat cat, Car car) &#123;</span></span><br><span class="line"><span class="comment">        this.id = id;</span></span><br><span class="line"><span class="comment">        this.cat = cat;</span></span><br><span class="line"><span class="comment">        this.car = car;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCat</span><span class="params">(Cat cat)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cat = cat;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCar</span><span class="params">(Car car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.car = car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        cat.work();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">carWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        car.work();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Cat.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"喵喵喵。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Car.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"汽车行驶中。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public class Person {
-    private Integer id;
-    private Cat cat;
-    private Car car;
 
-   /* public Person(Integer id, Cat cat, Car car) {
-        this.id = id;
-        this.cat = cat;
-        this.car = car;
-    }*/
+<p>配置文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Person"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"car"</span> <span class="attr">ref</span>=<span class="string">"car"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cat"</span> <span class="attr">ref</span>=<span class="string">"cat"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Cat"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"car"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Car"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public void setCat(Cat cat) {
-        this.cat = cat;
-    }
+<p>测试方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">        Person person = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        person.catWork();</span><br><span class="line">        person.carWork();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-    public void setCar(Car car) {
-        this.car = car;
-    }
 
-    public void catWork(){
-        cat.work();
-    }
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">21:17:07.766 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd</span><br><span class="line">21:17:07.895 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]</span><br><span class="line">21:17:07.923 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;person&#39;</span><br><span class="line">21:17:07.968 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;car&#39;</span><br><span class="line">21:17:07.969 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;cat&#39;</span><br><span class="line">喵喵喵。。。</span><br><span class="line">汽车行驶中。。。</span><br></pre></td></tr></table></figure>
 
-    public void carWork(){
-        car.work();
-    }
-}
 
-//Cat.java
-package com.example.demo.pojo;
+<h3 id="2-constructor-based-DI"><a href="#2-constructor-based-DI" class="headerlink" title="2 constructor-based DI"></a>2 constructor-based DI</h3><p>实例化类和该类的相关依赖：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Person.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="keyword">private</span> Car car;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(Integer id, Cat cat, Car car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.cat = cat;</span><br><span class="line">        <span class="keyword">this</span>.car = car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        cat.work();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">carWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        car.work();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Cat.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"喵喵喵。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Car.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"汽车行驶中。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public class Cat {
-    public void work(){
-        System.out.println(&quot;喵喵喵。。。&quot;);
-    }
-}
-//Car.java
-package com.example.demo.pojo;
 
-public class Car {
-    public void work(){
-        System.out.println(&quot;汽车行驶中。。。&quot;);
-    }
-}</code></pre><p>配置文件：</p>
-<pre><code>&lt;bean id=&quot;person&quot; class=&quot;com.example.demo.pojo.Person&quot;&gt;
-        &lt;property name=&quot;id&quot; value=&quot;1&quot; /&gt;
-        &lt;property name=&quot;car&quot; ref=&quot;car&quot; /&gt;
-        &lt;property name=&quot;cat&quot; ref=&quot;cat&quot; /&gt;
-&lt;/bean&gt;
-&lt;bean id=&quot;cat&quot; class=&quot;com.example.demo.pojo.Cat&quot;/&gt;
-&lt;bean id=&quot;car&quot; class=&quot;com.example.demo.pojo.Car&quot;/&gt;</code></pre><p>测试方法:</p>
-<pre><code>public void test1(){
-        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
-        Person person = (Person) context.getBean(&quot;person&quot;);
-        person.catWork();
-        person.carWork();
-    }</code></pre><p>输出结果：</p>
-<pre><code>21:17:07.766 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
-21:17:07.895 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]
-21:17:07.923 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
-21:17:07.968 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;car&apos;
-21:17:07.969 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
-喵喵喵。。。
-汽车行驶中。。。</code></pre><h3 id="2-constructor-based-DI"><a href="#2-constructor-based-DI" class="headerlink" title="2 constructor-based DI"></a>2 constructor-based DI</h3><p>实例化类和该类的相关依赖：</p>
-<pre><code>//Person.java
-package com.example.demo.pojo;
+<p>配置文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Person"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.Integer"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"cat"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"car"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Cat"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"car"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Car"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-public class Person {
-    private Integer id;
-    private Cat cat;
-    private Car car;
 
-    public Person(Integer id, Cat cat, Car car) {
-        this.id = id;
-        this.cat = cat;
-        this.car = car;
-    }
+<p>测试方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">        Person person = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        person.catWork();</span><br><span class="line">        person.carWork();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-    public void catWork(){
-        cat.work();
-    }
 
-    public void carWork(){
-        car.work();
-    }
-}
-//Cat.java
-package com.example.demo.pojo;
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">21:06:07.375 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12d3a4e9</span><br><span class="line">21:06:07.483 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]</span><br><span class="line">21:06:07.514 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;person&#39;</span><br><span class="line">21:06:07.525 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;cat&#39;</span><br><span class="line">21:06:07.527 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;car&#39;</span><br><span class="line">喵喵喵。。。</span><br><span class="line">汽车行驶中。。。</span><br></pre></td></tr></table></figure>
 
-public class Cat {
-    public void work(){
-        System.out.println(&quot;喵喵喵。。。&quot;);
-    }
-}
-//Car.java
-package com.example.demo.pojo;
 
-public class Car {
-    public void work(){
-        System.out.println(&quot;汽车行驶中。。。&quot;);
-    }
-}</code></pre><p>配置文件：</p>
-<pre><code>&lt;bean id=&quot;person&quot; class=&quot;com.example.demo.pojo.Person&quot;&gt;
-        &lt;constructor-arg type=&quot;java.lang.Integer&quot; value=&quot;1&quot; /&gt;
-        &lt;constructor-arg ref=&quot;cat&quot; /&gt;
-        &lt;constructor-arg ref=&quot;car&quot; /&gt;
-&lt;/bean&gt;
-&lt;bean id=&quot;cat&quot; class=&quot;com.example.demo.pojo.Cat&quot;/&gt;
-&lt;bean id=&quot;car&quot; class=&quot;com.example.demo.pojo.Car&quot;/&gt;</code></pre><p>测试方法:</p>
-<pre><code>public void test1(){
-        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
-        Person person = (Person) context.getBean(&quot;person&quot;);
-        person.catWork();
-        person.carWork();
-    }</code></pre><p>输出结果：</p>
-<pre><code>21:06:07.375 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12d3a4e9
-21:06:07.483 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]
-21:06:07.514 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
-21:06:07.525 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
-21:06:07.527 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;car&apos;
-喵喵喵。。。
-汽车行驶中。。。</code></pre><h2 id="三-区别"><a href="#三-区别" class="headerlink" title="三 区别"></a>三 区别</h2><p>两者可以混合使用，可将Constructor-based用于强制性依赖项，Setter-based用于可选性依赖性。可在setter方法上标注<code>@Required</code>注解，使其成为必需依赖项。</p>
+<h2 id="三-区别"><a href="#三-区别" class="headerlink" title="三 区别"></a>三 区别</h2><p>两者可以混合使用，可将Constructor-based用于强制性依赖项，Setter-based用于可选性依赖性。可在setter方法上标注<code>@Required</code>注解，使其成为必需依赖项。</p>
 <h2 id="四-循环依赖问题"><a href="#四-循环依赖问题" class="headerlink" title="四 循环依赖问题"></a>四 循环依赖问题</h2><p>假设一个会出现循环依赖问题的场景，类A通过构造方法注入类B的实例，类B通过构造方法注入类A的实例。如果你为类A和类B的相互注入而配置了bean，则Spring IoC容器回在运行时检测到循环引用，抛出<code>BeanCurrentlyInCreationException</code>异常，如下所示。</p>
-<pre><code>WARN org.springframework.context.support.ClassPathXmlApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;a&apos; defined in class path resource [spring.xml]: Cannot resolve reference to bean &apos;b&apos; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;b&apos; defined in class path resource [spring.xml]: Cannot resolve reference to bean &apos;a&apos; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name &apos;a&apos;: Requested bean is currently in creation: Is there an unresolvable circular reference?</code></pre><p>解决这个问题的方案是，修改类A和类B的依赖注入方式，从构造方法注入修改为setter注入，实例如下。 相关类：</p>
-<pre><code>//A.java
-package com.example.demo.pojo;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARN org.springframework.context.support.ClassPathXmlApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;a&#39; defined in class path resource [spring.xml]: Cannot resolve reference to bean &#39;b&#39; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;b&#39; defined in class path resource [spring.xml]: Cannot resolve reference to bean &#39;a&#39; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name &#39;a&#39;: Requested bean is currently in creation: Is there an unresolvable circular reference?</span><br></pre></td></tr></table></figure>
 
-public class A {
-    public String name;
-    public B b;
 
-    /*public A(String name, B b) {
-        this.name = name;
-        this.b = b;
-    }*/
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setB(B b){
-        this.b = b;
-    }
+<p>解决这个问题的方案是，修改类A和类B的依赖注入方式，从构造方法注入修改为setter注入，实例如下。 相关类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//A.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> B b;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*public A(String name, B b) &#123;</span></span><br><span class="line"><span class="comment">        this.name = name;</span></span><br><span class="line"><span class="comment">        this.b = b;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setB</span><span class="params">(B b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.b = b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"FROM-A: A.name = "</span> + <span class="keyword">this</span>.name + <span class="string">" B.name = "</span> + b.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//B.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> A a;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*  public B(String name, A a) &#123;</span></span><br><span class="line"><span class="comment">        this.name = name;</span></span><br><span class="line"><span class="comment">        this.a = a;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">(A a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.a = a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"FROM-B: B.name = "</span> + <span class="keyword">this</span>.name + <span class="string">" A.name = "</span> + a.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    public void work(){
-        System.out.println(&quot;FROM-A: A.name = &quot; + this.name + &quot; B.name = &quot; + b.name);
-    }
-}
 
-//B.java
-package com.example.demo.pojo;
+<p>配置文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"a"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.A"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"A"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"b"</span> <span class="attr">ref</span>=<span class="string">"b"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"b"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.B"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"B"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"a"</span> <span class="attr">ref</span>=<span class="string">"a"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-public class B {
-    public String name;
-    public A a;
 
-  /*  public B(String name, A a) {
-        this.name = name;
-        this.a = a;
-    }*/
-  public void setName(String name) {
-      this.name = name;
-  }
-    public void setA(A a){
-        this.a = a;
-    }
+<p>测试方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">        A a = (A)context.getBean(<span class="string">"a"</span>);</span><br><span class="line">        a.work();</span><br><span class="line">        B b = (B)context.getBean(<span class="string">"b"</span>);</span><br><span class="line">        b.work();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-    public void work(){
-        System.out.println(&quot;FROM-B: B.name = &quot; + this.name + &quot; A.name = &quot; + a.name);
-    }
-}</code></pre><p>配置文件：</p>
-<pre><code>&lt;bean id=&quot;a&quot; class=&quot;com.example.demo.pojo.A&quot;&gt;
-        &lt;property name=&quot;name&quot; value=&quot;A&quot;/&gt;
-        &lt;property name=&quot;b&quot; ref=&quot;b&quot;/&gt;
-    &lt;/bean&gt;
-    &lt;bean id=&quot;b&quot; class=&quot;com.example.demo.pojo.B&quot;&gt;
-        &lt;property name=&quot;name&quot; value=&quot;B&quot;/&gt;
-        &lt;property name=&quot;a&quot; ref=&quot;a&quot;/&gt;
-    &lt;/bean&gt;</code></pre><p>测试方法：</p>
-<pre><code>public void test1(){
-        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
-        A a = (A)context.getBean(&quot;a&quot;);
-        a.work();
-        B b = (B)context.getBean(&quot;b&quot;);
-        b.work();
-    }</code></pre><p>测试结果：</p>
-<pre><code>10:15:09.428 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
-10:15:09.549 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 2 bean definitions from class path resource [spring.xml]
-10:15:09.580 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;a&apos;
-10:15:09.620 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;b&apos;
-FROM-A: A.name = A B.name = B
-FROM-B: B.name = B A.name = A</code></pre>
+
+<p>测试结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">10:15:09.428 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd</span><br><span class="line">10:15:09.549 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 2 bean definitions from class path resource [spring.xml]</span><br><span class="line">10:15:09.580 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;a&#39;</span><br><span class="line">10:15:09.620 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;b&#39;</span><br><span class="line">FROM-A: A.name &#x3D; A B.name &#x3D; B</span><br><span class="line">FROM-B: B.name &#x3D; B A.name &#x3D; A</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -597,7 +454,7 @@ FROM-B: B.name = B A.name = A</code></pre>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
