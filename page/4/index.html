@@ -99,7 +99,6 @@
       <h1 class="site-title">Ken's Blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">Java noob & 互联网炮灰</p>
   </div>
 
   <div class="site-nav-right">
@@ -139,19 +138,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
-
-  </li>
         <li class="menu-item menu-item-sitemap">
 
     <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -208,10 +197,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/503a6fb7.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/8e3b9ebd.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -222,7 +211,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/archives/503a6fb7.html" class="post-title-link" itemprop="url">Q&A</a>
+            <a href="/archives/8e3b9ebd.html" class="post-title-link" itemprop="url">教学实习编程必做题二： 输出三角形的九九乘法口诀表</a>
         </h2>
 
         <div class="post-meta">
@@ -232,17 +221,31 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-11-21 13:53:48" itemprop="dateCreated datePublished" datetime="2019-11-21T13:53:48Z">2019-11-21</time>
+              <time title="创建时间：2019-09-11 19:07:53" itemprop="dateCreated datePublished" datetime="2019-09-11T19:07:53Z">2019-09-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>469</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -253,7 +256,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p>编程要求：输出三角形的九九乘法口诀表，如图所示：</p>
+<p><img src="https://scanf.top/wp-content/uploads/2019/09/1.png" alt=""></p>
+<h3 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h3><p>//第二题，输出三角形的九九乘法口诀表<br>//整体实现思路：采用嵌套for循环<br>//一行一行，一句一句打印，从上到下，从左到右<br>#include&lt;stdio.h&gt;</p>
+<p>int main ( void )<br>{<br>  int row,first,second,third;//first被乘数，second乘数，third乘积 </p>
+<p>  for ( row = 1; row &lt;= 9; row++ )//循环一次打印一行内容<br>  {<br>    for ( first = 1; first &lt;= row; first++ )//循环一次打印一句<br>    {<br>      second = row;// 乘数等于当前行数<br>      third = first * second;<br>      printf(“%d*%d=%2d  “,first,second,third);</p>
+<pre><code>}
+printf(&quot;\\n&quot;);//行末换行 </code></pre><p>   } </p>
+<p>  return 0;<br>}</p>
+<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>整体思路：采用嵌套for循环，一行一行，一句一句打印，从上到下，从左到右 需要说明的是：first被乘数，second乘数，third乘积 更多解释请看代码后的注释。</p>
+
       
     </div>
 
@@ -272,10 +284,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/da2381cf.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/8e104a6f.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -286,7 +298,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/archives/da2381cf.html" class="post-title-link" itemprop="url">CSS Position(定位)</a>
+            <a href="/archives/8e104a6f.html" class="post-title-link" itemprop="url">教学实习编程必做题一：利用公式求π的值</a>
         </h2>
 
         <div class="post-meta">
@@ -296,17 +308,31 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-27 11:49:41" itemprop="dateCreated datePublished" datetime="2019-10-27T11:49:41Z">2019-10-27</time>
+              <time title="创建时间：2019-09-11 18:28:01" itemprop="dateCreated datePublished" datetime="2019-09-11T18:28:01Z">2019-09-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>488</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -317,43 +343,215 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="一、static-定位"><a href="#一、static-定位" class="headerlink" title="一、static 定位"></a>一、static 定位</h3><p>HTML 元素的默认值，即没有定位，遵循正常的文档流对象。 静态定位的元素不会受到 top, bottom, left, right影响。</p>
-<p>.static {<br>    position: static;<br>    border: 3px solid #73AD21;<br>}</p>
-<h3 id="二、fixed-定位"><a href="#二、fixed-定位" class="headerlink" title="二、fixed 定位"></a>二、fixed 定位</h3><p>元素的位置相对于浏览器窗口是固定位置。 即使窗口是滚动的它也不会移动：</p>
-<p>.pos_fixed<br>{<br>    position:fixed;<br>    top:30px;<br>    right:5px;<br>}</p>
-<p>Fixed定位使元素的位置与文档流无关，因此不占据空间。 Fixed定位的元素和其他元素重叠。</p>
-<h3 id="三、relative-定位"><a href="#三、relative-定位" class="headerlink" title="三、relative 定位"></a>三、relative 定位</h3><p>相对定位元素的定位是相对其正常位置。 移动相对定位元素，但它原本所占的空间不会改变。</p>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8"> 
-<title>菜鸟教程(runoob.com)</title> 
-<style>
-h2.pos\_top
+          <p>编程要求：利用公式π/4=1-1/3+1/5-1/7+……求π的近似值，直到最后一项的绝对值小于10-6为止。</p>
+<h3 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h3><p>//第一题，利用公式求pi的近似值<br>#include &lt;stdio.h&gt;<br>#include &lt;math.h&gt;</p>
+<p>int main ( void )<br>{<br>  double pi;//要求的值<br>  double an;//通项表达式<br>  double sn = 0;//全n项和<br>  double an_av = 1.0;//an的绝对值<br>  int n;<br>  for( n = 1; an_av &gt;= 1e-6; n++ ) //求an的前n项和，直到an的绝对值小于 1e-6<br>  {</p>
+<pre><code>an = pow(-1,n+1) / (2\*n-1);
+
+if( an &lt; 0) //求an的绝对值为an\_av 
 {
-  position:relative;
-  top:-50px;
+  an\_av = -an;
 }
-</style>
+
+sn = sn + an; </code></pre><p>  }<br>  printf(“最终n=%d\n”, n);<br>  pi = sn * 4;<br>  printf(“pi=%lf”, pi);</p>
+<p>  return 0;<br>}</p>
+<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>观察可知1-1/3+1/5-1/7+……的通项表达式为：an=(-1)^(n+1)/(2n+1) 用for循环累加前n项和sn，直到an小于10^-6结束。 结果 π = sn * 4</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/73400397.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/73400397.html" class="post-title-link" itemprop="url">个人网页收藏夹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-03 15:30:17" itemprop="dateCreated datePublished" datetime="2019-09-03T15:30:17Z">2019-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="设计初衷："><a href="#设计初衷：" class="headerlink" title="设计初衷："></a>设计初衷：</h3><p>解决浏览器收藏栏占用屏幕显示区域的问题，保持浏览器界面简洁。</p>
+<h3 id="效果图："><a href="#效果图：" class="headerlink" title="效果图："></a>效果图：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/09/QQ%E6%88%AA%E5%9B%BE20190903152303.png" alt=""></p>
+<h3 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h3><!-- 
+本页作者：少飞同学
+作者博客：scanf.top
+作者QQ：1512014159 
+请勿修改作者信息，谢谢！
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>收藏页</title>
+  <style type="text/css">
+    body{background-color: #323639;}
+      a{color: #FFFFFF;font-size:17px;text-decoration: none;}
+      a:hover{color: #4F7DA4;}
+      ul
+      {
+          margin-left:60px;
+      }
+    li
+    { 
+      list-style: none;
+      float:left;
+      padding-right: 25px;
+    }
+    #bottom
+    {
+      position: absolute;
+              left:50%;top:50%;
+              margin-left:-250px;
+              margin-top:-280px;
+      height: 560px;
+      width:500px;
+      border: 2px solid #8A8C8E;
+      border-radius:25px;
+    }
+
+<pre><code>#head-top h2
+{
+  color: #8A8C8E;
+  text-align: center;
+  margin-top:8px;
+  margin-bottom: 8px;
+}
+.sort
+{
+  margin-top: 30px;
+
+}
+.sort\_name
+{
+  margin-top:8px;
+  margin-left: 22px;
+  color: #8A8C8E;
+}</code></pre><p>  </style></p>
 <link rel="alternate" href="/atom.xml" title="Ken's Blog" type="application/atom+xml">
 </head>
-
 <body>
-<h2>这是一个没有定位的标题</h2>
-<h2 class="pos\_top">这个标题是根据其正常位置向上移动</h2>
-<p><b>注意:</b> 即使相对定位元素的内容是移动,预留空间的元素仍保存在正常流动。</p>
+  <div id="bottom"><!-- 最底层的框架 -->
+    <div id="head-top"><h2>收藏夹</h2></div><!-- 头部文字 -->
+    <div style="border-top:2px solid #8A8C8E;"></div>
+
+
+<pre><code>&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
+  &lt;div class=&quot;sort\_name&quot;&gt;第一分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
+  &lt;ul&gt;
+
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;br&gt;
+  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
+  &lt;div class=&quot;sort\_name&quot;&gt;第二分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
+  &lt;ul&gt;
+
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;br&gt;
+  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
+  &lt;div class=&quot;sort\_name&quot;&gt;第三分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
+  &lt;ul&gt;
+
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;br&gt;
+  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
+  &lt;div class=&quot;sort\_name&quot;&gt;第四分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
+  &lt;ul&gt;
+
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;br&gt;
+  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
+&lt;/div&gt;</code></pre>  </div>
 </body>
-
 </html>
-
-<h3 id="四、absolute-定位"><a href="#四、absolute-定位" class="headerlink" title="四、absolute 定位"></a>四、absolute 定位</h3><p>绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于<html>: absolute 定位使元素的位置与文档流无关，因此不占据空间。 absolute 定位的元素和其他元素重叠。</p>
-<p>h2<br>{<br>    position:absolute;<br>    left:100px;<br>    top:150px;<br>}</p>
-<h3 id="五、sticky-定位"><a href="#五、sticky-定位" class="headerlink" title="五、sticky 定位"></a>五、sticky 定位</h3><p>基于用户的滚动位置来定位。 它的行为就像 <strong>position:relative;</strong> 而当页面滚动超出目标区域时，它的表现就像 <strong>position:fixed;</strong>，它会固定在目标位置。 元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。 这个特定阈值指的是 top, right, bottom 或 left 之一，换言之，指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。 <strong>注意:</strong> Internet Explorer, Edge 15 及更早 IE 版本不支持 sticky 定位。 Safari 需要使用 -webkit- prefix (查看以下实例)。</p>
-<p>div.sticky {<br>    position: -webkit-sticky; /* Safari */<br>    position: sticky;<br>    top: 0;<br>    background-color: green;<br>    border: 2px solid #4CAF50;<br>}</p>
-<h3 id="六、重叠的元素"><a href="#六、重叠的元素" class="headerlink" title="六、重叠的元素"></a>六、重叠的元素</h3><p>元素的定位与文档流无关，所以它们可以覆盖页面上的其它元素 z-index属性指定了一个元素的堆叠顺序（哪个元素应该放在前面，或后面） 一个元素可以有正数或负数的堆叠顺序：</p>
-<p>img<br>{<br>    position:absolute;<br>    left:0px;<br>    top:0px;<br>    z-index:-1;<br>}</p>
-<p>具有更高堆叠顺序的元素总是在较低的堆叠顺序元素的前面。 <strong>注意：</strong> 如果两个定位元素重叠，没有指定z - index，最后定位在HTML代码中的元素将被显示在最前面。</p>
-
       
     </div>
 
@@ -372,10 +570,10 @@ h2.pos\_top
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/99ae3ea5.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/b7ebd473.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -386,7 +584,7 @@ h2.pos\_top
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/archives/99ae3ea5.html" class="post-title-link" itemprop="url">C编译器如何读取并确定一个符号？</a>
+            <a href="/archives/b7ebd473.html" class="post-title-link" itemprop="url">在创建指针时使用const</a>
         </h2>
 
         <div class="post-meta">
@@ -396,141 +594,7 @@ h2.pos\_top
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-08 23:17:36" itemprop="dateCreated datePublished" datetime="2019-10-08T23:17:36Z">2019-10-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>读取规则：每一个符号应该包含尽可能多的字符。</strong> 编译器读取符号的方法是，从左到右一个字符一个字符地读入，如果该字符可能组成一个符号，那么再读入下一个字符，判断已经读取的两个字符组成的字符串是否可能是一个符号的组成部分；如果可能，继续读入下一个字符，重复上述判断，直到读入的字符组成的字符串已不再可能组成一个有意义的符号。这个处理策略又是被称为“贪心法”。</p>
-<h4 id="分析：a-b"><a href="#分析：a-b" class="headerlink" title="分析：a- - -b;"></a><strong>分析：a- - -b;</strong></h4><p>编译器读取到第二个减号字符的时候判断“–”是否能组成一个符号，结果当然是可以的，编译器继续读取下一个字符‘-’，判断“_- - -_”能否组成一个符号？不能，那么<strong>a- - -b</strong>的含义是：<strong>a - -   - b</strong>，注意中减号中间的空格。</p>
-<h4 id="分析：y-x-p-p指向除数"><a href="#分析：y-x-p-p指向除数" class="headerlink" title="分析：y = x/*p;       /* p指向除数 */"></a><strong>分析：y = x/*p;       /* p指向除数 */</strong></h4><p>我们能看出该语句的本意似乎是x除以p所指向的值，所得的商赋值给变量y；而实际上编译器会把/*当作一段注释的开始。所以编译器不会理会/*后的代码。尽管你不小心写出了这样的代码，你应该会及时发现出问题了，因为至少编译时编译器会告诉你缺少句末的分号。这时只需要在/和*之间敲个空格就行了。</p>
-<blockquote>
-<p>整理自：《C Traps and Pitfalls》</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/8d11a49a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Ken Luo">
-      <meta itemprop="description" content="记录学习历程">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ken's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/8d11a49a.html" class="post-title-link" itemprop="url">i4AirPlayer (1)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-07 17:45:16" itemprop="dateCreated datePublished" datetime="2019-10-07T17:45:16Z">2019-10-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/37ff2814.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Ken Luo">
-      <meta itemprop="description" content="记录学习历程">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ken's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/37ff2814.html" class="post-title-link" itemprop="url">用C程序将图书信息写入文件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-07 17:30:20" itemprop="dateCreated datePublished" datetime="2019-10-07T17:30:20Z">2019-10-07</time>
+              <time title="创建时间：2019-08-25 17:40:27" itemprop="dateCreated datePublished" datetime="2019-08-25T17:40:27Z">2019-08-25</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -540,7 +604,21 @@ h2.pos\_top
                 <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>747</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -551,45 +629,18 @@ h2.pos\_top
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="程序设计思路："><a href="#程序设计思路：" class="headerlink" title="程序设计思路："></a>程序设计思路：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/56937a30607fb606b3f6b4d9b9c6f832.png" alt=""></p>
-<h3 id="程序完整代码："><a href="#程序完整代码：" class="headerlink" title="程序完整代码："></a>程序完整代码：</h3><p>//diy_in.h<br>char * s_gets( char * p, int n )//自定义函数的定义<br>{<br>  char * ret_val;<br>  char *find;</p>
-<p>  ret_val = fgets( p, n , stdin );<br>  if(ret_val)<br>  {<br>    find = strchr( p, ‘\n’); //查找换行符的内存地址<br>    if (find)                //如果地址不是NULL<br>      *find = ‘\0’;       //将换行符换成空字符<br>    else<br>    while( getchar() != ‘\n’)<br>      continue;   //处理输入行中剩下的字符<br>   }<br>   return ret_val; //返回的是当前字符串的地址。<br>}</p>
-<p>//main.c<br>#include&lt;stdio.h&gt;<br>#include&lt;string.h&gt;<br>#include”diy_in.h”<br>#define LEN 20</p>
-<p>struct book<br>{<br>  char name[LEN];<br>  char author[LEN];<br>  float value;<br>};</p>
-<p>int main ( void )<br>{<br>  int flag = 1;<br>  int n = 0, m = 0, i = 0, l = 0;<br>  char filename[LEN];<br>  char filename_quality[LEN+2];<br>  int quality[1];<br>  FILE * fp;<br>  FILE * fpn;<br>  struct book bookn[LEN];</p>
-<p>  printf(“将图书信息保存到那个文件？（包含文件后缀和文件路径）”);<br>  s_gets(filename,LEN);<br>  fp  = fopen( filename,”a+”);<br>  while ( fp == NULL )<br>    {<br>      printf(“文件名不合法或路径错误或无操作权限，请重新输入：”,filename);<br>      s_gets(filename,LEN);<br>      fp = fopen( filename,”a+”) ;<br>    }<br>    fclose(fp);<br>  while( filename[m] != ‘\0’)<br>  {<br>    filename_quality[m] = filename[m];<br>    m++;<br>  }<br>  if ( fp != NULL )<br>  {</p>
-<pre><code>//创建第二个文件，用于保存书本数量
-m = strlen(filename) - 4;
-filename\_quality\[m+5\] = filename\[m+3\];
-filename\_quality\[m+4\] = filename\[m+2\];
-filename\_quality\[m+3\] = filename\[m+1\];
-filename\_quality\[m+2\] = filename\[m\];
-filename\_quality\[m\]   = &apos;m&apos;;
-filename\_quality\[m+1\] = &apos;n&apos;;
-fpn = fopen ( filename\_quality,&quot;r&quot;);
-if( fpn == NULL )//如果该文件不存在，则创建一个 
-{
-  fpn = fopen( filename\_quality,&quot;w&quot;);
-  quality\[0\]=0;
-}
-fseek(fpn,9L,SEEK\_SET);//一个中文两个字节 
-fscanf( fpn, &quot;%d&quot;, &amp;quality\[0\]);
-n = quality\[0\];
-fclose(fpn);</code></pre><p>  } </p>
-<p>  fp = fopen( filename,”a+”);<br>  while( flag == 1 )<br>  {<br>  fprintf( fp, “【第%d本书】”,n+1 );<br>    printf(“请输入第%d本书的名字:”, n+1 );<br>    s_gets(bookn[n].name,LEN);<br>  fprintf( fp, “书名：%-20s”,bookn[n].name);<br>    printf(“请输入第%d本书的作者:”, n+1 );<br>    s_gets(bookn[n].author,LEN);<br>  fprintf( fp, “作者：%-20s”,bookn[n].author);<br>    printf(“请输入第%d本书的价钱:”, n+1 );<br>    scanf(“%f”,&amp;bookn[n].value);<br>  fprintf( fp, “价格：%-7.2f\n”,bookn[n].value);</p>
-<pre><code>printf(&quot;已经成功录入%d本书的信息\\n&quot;,n+1);
-printf(&quot;输入任意字符继续添加图书，输入0保存退出：&quot;); 
-scanf(&quot;%d&quot;,&amp;flag);
-while( getchar() != &apos;\\n&apos;)
-  continue;
-if( flag != 0)
-{
-  n++;
-  l++;
-}</code></pre><p>  }<br>  fclose(fp);<br>  fpn = fopen ( filename_quality,”w”);<br>  fprintf( fpn, “书本数量:%d”, n+1 );<br>  fclose(fpn); </p>
-<p>  printf(“本次，共成功录入%d本书，总数%d已经保存到：%s”, l+1, n+1, filename_quality);</p>
-<p>  return 0;<br>}</p>
-<h3 id="程序演示："><a href="#程序演示：" class="headerlink" title="程序演示："></a>程序演示：</h3><p>[video width=”1920” height=”1080” mp4=”<a href="https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]" target="_blank" rel="noopener external nofollow noreferrer">https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]</a></p>
+          <p>//原始<br>#include&lt;stdio.h&gt;<br>int main ( void )<br>{<br>    int rates[5]={1,2,3,4,5};<br>    int * pd =rates;<br>    *pd++;<br>    printf(“%d”,*pd);</p>
+<pre><code>return 0;</code></pre><p>}</p>
+<p>  我们知道，示例中的pd是一个指针，指向rates首元素的地址，*pd==rates[0]==1。</p>
+<h3 id="const用法一："><a href="#const用法一：" class="headerlink" title="const用法一："></a>const用法一：</h3><p>现在希望*pd不被修改，可将原始程序第五行修改如下：</p>
+<p>const int * pd =rates;</p>
+<p>const的作用，程序执行时将*pd视为一个常量，不可被修改。下面这个程序试图修改*pd，编译器编译时报错：<em>[Error] assignment of read-only location ‘*pd’</em></p>
+<p>//编译该程序看看会发生什么<br>#include&lt;stdio.h&gt;<br>int main ( void )<br>{<br>    int rates[5]={1,2,3,4,5};<br>    const int * pd =rates;<br>    *pd=1;<br>    printf(“%d”,*pd);</p>
+<pre><code>return 0;</code></pre><p>}</p>
+<h3 id="const用法二："><a href="#const用法二：" class="headerlink" title="const用法二："></a>const用法二：</h3><p>现在希望pd（其值为地址）不被修改，修改原始程序如下：</p>
+<p>//编译该程序看看会发生什么<br>#include&lt;stdio.h&gt;<br>int main ( void )<br>{<br>    int rates[5]={1,2,3,4,5};<br>    int * const pd =rates;<br>    *pd++;<br>    printf(“%d”,*pd);</p>
+<pre><code>return 0;</code></pre><p>}</p>
+<p>编译该程序，报错：<em>assignment of read-only location ‘*pd’</em> 要搞清楚为什么报错，需要了解“*pd++”中*和++的优先级，查阅运算符优先级表，发现*和++（运算符后置）优先级相同，但结合方向是从右到左的，所以*pd++等同于*(pd++)。程序视pd为常量，和1++同理，显然不对的。</p>
 
       
     </div>
@@ -609,10 +660,10 @@ if( flag != 0)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/21d0fb11.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/20fd2522.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -623,7 +674,7 @@ if( flag != 0)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/archives/21d0fb11.html" class="post-title-link" itemprop="url">文本模式和二进制模式</a>
+            <a href="/archives/20fd2522.html" class="post-title-link" itemprop="url">使用指针在函数间通信</a>
         </h2>
 
         <div class="post-meta">
@@ -633,7 +684,94 @@ if( flag != 0)
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-05 16:06:11" itemprop="dateCreated datePublished" datetime="2019-10-05T16:06:11Z">2019-10-05</time>
+              <time title="创建时间：2019-08-21 19:17:55" itemprop="dateCreated datePublished" datetime="2019-08-21T19:17:55Z">2019-08-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>842</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、初识指针"><a href="#一、初识指针" class="headerlink" title="一、初识指针"></a>一、初识指针</h3><p>指针是一个值为内存地址的变量（或数据对象）。正如int类型变量的值是整数，指针变量的值是地址。</p>
+<h3 id="二、地址运算符-amp-和"><a href="#二、地址运算符-amp-和" class="headerlink" title="二、地址运算符&amp;和*"></a>二、地址运算符&amp;和*</h3><h4 id="地址运算符：-amp"><a href="#地址运算符：-amp" class="headerlink" title="地址运算符：&amp;"></a>地址运算符：&amp;</h4><p>一般注解：后跟一个变量名时，&amp;给出该变量的地址。 示例：&amp;test表示变量test的地址</p>
+<h4 id="地址运算符："><a href="#地址运算符：" class="headerlink" title="地址运算符：*"></a>地址运算符：*</h4><p>一般注解：后跟一个指针名或地址时，*给出存储在指针指向地址的值。 示例： test=1； ptr=&test;//指向test的指针 num=*ptr;//把ptr指针指向的地址上的值赋给num 最终结果是将test值1赋给num。</p>
+<h3 id="三、声明指针"><a href="#三、声明指针" class="headerlink" title="三、声明指针"></a>三、声明指针</h3><p>声明指针变量时必须指定指针所指向变量的类型，因为不同的变量类型占用不同的存储空间，即使占用的存储空间相同，存储的数据也可能不同。一些指针的声明示例如下： int * pi;    //pi是指向int类型变量的指针 char * pc, * pd;    //pc和pd都是是指向char类型变量的指针 其中星号（*）表面声明的变量是一个指针。 <em>注：*和指针名之间的变量可有可无。通常，人们在声明时使用空格，在解引用变量时省略空格。</em></p>
+<h3 id="四、使用指针在函数间通信"><a href="#四、使用指针在函数间通信" class="headerlink" title="四、使用指针在函数间通信"></a>四、使用指针在函数间通信</h3><p>我们知道函数中retrun语句只能返回一个数值，当被调用函数需要向调用函数传递多个数值时，就要使用指针。 如下程序演示了，使用指针在两函数中通信，交换两整数的值：</p>
+<p>#include&lt;stdio.h&gt;</p>
+<p>void swap(int * a,int * b);<br>int main ( void )<br>{<br>    int x=5,y=10;<br>    printf(“原本：x=%d，y=%d\n”,x,y);<br>    swap(&amp;x,&amp;y);//将x，y的地址传给swap函数<br>    printf(“现在：x=%d，y=%d\n”,x,y);</p>
+<pre><code>return 0;</code></pre><p>}<br>void swap(int * a,int * b)<br>{<br>    int temp;<br>    temp=*a;//temp获取指针a所指向地址（&amp;x）的值<br>    *a=*b;<br>    *b=temp;<br>}</p>
+<p>main函数把需要处理的变量的地址发送给swap函数，swap函数根据相应的地址影响变量。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/ecfdb445.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/ecfdb445.html" class="post-title-link" itemprop="url">递归的优缺点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-21 18:08:44" itemprop="dateCreated datePublished" datetime="2019-08-21T18:08:44Z">2019-08-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -643,7 +781,21 @@ if( flag != 0)
                 <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>81</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -654,12 +806,7 @@ if( flag != 0)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="文件的定义：文件是在磁盘上一段已命名的存储区-。"><a href="#文件的定义：文件是在磁盘上一段已命名的存储区-。" class="headerlink" title="_文件的定义：文件是在磁盘上一段已命名的存储区_。"></a>_文件的定义：文件是在磁盘上一段已命名的<strong>存储区</strong>_。</h3><h3 id="一、疑惑"><a href="#一、疑惑" class="headerlink" title="一、疑惑"></a>一、疑惑</h3><p>在学习C语言读取文件的时候，首先学习到的是C语言读取文件时分文本模式和二进制模式。给好多人造成疑惑，文件存储时要分类？二进制存储和文本存储完全不相同？对于纯文本必须使用文本模式？对于纯数字必须使用二进制模式？如果你对这些有疑惑，这篇文章适合你，如果你是来看函数时如何使用的，可能你要另寻他处了。</p>
-<h3 id="二、明白关键一点"><a href="#二、明白关键一点" class="headerlink" title="二、明白关键一点"></a>二、明白关键一点</h3><p>任何数据在内存中或者硬盘上的存储都是1、0组成的序列，从硬盘、内存这个角度看根本不存在什么二进制和文本模式之分。</p>
-<h3 id="三、区别"><a href="#三、区别" class="headerlink" title="三、区别"></a>三、区别</h3><p>稍对C语言操作文件有了解都知道2点：1、首先应该fopen打开文件2、有两类文件操作函数，对应着二进制模式和文本模式。 两个模式的区别在两个地方，这两个地方的区别正好体现在刚才说的2点上。</p>
-<h4 id="1、-打开文件时选择模式"><a href="#1、-打开文件时选择模式" class="headerlink" title="1、 打开文件时选择模式"></a>1、 打开文件时选择模式</h4><p>使用fopen函数时，要给予第二个参数一个值，告诉fopen使用什么模式打开文件。这里的参数决定的就是第一个区别：对于字符串中的\n如何处理？ 教材中说，文本模式中，在存储\n时要转化为\r\n，读取文件时进行逆转换。二进制模式时，则不进行转换。当然这是在操作系统是Windows的条件下。 首先我们要知道回车和换行是不相同的，Windows中文字另起一行内存表示为&lt;回车&gt;&lt;换行&gt;对应\r\n，而Linux、Unix中则是单单一个&lt;换行&gt;对应\n。Mac中则是一个&lt;回车&gt;对应\r C语言起源于Unix的产生，对于文件中的另起一行，Unix采用单个\n表示。所以我们通常在输出一个短话想换行时加一个\n就可以了，Windows也是如此。到了数据从内存到硬盘上进行存储时，对于unix来说，\n照样是\n。而Windows为了防止读取时混乱必须转换为\r\n。Mac呢，就是\r。 这就是第一区别，这个区别是体现在fopen第二个参数，跟你使用文本模式的函数还是二进制模式的函数根本不相关！你可以做一个实验，使用二进制模式的函对于同样的字符串:”Hello\n”，当fopen使用w参数写入文件，无论是fwrite还是fprintf都会对\n会进行转换，而使用wb参数则都不进行转换。</p>
-<h4 id="2、-两种不同模式的函数"><a href="#2、-两种不同模式的函数" class="headerlink" title="2、  两种不同模式的函数"></a>2、  两种不同模式的函数</h4><p>打开文件后，要进行数据写入。 教材中说，使用文本模式打开文件，就要用fprintf写入数据，使用二进制模式打开文件，就要用fwrite写入数据。 其实你用文本模式打开文件，一个字符串，fprintf、fwrite都能写入文件，写入还都是一样的数据。使用两类函数的区别其实在于数字的处理上。 对于一个数字5，你用fprintf写入，将把数字5转换为字符5，将其对应的ASCII编码存入存储器，占用1个字节。但实际上数字5就是数字5，对应2进制101，整形占用4个字节。fwrite则将这个数字在内存中占用的4个字节全部原样写入到硬盘中，占4个字节。 而同样对于一段字符串”Hello”，使用ASCII编码对于fprintf和fwrite都能原样写到硬盘中。 同样对于这个区别，你仍然能做个实验，对于一个int型数字5，你如何用fprintf和fwrite写入到硬盘中，他们对应的十六进制码是多少？对于一段字符串你再用两个函数分别写到硬盘中，你看看对应的十六进制码是什么。这个实验跟你用fopen如何指定第二个参数无关。</p>
-<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p>文本模式和二进制模式其实就2个简单的区别，抓住这两个核心完全能搞懂两种模式的不同。 对于第一个区别完全是因为操作系统的差异导致，C作为一个跨平台的语言必须要设计一种方法解决这个跨平台的问题，如果3个平台对于另起一行这个操作统一是不存在这第一个区别的 对于第二个区别，一切数据的存储都是二进制1、0存储，只不过对于数字，既可以认为是一个数字，也可以认为是一个字符，这就是产生第二个区别的原因   （转自CSDN技术博客 <a href="https://blog.csdn.net/zrf2112/article/details/51996003" target="_blank" rel="noopener external nofollow noreferrer">原文链接</a>）</p>
+          <p>递归既有有点也有缺点。优点是递归为某些编程问题提供了最简单的解决方案。缺点是一些递归算法会快速消耗计算机的内存资源，很可能导致程序崩溃，并且递归不方便阅读和维护。</p>
 
       
     </div>
@@ -679,10 +826,10 @@ if( flag != 0)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/1fe9d678.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/9a3fe690.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -693,7 +840,7 @@ if( flag != 0)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/archives/1fe9d678.html" class="post-title-link" itemprop="url">42ED58E684A04577DE17F0E1B1B7FD74</a>
+            <a href="/archives/9a3fe690.html" class="post-title-link" itemprop="url">理解函数递归调用的过程</a>
         </h2>
 
         <div class="post-meta">
@@ -703,17 +850,31 @@ if( flag != 0)
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-05 15:58:47" itemprop="dateCreated datePublished" datetime="2019-10-05T15:58:47Z">2019-10-05</time>
+              <time title="创建时间：2019-08-20 21:16:39" itemprop="dateCreated datePublished" datetime="2019-08-20T21:16:39Z">2019-08-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>242</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -724,74 +885,11 @@ if( flag != 0)
     <div class="post-body" itemprop="articleBody">
 
       
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/ef3944df.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Ken Luo">
-      <meta itemprop="description" content="记录学习历程">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ken's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/ef3944df.html" class="post-title-link" itemprop="url">main()的参数argc和argv</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-04 18:01:36" itemprop="dateCreated datePublished" datetime="2019-10-04T18:01:36Z">2019-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><p>#include &lt;stdio.h&gt;<br>int main ( int argc, char *argv [] )<br>{<br>  printf(“argv[0]:%s\n”,argv[0]);<br>  printf(“argv[1]:%s\n”,argv[1]);<br>  printf(“argv[2]:%s\n”,argv[2]);<br>  printf(“argv[3]:%s\n”,argv[3]);<br>  printf(“一共有：%d个命令行参数”,argc);</p>
-<p>  return 0;<br>}</p>
-<h3 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/6203d7a613c7af69fac8a42f21ed4d6f.png" alt=""></p>
-<h3 id="相关说明："><a href="#相关说明：" class="headerlink" title="相关说明："></a>相关说明：</h3><p>argc：为命令行总的参数的个数 *argv[ ]：字符串数组，用来存放指向你的字符串参数的指针数组,每一个元素指向一个参数。 argv[0]:指向程序的全路径名 argv[1]:指向在DOS命令行中执行程序名后的第一个字符串 argv[2]:指向在DOS命令行中执行程序名后的第二个字符串 argv[3]:指向在DOS命令行中执行程序名后的第三个字符串</p>
+          <p>C允许函数调用它自己，这种调用过程称为递归。</p>
+<h3 id="一、演示递归"><a href="#一、演示递归" class="headerlink" title="一、演示递归"></a>一、演示递归</h3><p>#include&lt;stdio.h&gt;<br>int ken(int b);<br>int main( void )<br>{<br>    int b,c;<br>    scanf(“%d”,&amp;b);<br>    c=ken(b);<br>    printf(“%d”,c);</p>
+<pre><code>return 0;</code></pre><p>}<br>int ken(int b)<br>{<br>    if(b&gt;1)<br>    {<br>        b=b*ken(b-1);<br>    printf(“%d\n”,b);<br>    }<br>    return b; //将b的值返回给上一级调用函数<br>}</p>
+<p>这是一个演示递归的程序，递归函数调用的过程如下图：</p>
+<p><img src="https://scanf.top/wp-content/uploads/2019/08/fullsizerender.jpg" alt=""></p>
 
       
     </div>
@@ -811,10 +909,10 @@ if( flag != 0)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/afe73244.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/3e3b1e2a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -825,7 +923,7 @@ if( flag != 0)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/archives/afe73244.html" class="post-title-link" itemprop="url">全局变量在多个c文件中公用的方法</a>
+            <a href="/archives/3e3b1e2a.html" class="post-title-link" itemprop="url">清除缓冲区的字符</a>
         </h2>
 
         <div class="post-meta">
@@ -835,17 +933,31 @@ if( flag != 0)
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-02 20:24:04" itemprop="dateCreated datePublished" datetime="2019-10-02T20:24:04Z">2019-10-02</time>
+              <time title="创建时间：2019-08-19 11:09:31" itemprop="dateCreated datePublished" datetime="2019-08-19T11:09:31Z">2019-08-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>857</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -856,14 +968,18 @@ if( flag != 0)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="一、项目文件结构："><a href="#一、项目文件结构：" class="headerlink" title="一、项目文件结构："></a>一、项目文件结构：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/QQ%E6%88%AA%E5%9B%BE20191002202138-300x209.png" alt=""></p>
-<h3 id="二、个文件代码："><a href="#二、个文件代码：" class="headerlink" title="二、个文件代码："></a>二、个文件代码：</h3><p>//main.c<br>#include&lt;stdio.h&gt;<br>#include”diy.h”</p>
-<p>int num = 100;//定义了一个全局变量<br>int main ( void )<br>{</p>
-<p>  printf(“From main.c:%d\n”,num);<br>  fuc();</p>
-<p>  return 0;<br>}</p>
-<p>//diy.h<br>int fuc();</p>
-<p>//diy.c<br>#include &lt;stdio.h&gt;<br>#include “diy.h”<br>int fuc()<br>{<br>  extern int num;//声明，num引用外部的变量<br>  printf(“From  diy.c:%d”,num);<br>}</p>
-<h3 id="三、相关说明："><a href="#三、相关说明：" class="headerlink" title="三、相关说明："></a>三、相关说明：</h3><p>变量定义和变量声明的区别，变量定义使用“数据类型+变量名称”的形式，编译器需要给他分配内存单元的；而变量声明使用“extern 变量类型+变量名称”的形式，是告诉编译器我这个变量将在其他外部c文件中定义，我这里只是在外部用它。编译器就不给他分配内存空间，而等到真正遇到变量定义的时候再给他分配内存空间。</p>
+          <h3 id="演示程序："><a href="#演示程序：" class="headerlink" title="演示程序："></a>演示程序：</h3><p>#include&lt;stdio.h&gt;<br>#include&lt;conio.h&gt; //for getch()</p>
+<p>int main ( void )<br>{<br>    int guess=1;<br>    char ch;<br>    printf(“这是一个猜数字的程序，你可以先在纸上写一个数字”);<br>    printf(“写好之后按下任意键继续…\n”);<br>    getch();<br>    printf(“你写在纸上的数字是%d吗？”,guess);<br>    while((ch=getchar())!=’y’){<br>        if(ch==’n’){<br>            printf(“好的，那这个数字是%d吗?\n”,++guess);<br>        }<br>        else{<br>            printf(“sorry,只能识别y和n.\n”);<br>        }<br>        printf(“\t正在清除多余的字符：\n”) ;<br>        while((ch=getchar())!=’\n’){<br>            printf(“\t本次清除的字符是：%c\n”,ch);<br>            continue;<br>        }</p>
+<pre><code>}
+
+printf(&quot;也许，我真的猜对了!\\n&quot;);
+
+return 0;</code></pre><p>}</p>
+<h3 id="程序解读："><a href="#程序解读：" class="headerlink" title="程序解读："></a>程序解读：</h3><p>请不要介意这个程序的算法，因为这个程序主要的用途是演示用while清除缓存区的字符。原代码是：</p>
+<p>while((ch=getchar())!=’\n’){continue; }</p>
+<p>为了更直观的刻画缓冲清除过程，改进代码如下：</p>
+<p>printf(“\t正在清除多余的字符：\n”) ;<br>        while((ch=getchar())!=’\n’){<br>            printf(“\t本次清除的字符是：%c\n”,ch);<br>            continue;<br>        }</p>
+<p>当用户输入no,it is wrong!时，外层while循环将该字符串全部读取，但是本次仅将首字母n赋给ch字符变量，其余的字符全部写入缓冲区，由后面若干个getchar()读取。该程序实现希望缓冲区的字符不要干扰外层while循环，而影响程序输出，因此在外层while循环中再嵌入一个while循环，实现在进入下一次外层while循环前将缓冲区的字符全部清除，即将缓冲区的字符挨个读取一遍。 你可以自己debug一下，感受程序执行的过程。</p>
 
       
     </div>
@@ -883,10 +999,10 @@ if( flag != 0)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/3516029d.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/d45baae6.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -897,7 +1013,7 @@ if( flag != 0)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/archives/3516029d.html" class="post-title-link" itemprop="url">QQ截图20191002202138</a>
+            <a href="/archives/d45baae6.html" class="post-title-link" itemprop="url">无缓冲输入和缓冲输入</a>
         </h2>
 
         <div class="post-meta">
@@ -907,17 +1023,31 @@ if( flag != 0)
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-02 20:22:13" itemprop="dateCreated datePublished" datetime="2019-10-02T20:22:13Z">2019-10-02</time>
+              <time title="创建时间：2019-08-18 19:22:23" itemprop="dateCreated datePublished" datetime="2019-08-18T19:22:23Z">2019-08-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>179</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -928,7 +1058,90 @@ if( flag != 0)
     <div class="post-body" itemprop="articleBody">
 
       
+          <h3 id="什么是无缓冲输入和缓冲输入？"><a href="#什么是无缓冲输入和缓冲输入？" class="headerlink" title="什么是无缓冲输入和缓冲输入？"></a>什么是无缓冲输入和缓冲输入？</h3><p>无缓冲输入：用户输入字符后立即打印该字符。 缓冲输入：用户输入的字符被收集并存储在一个叫做缓冲区的临时存储区，按下<strong>Enter</strong>键后，程序才使用用户输入的字符。</p>
+<h3 id="为什么要有缓冲区？"><a href="#为什么要有缓冲区？" class="headerlink" title="为什么要有缓冲区？"></a>为什么要有缓冲区？</h3><p>首先，把若干字符作为一个块进行传输比逐个发送这些字符节约时间。其次，如果用户打错字符，可以直接通过键盘修正错误。当最后按下Enter键时，传输的是正确的输入。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/bd64a196.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
           
+            <a href="/archives/bd64a196.html" class="post-title-link" itemprop="url">对比while和for循环中的continue语句</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-16 17:25:39" itemprop="dateCreated datePublished" datetime="2019-08-16T17:25:39Z">2019-08-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>235</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们知道，3中循环都可以使用continue语句，执行到该语句时，会跳过本次迭代的剩余部分，并进行下一轮迭代。你应该知道，continue只会影响包含该语句的内层循环，但是continue在while和for中的差别常常被人们忽略。</p>
+<h3 id="一、while和do-while中的continue"><a href="#一、while和do-while中的continue" class="headerlink" title="一、while和do while中的continue"></a>一、while和do while中的continue</h3><p>while中遇到continue，程序直接进入下一次迭代。</p>
+<h3 id="二、for中的continue"><a href="#二、for中的continue" class="headerlink" title="二、for中的continue"></a>二、for中的continue</h3><p>for循环中遇到continue，程序会跳过本次迭代剩余的部分，<strong>再更新表达式求值</strong>，再进入下一次迭代。</p>
+
       
     </div>
 
@@ -946,7 +1159,7 @@ if( flag != 0)
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1005,7 +1218,7 @@ if( flag != 0)
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Ken Luo"
-      src="/images/avatar.png">
+      src="/images/avator.png">
   <p class="site-author-name" itemprop="name">Ken Luo</p>
   <div class="site-description" itemprop="description">记录学习历程</div>
 </div>
@@ -1014,14 +1227,20 @@ if( flag != 0)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-count">86</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1061,11 +1280,43 @@ if( flag != 0)
     <i class="user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ken Luo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">79k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:12</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 

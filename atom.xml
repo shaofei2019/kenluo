@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Ken&#39;s Blog</title>
   <icon>http://blog.scanf.top/icon.png</icon>
-  <subtitle>Java noob &amp; 互联网炮灰</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.scanf.top/"/>
-  <updated>2020-07-19T08:15:56.769Z</updated>
+  <updated>2020-07-23T16:07:12.333Z</updated>
   <id>http://blog.scanf.top/</id>
   
   <author>
@@ -17,51 +17,27 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://blog.scanf.top/archives/4a17b156.html"/>
-    <id>http://blog.scanf.top/archives/4a17b156.html</id>
-    <published>2020-07-19T07:59:24.122Z</published>
-    <updated>2020-07-19T08:15:56.769Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener external nofollow noreferrer&quot;&gt;Hexo&lt;/a&gt;! This is your very first
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>bean的作用范围</title>
     <link href="http://blog.scanf.top/archives/eea3a450.html"/>
     <id>http://blog.scanf.top/archives/eea3a450.html</id>
     <published>2020-07-17T19:33:51.000Z</published>
-    <updated>2020-07-19T08:15:56.655Z</updated>
+    <updated>2020-07-23T16:07:12.333Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;下表描述了受支持的bean范围：&lt;/p&gt;
-&lt;p&gt;范围&lt;/p&gt;
-&lt;p&gt;描述&lt;/p&gt;
-&lt;p&gt;singleton&lt;/p&gt;
-&lt;p&gt;在spring
-        
-      
+      &lt;p&gt;下表描述了受支持的bean范围：&lt;/p&gt;
+&lt;p&gt;范围 描述&lt;/p&gt;
+&lt;p&gt;singleton 在spring IoC容器仅存在一个Bean实例，Bean以单例方式存在，bean作用域范围的默认值。&lt;/p&gt;
+&lt;p&gt;prototype 每次从容器中调用Bean时，都返回一个新的实例，即每次调用getBean()时，相当于执行newXxxBean()。&lt;/p&gt;
+&lt;p&gt;request 每次HTTP请求都会创建一个新的Bean，该作用域仅适用于web的Spring WebApplicationContext环境。&lt;/p&gt;
+&lt;p&gt;session 同一个HTTP Session共享一个Bean，不同Session使用不同的Bean。该作用域仅适用于web的Spring WebApplicationContext环境。&lt;/p&gt;
+&lt;p&gt;application 限定一个Bean的作用域为ServletContext的生命周期。该作用域仅适用于web的Spring WebApplicationContext环境。&lt;/p&gt;
+&lt;p&gt;websocke t将单个bean定义的作用域限定为WebSocket的生命周期。该作用域仅适用于web的Spring WebApplicationContext环境。&lt;/p&gt;
     
     </summary>
     
+    
+      <category term="Spring" scheme="http://blog.scanf.top/categories/Spring/"/>
     
     
       <category term="lifecycle" scheme="http://blog.scanf.top/tags/lifecycle/"/>
@@ -77,20 +53,16 @@
     <link href="http://blog.scanf.top/archives/620ddfc8.html"/>
     <id>http://blog.scanf.top/archives/620ddfc8.html</id>
     <published>2020-07-17T10:18:15.000Z</published>
-    <updated>2020-07-19T08:15:56.981Z</updated>
+    <updated>2020-07-23T16:04:19.461Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;一-什么是依赖注入&quot;&gt;&lt;a href=&quot;#一-什么是依赖注入&quot; class=&quot;headerlink&quot; title=&quot;一 什么是依赖注入&quot;&gt;&lt;/a&gt;一
-        
-      
+      &lt;h2 id=&quot;一-什么是依赖注入&quot;&gt;&lt;a href=&quot;#一-什么是依赖注入&quot; class=&quot;headerlink&quot; title=&quot;一 什么是依赖注入&quot;&gt;&lt;/a&gt;一 什么是依赖注入&lt;/h2&gt;&lt;p&gt;依赖注入是一个过程，通过该过程可以解决对象依赖问题。现假设一个场景，有类A和类B，类A依赖类B，以往在我们实例化类A时，需要先拥有类B的实例化对象，利用这个对象才能完成类A的实例化。现在，类B的实例化任务由IoC容器接管了，我们可以直接获取类A的实例化对象，而无需顾及类B的实例化过程，我们需要做的仅是类A和类B的依赖关系的声明。&lt;/p&gt;
     
     </summary>
     
+    
+      <category term="Spring" scheme="http://blog.scanf.top/categories/Spring/"/>
     
     
       <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
@@ -104,20 +76,16 @@
     <link href="http://blog.scanf.top/archives/da03f5c5.html"/>
     <id>http://blog.scanf.top/archives/da03f5c5.html</id>
     <published>2020-07-16T17:44:29.000Z</published>
-    <updated>2020-07-19T08:15:57.107Z</updated>
+    <updated>2020-07-23T16:07:50.271Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;一、对相关概念的了解：&quot;&gt;&lt;a href=&quot;#一、对相关概念的了解：&quot; class=&quot;headerlink&quot; title=&quot;一、对相关概念的了解：&quot;&gt;&lt;/a&gt;一、对相关概念的了解：&lt;/h2&gt;&lt;p&gt;bean是应用的主要部分，并由IoC
-        
-      
+      &lt;h2 id=&quot;一、对相关概念的了解：&quot;&gt;&lt;a href=&quot;#一、对相关概念的了解：&quot; class=&quot;headerlink&quot; title=&quot;一、对相关概念的了解：&quot;&gt;&lt;/a&gt;一、对相关概念的了解：&lt;/h2&gt;&lt;p&gt;bean是应用的主要部分，并由IoC Container组装（assemble）、实例化（instantiate）和管理。 ApplicationContext代表IoC容器，它根据读取的“配置元数据”（Configuration matedata）来获取组装、实例化和管理bean的指令。配置元数据的表示方式有：XML配置文件、注解、Java程序。&lt;/p&gt;
     
     </summary>
     
+    
+      <category term="Spring" scheme="http://blog.scanf.top/categories/Spring/"/>
     
     
       <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
@@ -160,21 +128,19 @@
     <link href="http://blog.scanf.top/archives/ed6def66.html"/>
     <id>http://blog.scanf.top/archives/ed6def66.html</id>
     <published>2020-07-05T22:35:17.000Z</published>
-    <updated>2020-07-19T08:15:56.836Z</updated>
+    <updated>2020-07-23T16:09:15.248Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;MyBatis 在设置预处理语句（PreparedStatement）中的参数或从结果集中取出一个值时， 都会用类型处理器将获取到的值以合适的方式转换成 Java
-        
-      
+      &lt;blockquote&gt;
+&lt;p&gt;MyBatis 在设置预处理语句（PreparedStatement）中的参数或从结果集中取出一个值时， 都会用类型处理器将获取到的值以合适的方式转换成 Java 类型。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果你试图直接将java对象设置为预处理语句PreparedStatement的参数。这样做，在执行sql语句的时候会出现一个问题，java类型的数据如何与数据库类型兼容。对此MyBatis提供了类型处理器，并且实现了一些常用类型的转换。
     
     </summary>
     
+    
+      <category term="Spring" scheme="http://blog.scanf.top/categories/Spring/"/>
     
     
       <category term="MyBatis" scheme="http://blog.scanf.top/tags/MyBatis/"/>
@@ -190,20 +156,31 @@
     <link href="http://blog.scanf.top/archives/9a61816b.html"/>
     <id>http://blog.scanf.top/archives/9a61816b.html</id>
     <published>2020-07-05T00:27:37.000Z</published>
-    <updated>2020-07-19T08:15:57.054Z</updated>
+    <updated>2020-07-23T16:10:30.016Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;一、指定MyBatis的日志工具&quot;&gt;&lt;a href=&quot;#一、指定MyBatis的日志工具&quot; class=&quot;headerlink&quot; title=&quot;一、指定MyBatis的日志工具&quot;&gt;&lt;/a&gt;一、指定MyBatis的日志工具&lt;/h2&gt;&lt;p&gt;在 MyBatis
-        
-      
+      &lt;h2 id=&quot;一、指定MyBatis的日志工具&quot;&gt;&lt;a href=&quot;#一、指定MyBatis的日志工具&quot; class=&quot;headerlink&quot; title=&quot;一、指定MyBatis的日志工具&quot;&gt;&lt;/a&gt;一、指定MyBatis的日志工具&lt;/h2&gt;&lt;p&gt;在 MyBatis 配置文件 mybatis-config.xml 里面添加一项 setting 来选择其它日志实现。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;settings&amp;gt;
+        &amp;lt;setting name=&amp;quot;logImpl&amp;quot; value=&amp;quot;LOG4J&amp;quot;/&amp;gt;
+&amp;lt;/settings&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意，settings标签在configuration标签中的位置，应当符合当前xml文件的约束。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The content of element type “configuration” must match “(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?)”.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;二、导入log4j相关依赖&quot;&gt;&lt;a href=&quot;#二、导入log4j相关依赖&quot; class=&quot;headerlink&quot; title=&quot;二、导入log4j相关依赖&quot;&gt;&lt;/a&gt;二、导入log4j相关依赖&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;maven项目，在pom.xml文件中添加以下坐标&lt;/p&gt;
+&lt;dependency&gt;
+     &lt;groupId&gt;log4j&lt;/groupId&gt;
+     &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+     &lt;version&gt;1.2.17&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;其他项目，导入log4j的jar包，可在 &lt;a href=&quot;https://logging.apache.org/log4j/2.x/download.html&quot; target=&quot;_blank&quot; rel=&quot;noopener external nofollow noreferrer&quot; title=&quot;log4j&quot;&gt;log4j&lt;/a&gt; 网站下载&lt;/p&gt;
     
     </summary>
     
+    
+      <category term="Spring" scheme="http://blog.scanf.top/categories/Spring/"/>
     
     
       <category term="MyBatis" scheme="http://blog.scanf.top/tags/MyBatis/"/>
@@ -275,20 +252,16 @@
     <link href="http://blog.scanf.top/archives/136b1ea2.html"/>
     <id>http://blog.scanf.top/archives/136b1ea2.html</id>
     <published>2020-04-29T12:05:06.000Z</published>
-    <updated>2020-07-19T08:15:57.171Z</updated>
+    <updated>2020-07-23T16:11:27.449Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;关于_C++标准模板库(Standard Template
-        
-      
+      &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;p&gt;关于_C++标准模板库(Standard Template Library, STL)_的书籍和资料有很多，关于_Java集合框架(Java Collections Framework, JCF)_的资料却很少，甚至很难找到一本专门介绍它的书籍，这给Java学习者们带来不小的麻烦。我深深的不解其中的原因。&lt;strong&gt;虽然JCF设计参考了STL，但其定位不是Java版的STL，而是要实现一个精简紧凑的容器框架&lt;/strong&gt;，对STL的介绍自然不能替代对JCF的介绍。 本系列文章主要从&lt;strong&gt;数据结构和算法&lt;/strong&gt;层面分析JCF中List, Set, Map, Stack, Queue等典型容器，&lt;strong&gt;结合生动图解和源代码，帮助读者对Java集合框架建立清晰而深入的理解&lt;/strong&gt;。本文并不特意介绍Java的语言特性，但会在需要的时候做出简洁的解释。&lt;/p&gt;
     
     </summary>
     
+    
+      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
     
     
       <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
@@ -302,20 +275,23 @@
     <link href="http://blog.scanf.top/archives/9753a2e.html"/>
     <id>http://blog.scanf.top/archives/9753a2e.html</id>
     <published>2020-04-29T12:01:28.000Z</published>
-    <updated>2020-07-19T08:15:56.830Z</updated>
+    <updated>2020-07-23T16:12:46.830Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;一、列表List&quot;&gt;&lt;a href=&quot;#一、列表List&quot; class=&quot;headerlink&quot; title=&quot;一、列表List&quot;&gt;&lt;/a&gt;一、列表List&lt;/h1&gt;&lt;h2 id=&quot;1-1-ArrayList&quot;&gt;&lt;a href=&quot;#1-1-ArrayList&quot;
-        
-      
+      &lt;h1 id=&quot;一、列表List&quot;&gt;&lt;a href=&quot;#一、列表List&quot; class=&quot;headerlink&quot; title=&quot;一、列表List&quot;&gt;&lt;/a&gt;一、列表List&lt;/h1&gt;&lt;h2 id=&quot;1-1-ArrayList&quot;&gt;&lt;a href=&quot;#1-1-ArrayList&quot; class=&quot;headerlink&quot; title=&quot;1.1 ArrayList&quot;&gt;&lt;/a&gt;1.1 ArrayList&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;特点：非同步，基于Object对象数组实现。访问效率高。&lt;/li&gt;
+&lt;li&gt;适用场景：随机访问, 适用于经常访问数据元素的场景。因删除和插入的操作会经历大量数据元素的移动的过程，时间复杂度较高，故不适用于经常有删除和插入操作的场景。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-2-LinkedList&quot;&gt;&lt;a href=&quot;#1-2-LinkedList&quot; class=&quot;headerlink&quot; title=&quot;1.2 LinkedList&quot;&gt;&lt;/a&gt;1.2 LinkedList&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;特点：非同步，基于双向链表实现。&lt;/li&gt;
+&lt;li&gt;适用场景：顺序访问，访问数据元素的效率不高，适用于经常删除、插入和移动元素的场景。&lt;/li&gt;
+&lt;li&gt;
     
     </summary>
     
+    
+      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
     
     
       <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
@@ -436,21 +412,6 @@
   </entry>
   
   <entry>
-    <title>1</title>
-    <link href="http://blog.scanf.top/archives/83dcefb7.html"/>
-    <id>http://blog.scanf.top/archives/83dcefb7.html</id>
-    <published>2020-04-06T18:55:17.000Z</published>
-    <updated>2020-07-19T08:15:56.562Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>取模运算和取余运算的区别</title>
     <link href="http://blog.scanf.top/archives/8b930033.html"/>
     <id>http://blog.scanf.top/archives/8b930033.html</id>
@@ -479,21 +440,6 @@
       <category term="取余" scheme="http://blog.scanf.top/tags/%E5%8F%96%E4%BD%99/"/>
     
       <category term="取模" scheme="http://blog.scanf.top/tags/%E5%8F%96%E6%A8%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>G48I@4W{4XLTNFXM_D2M`)L</title>
-    <link href="http://blog.scanf.top/archives/348690ac.html"/>
-    <id>http://blog.scanf.top/archives/348690ac.html</id>
-    <published>2020-02-23T14:54:18.000Z</published>
-    <updated>2020-07-19T08:15:56.757Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
     
   </entry>
   
@@ -551,6 +497,90 @@
       <category term="java" scheme="http://blog.scanf.top/tags/java/"/>
     
       <category term="JDK" scheme="http://blog.scanf.top/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>链表中增加头结点的作用</title>
+    <link href="http://blog.scanf.top/archives/10ef29c7.html"/>
+    <id>http://blog.scanf.top/archives/10ef29c7.html</id>
+    <published>2020-02-10T15:33:12.000Z</published>
+    <updated>2020-07-19T08:15:57.254Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;理解单链表中头结点的作用，只需要了解对有头结点的单链表和无头结点的单链表操作的区别 下面写两个函数，删除单链表中的一个结点。&lt;/p&gt;
+&lt;h4 id=&quot;①、删除无头结点单链表中的一个结点&quot;&gt;&lt;a href=&quot;#①、删除无头结点单链表中的一个结点&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="数据结构与算法" scheme="http://blog.scanf.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="链表" scheme="http://blog.scanf.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="头结点" scheme="http://blog.scanf.top/tags/%E5%A4%B4%E7%BB%93%E7%82%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>个人网页收藏夹2.0</title>
+    <link href="http://blog.scanf.top/archives/50dd6d39.html"/>
+    <id>http://blog.scanf.top/archives/50dd6d39.html</id>
+    <published>2020-01-22T15:53:48.000Z</published>
+    <updated>2020-07-19T08:15:56.935Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;效果预览：&quot;&gt;&lt;a href=&quot;#效果预览：&quot; class=&quot;headerlink&quot; title=&quot;效果预览：&quot;&gt;&lt;/a&gt;效果预览：&lt;/h3&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="web" scheme="http://blog.scanf.top/tags/web/"/>
+    
+      <category term="网页收藏夹" scheme="http://blog.scanf.top/tags/%E7%BD%91%E9%A1%B5%E6%94%B6%E8%97%8F%E5%A4%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>顺序表中基本操作的实现</title>
+    <link href="http://blog.scanf.top/archives/62da627e.html"/>
+    <id>http://blog.scanf.top/archives/62da627e.html</id>
+    <published>2019-12-03T11:14:16.000Z</published>
+    <updated>2020-07-19T08:15:57.266Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;顺序表的存储结构&quot;&gt;&lt;a href=&quot;#顺序表的存储结构&quot; class=&quot;headerlink&quot; title=&quot;顺序表的存储结构&quot;&gt;&lt;/a&gt;顺序表的存储结构&lt;/h1&gt;&lt;p&gt;#define MAXSIZE 100&lt;br&gt;typedef
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="数据结构与算法" scheme="http://blog.scanf.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="顺序表" scheme="http://blog.scanf.top/tags/%E9%A1%BA%E5%BA%8F%E8%A1%A8/"/>
     
   </entry>
   

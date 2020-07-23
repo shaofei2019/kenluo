@@ -76,7 +76,6 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Ken's Blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -100,7 +99,6 @@
       <h1 class="site-title">Ken's Blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">Java noob & 互联网炮灰</p>
   </div>
 
   <div class="site-nav-right">
@@ -140,19 +138,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
-
-  </li>
         <li class="menu-item menu-item-sitemap">
 
     <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -209,146 +197,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/9753a2e.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Ken Luo">
-      <meta itemprop="description" content="记录学习历程">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ken's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/9753a2e.html" class="post-title-link" itemprop="url">Java集合框架</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-29 12:01:28" itemprop="dateCreated datePublished" datetime="2020-04-29T12:01:28Z">2020-04-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、列表List"><a href="#一、列表List" class="headerlink" title="一、列表List"></a>一、列表List</h1><h2 id="1-1-ArrayList"><a href="#1-1-ArrayList" class="headerlink" title="1.1 ArrayList"></a>1.1 ArrayList</h2><ul>
-<li>特点：非同步，基于Object对象数组实现。访问效率高。</li>
-<li>适用场景：随机访问, 适用于经常访问数据元素的场景。因删除和插入的操作会经历大量数据元素的移动的过程，时间复杂度较高，故不适用于经常有删除和插入操作的场景。</li>
-</ul>
-<h2 id="1-2-LinkedList"><a href="#1-2-LinkedList" class="headerlink" title="1.2 LinkedList"></a>1.2 LinkedList</h2><ul>
-<li>特点：非同步，基于双向链表实现。</li>
-<li>适用场景：顺序访问，访问数据元素的效率不高，适用于经常删除、插入和移动元素的场景。</li>
-</ul>
-<h2 id="1-3-Vector"><a href="#1-3-Vector" class="headerlink" title="1.3 Vector"></a>1.3 Vector</h2><ul>
-<li>特点：同步的，基于Object数组实现。</li>
-<li>适用场景：与ArrayList几乎一样。</li>
-</ul>
-<h1 id="二、集合Set"><a href="#二、集合Set" class="headerlink" title="二、集合Set"></a>二、集合Set</h1><p>Set的三大性质：</p>
-<blockquote>
-<ol>
-<li><p>确定性：给定一个集合，任给一个元素，该元素或者属于或者不属于该集合，二者必居其一，不允许有模棱两可的情况出现。</p>
-</li>
-<li><p>互异性： 一个集合中，任何两个元素都认为是不相同的，即每个元素只能出现一次。</p>
-</li>
-<li><p>无序性：一个集合中，每个元素的地位都是相同的,元素之间是无序的。</p>
-</li>
-</ol>
-</blockquote>
-<h2 id="2-1-HashSet"><a href="#2-1-HashSet" class="headerlink" title="2.1 HashSet"></a>2.1 HashSet</h2><ul>
-<li>特点：不支持同步，基于HashMap实现，无序（元素遍历输出的顺序和插入顺序不一致），可以容纳null元素。</li>
-</ul>
-<h2 id="2-2-TreeSet"><a href="#2-2-TreeSet" class="headerlink" title="2.2 TreeSet"></a>2.2 TreeSet</h2><ul>
-<li>特点：不支持同步，基于HashMap实现，可排序（默认按照字典顺序排序），可容纳null元素。</li>
-</ul>
-<h2 id="2-3-LinkedHashSet"><a href="#2-3-LinkedHashSet" class="headerlink" title="2.3 LinkedHashSet"></a>2.3 LinkedHashSet</h2><ul>
-<li>特点：不支持同步，基于TreeMap实现，排序（默认按照插入顺序排序），不可以容纳null元素。</li>
-</ul>
-<hr>
-<h2 id="2-4-判断重复元素"><a href="#2-4-判断重复元素" class="headerlink" title="2.4 判断重复元素"></a>2.4 判断重复元素</h2><ul>
-<li>HashSet和LinkedList根据hashCode()和equals()方法判断重复元素。</li>
-<li>TreeSet根据重写的compareTo()方法判断重复元素</li>
-</ul>
-<hr>
-<p>三者都可以通过Collections工具实现同步，方法如下：</p>
-<pre><code>Set s = Collections.synchronizedSet( new HashSet() );</code></pre><p>该方法可以获得一个支持同步的Set对象。</p>
-<h1 id="三、映射Map"><a href="#三、映射Map" class="headerlink" title="三、映射Map"></a>三、映射Map</h1><h2 id="3-1-Hashtable"><a href="#3-1-Hashtable" class="headerlink" title="3.1 Hashtable"></a>3.1 Hashtable</h2><ul>
-<li>特点：同步的，速度较慢，适用于数据量较小的场景。K-V军不允许出现null。遍历顺序和put顺序无关。</li>
-</ul>
-<h2 id="3-2-HashMap"><a href="#3-2-HashMap" class="headerlink" title="3.2 HashMap"></a>3.2 HashMap</h2><ul>
-<li>特点：不支持同步，速度较快，适用于数据量较大的场景。K-V允许为null。这是一个新的类，不支持Enumeration遍历。可以用Collections工具将HashMap对象转化为支持同步的Map对象。遍历顺序和put顺序无关。</li>
-</ul>
-<h2 id="3-3-ProperTies"><a href="#3-3-ProperTies" class="headerlink" title="3.3 ProperTies"></a>3.3 ProperTies</h2><ul>
-<li>特点：同步的，文件的形式保存K-V对，适用于数据量较小的场景。</li>
-</ul>
-<h2 id="3-4-LinkedHashMap"><a href="#3-4-LinkedHashMap" class="headerlink" title="3.4 LinkedHashMap"></a>3.4 LinkedHashMap</h2><ul>
-<li>特点：基于双向链表维持插入顺序。遍历顺序和插入顺序一致。</li>
-</ul>
-<h2 id="3-5-TreeMap"><a href="#3-5-TreeMap" class="headerlink" title="3.5 TreeMap"></a>3.5 TreeMap</h2><ul>
-<li>特点：基于红黑树的Map，可以根据key的自然顺序排序或者根据compareTo方法排序。</li>
-</ul>
-<h1 id="四、工具类"><a href="#四、工具类" class="headerlink" title="四、工具类"></a>四、工具类</h1><p>不存储数据，而是在数据容器上，实现高效的操作。</p>
-<h2 id="4-1-Arrays"><a href="#4-1-Arrays" class="headerlink" title="4.1 Arrays"></a>4.1 Arrays</h2><p>处理数组，常用方法：</p>
-<ul>
-<li>sort 分类</li>
-<li>binarySearch 二分查找</li>
-<li>copyOf 从源数组批量复制元素到目标数组</li>
-<li>fill 对数组进行批量赋值</li>
-<li>equals 判定两数组内容是否相同</li>
-</ul>
-<h2 id="4-2-Collections"><a href="#4-2-Collections" class="headerlink" title="4.2 Collections"></a>4.2 Collections</h2><p>处理collection类及其子类，常用方法：</p>
-<ul>
-<li>sort 分类</li>
-<li>binarySearch 二分查找</li>
-<li>max、min</li>
-<li>fill 对数组进行批量赋值</li>
-<li>reverse 将List反序排列</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/7997a0cc.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -379,7 +231,21 @@
                 <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -507,7 +373,7 @@ public class TcpClient {
     <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/37145c3c.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -538,7 +404,21 @@ public class TcpClient {
                 <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -642,7 +522,7 @@ public class UdpRecv
     <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/22330b77.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -673,7 +553,21 @@ public class UdpRecv
                 <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -777,7 +671,7 @@ class MyRunnable implements Runnable {
     <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/85a7966c.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -808,7 +702,21 @@ class MyRunnable implements Runnable {
                 <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -937,74 +845,10 @@ class MyRunnable implements Runnable {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/83dcefb7.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Ken Luo">
-      <meta itemprop="description" content="记录学习历程">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ken's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/83dcefb7.html" class="post-title-link" itemprop="url">1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-06 18:55:17" itemprop="dateCreated datePublished" datetime="2020-04-06T18:55:17Z">2020-04-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/8b930033.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -1035,7 +879,21 @@ class MyRunnable implements Runnable {
                 <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>410</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1079,74 +937,10 @@ class MyRunnable implements Runnable {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/348690ac.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Ken Luo">
-      <meta itemprop="description" content="记录学习历程">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ken's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/348690ac.html" class="post-title-link" itemprop="url">G48I@4W{4XLTNFXM_D2M`)L</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-23 14:54:18" itemprop="dateCreated datePublished" datetime="2020-02-23T14:54:18Z">2020-02-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/370b7f8.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -1177,7 +971,21 @@ class MyRunnable implements Runnable {
                 <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1217,7 +1025,7 @@ class MyRunnable implements Runnable {
     <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/425566db.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avator.png">
       <meta itemprop="name" content="Ken Luo">
       <meta itemprop="description" content="记录学习历程">
     </span>
@@ -1248,7 +1056,21 @@ class MyRunnable implements Runnable {
                 <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
               </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1300,10 +1122,513 @@ class MyRunnable implements Runnable {
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/10ef29c7.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/10ef29c7.html" class="post-title-link" itemprop="url">链表中增加头结点的作用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-10 15:33:12" itemprop="dateCreated datePublished" datetime="2020-02-10T15:33:12Z">2020-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>366</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>理解单链表中头结点的作用，只需要了解对有头结点的单链表和无头结点的单链表操作的区别 下面写两个函数，删除单链表中的一个结点。</p>
+<h4 id="①、删除无头结点单链表中的一个结点"><a href="#①、删除无头结点单链表中的一个结点" class="headerlink" title="①、删除无头结点单链表中的一个结点"></a>①、删除无头结点单链表中的一个结点</h4><p><img src="https://scanf.top/wp-content/uploads/2020/02/fullsizerender5-300x84.jpg" alt=""></p>
+<p>[算法思想] 1、设要删除的结点为p。 2、如果p指向首元结点：L = p -&gt; next; 3、如果p指向的是除首元结点外其他任意结点，执行以下操作： Step 1: 获取p的前驱结点为s; Step 2: s -&gt; next = p -&gt; next.</p>
+<h4 id="②、删除有头结点单链表中的一个结点"><a href="#②、删除有头结点单链表中的一个结点" class="headerlink" title="②、删除有头结点单链表中的一个结点"></a>②、删除有头结点单链表中的一个结点</h4><p><img src="https://scanf.top/wp-content/uploads/2020/02/fullsizerender4-300x62.jpg" alt=""></p>
+<p>[算法思想] 1、设要删除的结点为p。 2、p指向的是任意结点（包括首元结点），执行以下操作： Step 1: 获取p的前驱结点为s; Step 2: s -&gt; next = p -&gt; next;</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a><strong>总结</strong>：</h3><p>在有头结点的情况下，无需特殊处理首元结点。设置头结点可以保证处理第一个结点和后面的结点时设计的算法相同，实现程序的高效性。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/50dd6d39.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/50dd6d39.html" class="post-title-link" itemprop="url">个人网页收藏夹2.0</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-22 15:53:48" itemprop="dateCreated datePublished" datetime="2020-01-22T15:53:48Z">2020-01-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:56" itemprop="dateModified" datetime="2020-07-19T08:15:56Z">2020-07-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="效果预览："><a href="#效果预览：" class="headerlink" title="效果预览："></a>效果预览：</h3><p><img src="https://scanf.top/wp-content/uploads/2020/01/6e5cbf5f99d88956eef8f5bb00a4400c.png" alt=""></p>
+<h3 id="更新内容："><a href="#更新内容：" class="headerlink" title="更新内容："></a>更新内容：</h3><p>①、布局微调。 ②、添加百度搜索框，并调用了百度关键词库。</p>
+<h3 id="html文件："><a href="#html文件：" class="headerlink" title="html文件："></a><strong>html文件：</strong></h3><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>浏览器主页</title>
+  <link rel="stylesheet" href="style.css">
+<link rel="alternate" href="/atom.xml" title="Ken's Blog" type="application/atom+xml">
+</head>
+<body>
+  <div id="base">
+    <div class="tittle"><h1>浏览器主页</h1></div>
+    <!-- 百度搜索框 S -->
+    <div class="search">
+      <form>
+                <table>
+                       <tr>
+                    <td><br/><input class="search-box" type="text" id="text"/></td>
+                    <td><br/><input class="search-btn" type="submit" value="百度一下"  id="btn"/></td>
+                     </tr><ul id="list"></ul> 
+                </table>
+      </form>
+    </div>
+    <!-- 百度搜索框 E -->
+    <!-- 分类链接 S -->
+    <div class="links">
+      <div class="c-name">分类名称</div>
+        <div class="link-container">
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name no-marginRight"><a href="#" target="\_blank">链接名称</a></div>
+        </div>
+    </div>
+    <div class="links">
+      <div class="c-name">分类名称</div>
+        <div class="link-container">
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name no-marginRight"><a href="#" target="\_blank">链接名称</a></div>
+        </div>
+    </div>
+    <div class="links">
+      <div class="c-name">分类名称</div>
+        <div class="link-container">
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name no-marginRight"><a href="#" target="\_blank">链接名称</a></div>
+        </div>
+    </div>
+    <div class="links">
+      <div class="c-name">分类名称</div>
+        <div class="link-container">
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name"><a href="#" target="\_blank">链接名称</a></div>
+          <div class="link-name no-marginRight"><a href="#" target="\_blank">链接名称</a></div>
+        </div>
+    </div>
+
+
+<pre><code>&lt;!-- 分类链接 E --&gt;</code></pre><script type="text/javascript">  
+            var txt = document.getElementById("text");  
+            var oUl = document.getElementById("list");  
+            var oBtn = document.getElementById("btn");
+
+            txt.onkeyup = function(){  
+              oUl.innerHTML = "";
+                var val = txt.value;  
+                var oScript = document.createElement("script");//动态创建script标签  
+                oScript.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+val+"&cb=callback";  
+                //添加链接及回调函数  
+                document.body.appendChild(oScript);//添加script标签  
+                document.body.removeChild(oScript);//删除script标签  
+            }  
+            //回调函数  
+
+            function callback(data){  
+                data.s.forEach(function(value){
+                 var oLi = document.createElement("li");
+                 oLi.innerHTML = "<a href=\\"https://www.baidu.com/s?wd="+ value + "\\">"+ value + "</a>";
+                 oUl.appendChild(oLi);
+                })
+                oUl.style.display = "block";  
+            } 
+           //点击跳转到百度页面，并搜索其中内容
+            oBtn.onclick = function(){
+              var val = txt.value;
+                 window.open("http://www.baidu.com.cn/s?wd=" + val + "");
+            }
+          </script>
+  </div>
+
+</body>
+</html>
+
+<h3 id="CSS文件："><a href="#CSS文件：" class="headerlink" title="CSS文件："></a>CSS文件：</h3><p>* {<br>  padding: 0px;<br>  margin: 0px;<br>}<br>body{background-color: #323639;}<br>h1 {<br>      margin-top: -30px;<br>      color: white;<br>      text-align: center;<br>    }<br>      .link-name a<br>      {<br>          color: #FFFFFF;<br>          font-size:20px;<br>          text-decoration: none;<br>          display: block;<br>      width: 90px;<br>      height: 45px;<br>      line-height: 45px;<br>      text-align: center;<br>      overflow: hidden;<br>      }<br>      .link-name a:hover<br>      {<br>          color: #4F7DA4;<br>      border-radius:10px;<br>      background-color: #474A4D;<br>      display: block;<br>    }</p>
+<pre><code>#base {
+
+  position: absolute;
+  width: 60%;
+  top: 10%;
+  left: 20%;
+}
+#list{  
+            height:300px;  
+            border:1px solid #B8B8B8;
+            border-top: none;
+            display: none; 
+            position: absolute;
+            z-index: 100;
+            top: 65px; 
+            left: 2px;
+            background-color: white;
+            overflow: hidden;
+        }  
+        ul li{  
+                width:512px; 
+                height:30px;  
+                line-height: 30px;  
+                text-indent:10px;  
+                font-size: 14px;  
+                list-style: none;  
+                color: #000;
+        }  
+        ul li a{
+            display: block;
+                text-decoration:none;  
+                color: #000;
+        }  
+        ul li a:hover{  
+            display:block;  
+            background:#F0F0F0;
+        }
+.search {
+  display: block;
+  position: relative;
+  width: 640px;
+  height: 40px;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}
+.search-box {
+  position: absolute;
+  width: 80%;
+  height: 40px;
+  font-size: 1em;
+  background-color: #323639;
+  border: 1px solid #B8B8B8;
+  border-right: 1px solid #3388FF;
+  color: white;
+  padding-left:10px;
+}
+.search-box:focus {
+  outline: none;
+  border: 1px solid #3388FF;
+  border-right: 1px solid #3388FF;
+}
+.search-btn {
+  position: absolute;
+  border: 1px solid #3388FF;
+  width: 20%;
+  height: 42px;
+  background-color: #3388FF;
+  margin-left: 80%;
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+  font-weight: lighter;
+  outline: none;
+}
+.search-btn:hover {
+  background-color: #317EF3;
+  cursor:pointer;
+}
+.c-name {
+  position: relative;
+  display: block;
+  color: #8A8C8B;
+  text-align: center;
+  overflow: hidden;
+  height: 22px;
+  width: 80px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  border-top: 1px dotted #8A8C8B;
+}
+.link-container {
+  display: block;
+  position: relative;
+  width: 443px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.link-name {
+  display: inline-block;
+  border: 1px dashed #8A8C8B;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+/\* 不选择.link-name 下的 .no-mariginRight \*/
+.link-name:not(.no-marginRight) {
+  margin-right: 20px;
+}</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/62da627e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.png">
+      <meta itemprop="name" content="Ken Luo">
+      <meta itemprop="description" content="记录学习历程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ken's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/62da627e.html" class="post-title-link" itemprop="url">顺序表中基本操作的实现</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-03 11:14:16" itemprop="dateCreated datePublished" datetime="2019-12-03T11:14:16Z">2019-12-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 08:15:57" itemprop="dateModified" datetime="2020-07-19T08:15:57Z">2020-07-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="顺序表的存储结构"><a href="#顺序表的存储结构" class="headerlink" title="顺序表的存储结构"></a>顺序表的存储结构</h1><p>#define MAXSIZE 100<br>typedef struct<br>{<br>  ElemType *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;//顺序表的结构类型为SqList</p>
+<h2 id="一、初始化"><a href="#一、初始化" class="headerlink" title="一、初始化"></a><strong>一、初始化</strong></h2><blockquote>
+<p>顺序表的初始化操作就是构造一个空的顺序表。</p>
+</blockquote>
+<h4 id="算法步骤"><a href="#算法步骤" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 为顺序表L动态分配一个预定义大小的数组空间，使elem指向这段空间基地址。 ② 将表的当前长度设为0。</p>
+<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new ElemType[MAXSIZE];//为顺序表分配一个大小为MAXSIZE的数组空间<br>  if ( !L.elem ) exit(OVERFLOW);//存储分配失败退出<br>  L.length = 0;<br>  return OK;<br>}</p>
+<h4 id="DEMO"><a href="#DEMO" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0</p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>int main ( void )<br>{<br>  SqList L;</p>
+<p>  if (InitList(L) == OK ) printf(“成功构造了一个空的顺序表，该顺序表的基地址是：%X”,L.elem);<br>  else printf(“存储分配失败”);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}</p>
+<h2 id="二、取值"><a href="#二、取值" class="headerlink" title="二、取值"></a>二、取值</h2><blockquote>
+<p>取值操作是根据指定的位置序号i，获取顺序表中第i个数据元素的值。</p>
+</blockquote>
+<h4 id="算法步骤-1"><a href="#算法步骤-1" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 判断指定位置序号i值是否合理（ 1 ≤ i ≤ L.length ）， 若不合理，返回ERROR。 ② 若i值合理，则将第i个数据元素L.elem[i-1]赋给参数e，通过e返回第i个数据元素的值 注：参数e为引用，实参和形参值的传递是双向的，即形参值的改变会引起实参值的改变。</p>
+<h4 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status GetElem ( SqList &amp;L, int i, ElemType &amp;e )<br>{<br>  if ( i &lt; 1 || i &gt; L.length ) return ERROR; //判断i值是否合理<br>  e = L.elem[i-1];//将第i个元素传给e</p>
+<p>  return OK;<br>}</p>
+<h4 id="DEMO-1"><a href="#DEMO-1" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0<br>#define ERROR 1</p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;</p>
+<p>Status InitList ( SqList &amp;L );//初始化顺序表函数的声明<br>Status GetElem ( SqList &amp;L, int i, int &amp;e );//顺序表取值函数的声明 </p>
+<p>int main ( void )<br>{<br>  int GetStaus,i,e;<br>  SqList L;</p>
+<p>  if ( InitList(L) == OVERFLOW )<br>  {<br>    printf(“存储分配失败”);<br>  }<br>  else<br>  {<br>    L.elem[0] = 1;<br>    L.elem[1] = 3;<br>    L.elem[2] = 2;<br>    L.elem[3] = 5;<br>    L.elem[4] = 4;<br>    L.length = 5;<br>    printf(“请输入数据元素的序号：”);<br>    scanf(“%d”,&amp;i);<br>    GetStaus = GetElem(L,i,e);<br>  }<br>  if ( GetStaus == ERROR ) printf(“i值不合理”);<br>  else printf(“第%d个元素是：%d”,i,e);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )//初始化顺序表函数的定义<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>Status GetElem ( SqList &amp;L, int i, int &amp;e )//顺序表取值函数的定义<br>{<br>  if ( i &lt; 1 || i &gt; L.length ) return ERROR;<br>  e = L.elem[i-1];</p>
+<p>  return OK;<br>}</p>
+<h2 id="三、查找"><a href="#三、查找" class="headerlink" title="三、查找"></a>三、查找</h2><blockquote>
+<p>查找操作是根据指定的元素值e，查找顺序表中第1个与e相等的元素。若查找成功，则返回该元素在表中的位置序号；查找失败返回0。</p>
+</blockquote>
+<h4 id="算法步骤-2"><a href="#算法步骤-2" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 从第一元素起，依次和e相比较，若找到与e相等的元素L.elem[i]，则查找成功，返回该元素的序号i+1。 ② 若查遍整个顺序表都没有找到，则查找失败，返回0。</p>
+<h4 id="算法描述-2"><a href="#算法描述-2" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>int LocateElem ( SqList L, ElemType e )<br>{<br>  for ( i = 0; i &lt; L.length; i++ )<br>    if ( L.elem[i] == e ) return i+1;</p>
+<p>   return 0;<br>}</p>
+<h4 id="DEMO-2"><a href="#DEMO-2" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0</p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>int LocateElem ( SqList &amp;L, int e );<br>int main ( void )<br>{<br>  int e,locate;<br>  SqList L;</p>
+<p>  if ( InitList(L) == OK )<br>  {<br>    L.elem[0] = 1;<br>    L.elem[1] = 3;<br>    L.elem[2] = 2;<br>    L.elem[3] = 5;<br>    L.elem[4] = 4;<br>    L.length = 5;<br>    printf(“你要找哪个数字的位置呀？”);<br>    scanf(“%d”,&amp;e);<br>    locate = LocateElem(L,e);<br>    if( locate != 0 )<br>    {<br>      printf(“你要找的数字%d的序号是：%d”,e,LocateElem(L,e));<br>    }<br>    else<br>    {<br>      printf(“查无此数”);<br>    }</p>
+<p>  }<br>  else printf(“存储分配失败”);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>int LocateElem ( SqList &amp;L, int e )<br>{<br>  int i;<br>  for ( i = 0; i &lt; L.length; i++ )<br>    if ( L.elem[i] == e) return i+1;<br>  return 0;<br>}</p>
+<h2 id="四、插入"><a href="#四、插入" class="headerlink" title="四、插入"></a>四、插入</h2><blockquote>
+<p>线性表的插入操作是指在表的第i个位置插入一个新的数据元素e，使长度为n的线性表变成长度为n+1的线性表。</p>
+</blockquote>
+<h4 id="算法步骤-3"><a href="#算法步骤-3" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 判断插入位置i是否合理（ 1 ≤ i ≤ n+1 ），若不合理则返回ERROR。 ② 判断顺序表的存储空间是否已满，若满则返回ERROR。 ③ 将第n个至第i个位置的元素依次向后移动一个位置，空出第i个位置，当i = n +1时无需移动。 ④ 将要插入的新元素e放入第i个位置。 ⑤ 表长加1。</p>
+<h4 id="算法描述-3"><a href="#算法描述-3" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status ListInsert ( SqList &amp;L, int i, ElemType e )<br>{<br>  if( (i &lt; 1) || (i &gt; L.length + 1) ) return ERROR;//i值不合理<br>  if ( L.length == MAXSIZE ) return ERROR;//存储空间已满<br>  for ( j = L.length - 1; j &gt;= i-1; j– )<br>    L.elem[j+1] = L.elem[j];//元素后移<br>  L.elem[i-1] = e;//插入新元素<br>  ++L.length;/表长加1</p>
+<p>  return 0;<br>}</p>
+<h4 id="DEMO-3"><a href="#DEMO-3" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0<br>#define ERROR 1</p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>Status ListInsert ( SqList &amp;L, int i, int e );<br>int main ( void )<br>{<br>  int e,i;<br>  SqList L;<br>  if (InitList(L) == OK )<br>  {<br>    L.elem[0] = 2;<br>    L.elem[1] = 4;<br>    L.elem[2] = 6;<br>    L.elem[3] = 8;<br>    L.elem[4] = 10;<br>    L.length = 5;<br>    printf(“存储分配成功,请输入需要插入的数字和位置：”);<br>    scanf(“%d%d”,&amp;e,&amp;i);<br>    if ( ListInsert(L,i,e) == ERROR ) printf(“插入位置不合法或者线性表已满”);<br>    else<br>    {<br>      printf(“插入前的线性表中的元素为：2  4  6  8  10\n”);<br>      printf(“插入后的线性表中的元素为：”);<br>      for ( i = 0; i &lt;= L.length-1; i++ )<br>      printf(“%-2d “,L.elem[i]);<br>    }<br>  }<br>  else printf(“存储分配失败”);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>Status ListInsert ( SqList &amp;L, int i, int e )<br>{<br>  int j;<br>  if ( (i &lt; 1) || (i &gt; L.length+1) ) return ERROR;<br>  if ( L.length == MAXSIZE ) return ERROR;<br>  if( i == L.length + 1 )<br>  {<br>    L.elem[i] = e;<br>  }<br>  else<br>  {<br>    for ( j = L.length -1; j &gt;= i-1; j– )<br>    L.elem[j+1] = L.elem[j];<br>  }</p>
+<p>  L.elem[i-1] = e;<br>  ++L.length;</p>
+<p>  return OK;<br>}</p>
+<h2 id="五、删除"><a href="#五、删除" class="headerlink" title="五、删除"></a>五、删除</h2><blockquote>
+<p>线性表的删除操作是指将表的第i个元素删去，将长度为n的线性表变成长度为n-1的线性表</p>
+</blockquote>
+<h4 id="算法步骤-4"><a href="#算法步骤-4" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 判断删除位置i是否合法（ 1 ≤ i ≤ L.length ），若不合法则返回ERROR。 ② 将第i+1个至第L.length个的元素依次向前移动一个位置，当i=L.length时无需移动。 ③ 表长+1。</p>
+<h4 id="算法描述-4"><a href="#算法描述-4" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status ListDelete ( SqList &amp;L, int i )<br>{<br>  if ( (i &lt; 1) || (i &gt; L.length) ) return ERROR;//i值不合法<br>  for ( j = i; j &lt;= L.length -1; j– )<br>    L.elem[j-1] = L.elem[j];//被删元素之后d额元素前移<br>  –L.length;//表长减一</p>
+<p>  return 0;<br>}</p>
+<p><strong>[DEMO]</strong></p>
+<p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0<br>#define ERROR 1 </p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>Status ListDelete ( SqList &amp;L, int i );<br>int main ( void )<br>{<br>  int i;<br>  SqList L;<br>  if (InitList(L) == OK )<br>  {<br>    L.elem[0] = 2;<br>    L.elem[1] = 4;<br>    L.elem[2] = 6;<br>    L.elem[3] = 8;<br>    L.elem[4] = 10;<br>    L.length = 5;<br>    printf(“线性表初始化成功,请输入被删除元素的位置：”);<br>    scanf(“%d”,&amp;i);<br>    if ( ListDelete(L,i) == ERROR ) printf(“位置不合法”);<br>    else<br>    {<br>      printf(“的线性表中的元素为：2  4  6  8  10\n”);<br>      printf(“插入后的线性表中的元素为：”);<br>      for ( i = 0; i &lt;= L.length-1; i++ )<br>      printf(“%-2d “,L.elem[i]);<br>    }<br>  }<br>  else printf(“存储分配失败”);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>Status ListDelete ( SqList &amp;L, int i )<br>{<br>  int j;</p>
+<p>  if ( (i &lt; 1) || (i &gt; L.length) ) return ERROR;<br>  for ( j = i; j &lt;= L.length -1; j++ )<br>    L.elem[j-1] = L.elem[j];<br>  –L.length;</p>
+<p>  return OK;<br>}</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1362,7 +1687,7 @@ class MyRunnable implements Runnable {
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Ken Luo"
-      src="/images/avatar.png">
+      src="/images/avator.png">
   <p class="site-author-name" itemprop="name">Ken Luo</p>
   <div class="site-description" itemprop="description">记录学习历程</div>
 </div>
@@ -1371,14 +1696,20 @@ class MyRunnable implements Runnable {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-count">86</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1418,11 +1749,43 @@ class MyRunnable implements Runnable {
     <i class="user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ken Luo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">79k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:12</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
