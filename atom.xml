@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Ken&#39;s Blog</title>
-  <icon>http://blog.scanf.top/icon.png</icon>
+  <icon>https://scanf.top/icon.png</icon>
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blog.scanf.top/"/>
+  <link href="https://scanf.top/"/>
   <updated>2020-07-24T00:53:03.276Z</updated>
-  <id>http://blog.scanf.top/</id>
+  <id>https://scanf.top/</id>
   
   <author>
     <name>Ken Luo</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>bean的作用范围</title>
-    <link href="http://blog.scanf.top/archives/eea3a450.html"/>
-    <id>http://blog.scanf.top/archives/eea3a450.html</id>
+    <link href="https://scanf.top/archives/eea3a450.html"/>
+    <id>https://scanf.top/archives/eea3a450.html</id>
     <published>2020-07-17T19:33:51.000Z</published>
     <updated>2020-07-24T00:53:03.276Z</updated>
     
@@ -30,23 +30,23 @@
     </summary>
     
     
-      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
+      <category term="Java" scheme="https://scanf.top/categories/Java/"/>
     
-      <category term="SSM" scheme="http://blog.scanf.top/categories/Java/SSM/"/>
+      <category term="SSM" scheme="https://scanf.top/categories/Java/SSM/"/>
     
     
-      <category term="lifecycle" scheme="http://blog.scanf.top/tags/lifecycle/"/>
+      <category term="lifecycle" scheme="https://scanf.top/tags/lifecycle/"/>
     
-      <category term="scope" scheme="http://blog.scanf.top/tags/scope/"/>
+      <category term="scope" scheme="https://scanf.top/tags/scope/"/>
     
-      <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
+      <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
     
   </entry>
   
   <entry>
     <title>依赖注入的两种方式</title>
-    <link href="http://blog.scanf.top/archives/620ddfc8.html"/>
-    <id>http://blog.scanf.top/archives/620ddfc8.html</id>
+    <link href="https://scanf.top/archives/620ddfc8.html"/>
+    <id>https://scanf.top/archives/620ddfc8.html</id>
     <published>2020-07-17T10:18:15.000Z</published>
     <updated>2020-07-23T16:30:59.660Z</updated>
     
@@ -57,21 +57,21 @@
     </summary>
     
     
-      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
+      <category term="Java" scheme="https://scanf.top/categories/Java/"/>
     
-      <category term="SSM" scheme="http://blog.scanf.top/categories/Java/SSM/"/>
+      <category term="SSM" scheme="https://scanf.top/categories/Java/SSM/"/>
     
     
-      <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
+      <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
     
-      <category term="DI" scheme="http://blog.scanf.top/tags/DI/"/>
+      <category term="DI" scheme="https://scanf.top/tags/DI/"/>
     
   </entry>
   
   <entry>
     <title>实例化Bean的三种方式</title>
-    <link href="http://blog.scanf.top/archives/da03f5c5.html"/>
-    <id>http://blog.scanf.top/archives/da03f5c5.html</id>
+    <link href="https://scanf.top/archives/da03f5c5.html"/>
+    <id>https://scanf.top/archives/da03f5c5.html</id>
     <published>2020-07-16T17:44:29.000Z</published>
     <updated>2020-07-23T16:29:39.415Z</updated>
     
@@ -82,21 +82,21 @@
     </summary>
     
     
-      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
+      <category term="Java" scheme="https://scanf.top/categories/Java/"/>
     
-      <category term="SSM" scheme="http://blog.scanf.top/categories/Java/SSM/"/>
+      <category term="SSM" scheme="https://scanf.top/categories/Java/SSM/"/>
     
     
-      <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
+      <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
     
-      <category term="IoC" scheme="http://blog.scanf.top/tags/IoC/"/>
+      <category term="IoC" scheme="https://scanf.top/tags/IoC/"/>
     
   </entry>
   
   <entry>
     <title>初识控制反转（IoC）与依赖注入（DI）</title>
-    <link href="http://blog.scanf.top/archives/9c51ba7b.html"/>
-    <id>http://blog.scanf.top/archives/9c51ba7b.html</id>
+    <link href="https://scanf.top/archives/9c51ba7b.html"/>
+    <id>https://scanf.top/archives/9c51ba7b.html</id>
     <published>2020-07-16T16:42:36.000Z</published>
     <updated>2020-07-23T16:31:56.796Z</updated>
     
@@ -113,23 +113,23 @@
     </summary>
     
     
-      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
+      <category term="Java" scheme="https://scanf.top/categories/Java/"/>
     
-      <category term="SSM" scheme="http://blog.scanf.top/categories/Java/SSM/"/>
+      <category term="SSM" scheme="https://scanf.top/categories/Java/SSM/"/>
     
     
-      <category term="Spring" scheme="http://blog.scanf.top/tags/Spring/"/>
+      <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
     
-      <category term="DI" scheme="http://blog.scanf.top/tags/DI/"/>
+      <category term="DI" scheme="https://scanf.top/tags/DI/"/>
     
-      <category term="IoC" scheme="http://blog.scanf.top/tags/IoC/"/>
+      <category term="IoC" scheme="https://scanf.top/tags/IoC/"/>
     
   </entry>
   
   <entry>
     <title>MyBatis自定义类型处理器TypeHandler</title>
-    <link href="http://blog.scanf.top/archives/ed6def66.html"/>
-    <id>http://blog.scanf.top/archives/ed6def66.html</id>
+    <link href="https://scanf.top/archives/ed6def66.html"/>
+    <id>https://scanf.top/archives/ed6def66.html</id>
     <published>2020-07-05T22:35:17.000Z</published>
     <updated>2020-07-23T16:29:28.501Z</updated>
     
@@ -143,23 +143,23 @@
     </summary>
     
     
-      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
+      <category term="Java" scheme="https://scanf.top/categories/Java/"/>
     
-      <category term="SSM" scheme="http://blog.scanf.top/categories/Java/SSM/"/>
+      <category term="SSM" scheme="https://scanf.top/categories/Java/SSM/"/>
     
     
-      <category term="MyBatis" scheme="http://blog.scanf.top/tags/MyBatis/"/>
+      <category term="MyBatis" scheme="https://scanf.top/tags/MyBatis/"/>
     
-      <category term="mybatis" scheme="http://blog.scanf.top/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://scanf.top/tags/mybatis/"/>
     
-      <category term="TypeHandler" scheme="http://blog.scanf.top/tags/TypeHandler/"/>
+      <category term="TypeHandler" scheme="https://scanf.top/tags/TypeHandler/"/>
     
   </entry>
   
   <entry>
     <title>在MyBatis中使用Log4j输出日志</title>
-    <link href="http://blog.scanf.top/archives/9a61816b.html"/>
-    <id>http://blog.scanf.top/archives/9a61816b.html</id>
+    <link href="https://scanf.top/archives/9a61816b.html"/>
+    <id>https://scanf.top/archives/9a61816b.html</id>
     <published>2020-07-05T00:27:37.000Z</published>
     <updated>2020-07-23T16:29:13.832Z</updated>
     
@@ -185,23 +185,23 @@
     </summary>
     
     
-      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
+      <category term="Java" scheme="https://scanf.top/categories/Java/"/>
     
-      <category term="SSM" scheme="http://blog.scanf.top/categories/Java/SSM/"/>
+      <category term="SSM" scheme="https://scanf.top/categories/Java/SSM/"/>
     
     
-      <category term="MyBatis" scheme="http://blog.scanf.top/tags/MyBatis/"/>
+      <category term="MyBatis" scheme="https://scanf.top/tags/MyBatis/"/>
     
-      <category term="mybatis" scheme="http://blog.scanf.top/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://scanf.top/tags/mybatis/"/>
     
-      <category term="log4j" scheme="http://blog.scanf.top/tags/log4j/"/>
+      <category term="log4j" scheme="https://scanf.top/tags/log4j/"/>
     
   </entry>
   
   <entry>
     <title>并发与并行的区别</title>
-    <link href="http://blog.scanf.top/archives/6292c650.html"/>
-    <id>http://blog.scanf.top/archives/6292c650.html</id>
+    <link href="https://scanf.top/archives/6292c650.html"/>
+    <id>https://scanf.top/archives/6292c650.html</id>
     <published>2020-05-09T17:07:00.000Z</published>
     <updated>2020-07-19T08:15:57.101Z</updated>
     
@@ -219,18 +219,18 @@
     
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="并发" scheme="http://blog.scanf.top/tags/%E5%B9%B6%E5%8F%91/"/>
+      <category term="并发" scheme="https://scanf.top/tags/%E5%B9%B6%E5%8F%91/"/>
     
-      <category term="并行" scheme="http://blog.scanf.top/tags/%E5%B9%B6%E8%A1%8C/"/>
+      <category term="并行" scheme="https://scanf.top/tags/%E5%B9%B6%E8%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>缓冲流的存在有什么意义？</title>
-    <link href="http://blog.scanf.top/archives/4115c28f.html"/>
-    <id>http://blog.scanf.top/archives/4115c28f.html</id>
+    <link href="https://scanf.top/archives/4115c28f.html"/>
+    <id>https://scanf.top/archives/4115c28f.html</id>
     <published>2020-04-29T21:54:48.000Z</published>
     <updated>2020-07-19T08:15:57.197Z</updated>
     
@@ -248,16 +248,16 @@
     
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="缓冲流" scheme="http://blog.scanf.top/tags/%E7%BC%93%E5%86%B2%E6%B5%81/"/>
+      <category term="缓冲流" scheme="https://scanf.top/tags/%E7%BC%93%E5%86%B2%E6%B5%81/"/>
     
   </entry>
   
   <entry>
     <title>深入理解Java集合框架【转】</title>
-    <link href="http://blog.scanf.top/archives/136b1ea2.html"/>
-    <id>http://blog.scanf.top/archives/136b1ea2.html</id>
+    <link href="https://scanf.top/archives/136b1ea2.html"/>
+    <id>https://scanf.top/archives/136b1ea2.html</id>
     <published>2020-04-29T12:05:06.000Z</published>
     <updated>2020-07-23T16:28:43.310Z</updated>
     
@@ -268,21 +268,21 @@
     </summary>
     
     
-      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
+      <category term="Java" scheme="https://scanf.top/categories/Java/"/>
     
-      <category term="Java基础" scheme="http://blog.scanf.top/categories/Java/Java%E5%9F%BA%E7%A1%80/"/>
+      <category term="Java基础" scheme="https://scanf.top/categories/Java/Java%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="集合" scheme="http://blog.scanf.top/tags/%E9%9B%86%E5%90%88/"/>
+      <category term="集合" scheme="https://scanf.top/tags/%E9%9B%86%E5%90%88/"/>
     
   </entry>
   
   <entry>
     <title>Java集合框架</title>
-    <link href="http://blog.scanf.top/archives/9753a2e.html"/>
-    <id>http://blog.scanf.top/archives/9753a2e.html</id>
+    <link href="https://scanf.top/archives/9753a2e.html"/>
+    <id>https://scanf.top/archives/9753a2e.html</id>
     <published>2020-04-29T12:01:28.000Z</published>
     <updated>2020-07-23T16:27:49.661Z</updated>
     
@@ -300,21 +300,21 @@
     </summary>
     
     
-      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
+      <category term="Java" scheme="https://scanf.top/categories/Java/"/>
     
-      <category term="Java基础" scheme="http://blog.scanf.top/categories/Java/Java%E5%9F%BA%E7%A1%80/"/>
+      <category term="Java基础" scheme="https://scanf.top/categories/Java/Java%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="集合" scheme="http://blog.scanf.top/tags/%E9%9B%86%E5%90%88/"/>
+      <category term="集合" scheme="https://scanf.top/tags/%E9%9B%86%E5%90%88/"/>
     
   </entry>
   
   <entry>
     <title>网络编程 - TCP</title>
-    <link href="http://blog.scanf.top/archives/7997a0cc.html"/>
-    <id>http://blog.scanf.top/archives/7997a0cc.html</id>
+    <link href="https://scanf.top/archives/7997a0cc.html"/>
+    <id>https://scanf.top/archives/7997a0cc.html</id>
     <published>2020-04-27T23:09:52.000Z</published>
     <updated>2020-07-19T08:15:57.227Z</updated>
     
@@ -332,16 +332,16 @@
     
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="TCP" scheme="http://blog.scanf.top/tags/TCP/"/>
+      <category term="TCP" scheme="https://scanf.top/tags/TCP/"/>
     
   </entry>
   
   <entry>
     <title>网络编程 - UDP</title>
-    <link href="http://blog.scanf.top/archives/37145c3c.html"/>
-    <id>http://blog.scanf.top/archives/37145c3c.html</id>
+    <link href="https://scanf.top/archives/37145c3c.html"/>
+    <id>https://scanf.top/archives/37145c3c.html</id>
     <published>2020-04-27T22:17:45.000Z</published>
     <updated>2020-07-19T08:15:57.235Z</updated>
     
@@ -359,16 +359,16 @@
     
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="UDP" scheme="http://blog.scanf.top/tags/UDP/"/>
+      <category term="UDP" scheme="https://scanf.top/tags/UDP/"/>
     
   </entry>
   
   <entry>
     <title>初识Java多线程编程</title>
-    <link href="http://blog.scanf.top/archives/22330b77.html"/>
-    <id>http://blog.scanf.top/archives/22330b77.html</id>
+    <link href="https://scanf.top/archives/22330b77.html"/>
+    <id>https://scanf.top/archives/22330b77.html</id>
     <published>2020-04-20T23:05:03.000Z</published>
     <updated>2020-07-23T16:31:47.016Z</updated>
     
@@ -388,21 +388,21 @@
     </summary>
     
     
-      <category term="Java" scheme="http://blog.scanf.top/categories/Java/"/>
+      <category term="Java" scheme="https://scanf.top/categories/Java/"/>
     
-      <category term="Java基础" scheme="http://blog.scanf.top/categories/Java/Java%E5%9F%BA%E7%A1%80/"/>
+      <category term="Java基础" scheme="https://scanf.top/categories/Java/Java%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="多线程" scheme="http://blog.scanf.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="多线程" scheme="https://scanf.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>顺序表的基本操作</title>
-    <link href="http://blog.scanf.top/archives/85a7966c.html"/>
-    <id>http://blog.scanf.top/archives/85a7966c.html</id>
+    <link href="https://scanf.top/archives/85a7966c.html"/>
+    <id>https://scanf.top/archives/85a7966c.html</id>
     <published>2020-04-20T00:34:14.000Z</published>
     <updated>2020-07-19T08:15:57.202Z</updated>
     
@@ -420,16 +420,16 @@
     
     
     
-      <category term="数据结构与算法" scheme="http://blog.scanf.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://scanf.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="线性表" scheme="http://blog.scanf.top/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
+      <category term="线性表" scheme="https://scanf.top/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
     <title>取模运算和取余运算的区别</title>
-    <link href="http://blog.scanf.top/archives/8b930033.html"/>
-    <id>http://blog.scanf.top/archives/8b930033.html</id>
+    <link href="https://scanf.top/archives/8b930033.html"/>
+    <id>https://scanf.top/archives/8b930033.html</id>
     <published>2020-02-25T10:29:03.000Z</published>
     <updated>2020-07-19T08:15:57.037Z</updated>
     
@@ -450,18 +450,18 @@
     
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="取余" scheme="http://blog.scanf.top/tags/%E5%8F%96%E4%BD%99/"/>
+      <category term="取余" scheme="https://scanf.top/tags/%E5%8F%96%E4%BD%99/"/>
     
-      <category term="取模" scheme="http://blog.scanf.top/tags/%E5%8F%96%E6%A8%A1/"/>
+      <category term="取模" scheme="https://scanf.top/tags/%E5%8F%96%E6%A8%A1/"/>
     
   </entry>
   
   <entry>
     <title>byte类型的取值为什么是-128~127</title>
-    <link href="http://blog.scanf.top/archives/370b7f8.html"/>
-    <id>http://blog.scanf.top/archives/370b7f8.html</id>
+    <link href="https://scanf.top/archives/370b7f8.html"/>
+    <id>https://scanf.top/archives/370b7f8.html</id>
     <published>2020-02-19T15:19:01.000Z</published>
     <updated>2020-07-19T08:15:56.671Z</updated>
     
@@ -479,16 +479,16 @@
     
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="整型byte" scheme="http://blog.scanf.top/tags/%E6%95%B4%E5%9E%8Bbyte/"/>
+      <category term="整型byte" scheme="https://scanf.top/tags/%E6%95%B4%E5%9E%8Bbyte/"/>
     
   </entry>
   
   <entry>
     <title>第一个java程序，从环境配置开始</title>
-    <link href="http://blog.scanf.top/archives/425566db.html"/>
-    <id>http://blog.scanf.top/archives/425566db.html</id>
+    <link href="https://scanf.top/archives/425566db.html"/>
+    <id>https://scanf.top/archives/425566db.html</id>
     <published>2020-02-17T23:13:15.000Z</published>
     <updated>2020-07-19T08:15:57.189Z</updated>
     
@@ -507,18 +507,18 @@
     
     
     
-      <category term="java笔记" scheme="http://blog.scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
+      <category term="java笔记" scheme="https://scanf.top/tags/java%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="java" scheme="http://blog.scanf.top/tags/java/"/>
+      <category term="java" scheme="https://scanf.top/tags/java/"/>
     
-      <category term="JDK" scheme="http://blog.scanf.top/tags/JDK/"/>
+      <category term="JDK" scheme="https://scanf.top/tags/JDK/"/>
     
   </entry>
   
   <entry>
     <title>链表中增加头结点的作用</title>
-    <link href="http://blog.scanf.top/archives/10ef29c7.html"/>
-    <id>http://blog.scanf.top/archives/10ef29c7.html</id>
+    <link href="https://scanf.top/archives/10ef29c7.html"/>
+    <id>https://scanf.top/archives/10ef29c7.html</id>
     <published>2020-02-10T15:33:12.000Z</published>
     <updated>2020-07-19T08:15:57.254Z</updated>
     
@@ -537,18 +537,18 @@
     
     
     
-      <category term="数据结构与算法" scheme="http://blog.scanf.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://scanf.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="链表" scheme="http://blog.scanf.top/tags/%E9%93%BE%E8%A1%A8/"/>
+      <category term="头结点" scheme="https://scanf.top/tags/%E5%A4%B4%E7%BB%93%E7%82%B9/"/>
     
-      <category term="头结点" scheme="http://blog.scanf.top/tags/%E5%A4%B4%E7%BB%93%E7%82%B9/"/>
+      <category term="链表" scheme="https://scanf.top/tags/%E9%93%BE%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
     <title>个人网页收藏夹2.0</title>
-    <link href="http://blog.scanf.top/archives/50dd6d39.html"/>
-    <id>http://blog.scanf.top/archives/50dd6d39.html</id>
+    <link href="https://scanf.top/archives/50dd6d39.html"/>
+    <id>https://scanf.top/archives/50dd6d39.html</id>
     <published>2020-01-22T15:53:48.000Z</published>
     <updated>2020-07-19T08:15:56.935Z</updated>
     
@@ -566,16 +566,16 @@
     
     
     
-      <category term="web" scheme="http://blog.scanf.top/tags/web/"/>
+      <category term="web" scheme="https://scanf.top/tags/web/"/>
     
-      <category term="网页收藏夹" scheme="http://blog.scanf.top/tags/%E7%BD%91%E9%A1%B5%E6%94%B6%E8%97%8F%E5%A4%B9/"/>
+      <category term="网页收藏夹" scheme="https://scanf.top/tags/%E7%BD%91%E9%A1%B5%E6%94%B6%E8%97%8F%E5%A4%B9/"/>
     
   </entry>
   
   <entry>
     <title>顺序表中基本操作的实现</title>
-    <link href="http://blog.scanf.top/archives/62da627e.html"/>
-    <id>http://blog.scanf.top/archives/62da627e.html</id>
+    <link href="https://scanf.top/archives/62da627e.html"/>
+    <id>https://scanf.top/archives/62da627e.html</id>
     <published>2019-12-03T11:14:16.000Z</published>
     <updated>2020-07-19T08:15:57.266Z</updated>
     
@@ -593,9 +593,9 @@
     
     
     
-      <category term="数据结构与算法" scheme="http://blog.scanf.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://scanf.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="顺序表" scheme="http://blog.scanf.top/tags/%E9%A1%BA%E5%BA%8F%E8%A1%A8/"/>
+      <category term="顺序表" scheme="https://scanf.top/tags/%E9%A1%BA%E5%BA%8F%E8%A1%A8/"/>
     
   </entry>
   

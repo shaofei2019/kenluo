@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.scanf.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"scanf.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="了解bean的作用范围：singleton、prototype、request、session、application、websocket">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bean的作用范围">
-<meta property="og:url" content="http://blog.scanf.top/archives/eea3a450.html">
+<meta property="og:url" content="https://scanf.top/archives/eea3a450.html">
 <meta property="og:site_name" content="Ken&#39;s Blog">
 <meta property="og:description" content="了解bean的作用范围：singleton、prototype、request、session、application、websocket">
 <meta property="og:locale" content="zh_CN">
@@ -38,7 +38,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_1619d0a0724317ea5bf2d6109b1cdcfb.jpg">
 
-<link rel="canonical" href="http://blog.scanf.top/archives/eea3a450.html">
+<link rel="canonical" href="https://scanf.top/archives/eea3a450.html">
 
 
 <script id="page-configurations">
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.scanf.top/archives/eea3a450.html">
+    <link itemprop="mainEntityOfPage" href="https://scanf.top/archives/eea3a450.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.png">
@@ -296,7 +296,7 @@
 <p>websocket：将单个bean定义的作用域限定为WebSocket的生命周期。该作用域仅适用于web的Spring WebApplicationContext环境。</p>
 <!-- more -->
 
-<h2 id="一-singleton"><a href="#一-singleton" class="headerlink" title="一 singleton"></a>一 singleton</h2><p>当你将一个bean的<code>scope</code>定义为<code>singleton</code>范围后，Spring IoC容器将为该bean所定义的对象创建一个实例。该单个实例存储在此类单例bean的缓存中，并且对该命名bean的所有后续请求和引用都返回缓存的对象。下图显示了单例作用域如何工作： <a href="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_1619d0a0724317ea5bf2d6109b1cdcfb.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_1619d0a0724317ea5bf2d6109b1cdcfb.jpg" alt=""></a> 这意味着，如果您在单个Spring容器中为特定类定义一个bean，且将作用范围指明为singleton，则Spring容器将创建该bean定义所定义的类的实例有且只有一个。单例作用域是Spring中的默认作用域。要将bean定义为XML中的单例。 单例案例： <strong>1 来个bean</strong></p>
+<h2 id="一-singleton"><a href="#一-singleton" class="headerlink" title="一 singleton"></a>一 singleton</h2><p>当你将一个bean的<code>scope</code>定义为<code>singleton</code>范围后，Spring IoC容器将为该bean所定义的对象创建一个实例。该单个实例存储在此类单例bean的缓存中，并且对该命名bean的所有后续请求和引用都返回缓存的对象。下图显示了单例作用域如何工作： <a href="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_1619d0a0724317ea5bf2d6109b1cdcfb.jpg"><img src="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_1619d0a0724317ea5bf2d6109b1cdcfb.jpg" alt=""></a> 这意味着，如果您在单个Spring容器中为特定类定义一个bean，且将作用范围指明为singleton，则Spring容器将创建该bean定义所定义的类的实例有且只有一个。单例作用域是Spring中的默认作用域。要将bean定义为XML中的单例。 单例案例： <strong>1 来个bean</strong></p>
 <pre><code>package com.example.demo.pojo;
 
 public class DemoBean {
@@ -325,7 +325,7 @@ public void test1(){
 17:55:42.406 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 2 bean definitions from class path resource [spring.xml]
 17:55:42.430 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;singletonDemo&apos;
 ==</code></pre><p>测试方法中，获取了两次id为<code>singletonDemo</code>的bean定义的对象，分别为demoA和demoB，然后对这两个对象做出==判断，单元测试结果输出如上，说明两次获得的对象为同一个。</p>
-<h2 id="二-prototype"><a href="#二-prototype" class="headerlink" title="二 prototype"></a>二 prototype</h2><p>当一个bean的作用域为<code>prototype</code>，表示一个bean定义对应多个对象实例。声明为<code>prototype</code>作用域的bean会导致在每次对该bean请求（将其注入到另一个bean中，或者以程序的方式调用容器的getBean()方法）时都会创建一个新的bean实例。 <code>prototype</code>是原型类型，它在我们创建容器的时候并没有实例化，而是当我们获取bean的时候才会去创建一个对象，而且我们每次获取到的对象都不是同一个对象。 根据经验，对有状态的bean应该使用prototype作用域，而对无状态的bean则应该使用singleton作用域。 下图说明了Spring原型范围： <a href="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_f8c376ab883e6cb8d08d89bac9ebf7f6.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_f8c376ab883e6cb8d08d89bac9ebf7f6.jpg" alt=""></a> <strong>单例案例：</strong> <strong>1 来个bean</strong></p>
+<h2 id="二-prototype"><a href="#二-prototype" class="headerlink" title="二 prototype"></a>二 prototype</h2><p>当一个bean的作用域为<code>prototype</code>，表示一个bean定义对应多个对象实例。声明为<code>prototype</code>作用域的bean会导致在每次对该bean请求（将其注入到另一个bean中，或者以程序的方式调用容器的getBean()方法）时都会创建一个新的bean实例。 <code>prototype</code>是原型类型，它在我们创建容器的时候并没有实例化，而是当我们获取bean的时候才会去创建一个对象，而且我们每次获取到的对象都不是同一个对象。 根据经验，对有状态的bean应该使用prototype作用域，而对无状态的bean则应该使用singleton作用域。 下图说明了Spring原型范围： <a href="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_f8c376ab883e6cb8d08d89bac9ebf7f6.jpg"><img src="https://scanf.top/wp-content/uploads/2020/07/wp_editor_md_f8c376ab883e6cb8d08d89bac9ebf7f6.jpg" alt=""></a> <strong>单例案例：</strong> <strong>1 来个bean</strong></p>
 <pre><code>package com.example.demo.pojo;
 
 public class DemoBean {
@@ -501,7 +501,7 @@ public void test1(){
         <a href="https://github.com/shaofei2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shaofei2019" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:ken@scanf.top" title="E-Mail → mailto:ken@scanf.top" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+        <a href="mailto:ken@scanf.top" title="E-Mail → mailto:ken@scanf.top"><i class="fa fa-envelope fa-fw"></i></a>
       </span>
   </div>
 
