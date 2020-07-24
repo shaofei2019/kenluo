@@ -95,21 +95,6 @@ public void test1(){
       </tags>
   </entry>
   <entry>
-    <title>C编译器如何读取并确定一个符号？</title>
-    <url>/archives/99ae3ea5.html</url>
-    <content><![CDATA[<p><strong>读取规则：每一个符号应该包含尽可能多的字符。</strong> 编译器读取符号的方法是，从左到右一个字符一个字符地读入，如果该字符可能组成一个符号，那么再读入下一个字符，判断已经读取的两个字符组成的字符串是否可能是一个符号的组成部分；如果可能，继续读入下一个字符，重复上述判断，直到读入的字符组成的字符串已不再可能组成一个有意义的符号。这个处理策略又是被称为“贪心法”。</p>
-<h4 id="分析：a-b"><a href="#分析：a-b" class="headerlink" title="分析：a- - -b;"></a><strong>分析：a- - -b;</strong></h4><p>编译器读取到第二个减号字符的时候判断“–”是否能组成一个符号，结果当然是可以的，编译器继续读取下一个字符‘-’，判断“_- - -_”能否组成一个符号？不能，那么<strong>a- - -b</strong>的含义是：<strong>a - -   - b</strong>，注意中减号中间的空格。</p>
-<h4 id="分析：y-x-p-p指向除数"><a href="#分析：y-x-p-p指向除数" class="headerlink" title="分析：y = x/*p;       /* p指向除数 */"></a><strong>分析：y = x/*p;       /* p指向除数 */</strong></h4><p>我们能看出该语句的本意似乎是x除以p所指向的值，所得的商赋值给变量y；而实际上编译器会把/*当作一段注释的开始。所以编译器不会理会/*后的代码。尽管你不小心写出了这样的代码，你应该会及时发现出问题了，因为至少编译时编译器会告诉你缺少句末的分号。这时只需要在/和*之间敲个空格就行了。</p>
-<blockquote>
-<p>整理自：《C Traps and Pitfalls》</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>贪心法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>byte类型的取值为什么是-128~127</title>
     <url>/archives/370b7f8.html</url>
     <content><![CDATA[<p>Java的byte类型取值范围是-128~127为什么是-128到127呢 <img src="https://scanf.top/wp-content/uploads/2020/02/6d92da42982fdc702b0297ff13f4de64.png" alt=""></p>
@@ -123,6 +108,21 @@ public void test1(){
       <tags>
         <tag>java笔记</tag>
         <tag>整型byte</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C编译器如何读取并确定一个符号？</title>
+    <url>/archives/99ae3ea5.html</url>
+    <content><![CDATA[<p><strong>读取规则：每一个符号应该包含尽可能多的字符。</strong> 编译器读取符号的方法是，从左到右一个字符一个字符地读入，如果该字符可能组成一个符号，那么再读入下一个字符，判断已经读取的两个字符组成的字符串是否可能是一个符号的组成部分；如果可能，继续读入下一个字符，重复上述判断，直到读入的字符组成的字符串已不再可能组成一个有意义的符号。这个处理策略又是被称为“贪心法”。</p>
+<h4 id="分析：a-b"><a href="#分析：a-b" class="headerlink" title="分析：a- - -b;"></a><strong>分析：a- - -b;</strong></h4><p>编译器读取到第二个减号字符的时候判断“–”是否能组成一个符号，结果当然是可以的，编译器继续读取下一个字符‘-’，判断“_- - -_”能否组成一个符号？不能，那么<strong>a- - -b</strong>的含义是：<strong>a - -   - b</strong>，注意中减号中间的空格。</p>
+<h4 id="分析：y-x-p-p指向除数"><a href="#分析：y-x-p-p指向除数" class="headerlink" title="分析：y = x/*p;       /* p指向除数 */"></a><strong>分析：y = x/*p;       /* p指向除数 */</strong></h4><p>我们能看出该语句的本意似乎是x除以p所指向的值，所得的商赋值给变量y；而实际上编译器会把/*当作一段注释的开始。所以编译器不会理会/*后的代码。尽管你不小心写出了这样的代码，你应该会及时发现出问题了，因为至少编译时编译器会告诉你缺少句末的分号。这时只需要在/和*之间敲个空格就行了。</p>
+<blockquote>
+<p>整理自：《C Traps and Pitfalls》</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>贪心法</tag>
       </tags>
   </entry>
   <entry>
@@ -221,31 +221,6 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>C语言的术语：数据对象、左值</title>
-    <url>/archives/2456e15a.html</url>
-    <content><![CDATA[<p>用于储存值的数据区域统称为<strong>数据对象（</strong><em>data object</em><strong>）。</strong> <strong>左值</strong>（_lvalue_）是C语言的术语，用于标识特定数据对象的名称或表达式。   对象指的是实际的数据存储，而左值是用于标识或定位存储位置的标签。</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>左值</tag>
-        <tag>数据对象</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>main()的参数argc和argv</title>
-    <url>/archives/ef3944df.html</url>
-    <content><![CDATA[<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><p>#include &lt;stdio.h&gt;<br>int main ( int argc, char *argv [] )<br>{<br>  printf(“argv[0]:%s\n”,argv[0]);<br>  printf(“argv[1]:%s\n”,argv[1]);<br>  printf(“argv[2]:%s\n”,argv[2]);<br>  printf(“argv[3]:%s\n”,argv[3]);<br>  printf(“一共有：%d个命令行参数”,argc);</p>
-<p>  return 0;<br>}</p>
-<h3 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/6203d7a613c7af69fac8a42f21ed4d6f.png" alt=""></p>
-<h3 id="相关说明："><a href="#相关说明：" class="headerlink" title="相关说明："></a>相关说明：</h3><p>argc：为命令行总的参数的个数 *argv[ ]：字符串数组，用来存放指向你的字符串参数的指针数组,每一个元素指向一个参数。 argv[0]:指向程序的全路径名 argv[1]:指向在DOS命令行中执行程序名后的第一个字符串 argv[2]:指向在DOS命令行中执行程序名后的第二个字符串 argv[3]:指向在DOS命令行中执行程序名后的第三个字符串</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>argc</tag>
-        <tag>argv</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java集合框架</title>
     <url>/archives/9753a2e.html</url>
     <content><![CDATA[<h1 id="一、列表List"><a href="#一、列表List" class="headerlink" title="一、列表List"></a>一、列表List</h1><h2 id="1-1-ArrayList"><a href="#1-1-ArrayList" class="headerlink" title="1.1 ArrayList"></a>1.1 ArrayList</h2><ul>
@@ -334,6 +309,17 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
+    <title>C语言的术语：数据对象、左值</title>
+    <url>/archives/2456e15a.html</url>
+    <content><![CDATA[<p>用于储存值的数据区域统称为<strong>数据对象（</strong><em>data object</em><strong>）。</strong> <strong>左值</strong>（_lvalue_）是C语言的术语，用于标识特定数据对象的名称或表达式。   对象指的是实际的数据存储，而左值是用于标识或定位存储位置的标签。</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>左值</tag>
+        <tag>数据对象</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MyBatis自定义类型处理器TypeHandler</title>
     <url>/archives/ed6def66.html</url>
     <content><![CDATA[<blockquote>
@@ -352,6 +338,20 @@ return 0;</code></pre><p>}</p>
         <tag>MyBatis</tag>
         <tag>mybatis</tag>
         <tag>TypeHandler</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>main()的参数argc和argv</title>
+    <url>/archives/ef3944df.html</url>
+    <content><![CDATA[<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><p>#include &lt;stdio.h&gt;<br>int main ( int argc, char *argv [] )<br>{<br>  printf(“argv[0]:%s\n”,argv[0]);<br>  printf(“argv[1]:%s\n”,argv[1]);<br>  printf(“argv[2]:%s\n”,argv[2]);<br>  printf(“argv[3]:%s\n”,argv[3]);<br>  printf(“一共有：%d个命令行参数”,argc);</p>
+<p>  return 0;<br>}</p>
+<h3 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/6203d7a613c7af69fac8a42f21ed4d6f.png" alt=""></p>
+<h3 id="相关说明："><a href="#相关说明：" class="headerlink" title="相关说明："></a>相关说明：</h3><p>argc：为命令行总的参数的个数 *argv[ ]：字符串数组，用来存放指向你的字符串参数的指针数组,每一个元素指向一个参数。 argv[0]:指向程序的全路径名 argv[1]:指向在DOS命令行中执行程序名后的第一个字符串 argv[2]:指向在DOS命令行中执行程序名后的第二个字符串 argv[3]:指向在DOS命令行中执行程序名后的第三个字符串</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>argc</tag>
+        <tag>argv</tag>
       </tags>
   </entry>
   <entry>
@@ -377,22 +377,6 @@ return 0;</code></pre><p>}</p>
         <tag>C/C++笔记</tag>
         <tag>printf</tag>
         <tag>scanf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sizeof和strlen()的区别</title>
-    <url>/archives/8d2d04f8.html</url>
-    <content><![CDATA[<p>sizeof() 是一种内存容量度量函数，功能是返回一个变量或者类型的大小（以字节为单位）； strlen()所作的仅仅是一个计数器的工作，它从内存的某个位置开始扫描，直到碰到第一个字符串结束符’\0’为止，然后返回计数器值(长度不包含’\0’)。</p>
-<h3 id="举例对比："><a href="#举例对比：" class="headerlink" title="举例对比："></a>举例对比：</h3><p>#include &lt;stdio.h&gt;<br>#include &lt;string.h&gt;<br>#define  STRING “<a href="http://www.scanf.top&quot;" target="_blank" rel="noopener external nofollow noreferrer">www.scanf.top&quot;</a></p>
-<p>int main(void)<br>{<br>       printf(“sizeof_STRING:%d\n”,sizeof STRING);<br>       printf(“strlen_STRING:%d”,strlen(STRING));</p>
-<pre><code>return 0;</code></pre><p>}</p>
-<p>可STRING字符串被储存在char类型的数组中，这个数组有14个存储单元，分别被13个字符和末尾的1个空字符占用。 程序编译运行输出的结果是：</p>
-<p>sizeof_STRING:14<br>strlen_STRING:13</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>sizeof</tag>
-        <tag>strlen()</tag>
       </tags>
   </entry>
   <entry>
@@ -433,6 +417,22 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
+    <title>sizeof和strlen()的区别</title>
+    <url>/archives/8d2d04f8.html</url>
+    <content><![CDATA[<p>sizeof() 是一种内存容量度量函数，功能是返回一个变量或者类型的大小（以字节为单位）； strlen()所作的仅仅是一个计数器的工作，它从内存的某个位置开始扫描，直到碰到第一个字符串结束符’\0’为止，然后返回计数器值(长度不包含’\0’)。</p>
+<h3 id="举例对比："><a href="#举例对比：" class="headerlink" title="举例对比："></a>举例对比：</h3><p>#include &lt;stdio.h&gt;<br>#include &lt;string.h&gt;<br>#define  STRING “<a href="http://www.scanf.top&quot;" target="_blank" rel="noopener external nofollow noreferrer">www.scanf.top&quot;</a></p>
+<p>int main(void)<br>{<br>       printf(“sizeof_STRING:%d\n”,sizeof STRING);<br>       printf(“strlen_STRING:%d”,strlen(STRING));</p>
+<pre><code>return 0;</code></pre><p>}</p>
+<p>可STRING字符串被储存在char类型的数组中，这个数组有14个存储单元，分别被13个字符和末尾的1个空字符占用。 程序编译运行输出的结果是：</p>
+<p>sizeof_STRING:14<br>strlen_STRING:13</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>sizeof</tag>
+        <tag>strlen()</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>scanf()和scanf_s()的简单区别</title>
     <url>/archives/e698f6a9.html</url>
     <content><![CDATA[<h4 id="简单介绍："><a href="#简单介绍：" class="headerlink" title="简单介绍："></a><strong>简单介绍：</strong></h4><p>scanf()函数是标准C中提供的标准输入函数，用于用户输入数据。 scanf_s()函数是Microsoft公司VS开发工具提供的一个功能相同的安全标准输入函数，从vc++2005开始，VS系统提供了scanf_s()。  </p>
@@ -459,132 +459,6 @@ return 0;</code></pre><p>}</p>
       <tags>
         <tag>C/C++笔记</tag>
         <tag>sleep()</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>个人网页收藏夹</title>
-    <url>/archives/73400397.html</url>
-    <content><![CDATA[<h3 id="设计初衷："><a href="#设计初衷：" class="headerlink" title="设计初衷："></a>设计初衷：</h3><p>解决浏览器收藏栏占用屏幕显示区域的问题，保持浏览器界面简洁。</p>
-<h3 id="效果图："><a href="#效果图：" class="headerlink" title="效果图："></a>效果图：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/09/QQ%E6%88%AA%E5%9B%BE20190903152303.png" alt=""></p>
-<h3 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h3><!-- 
-本页作者：少飞同学
-作者博客：scanf.top
-作者QQ：1512014159 
-请勿修改作者信息，谢谢！
--->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>收藏页</title>
-  <style type="text/css">
-    body{background-color: #323639;}
-      a{color: #FFFFFF;font-size:17px;text-decoration: none;}
-      a:hover{color: #4F7DA4;}
-      ul
-      {
-          margin-left:60px;
-      }
-    li
-    { 
-      list-style: none;
-      float:left;
-      padding-right: 25px;
-    }
-    #bottom
-    {
-      position: absolute;
-              left:50%;top:50%;
-              margin-left:-250px;
-              margin-top:-280px;
-      height: 560px;
-      width:500px;
-      border: 2px solid #8A8C8E;
-      border-radius:25px;
-    }
-
-<pre><code>#head-top h2
-{
-  color: #8A8C8E;
-  text-align: center;
-  margin-top:8px;
-  margin-bottom: 8px;
-}
-.sort
-{
-  margin-top: 30px;
-
-}
-.sort\_name
-{
-  margin-top:8px;
-  margin-left: 22px;
-  color: #8A8C8E;
-}</code></pre><p>  </style></p>
-<link rel="alternate" href="/atom.xml" title="Ken's Blog" type="application/atom+xml">
-</head>
-<body>
-  <div id="bottom"><!-- 最底层的框架 -->
-    <div id="head-top"><h2>收藏夹</h2></div><!-- 头部文字 -->
-    <div style="border-top:2px solid #8A8C8E;"></div>
-
-
-<pre><code>&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
-  &lt;div class=&quot;sort\_name&quot;&gt;第一分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
-  &lt;ul&gt;
-
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;br&gt;
-  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
-  &lt;div class=&quot;sort\_name&quot;&gt;第二分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
-  &lt;ul&gt;
-
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;br&gt;
-  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
-  &lt;div class=&quot;sort\_name&quot;&gt;第三分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
-  &lt;ul&gt;
-
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;br&gt;
-  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
-  &lt;div class=&quot;sort\_name&quot;&gt;第四分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
-  &lt;ul&gt;
-
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;br&gt;
-  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
-&lt;/div&gt;</code></pre>  </div>
-</body>
-</html>]]></content>
-      <tags>
-        <tag>web</tag>
-        <tag>网页收藏夹</tag>
       </tags>
   </entry>
   <entry>
@@ -831,44 +705,6 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>使用嵌套循环，按照指定格式打印字母（二）</title>
-    <url>/archives/7d9a4224.html</url>
-    <content><![CDATA[<p>编写一个程序，提示用户输入大写字母。使用嵌套循环以下面金字塔型的格式打印字母：</p>
-<pre><code>A</code></pre><p>   ABA<br>  ABCBA<br> ABCDCBA<br>ABCDEDCBA</p>
-<h3 id="程序实现："><a href="#程序实现：" class="headerlink" title="程序实现："></a>程序实现：</h3><p>#include&lt;stdio.h&gt;<br>int main( void )<br>{<br>    char letter[27];<br>    int wrap,letter_element,space;//换行，字母数组元素，空格<br>    int letter_element_after;//后半部分字母的数组下标<br>    int letter_element_before;//前半部分字母的数组下标 </p>
-<pre><code>printf(&quot;请输入大写字母（输入格式：ABCDE），最后回车确认：&quot;);
-for(letter\_element=0;;letter\_element++){
-    scanf(&quot;%c&quot;,&amp;letter\[letter\_element\]);
-    if(letter\[letter\_element\]==&apos;\\n&apos;)
-    break;
-}
-
-for(wrap=1;wrap&lt;=letter\_element;wrap++){
-
-    for(space=wrap;space&lt;letter\_element;space++){
-        printf(&quot; &quot;);//打印空格 
-    }
-    for(letter\_element\_before=0;letter\_element\_before&lt;wrap;letter\_element\_before++){
-        printf(&quot;%c&quot;,letter\[letter\_element\_before\]); //打印前半部分字母 
-    } 
-    for(letter\_element\_after=letter\_element\_before-2;letter\_element\_after&gt;=0;letter\_element\_after--){
-        printf(&quot;%c&quot;,letter\[letter\_element\_after\]);//打印后半部分字母 
-    }
-    printf(&quot;\\n&quot;);
-} 
-
-return 0;</code></pre><p>}</p>
-<h3 id="设计思路："><a href="#设计思路：" class="headerlink" title="设计思路："></a>设计思路：</h3><p>这是一个略微复杂的输入输出的程序。用户可以告诉程序要处理哪些字母，并按照程序给定的方式结束输入过程。程序将用户输入的字母按照一定的方式进行处理输出。</p>
-<h3 id="程序解读："><a href="#程序解读：" class="headerlink" title="程序解读："></a>程序解读：</h3><h4 id="第一步：输入阶段"><a href="#第一步：输入阶段" class="headerlink" title="第一步：输入阶段"></a>第一步：输入阶段</h4><p>输入字母，写入数组。例如输入：ABCDE加回车换行，这是一个字符串，而scanf中的转换说明是字符%c，第一次scanf只把A写入到letter[0]中，将剩余的BCDE和换行符放到缓冲区，for循环中会将剩下的字符一个一个写入数组中相应的位置，并最后遇到换行符“\n”时，if语句会通过break结束for循环。</p>
-<h4 id="第二步：输出阶段"><a href="#第二步：输出阶段" class="headerlink" title="第二步：输出阶段"></a>第二步：输出阶段</h4><p>if中的break将执行带出输入过程，进入另一些for循环进行输出处理。第二个for控制换行，第三个for打印空格，第四个for打印每行中前半部分的字母，第五个for打印每行中后半部分字母。其中第三、四、五个循环嵌套在第二个for循环中。</p>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>程序总体流程为：输入，输出（从左到右：一个字符一个字符输出；从上到下：一行一行输出）</p>
-]]></content>
-      <tags>
-        <tag>C/C++练习</tag>
-        <tag>for循环</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用嵌套循环，按照指定格式打印字母（一）</title>
     <url>/archives/4d8caefc.html</url>
     <content><![CDATA[<p>设计程序，使用嵌套循环，按照以下格式打印字母：</p>
@@ -895,39 +731,129 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>使用指针在函数间通信</title>
-    <url>/archives/20fd2522.html</url>
-    <content><![CDATA[<h3 id="一、初识指针"><a href="#一、初识指针" class="headerlink" title="一、初识指针"></a>一、初识指针</h3><p>指针是一个值为内存地址的变量（或数据对象）。正如int类型变量的值是整数，指针变量的值是地址。</p>
-<h3 id="二、地址运算符-amp-和"><a href="#二、地址运算符-amp-和" class="headerlink" title="二、地址运算符&amp;和*"></a>二、地址运算符&amp;和*</h3><h4 id="地址运算符：-amp"><a href="#地址运算符：-amp" class="headerlink" title="地址运算符：&amp;"></a>地址运算符：&amp;</h4><p>一般注解：后跟一个变量名时，&amp;给出该变量的地址。 示例：&amp;test表示变量test的地址</p>
-<h4 id="地址运算符："><a href="#地址运算符：" class="headerlink" title="地址运算符：*"></a>地址运算符：*</h4><p>一般注解：后跟一个指针名或地址时，*给出存储在指针指向地址的值。 示例： test=1； ptr=&test;//指向test的指针 num=*ptr;//把ptr指针指向的地址上的值赋给num 最终结果是将test值1赋给num。</p>
-<h3 id="三、声明指针"><a href="#三、声明指针" class="headerlink" title="三、声明指针"></a>三、声明指针</h3><p>声明指针变量时必须指定指针所指向变量的类型，因为不同的变量类型占用不同的存储空间，即使占用的存储空间相同，存储的数据也可能不同。一些指针的声明示例如下： int * pi;    //pi是指向int类型变量的指针 char * pc, * pd;    //pc和pd都是是指向char类型变量的指针 其中星号（*）表面声明的变量是一个指针。 <em>注：*和指针名之间的变量可有可无。通常，人们在声明时使用空格，在解引用变量时省略空格。</em></p>
-<h3 id="四、使用指针在函数间通信"><a href="#四、使用指针在函数间通信" class="headerlink" title="四、使用指针在函数间通信"></a>四、使用指针在函数间通信</h3><p>我们知道函数中retrun语句只能返回一个数值，当被调用函数需要向调用函数传递多个数值时，就要使用指针。 如下程序演示了，使用指针在两函数中通信，交换两整数的值：</p>
-<p>#include&lt;stdio.h&gt;</p>
-<p>void swap(int * a,int * b);<br>int main ( void )<br>{<br>    int x=5,y=10;<br>    printf(“原本：x=%d，y=%d\n”,x,y);<br>    swap(&amp;x,&amp;y);//将x，y的地址传给swap函数<br>    printf(“现在：x=%d，y=%d\n”,x,y);</p>
-<pre><code>return 0;</code></pre><p>}<br>void swap(int * a,int * b)<br>{<br>    int temp;<br>    temp=*a;//temp获取指针a所指向地址（&amp;x）的值<br>    *a=*b;<br>    *b=temp;<br>}</p>
-<p>main函数把需要处理的变量的地址发送给swap函数，swap函数根据相应的地址影响变量。</p>
-]]></content>
+    <title>个人网页收藏夹</title>
+    <url>/archives/73400397.html</url>
+    <content><![CDATA[<h3 id="设计初衷："><a href="#设计初衷：" class="headerlink" title="设计初衷："></a>设计初衷：</h3><p>解决浏览器收藏栏占用屏幕显示区域的问题，保持浏览器界面简洁。</p>
+<h3 id="效果图："><a href="#效果图：" class="headerlink" title="效果图："></a>效果图：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/09/QQ%E6%88%AA%E5%9B%BE20190903152303.png" alt=""></p>
+<h3 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h3><!-- 
+本页作者：少飞同学
+作者博客：scanf.top
+作者QQ：1512014159 
+请勿修改作者信息，谢谢！
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>收藏页</title>
+  <style type="text/css">
+    body{background-color: #323639;}
+      a{color: #FFFFFF;font-size:17px;text-decoration: none;}
+      a:hover{color: #4F7DA4;}
+      ul
+      {
+          margin-left:60px;
+      }
+    li
+    { 
+      list-style: none;
+      float:left;
+      padding-right: 25px;
+    }
+    #bottom
+    {
+      position: absolute;
+              left:50%;top:50%;
+              margin-left:-250px;
+              margin-top:-280px;
+      height: 560px;
+      width:500px;
+      border: 2px solid #8A8C8E;
+      border-radius:25px;
+    }
+
+<pre><code>#head-top h2
+{
+  color: #8A8C8E;
+  text-align: center;
+  margin-top:8px;
+  margin-bottom: 8px;
+}
+.sort
+{
+  margin-top: 30px;
+
+}
+.sort\_name
+{
+  margin-top:8px;
+  margin-left: 22px;
+  color: #8A8C8E;
+}</code></pre><p>  </style></p>
+<link rel="alternate" href="/atom.xml" title="Ken's Blog" type="application/atom+xml">
+</head>
+<body>
+  <div id="bottom"><!-- 最底层的框架 -->
+    <div id="head-top"><h2>收藏夹</h2></div><!-- 头部文字 -->
+    <div style="border-top:2px solid #8A8C8E;"></div>
+
+
+<pre><code>&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
+  &lt;div class=&quot;sort\_name&quot;&gt;第一分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
+  &lt;ul&gt;
+
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;br&gt;
+  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
+  &lt;div class=&quot;sort\_name&quot;&gt;第二分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
+  &lt;ul&gt;
+
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;br&gt;
+  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
+  &lt;div class=&quot;sort\_name&quot;&gt;第三分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
+  &lt;ul&gt;
+
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;br&gt;
+  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;sort&quot;&gt;&lt;!-- 分类单元 --&gt;
+  &lt;div class=&quot;sort\_name&quot;&gt;第四分类:&lt;/div&gt;&lt;!-- 分类名称 --&gt;
+  &lt;ul&gt;
+
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; target=&quot;\_blank&quot;&gt;测试4&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;br&gt;
+  &lt;hr style=&quot;width:460px;border:none;border-top:1px dashed #555555;margin-top:10px;&quot;&gt;
+&lt;/div&gt;</code></pre>  </div>
+</body>
+</html>]]></content>
       <tags>
-        <tag>C/C++笔记</tag>
-        <tag>指针</tag>
-        <tag>地址运算符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>全局变量在多个c文件中公用的方法</title>
-    <url>/archives/afe73244.html</url>
-    <content><![CDATA[<h3 id="一、项目文件结构："><a href="#一、项目文件结构：" class="headerlink" title="一、项目文件结构："></a>一、项目文件结构：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/QQ%E6%88%AA%E5%9B%BE20191002202138-300x209.png" alt=""></p>
-<h3 id="二、个文件代码："><a href="#二、个文件代码：" class="headerlink" title="二、个文件代码："></a>二、个文件代码：</h3><p>//main.c<br>#include&lt;stdio.h&gt;<br>#include”diy.h”</p>
-<p>int num = 100;//定义了一个全局变量<br>int main ( void )<br>{</p>
-<p>  printf(“From main.c:%d\n”,num);<br>  fuc();</p>
-<p>  return 0;<br>}</p>
-<p>//diy.h<br>int fuc();</p>
-<p>//diy.c<br>#include &lt;stdio.h&gt;<br>#include “diy.h”<br>int fuc()<br>{<br>  extern int num;//声明，num引用外部的变量<br>  printf(“From  diy.c:%d”,num);<br>}</p>
-<h3 id="三、相关说明："><a href="#三、相关说明：" class="headerlink" title="三、相关说明："></a>三、相关说明：</h3><p>变量定义和变量声明的区别，变量定义使用“数据类型+变量名称”的形式，编译器需要给他分配内存单元的；而变量声明使用“extern 变量类型+变量名称”的形式，是告诉编译器我这个变量将在其他外部c文件中定义，我这里只是在外部用它。编译器就不给他分配内存空间，而等到真正遇到变量定义的时候再给他分配内存空间。</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>全局变量</tag>
+        <tag>web</tag>
+        <tag>网页收藏夹</tag>
       </tags>
   </entry>
   <entry>
@@ -998,53 +924,77 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>分析printf参数传递的原理</title>
-    <url>/archives/87df9351.html</url>
-    <content><![CDATA[<blockquote>
-<p>printf()函数是格式化输出函数, 一般用于向标准输出设备按规定格式输出</p>
-<p>信息。在编写程序时经常会用到此函数。</p>
-<p>函数的原型为：</p>
-<p>int printf(const char *format, …);</p>
-<p><strong>函数返回值为整型。若成功则返回输出的字符数，输出出错则返回负值。</strong></p>
-<p>printf()函数的调用格式为:</p>
-<p>printf(“&lt;格式化字符串&gt;”, &lt;参量表&gt;);</p>
-<p>其中格式化字符串包括两部分内容: 一部分是正常字符, 这些字符将按原</p>
-<p>样输出; 另一部分是格式化规定字符, 以”%”开始, 后跟一个或几个规定字符,</p>
-<p>用来确定输出内容格式。</p>
-<p>参量表是需要输出的一系列参数, 其个数必须与格式化字符串所说明的输出</p>
-<p>参数个数一样多, 各参数之间用”,”分开, 且顺序一一对应, 否则将会出现意想</p>
-<p>不到的错误。——摘自百度百科《<a href="https://baike.baidu.com/item/printf" target="_blank" rel="noopener external nofollow noreferrer">printf()</a>》</p>
-</blockquote>
-<h3 id="分析参数传递的原理："><a href="#分析参数传递的原理：" class="headerlink" title="分析参数传递的原理："></a>分析参数传递的原理：</h3><h4 id="示例代码："><a href="#示例代码：" class="headerlink" title="示例代码："></a>示例代码：</h4><p>int num=1;<br>printf(“%d”,num);</p>
-<p>示例中printf函数的调用告诉计算机把变量num的值传递给程序，程序把传入的值放入被称为栈（<strong>stack</strong>）的内存区域，计算机根据变量类型（int）把该值放入栈中。因此，num被储存在栈中，占4字节。 然后控制转到printf()函数，该函数根据转换说明从栈中读取值。%d转换说明表明printf()应该读取4个字节，所以printf()读取栈中的前四个字节作为值，输出。</p>
+    <title>使用嵌套循环，按照指定格式打印字母（二）</title>
+    <url>/archives/7d9a4224.html</url>
+    <content><![CDATA[<p>编写一个程序，提示用户输入大写字母。使用嵌套循环以下面金字塔型的格式打印字母：</p>
+<pre><code>A</code></pre><p>   ABA<br>  ABCBA<br> ABCDCBA<br>ABCDEDCBA</p>
+<h3 id="程序实现："><a href="#程序实现：" class="headerlink" title="程序实现："></a>程序实现：</h3><p>#include&lt;stdio.h&gt;<br>int main( void )<br>{<br>    char letter[27];<br>    int wrap,letter_element,space;//换行，字母数组元素，空格<br>    int letter_element_after;//后半部分字母的数组下标<br>    int letter_element_before;//前半部分字母的数组下标 </p>
+<pre><code>printf(&quot;请输入大写字母（输入格式：ABCDE），最后回车确认：&quot;);
+for(letter\_element=0;;letter\_element++){
+    scanf(&quot;%c&quot;,&amp;letter\[letter\_element\]);
+    if(letter\[letter\_element\]==&apos;\\n&apos;)
+    break;
+}
+
+for(wrap=1;wrap&lt;=letter\_element;wrap++){
+
+    for(space=wrap;space&lt;letter\_element;space++){
+        printf(&quot; &quot;);//打印空格 
+    }
+    for(letter\_element\_before=0;letter\_element\_before&lt;wrap;letter\_element\_before++){
+        printf(&quot;%c&quot;,letter\[letter\_element\_before\]); //打印前半部分字母 
+    } 
+    for(letter\_element\_after=letter\_element\_before-2;letter\_element\_after&gt;=0;letter\_element\_after--){
+        printf(&quot;%c&quot;,letter\[letter\_element\_after\]);//打印后半部分字母 
+    }
+    printf(&quot;\\n&quot;);
+} 
+
+return 0;</code></pre><p>}</p>
+<h3 id="设计思路："><a href="#设计思路：" class="headerlink" title="设计思路："></a>设计思路：</h3><p>这是一个略微复杂的输入输出的程序。用户可以告诉程序要处理哪些字母，并按照程序给定的方式结束输入过程。程序将用户输入的字母按照一定的方式进行处理输出。</p>
+<h3 id="程序解读："><a href="#程序解读：" class="headerlink" title="程序解读："></a>程序解读：</h3><h4 id="第一步：输入阶段"><a href="#第一步：输入阶段" class="headerlink" title="第一步：输入阶段"></a>第一步：输入阶段</h4><p>输入字母，写入数组。例如输入：ABCDE加回车换行，这是一个字符串，而scanf中的转换说明是字符%c，第一次scanf只把A写入到letter[0]中，将剩余的BCDE和换行符放到缓冲区，for循环中会将剩下的字符一个一个写入数组中相应的位置，并最后遇到换行符“\n”时，if语句会通过break结束for循环。</p>
+<h4 id="第二步：输出阶段"><a href="#第二步：输出阶段" class="headerlink" title="第二步：输出阶段"></a>第二步：输出阶段</h4><p>if中的break将执行带出输入过程，进入另一些for循环进行输出处理。第二个for控制换行，第三个for打印空格，第四个for打印每行中前半部分的字母，第五个for打印每行中后半部分字母。其中第三、四、五个循环嵌套在第二个for循环中。</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>程序总体流程为：输入，输出（从左到右：一个字符一个字符输出；从上到下：一行一行输出）</p>
+]]></content>
+      <tags>
+        <tag>C/C++练习</tag>
+        <tag>for循环</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用指针在函数间通信</title>
+    <url>/archives/20fd2522.html</url>
+    <content><![CDATA[<h3 id="一、初识指针"><a href="#一、初识指针" class="headerlink" title="一、初识指针"></a>一、初识指针</h3><p>指针是一个值为内存地址的变量（或数据对象）。正如int类型变量的值是整数，指针变量的值是地址。</p>
+<h3 id="二、地址运算符-amp-和"><a href="#二、地址运算符-amp-和" class="headerlink" title="二、地址运算符&amp;和*"></a>二、地址运算符&amp;和*</h3><h4 id="地址运算符：-amp"><a href="#地址运算符：-amp" class="headerlink" title="地址运算符：&amp;"></a>地址运算符：&amp;</h4><p>一般注解：后跟一个变量名时，&amp;给出该变量的地址。 示例：&amp;test表示变量test的地址</p>
+<h4 id="地址运算符："><a href="#地址运算符：" class="headerlink" title="地址运算符：*"></a>地址运算符：*</h4><p>一般注解：后跟一个指针名或地址时，*给出存储在指针指向地址的值。 示例： test=1； ptr=&test;//指向test的指针 num=*ptr;//把ptr指针指向的地址上的值赋给num 最终结果是将test值1赋给num。</p>
+<h3 id="三、声明指针"><a href="#三、声明指针" class="headerlink" title="三、声明指针"></a>三、声明指针</h3><p>声明指针变量时必须指定指针所指向变量的类型，因为不同的变量类型占用不同的存储空间，即使占用的存储空间相同，存储的数据也可能不同。一些指针的声明示例如下： int * pi;    //pi是指向int类型变量的指针 char * pc, * pd;    //pc和pd都是是指向char类型变量的指针 其中星号（*）表面声明的变量是一个指针。 <em>注：*和指针名之间的变量可有可无。通常，人们在声明时使用空格，在解引用变量时省略空格。</em></p>
+<h3 id="四、使用指针在函数间通信"><a href="#四、使用指针在函数间通信" class="headerlink" title="四、使用指针在函数间通信"></a>四、使用指针在函数间通信</h3><p>我们知道函数中retrun语句只能返回一个数值，当被调用函数需要向调用函数传递多个数值时，就要使用指针。 如下程序演示了，使用指针在两函数中通信，交换两整数的值：</p>
+<p>#include&lt;stdio.h&gt;</p>
+<p>void swap(int * a,int * b);<br>int main ( void )<br>{<br>    int x=5,y=10;<br>    printf(“原本：x=%d，y=%d\n”,x,y);<br>    swap(&amp;x,&amp;y);//将x，y的地址传给swap函数<br>    printf(“现在：x=%d，y=%d\n”,x,y);</p>
+<pre><code>return 0;</code></pre><p>}<br>void swap(int * a,int * b)<br>{<br>    int temp;<br>    temp=*a;//temp获取指针a所指向地址（&amp;x）的值<br>    *a=*b;<br>    *b=temp;<br>}</p>
+<p>main函数把需要处理的变量的地址发送给swap函数，swap函数根据相应的地址影响变量。</p>
 ]]></content>
       <tags>
         <tag>C/C++笔记</tag>
-        <tag>printf</tag>
-        <tag>参数传递</tag>
+        <tag>指针</tag>
+        <tag>地址运算符</tag>
       </tags>
   </entry>
   <entry>
-    <title>初识控制反转（IoC）与依赖注入（DI）</title>
-    <url>/archives/9c51ba7b.html</url>
-    <content><![CDATA[<p>文章链接：<a href="https://www.jianshu.com/p/07af9dbbbc4b" target="_blank" rel="noopener external nofollow noreferrer" title="https://www.jianshu.com/p/07af9dbbbc4b">https://www.jianshu.com/p/07af9dbbbc4b</a> 本文有助于对控制反转（Inversion of Control）和依赖注入（Dependency Injection）基本概念的理解。并举例说明了使用IoC Container解决的生产问题。</p>
+    <title>全局变量在多个c文件中公用的方法</title>
+    <url>/archives/afe73244.html</url>
+    <content><![CDATA[<h3 id="一、项目文件结构："><a href="#一、项目文件结构：" class="headerlink" title="一、项目文件结构："></a>一、项目文件结构：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/QQ%E6%88%AA%E5%9B%BE20191002202138-300x209.png" alt=""></p>
+<h3 id="二、个文件代码："><a href="#二、个文件代码：" class="headerlink" title="二、个文件代码："></a>二、个文件代码：</h3><p>//main.c<br>#include&lt;stdio.h&gt;<br>#include”diy.h”</p>
+<p>int num = 100;//定义了一个全局变量<br>int main ( void )<br>{</p>
+<p>  printf(“From main.c:%d\n”,num);<br>  fuc();</p>
+<p>  return 0;<br>}</p>
+<p>//diy.h<br>int fuc();</p>
+<p>//diy.c<br>#include &lt;stdio.h&gt;<br>#include “diy.h”<br>int fuc()<br>{<br>  extern int num;//声明，num引用外部的变量<br>  printf(“From  diy.c:%d”,num);<br>}</p>
+<h3 id="三、相关说明："><a href="#三、相关说明：" class="headerlink" title="三、相关说明："></a>三、相关说明：</h3><p>变量定义和变量声明的区别，变量定义使用“数据类型+变量名称”的形式，编译器需要给他分配内存单元的；而变量声明使用“extern 变量类型+变量名称”的形式，是告诉编译器我这个变量将在其他外部c文件中定义，我这里只是在外部用它。编译器就不给他分配内存空间，而等到真正遇到变量定义的时候再给他分配内存空间。</p>
 ]]></content>
-      <categories>
-        <category>Java</category>
-        <category>SSM</category>
-      </categories>
       <tags>
-        <tag>Spring</tag>
-        <tag>DI</tag>
-        <tag>IoC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分类目录</title>
-    <url>/archives/95a7c832.html</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>导航栏</tag>
+        <tag>C/C++笔记</tag>
+        <tag>全局变量</tag>
       </tags>
   </entry>
   <entry>
@@ -1132,23 +1082,53 @@ class MyRunnable implements Runnable {
       </tags>
   </entry>
   <entry>
-    <title>利用堆栈实现数制转换。</title>
-    <url>/archives/4149ca8d.html</url>
-    <content><![CDATA[<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a><strong>算法思想</strong></h3><p>① 定义一个结构体，其中包括栈顶指针、栈底指针和栈的最大可用容量。 ② 初始化一个空栈 Ⅰ.申请一块最大容量为MAXSIZE的数组内存，并将首地址返回给栈底指针。 Ⅱ.将栈设置为空栈，即栈顶指针初始化为栈底指针。 ③ 将处理后的数据压入栈中，判断是否栈满，如果栈满，则返回相应的状态信息；如果栈未满，将数据压入栈中，然后栈顶指针加1. ④ 出栈，判断栈是否为空，如果栈空，则返回相应的状态信息；如果栈非空，栈顶指针减1，再将栈顶元素赋给变量e。</p>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a><strong>具体实现</strong></h3><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt; //提供exit函数<br>#define MAXSIZE 100<br>#define OK 0<br>#define ERROR 1<br>#define OVERFLOW -2</p>
-<p>typedef int Status;<br>typedef struct{<br>  int *base;//栈底指针<br>  int *top;//栈顶指针<br>  int stacksize;//栈可用的最大容量<br>}SqStack;<br>Status InitStack ( SqStack &amp;S);//顺序栈的初始化–<br>Status Push ( SqStack &amp;S , int e );//顺序栈的入栈–<br>Status Pop ( SqStack &amp;S , int &amp;e);//顺序栈的出栈–<br>Status StackEmpty( SqStack &amp;S );//判断栈空– </p>
-<p>int main ( void )<br>{<br>  int N;<br>  SqStack S;</p>
-<p>  InitStack ( S );//初始化空栈<br>  printf( “请输入一个十进制数：” );<br>  scanf( “%d”, &amp;N );<br>  while ( N )<br>  {<br>    Push( S, N % 2 ); //将N除以2的余数压入栈中<br>    N = N / 2; //每次取余后都要更新N的值，供下次取余运算使用<br>  }<br>  while ( !StackEmpty(S) )<br>  {<br>    Pop( S, N );<br>    printf( “%d”, N );<br>  }</p>
-<p>  return 0;<br>}</p>
-<p>Status InitStack ( SqStack &amp;S )<br>{//顺序栈的初始化<br>  S.base = new int[MAXSIZE];//为顺序栈动态分配一个最大容量为MAXSIZE的数组空间<br>  if(!S.base) exit (OVERFLOW);//存储分配失败<br>  S.top = S.base; //top初始为base,空栈<br>  S.stacksize = MAXSIZE; //stacksize置为栈的最大容量MAXSIEZE </p>
-<p>  return OK;<br>}<br>Status Push ( SqStack &amp;S , int e )<br>{//顺序栈的入栈<br>  if( S.top - S.base == S.stacksize ) return ERROR;//栈满<br>  *S.top++ = e;//先压栈，再S.top加1 </p>
-<p>  return OK;<br>}<br>Status Pop ( SqStack &amp;S , int &amp;e)<br>{//顺序栈的出栈<br>  if ( S.top == S.base ) return ERROR;//判断是否为空栈<br>  e = *–S.top;//先S.top减1，再将栈顶元素赋给e<br>  *S.top = 0; </p>
-<p>  return OK;<br>}<br>Status StackEmpty( SqStack &amp;S )<br>{//判断栈空<br>  if( S.top == S.base ) return ERROR;<br>  else return OK;<br>}</p>
-<h3 id="程序演示"><a href="#程序演示" class="headerlink" title="程序演示"></a>程序演示</h3><p><img src="https://scanf.top/wp-content/uploads/2019/12/c1282ed5d73b7d359360daf05afc4b5f.png" alt=""></p>
+    <title>分析printf参数传递的原理</title>
+    <url>/archives/87df9351.html</url>
+    <content><![CDATA[<blockquote>
+<p>printf()函数是格式化输出函数, 一般用于向标准输出设备按规定格式输出</p>
+<p>信息。在编写程序时经常会用到此函数。</p>
+<p>函数的原型为：</p>
+<p>int printf(const char *format, …);</p>
+<p><strong>函数返回值为整型。若成功则返回输出的字符数，输出出错则返回负值。</strong></p>
+<p>printf()函数的调用格式为:</p>
+<p>printf(“&lt;格式化字符串&gt;”, &lt;参量表&gt;);</p>
+<p>其中格式化字符串包括两部分内容: 一部分是正常字符, 这些字符将按原</p>
+<p>样输出; 另一部分是格式化规定字符, 以”%”开始, 后跟一个或几个规定字符,</p>
+<p>用来确定输出内容格式。</p>
+<p>参量表是需要输出的一系列参数, 其个数必须与格式化字符串所说明的输出</p>
+<p>参数个数一样多, 各参数之间用”,”分开, 且顺序一一对应, 否则将会出现意想</p>
+<p>不到的错误。——摘自百度百科《<a href="https://baike.baidu.com/item/printf" target="_blank" rel="noopener external nofollow noreferrer">printf()</a>》</p>
+</blockquote>
+<h3 id="分析参数传递的原理："><a href="#分析参数传递的原理：" class="headerlink" title="分析参数传递的原理："></a>分析参数传递的原理：</h3><h4 id="示例代码："><a href="#示例代码：" class="headerlink" title="示例代码："></a>示例代码：</h4><p>int num=1;<br>printf(“%d”,num);</p>
+<p>示例中printf函数的调用告诉计算机把变量num的值传递给程序，程序把传入的值放入被称为栈（<strong>stack</strong>）的内存区域，计算机根据变量类型（int）把该值放入栈中。因此，num被储存在栈中，占4字节。 然后控制转到printf()函数，该函数根据转换说明从栈中读取值。%d转换说明表明printf()应该读取4个字节，所以printf()读取栈中的前四个字节作为值，输出。</p>
 ]]></content>
       <tags>
-        <tag>数据结构与算法</tag>
-        <tag>堆栈</tag>
+        <tag>C/C++笔记</tag>
+        <tag>printf</tag>
+        <tag>参数传递</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分类目录</title>
+    <url>/archives/95a7c832.html</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>导航栏</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初识控制反转（IoC）与依赖注入（DI）</title>
+    <url>/archives/9c51ba7b.html</url>
+    <content><![CDATA[<p>文章链接：<a href="https://www.jianshu.com/p/07af9dbbbc4b" target="_blank" rel="noopener external nofollow noreferrer" title="https://www.jianshu.com/p/07af9dbbbc4b">https://www.jianshu.com/p/07af9dbbbc4b</a> 本文有助于对控制反转（Inversion of Control）和依赖注入（Dependency Injection）基本概念的理解。并举例说明了使用IoC Container解决的生产问题。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>SSM</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>DI</tag>
+        <tag>IoC</tag>
       </tags>
   </entry>
   <entry>
@@ -1196,52 +1176,23 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>用C程序将图书信息写入文件</title>
-    <url>/archives/37ff2814.html</url>
-    <content><![CDATA[<h3 id="程序设计思路："><a href="#程序设计思路：" class="headerlink" title="程序设计思路："></a>程序设计思路：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/56937a30607fb606b3f6b4d9b9c6f832.png" alt=""></p>
-<h3 id="程序完整代码："><a href="#程序完整代码：" class="headerlink" title="程序完整代码："></a>程序完整代码：</h3><p>//diy_in.h<br>char * s_gets( char * p, int n )//自定义函数的定义<br>{<br>  char * ret_val;<br>  char *find;</p>
-<p>  ret_val = fgets( p, n , stdin );<br>  if(ret_val)<br>  {<br>    find = strchr( p, ‘\n’); //查找换行符的内存地址<br>    if (find)                //如果地址不是NULL<br>      *find = ‘\0’;       //将换行符换成空字符<br>    else<br>    while( getchar() != ‘\n’)<br>      continue;   //处理输入行中剩下的字符<br>   }<br>   return ret_val; //返回的是当前字符串的地址。<br>}</p>
-<p>//main.c<br>#include&lt;stdio.h&gt;<br>#include&lt;string.h&gt;<br>#include”diy_in.h”<br>#define LEN 20</p>
-<p>struct book<br>{<br>  char name[LEN];<br>  char author[LEN];<br>  float value;<br>};</p>
-<p>int main ( void )<br>{<br>  int flag = 1;<br>  int n = 0, m = 0, i = 0, l = 0;<br>  char filename[LEN];<br>  char filename_quality[LEN+2];<br>  int quality[1];<br>  FILE * fp;<br>  FILE * fpn;<br>  struct book bookn[LEN];</p>
-<p>  printf(“将图书信息保存到那个文件？（包含文件后缀和文件路径）”);<br>  s_gets(filename,LEN);<br>  fp  = fopen( filename,”a+”);<br>  while ( fp == NULL )<br>    {<br>      printf(“文件名不合法或路径错误或无操作权限，请重新输入：”,filename);<br>      s_gets(filename,LEN);<br>      fp = fopen( filename,”a+”) ;<br>    }<br>    fclose(fp);<br>  while( filename[m] != ‘\0’)<br>  {<br>    filename_quality[m] = filename[m];<br>    m++;<br>  }<br>  if ( fp != NULL )<br>  {</p>
-<pre><code>//创建第二个文件，用于保存书本数量
-m = strlen(filename) - 4;
-filename\_quality\[m+5\] = filename\[m+3\];
-filename\_quality\[m+4\] = filename\[m+2\];
-filename\_quality\[m+3\] = filename\[m+1\];
-filename\_quality\[m+2\] = filename\[m\];
-filename\_quality\[m\]   = &apos;m&apos;;
-filename\_quality\[m+1\] = &apos;n&apos;;
-fpn = fopen ( filename\_quality,&quot;r&quot;);
-if( fpn == NULL )//如果该文件不存在，则创建一个 
-{
-  fpn = fopen( filename\_quality,&quot;w&quot;);
-  quality\[0\]=0;
-}
-fseek(fpn,9L,SEEK\_SET);//一个中文两个字节 
-fscanf( fpn, &quot;%d&quot;, &amp;quality\[0\]);
-n = quality\[0\];
-fclose(fpn);</code></pre><p>  } </p>
-<p>  fp = fopen( filename,”a+”);<br>  while( flag == 1 )<br>  {<br>  fprintf( fp, “【第%d本书】”,n+1 );<br>    printf(“请输入第%d本书的名字:”, n+1 );<br>    s_gets(bookn[n].name,LEN);<br>  fprintf( fp, “书名：%-20s”,bookn[n].name);<br>    printf(“请输入第%d本书的作者:”, n+1 );<br>    s_gets(bookn[n].author,LEN);<br>  fprintf( fp, “作者：%-20s”,bookn[n].author);<br>    printf(“请输入第%d本书的价钱:”, n+1 );<br>    scanf(“%f”,&amp;bookn[n].value);<br>  fprintf( fp, “价格：%-7.2f\n”,bookn[n].value);</p>
-<pre><code>printf(&quot;已经成功录入%d本书的信息\\n&quot;,n+1);
-printf(&quot;输入任意字符继续添加图书，输入0保存退出：&quot;); 
-scanf(&quot;%d&quot;,&amp;flag);
-while( getchar() != &apos;\\n&apos;)
-  continue;
-if( flag != 0)
-{
-  n++;
-  l++;
-}</code></pre><p>  }<br>  fclose(fp);<br>  fpn = fopen ( filename_quality,”w”);<br>  fprintf( fpn, “书本数量:%d”, n+1 );<br>  fclose(fpn); </p>
-<p>  printf(“本次，共成功录入%d本书，总数%d已经保存到：%s”, l+1, n+1, filename_quality);</p>
+    <title>利用堆栈实现数制转换。</title>
+    <url>/archives/4149ca8d.html</url>
+    <content><![CDATA[<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a><strong>算法思想</strong></h3><p>① 定义一个结构体，其中包括栈顶指针、栈底指针和栈的最大可用容量。 ② 初始化一个空栈 Ⅰ.申请一块最大容量为MAXSIZE的数组内存，并将首地址返回给栈底指针。 Ⅱ.将栈设置为空栈，即栈顶指针初始化为栈底指针。 ③ 将处理后的数据压入栈中，判断是否栈满，如果栈满，则返回相应的状态信息；如果栈未满，将数据压入栈中，然后栈顶指针加1. ④ 出栈，判断栈是否为空，如果栈空，则返回相应的状态信息；如果栈非空，栈顶指针减1，再将栈顶元素赋给变量e。</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a><strong>具体实现</strong></h3><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt; //提供exit函数<br>#define MAXSIZE 100<br>#define OK 0<br>#define ERROR 1<br>#define OVERFLOW -2</p>
+<p>typedef int Status;<br>typedef struct{<br>  int *base;//栈底指针<br>  int *top;//栈顶指针<br>  int stacksize;//栈可用的最大容量<br>}SqStack;<br>Status InitStack ( SqStack &amp;S);//顺序栈的初始化–<br>Status Push ( SqStack &amp;S , int e );//顺序栈的入栈–<br>Status Pop ( SqStack &amp;S , int &amp;e);//顺序栈的出栈–<br>Status StackEmpty( SqStack &amp;S );//判断栈空– </p>
+<p>int main ( void )<br>{<br>  int N;<br>  SqStack S;</p>
+<p>  InitStack ( S );//初始化空栈<br>  printf( “请输入一个十进制数：” );<br>  scanf( “%d”, &amp;N );<br>  while ( N )<br>  {<br>    Push( S, N % 2 ); //将N除以2的余数压入栈中<br>    N = N / 2; //每次取余后都要更新N的值，供下次取余运算使用<br>  }<br>  while ( !StackEmpty(S) )<br>  {<br>    Pop( S, N );<br>    printf( “%d”, N );<br>  }</p>
 <p>  return 0;<br>}</p>
-<h3 id="程序演示："><a href="#程序演示：" class="headerlink" title="程序演示："></a>程序演示：</h3><p>[video width=”1920” height=”1080” mp4=”<a href="https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]" target="_blank" rel="noopener external nofollow noreferrer">https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]</a></p>
+<p>Status InitStack ( SqStack &amp;S )<br>{//顺序栈的初始化<br>  S.base = new int[MAXSIZE];//为顺序栈动态分配一个最大容量为MAXSIZE的数组空间<br>  if(!S.base) exit (OVERFLOW);//存储分配失败<br>  S.top = S.base; //top初始为base,空栈<br>  S.stacksize = MAXSIZE; //stacksize置为栈的最大容量MAXSIEZE </p>
+<p>  return OK;<br>}<br>Status Push ( SqStack &amp;S , int e )<br>{//顺序栈的入栈<br>  if( S.top - S.base == S.stacksize ) return ERROR;//栈满<br>  *S.top++ = e;//先压栈，再S.top加1 </p>
+<p>  return OK;<br>}<br>Status Pop ( SqStack &amp;S , int &amp;e)<br>{//顺序栈的出栈<br>  if ( S.top == S.base ) return ERROR;//判断是否为空栈<br>  e = *–S.top;//先S.top减1，再将栈顶元素赋给e<br>  *S.top = 0; </p>
+<p>  return OK;<br>}<br>Status StackEmpty( SqStack &amp;S )<br>{//判断栈空<br>  if( S.top == S.base ) return ERROR;<br>  else return OK;<br>}</p>
+<h3 id="程序演示"><a href="#程序演示" class="headerlink" title="程序演示"></a>程序演示</h3><p><img src="https://scanf.top/wp-content/uploads/2019/12/c1282ed5d73b7d359360daf05afc4b5f.png" alt=""></p>
 ]]></content>
       <tags>
-        <tag>C/C++练习</tag>
-        <tag>文件</tag>
-        <tag>结构</tag>
+        <tag>数据结构与算法</tag>
+        <tag>堆栈</tag>
       </tags>
   </entry>
   <entry>
@@ -1316,6 +1267,55 @@ return 0;</code></pre><p>}</p>
         <tag>数组</tag>
         <tag>C/C++练习</tag>
         <tag>for</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用C程序将图书信息写入文件</title>
+    <url>/archives/37ff2814.html</url>
+    <content><![CDATA[<h3 id="程序设计思路："><a href="#程序设计思路：" class="headerlink" title="程序设计思路："></a>程序设计思路：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/56937a30607fb606b3f6b4d9b9c6f832.png" alt=""></p>
+<h3 id="程序完整代码："><a href="#程序完整代码：" class="headerlink" title="程序完整代码："></a>程序完整代码：</h3><p>//diy_in.h<br>char * s_gets( char * p, int n )//自定义函数的定义<br>{<br>  char * ret_val;<br>  char *find;</p>
+<p>  ret_val = fgets( p, n , stdin );<br>  if(ret_val)<br>  {<br>    find = strchr( p, ‘\n’); //查找换行符的内存地址<br>    if (find)                //如果地址不是NULL<br>      *find = ‘\0’;       //将换行符换成空字符<br>    else<br>    while( getchar() != ‘\n’)<br>      continue;   //处理输入行中剩下的字符<br>   }<br>   return ret_val; //返回的是当前字符串的地址。<br>}</p>
+<p>//main.c<br>#include&lt;stdio.h&gt;<br>#include&lt;string.h&gt;<br>#include”diy_in.h”<br>#define LEN 20</p>
+<p>struct book<br>{<br>  char name[LEN];<br>  char author[LEN];<br>  float value;<br>};</p>
+<p>int main ( void )<br>{<br>  int flag = 1;<br>  int n = 0, m = 0, i = 0, l = 0;<br>  char filename[LEN];<br>  char filename_quality[LEN+2];<br>  int quality[1];<br>  FILE * fp;<br>  FILE * fpn;<br>  struct book bookn[LEN];</p>
+<p>  printf(“将图书信息保存到那个文件？（包含文件后缀和文件路径）”);<br>  s_gets(filename,LEN);<br>  fp  = fopen( filename,”a+”);<br>  while ( fp == NULL )<br>    {<br>      printf(“文件名不合法或路径错误或无操作权限，请重新输入：”,filename);<br>      s_gets(filename,LEN);<br>      fp = fopen( filename,”a+”) ;<br>    }<br>    fclose(fp);<br>  while( filename[m] != ‘\0’)<br>  {<br>    filename_quality[m] = filename[m];<br>    m++;<br>  }<br>  if ( fp != NULL )<br>  {</p>
+<pre><code>//创建第二个文件，用于保存书本数量
+m = strlen(filename) - 4;
+filename\_quality\[m+5\] = filename\[m+3\];
+filename\_quality\[m+4\] = filename\[m+2\];
+filename\_quality\[m+3\] = filename\[m+1\];
+filename\_quality\[m+2\] = filename\[m\];
+filename\_quality\[m\]   = &apos;m&apos;;
+filename\_quality\[m+1\] = &apos;n&apos;;
+fpn = fopen ( filename\_quality,&quot;r&quot;);
+if( fpn == NULL )//如果该文件不存在，则创建一个 
+{
+  fpn = fopen( filename\_quality,&quot;w&quot;);
+  quality\[0\]=0;
+}
+fseek(fpn,9L,SEEK\_SET);//一个中文两个字节 
+fscanf( fpn, &quot;%d&quot;, &amp;quality\[0\]);
+n = quality\[0\];
+fclose(fpn);</code></pre><p>  } </p>
+<p>  fp = fopen( filename,”a+”);<br>  while( flag == 1 )<br>  {<br>  fprintf( fp, “【第%d本书】”,n+1 );<br>    printf(“请输入第%d本书的名字:”, n+1 );<br>    s_gets(bookn[n].name,LEN);<br>  fprintf( fp, “书名：%-20s”,bookn[n].name);<br>    printf(“请输入第%d本书的作者:”, n+1 );<br>    s_gets(bookn[n].author,LEN);<br>  fprintf( fp, “作者：%-20s”,bookn[n].author);<br>    printf(“请输入第%d本书的价钱:”, n+1 );<br>    scanf(“%f”,&amp;bookn[n].value);<br>  fprintf( fp, “价格：%-7.2f\n”,bookn[n].value);</p>
+<pre><code>printf(&quot;已经成功录入%d本书的信息\\n&quot;,n+1);
+printf(&quot;输入任意字符继续添加图书，输入0保存退出：&quot;); 
+scanf(&quot;%d&quot;,&amp;flag);
+while( getchar() != &apos;\\n&apos;)
+  continue;
+if( flag != 0)
+{
+  n++;
+  l++;
+}</code></pre><p>  }<br>  fclose(fp);<br>  fpn = fopen ( filename_quality,”w”);<br>  fprintf( fpn, “书本数量:%d”, n+1 );<br>  fclose(fpn); </p>
+<p>  printf(“本次，共成功录入%d本书，总数%d已经保存到：%s”, l+1, n+1, filename_quality);</p>
+<p>  return 0;<br>}</p>
+<h3 id="程序演示："><a href="#程序演示：" class="headerlink" title="程序演示："></a>程序演示：</h3><p>[video width=”1920” height=”1080” mp4=”<a href="https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]" target="_blank" rel="noopener external nofollow noreferrer">https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]</a></p>
+]]></content>
+      <tags>
+        <tag>C/C++练习</tag>
+        <tag>文件</tag>
+        <tag>结构</tag>
       </tags>
   </entry>
   <entry>
@@ -1514,29 +1514,6 @@ hello,Spring</code></pre><h2 id="另外，如何给相关方法传递参数？�
       </tags>
   </entry>
   <entry>
-    <title>对比while和for循环中的continue语句</title>
-    <url>/archives/bd64a196.html</url>
-    <content><![CDATA[<p>我们知道，3中循环都可以使用continue语句，执行到该语句时，会跳过本次迭代的剩余部分，并进行下一轮迭代。你应该知道，continue只会影响包含该语句的内层循环，但是continue在while和for中的差别常常被人们忽略。</p>
-<h3 id="一、while和do-while中的continue"><a href="#一、while和do-while中的continue" class="headerlink" title="一、while和do while中的continue"></a>一、while和do while中的continue</h3><p>while中遇到continue，程序直接进入下一次迭代。</p>
-<h3 id="二、for中的continue"><a href="#二、for中的continue" class="headerlink" title="二、for中的continue"></a>二、for中的continue</h3><p>for循环中遇到continue，程序会跳过本次迭代剩余的部分，<strong>再更新表达式求值</strong>，再进入下一次迭代。</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>continue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>并发与并行的区别</title>
-    <url>/archives/6292c650.html</url>
-    <content><![CDATA[<p>你吃饭吃到一半，电话来了，你一直到吃完了以后才去接，这就说明你不支持并发也不支持并行。 你吃饭吃到一半，电话来了，你停了下来接了电话，接完后继续吃饭，这说明你支持并发。 你吃饭吃到一半，电话来了，你一边打电话一边吃饭，这说明你支持并行。 并发的关键是你有处理多个任务的能力，不一定要同时。并行的关键是你有同时处理多个任务的能力。所以我认为它们最关键的点就是：是否是『同时』。</p>
-]]></content>
-      <tags>
-        <tag>java笔记</tag>
-        <tag>并发</tag>
-        <tag>并行</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>已知一个增序顺序表，插入一个新元素后，使其仍然有序</title>
     <url>/archives/6e74351d.html</url>
     <content><![CDATA[<h3 id="算法思想："><a href="#算法思想：" class="headerlink" title="算法思想："></a>算法思想：</h3><ul>
@@ -1582,25 +1559,15 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>教学实习编程必做题一：利用公式求π的值</title>
-    <url>/archives/8e104a6f.html</url>
-    <content><![CDATA[<p>编程要求：利用公式π/4=1-1/3+1/5-1/7+……求π的近似值，直到最后一项的绝对值小于10-6为止。</p>
-<h3 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h3><p>//第一题，利用公式求pi的近似值<br>#include &lt;stdio.h&gt;<br>#include &lt;math.h&gt;</p>
-<p>int main ( void )<br>{<br>  double pi;//要求的值<br>  double an;//通项表达式<br>  double sn = 0;//全n项和<br>  double an_av = 1.0;//an的绝对值<br>  int n;<br>  for( n = 1; an_av &gt;= 1e-6; n++ ) //求an的前n项和，直到an的绝对值小于 1e-6<br>  {</p>
-<pre><code>an = pow(-1,n+1) / (2\*n-1);
-
-if( an &lt; 0) //求an的绝对值为an\_av 
-{
-  an\_av = -an;
-}
-
-sn = sn + an; </code></pre><p>  }<br>  printf(“最终n=%d\n”, n);<br>  pi = sn * 4;<br>  printf(“pi=%lf”, pi);</p>
-<p>  return 0;<br>}</p>
-<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>观察可知1-1/3+1/5-1/7+……的通项表达式为：an=(-1)^(n+1)/(2n+1) 用for循环累加前n项和sn，直到an小于10^-6结束。 结果 π = sn * 4</p>
+    <title>对比while和for循环中的continue语句</title>
+    <url>/archives/bd64a196.html</url>
+    <content><![CDATA[<p>我们知道，3中循环都可以使用continue语句，执行到该语句时，会跳过本次迭代的剩余部分，并进行下一轮迭代。你应该知道，continue只会影响包含该语句的内层循环，但是continue在while和for中的差别常常被人们忽略。</p>
+<h3 id="一、while和do-while中的continue"><a href="#一、while和do-while中的continue" class="headerlink" title="一、while和do while中的continue"></a>一、while和do while中的continue</h3><p>while中遇到continue，程序直接进入下一次迭代。</p>
+<h3 id="二、for中的continue"><a href="#二、for中的continue" class="headerlink" title="二、for中的continue"></a>二、for中的continue</h3><p>for循环中遇到continue，程序会跳过本次迭代剩余的部分，<strong>再更新表达式求值</strong>，再进入下一次迭代。</p>
 ]]></content>
       <tags>
-        <tag>C/C++练习</tag>
-        <tag>教学实习编程必做题，for</tag>
+        <tag>C/C++笔记</tag>
+        <tag>continue</tag>
       </tags>
   </entry>
   <entry>
@@ -1627,6 +1594,58 @@ sn = sn + an; </code></pre><p>  }<br>  printf(“最终n=%d\n”, n);<br>  pi = 
         <tag>C/C++笔记</tag>
         <tag>指针数组</tag>
         <tag>数组指针</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>并发与并行的区别</title>
+    <url>/archives/6292c650.html</url>
+    <content><![CDATA[<p>你吃饭吃到一半，电话来了，你一直到吃完了以后才去接，这就说明你不支持并发也不支持并行。 你吃饭吃到一半，电话来了，你停了下来接了电话，接完后继续吃饭，这说明你支持并发。 你吃饭吃到一半，电话来了，你一边打电话一边吃饭，这说明你支持并行。 并发的关键是你有处理多个任务的能力，不一定要同时。并行的关键是你有同时处理多个任务的能力。所以我认为它们最关键的点就是：是否是『同时』。</p>
+]]></content>
+      <tags>
+        <tag>java笔记</tag>
+        <tag>并发</tag>
+        <tag>并行</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>教学实习编程必做题二： 输出三角形的九九乘法口诀表</title>
+    <url>/archives/8e3b9ebd.html</url>
+    <content><![CDATA[<p>编程要求：输出三角形的九九乘法口诀表，如图所示：</p>
+<p><img src="https://scanf.top/wp-content/uploads/2019/09/1.png" alt=""></p>
+<h3 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h3><p>//第二题，输出三角形的九九乘法口诀表<br>//整体实现思路：采用嵌套for循环<br>//一行一行，一句一句打印，从上到下，从左到右<br>#include&lt;stdio.h&gt;</p>
+<p>int main ( void )<br>{<br>  int row,first,second,third;//first被乘数，second乘数，third乘积 </p>
+<p>  for ( row = 1; row &lt;= 9; row++ )//循环一次打印一行内容<br>  {<br>    for ( first = 1; first &lt;= row; first++ )//循环一次打印一句<br>    {<br>      second = row;// 乘数等于当前行数<br>      third = first * second;<br>      printf(“%d*%d=%2d  “,first,second,third);</p>
+<pre><code>}
+printf(&quot;\\n&quot;);//行末换行 </code></pre><p>   } </p>
+<p>  return 0;<br>}</p>
+<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>整体思路：采用嵌套for循环，一行一行，一句一句打印，从上到下，从左到右 需要说明的是：first被乘数，second乘数，third乘积 更多解释请看代码后的注释。</p>
+]]></content>
+      <tags>
+        <tag>C/C++练习</tag>
+        <tag>嵌套for循环</tag>
+        <tag>教学实习编程必做题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>教学实习编程必做题一：利用公式求π的值</title>
+    <url>/archives/8e104a6f.html</url>
+    <content><![CDATA[<p>编程要求：利用公式π/4=1-1/3+1/5-1/7+……求π的近似值，直到最后一项的绝对值小于10-6为止。</p>
+<h3 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h3><p>//第一题，利用公式求pi的近似值<br>#include &lt;stdio.h&gt;<br>#include &lt;math.h&gt;</p>
+<p>int main ( void )<br>{<br>  double pi;//要求的值<br>  double an;//通项表达式<br>  double sn = 0;//全n项和<br>  double an_av = 1.0;//an的绝对值<br>  int n;<br>  for( n = 1; an_av &gt;= 1e-6; n++ ) //求an的前n项和，直到an的绝对值小于 1e-6<br>  {</p>
+<pre><code>an = pow(-1,n+1) / (2\*n-1);
+
+if( an &lt; 0) //求an的绝对值为an\_av 
+{
+  an\_av = -an;
+}
+
+sn = sn + an; </code></pre><p>  }<br>  printf(“最终n=%d\n”, n);<br>  pi = sn * 4;<br>  printf(“pi=%lf”, pi);</p>
+<p>  return 0;<br>}</p>
+<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>观察可知1-1/3+1/5-1/7+……的通项表达式为：an=(-1)^(n+1)/(2n+1) 用for循环累加前n项和sn，直到an小于10^-6结束。 结果 π = sn * 4</p>
+]]></content>
+      <tags>
+        <tag>C/C++练习</tag>
+        <tag>教学实习编程必做题，for</tag>
       </tags>
   </entry>
   <entry>
@@ -1691,25 +1710,6 @@ for( s = N-n-1; s &gt;= n+1; s-- )//N-n-1是当前边框中第一个数字的下
       </tags>
   </entry>
   <entry>
-    <title>教学实习编程必做题二： 输出三角形的九九乘法口诀表</title>
-    <url>/archives/8e3b9ebd.html</url>
-    <content><![CDATA[<p>编程要求：输出三角形的九九乘法口诀表，如图所示：</p>
-<p><img src="https://scanf.top/wp-content/uploads/2019/09/1.png" alt=""></p>
-<h3 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h3><p>//第二题，输出三角形的九九乘法口诀表<br>//整体实现思路：采用嵌套for循环<br>//一行一行，一句一句打印，从上到下，从左到右<br>#include&lt;stdio.h&gt;</p>
-<p>int main ( void )<br>{<br>  int row,first,second,third;//first被乘数，second乘数，third乘积 </p>
-<p>  for ( row = 1; row &lt;= 9; row++ )//循环一次打印一行内容<br>  {<br>    for ( first = 1; first &lt;= row; first++ )//循环一次打印一句<br>    {<br>      second = row;// 乘数等于当前行数<br>      third = first * second;<br>      printf(“%d*%d=%2d  “,first,second,third);</p>
-<pre><code>}
-printf(&quot;\\n&quot;);//行末换行 </code></pre><p>   } </p>
-<p>  return 0;<br>}</p>
-<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>整体思路：采用嵌套for循环，一行一行，一句一句打印，从上到下，从左到右 需要说明的是：first被乘数，second乘数，third乘积 更多解释请看代码后的注释。</p>
-]]></content>
-      <tags>
-        <tag>C/C++练习</tag>
-        <tag>嵌套for循环</tag>
-        <tag>教学实习编程必做题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>文本模式和二进制模式</title>
     <url>/archives/21d0fb11.html</url>
     <content><![CDATA[<h3 id="文件的定义：文件是在磁盘上一段已命名的存储区-。"><a href="#文件的定义：文件是在磁盘上一段已命名的存储区-。" class="headerlink" title="_文件的定义：文件是在磁盘上一段已命名的存储区_。"></a>_文件的定义：文件是在磁盘上一段已命名的<strong>存储区</strong>_。</h3><h3 id="一、疑惑"><a href="#一、疑惑" class="headerlink" title="一、疑惑"></a>一、疑惑</h3><p>在学习C语言读取文件的时候，首先学习到的是C语言读取文件时分文本模式和二进制模式。给好多人造成疑惑，文件存储时要分类？二进制存储和文本存储完全不相同？对于纯文本必须使用文本模式？对于纯数字必须使用二进制模式？如果你对这些有疑惑，这篇文章适合你，如果你是来看函数时如何使用的，可能你要另寻他处了。</p>
@@ -1723,29 +1723,6 @@ printf(&quot;\\n&quot;);//行末换行 </code></pre><p>   } </p>
         <tag>C/C++笔记</tag>
         <tag>二进制模式</tag>
         <tag>文本模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>没有花括号的while循环</title>
-    <url>/archives/215d6fa0.html</url>
-    <content><![CDATA[<p>有如下一个while示例：</p>
-<p>while ( x &gt; 1 )<br>语句a;<br>语句b;<br>……</p>
-<p>这是一个没有花括号的while循环。圆括号中的条件一直为真就一直执行语句a，条件为假将跳过语句a，并跳出循环执行语句a下面的语句，本例中将执行从语句b开始以下的语句。</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>while</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>无缓冲输入和缓冲输入</title>
-    <url>/archives/d45baae6.html</url>
-    <content><![CDATA[<h3 id="什么是无缓冲输入和缓冲输入？"><a href="#什么是无缓冲输入和缓冲输入？" class="headerlink" title="什么是无缓冲输入和缓冲输入？"></a>什么是无缓冲输入和缓冲输入？</h3><p>无缓冲输入：用户输入字符后立即打印该字符。 缓冲输入：用户输入的字符被收集并存储在一个叫做缓冲区的临时存储区，按下<strong>Enter</strong>键后，程序才使用用户输入的字符。</p>
-<h3 id="为什么要有缓冲区？"><a href="#为什么要有缓冲区？" class="headerlink" title="为什么要有缓冲区？"></a>为什么要有缓冲区？</h3><p>首先，把若干字符作为一个块进行传输比逐个发送这些字符节约时间。其次，如果用户打错字符，可以直接通过键盘修正错误。当最后按下Enter键时，传输的是正确的输入。</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>缓冲区</tag>
       </tags>
   </entry>
   <entry>
@@ -1777,6 +1754,29 @@ printf(&quot;\\n&quot;);//行末换行 </code></pre><p>   } </p>
       <tags>
         <tag>java笔记</tag>
         <tag>集合</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>没有花括号的while循环</title>
+    <url>/archives/215d6fa0.html</url>
+    <content><![CDATA[<p>有如下一个while示例：</p>
+<p>while ( x &gt; 1 )<br>语句a;<br>语句b;<br>……</p>
+<p>这是一个没有花括号的while循环。圆括号中的条件一直为真就一直执行语句a，条件为假将跳过语句a，并跳出循环执行语句a下面的语句，本例中将执行从语句b开始以下的语句。</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>while</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>无缓冲输入和缓冲输入</title>
+    <url>/archives/d45baae6.html</url>
+    <content><![CDATA[<h3 id="什么是无缓冲输入和缓冲输入？"><a href="#什么是无缓冲输入和缓冲输入？" class="headerlink" title="什么是无缓冲输入和缓冲输入？"></a>什么是无缓冲输入和缓冲输入？</h3><p>无缓冲输入：用户输入字符后立即打印该字符。 缓冲输入：用户输入的字符被收集并存储在一个叫做缓冲区的临时存储区，按下<strong>Enter</strong>键后，程序才使用用户输入的字符。</p>
+<h3 id="为什么要有缓冲区？"><a href="#为什么要有缓冲区？" class="headerlink" title="为什么要有缓冲区？"></a>为什么要有缓冲区？</h3><p>首先，把若干字符作为一个块进行传输比逐个发送这些字符节约时间。其次，如果用户打错字符，可以直接通过键盘修正错误。当最后按下Enter键时，传输的是正确的输入。</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>缓冲区</tag>
       </tags>
   </entry>
   <entry>
@@ -1969,24 +1969,6 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>初识“编译器”及其工作原理</title>
-    <url>/archives/178506b4.html</url>
-    <content><![CDATA[<h2 id="1、编译器是什么？"><a href="#1、编译器是什么？" class="headerlink" title="1、编译器是什么？"></a>1、编译器是什么？</h2><p><strong>编译器</strong>（compiler①）是一个程序，能把高级计算机语言翻译成计算机能理解的机器语言指令集。 <strong>反编译器</strong>用来从由高级语言生成的低级语言代码重新生成高级语言代码，简单地说就是将已编译好的编程语言还原到未编译的状态。</p>
-<blockquote>
-<p>“高级计算机语言便于人编写，阅读交流，维护。机器语言是计算机能直接解读、运行的。编译器将汇编或高级计算机语言源程序（Source program）作为输入，翻译成目标语言（Target language）机器代码的等价程序。源代码一般为高级语言 (High-level language)， 如Pascal、C、C++、Java、汉语编程等或汇编语言，而目标则是机器语言的目标代码（Object code），有时也称作机器代码（Machine code）。”——引用自百度百科《<a href="https://baike.baidu.com/item/%E7%BC%96%E8%AF%91%E5%99%A8/8853067?fr=aladdin" target="_blank" rel="noopener external nofollow noreferrer">编译器</a>》</p>
-</blockquote>
-<h2 id="2、编译器的工作原理。"><a href="#2、编译器的工作原理。" class="headerlink" title="2、编译器的工作原理。"></a>2、编译器的工作原理。</h2><p>编译是一个翻译的过程，该过程将源代码（通常为高阶语言）翻译成能直接被计算机或虚拟机执行的目标代码（通常为低阶语言或机器语言）。 一个现代编译器的主要工作流程：源代码 (source code) → 预处理器 (preprocessor) → 编译器 (compiler) → 目标代码 (object code) → 链接器 (Linker) → 可执行程序 (executables②) 编译器的工作过程：<a href="http://www.ruanyifeng.com/blog/2014/11/compiler.html" target="_blank" rel="noopener external nofollow noreferrer">http://www.ruanyifeng.com/blog/2014/11/compiler.html</a></p>
-<blockquote>
-<p>涉及的部分英语词汇： ①compiler/kəmˈpaɪlər/编译器 ②executables/ɪɡˈzekjətəbl]/可执行程序</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>反编译器</tag>
-        <tag>编译器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>编程练习4.8：有关*修饰符在printf中的应用</title>
     <url>/archives/8c5f657a.html</url>
     <content><![CDATA[<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>编写一个程序，提供用户输入名和姓。并按以下要求打印输出： a.打印名和姓，包括双引号。 b.在宽度为20的字段的右端打印名和姓，包括双引号。 c.在宽度为20的字段的左端打印名和姓，包括双引号。 d.在此姓名宽度宽3的字段中打印名和姓。  </p>
@@ -2011,6 +1993,104 @@ return 0;</code></pre><p>}</p>
       <tags>
         <tag>C/C++练习</tag>
         <tag>习题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络编程 - UDP</title>
+    <url>/archives/37145c3c.html</url>
+    <content><![CDATA[<h1 id="一、UDP编程"><a href="#一、UDP编程" class="headerlink" title="一、UDP编程"></a>一、UDP编程</h1><h2 id="1-1-UDP基础知识"><a href="#1-1-UDP基础知识" class="headerlink" title="1.1 UDP基础知识"></a>1.1 UDP基础知识</h2><p>UDP（User Datagram Protocol）是面向无连接的用户数据报协议,提供的是不可靠的数据传输服务，但速度快，在较差的网络环境下也能使用。</p>
+<h2 id="1-2-UDP在Java中的使用"><a href="#1-2-UDP在Java中的使用" class="headerlink" title="1.2 UDP在Java中的使用"></a>1.2 UDP在Java中的使用</h2><p>在java中使用UDP协议传输数据的过程和相关组件如下： <a href="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_1ca0dffa630089263e3e55a526934dae.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_1ca0dffa630089263e3e55a526934dae.jpg" alt=""></a></p>
+<ul>
+<li><p>DatagramSocket：数据报端口，可以形象的理解为数据管道，提供数据传输的管道。</p>
+</li>
+<li><p>DatagramPacket：数据报包，可以形象的理解为集装箱，提供数据封装的方法。</p>
+</li>
+</ul>
+<p>计算机A向计算机B发送数据，实际上就是计算机A的某个端口，向计算机B的指定端口发送数据。 <strong>使用UDP协议在两个计算机间发送消息：</strong> 现在有计算机A：localhost 和 计算机B：49.234.194.123 计算机A编译运行UdpSend.java程序，代码如下：</p>
+<pre><code>import java.net.*;
+import java.util.Scanner;
+public class UdpSend
+{
+    public static void main(String [] args) throws Exception
+    {
+        //申请一个随机的端口
+        DatagramSocket ds = new DatagramSocket();
+
+        Scanner input = new Scanner(System.in);
+        String content = &quot;&quot;;
+        //当content内容不为quit时，持续向接收端发送消息，内容为content
+        while(!&quot;quit&quot;.equalsIgnoreCase(content)) {
+            System.out.print(&quot;输入消息内容，输入quit叫停接收端：&quot;);
+            //更新content内容
+            content = input.next();
+            //将字符串转换为byte数组
+            byte[] buf = content.getBytes();
+            //封装一个数据包，包中含有消息内容和目的地
+            DatagramPacket dp = new DatagramPacket(buf, 0, buf.length, InetAddress.getByName(&quot;localhost&quot;), 8001);
+
+            System.out.println(&quot;UdpSend:正在发送消息&quot;);
+            ds.send(dp);
+            System.out.println(&quot;UdpSend:消息发送完成&quot;);
+        }
+        input.close();
+        ds.close();
+    }
+
+}</code></pre><p>计算机B编译运行UdpRecv.java程序，代码如下：</p>
+<pre><code>import java.net.*;
+public class UdpRecv
+{
+    public static void main(String[] args) throws Exception
+    {
+        byte[] buff = new byte[1024];
+        //占用一个端口，作用：数据通道
+        DatagramSocket ds = new DatagramSocket(8001);
+        //创建一个数据包，buff装数据。
+        DatagramPacket dp = new DatagramPacket(buff, buff.length);
+
+        String recvContent = &quot; &quot;; 
+        //接收方一直在8001端口等待接收数据
+        while(!&quot;quit&quot;.equalsIgnoreCase(recvContent)) {
+            System.out.println(&quot;UdpRecv：等待数据接收&quot;);
+            ds.receive(dp);
+            System.out.println(&quot;UdpRecv：消息接收完成&quot;);
+
+            //输出数据包中的部分信息
+            recvContent = new String(dp.getData(), 0, dp.getLength());
+            System.out.println(recvContent + &quot; form:&quot; + dp.getAddress().getHostAddress() + &quot;:&quot; + dp.getPort());
+        }
+        ds.close();
+    }
+
+
+}</code></pre><p><strong>操作步骤：</strong></p>
+<ol>
+<li>先运行接收端程序，线程将阻塞在端口接收数据的状态，直到端口有发送方传来的数据。当接收端受到的消息内容为quit时，关闭端口，结束程序。</li>
+<li>再运行发送端程序。</li>
+</ol>
+<p><strong>截图演示：</strong> 发送方： <a href="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_22dc96d10019ab30896fc59db9a75437.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_22dc96d10019ab30896fc59db9a75437.jpg" alt=""></a> 接收方： <a href="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_7e61ecbde6591cd3b1faa1cc2232211e.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_7e61ecbde6591cd3b1faa1cc2232211e.jpg" alt=""></a></p>
+]]></content>
+      <tags>
+        <tag>java笔记</tag>
+        <tag>UDP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初识“编译器”及其工作原理</title>
+    <url>/archives/178506b4.html</url>
+    <content><![CDATA[<h2 id="1、编译器是什么？"><a href="#1、编译器是什么？" class="headerlink" title="1、编译器是什么？"></a>1、编译器是什么？</h2><p><strong>编译器</strong>（compiler①）是一个程序，能把高级计算机语言翻译成计算机能理解的机器语言指令集。 <strong>反编译器</strong>用来从由高级语言生成的低级语言代码重新生成高级语言代码，简单地说就是将已编译好的编程语言还原到未编译的状态。</p>
+<blockquote>
+<p>“高级计算机语言便于人编写，阅读交流，维护。机器语言是计算机能直接解读、运行的。编译器将汇编或高级计算机语言源程序（Source program）作为输入，翻译成目标语言（Target language）机器代码的等价程序。源代码一般为高级语言 (High-level language)， 如Pascal、C、C++、Java、汉语编程等或汇编语言，而目标则是机器语言的目标代码（Object code），有时也称作机器代码（Machine code）。”——引用自百度百科《<a href="https://baike.baidu.com/item/%E7%BC%96%E8%AF%91%E5%99%A8/8853067?fr=aladdin" target="_blank" rel="noopener external nofollow noreferrer">编译器</a>》</p>
+</blockquote>
+<h2 id="2、编译器的工作原理。"><a href="#2、编译器的工作原理。" class="headerlink" title="2、编译器的工作原理。"></a>2、编译器的工作原理。</h2><p>编译是一个翻译的过程，该过程将源代码（通常为高阶语言）翻译成能直接被计算机或虚拟机执行的目标代码（通常为低阶语言或机器语言）。 一个现代编译器的主要工作流程：源代码 (source code) → 预处理器 (preprocessor) → 编译器 (compiler) → 目标代码 (object code) → 链接器 (Linker) → 可执行程序 (executables②) 编译器的工作过程：<a href="http://www.ruanyifeng.com/blog/2014/11/compiler.html" target="_blank" rel="noopener external nofollow noreferrer">http://www.ruanyifeng.com/blog/2014/11/compiler.html</a></p>
+<blockquote>
+<p>涉及的部分英语词汇： ①compiler/kəmˈpaɪlər/编译器 ②executables/ɪɡˈzekjətəbl]/可执行程序</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>反编译器</tag>
+        <tag>编译器</tag>
       </tags>
   </entry>
   <entry>
@@ -2118,86 +2198,6 @@ public class TcpClient {
       </tags>
   </entry>
   <entry>
-    <title>网络编程 - UDP</title>
-    <url>/archives/37145c3c.html</url>
-    <content><![CDATA[<h1 id="一、UDP编程"><a href="#一、UDP编程" class="headerlink" title="一、UDP编程"></a>一、UDP编程</h1><h2 id="1-1-UDP基础知识"><a href="#1-1-UDP基础知识" class="headerlink" title="1.1 UDP基础知识"></a>1.1 UDP基础知识</h2><p>UDP（User Datagram Protocol）是面向无连接的用户数据报协议,提供的是不可靠的数据传输服务，但速度快，在较差的网络环境下也能使用。</p>
-<h2 id="1-2-UDP在Java中的使用"><a href="#1-2-UDP在Java中的使用" class="headerlink" title="1.2 UDP在Java中的使用"></a>1.2 UDP在Java中的使用</h2><p>在java中使用UDP协议传输数据的过程和相关组件如下： <a href="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_1ca0dffa630089263e3e55a526934dae.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_1ca0dffa630089263e3e55a526934dae.jpg" alt=""></a></p>
-<ul>
-<li><p>DatagramSocket：数据报端口，可以形象的理解为数据管道，提供数据传输的管道。</p>
-</li>
-<li><p>DatagramPacket：数据报包，可以形象的理解为集装箱，提供数据封装的方法。</p>
-</li>
-</ul>
-<p>计算机A向计算机B发送数据，实际上就是计算机A的某个端口，向计算机B的指定端口发送数据。 <strong>使用UDP协议在两个计算机间发送消息：</strong> 现在有计算机A：localhost 和 计算机B：49.234.194.123 计算机A编译运行UdpSend.java程序，代码如下：</p>
-<pre><code>import java.net.*;
-import java.util.Scanner;
-public class UdpSend
-{
-    public static void main(String [] args) throws Exception
-    {
-        //申请一个随机的端口
-        DatagramSocket ds = new DatagramSocket();
-
-        Scanner input = new Scanner(System.in);
-        String content = &quot;&quot;;
-        //当content内容不为quit时，持续向接收端发送消息，内容为content
-        while(!&quot;quit&quot;.equalsIgnoreCase(content)) {
-            System.out.print(&quot;输入消息内容，输入quit叫停接收端：&quot;);
-            //更新content内容
-            content = input.next();
-            //将字符串转换为byte数组
-            byte[] buf = content.getBytes();
-            //封装一个数据包，包中含有消息内容和目的地
-            DatagramPacket dp = new DatagramPacket(buf, 0, buf.length, InetAddress.getByName(&quot;localhost&quot;), 8001);
-
-            System.out.println(&quot;UdpSend:正在发送消息&quot;);
-            ds.send(dp);
-            System.out.println(&quot;UdpSend:消息发送完成&quot;);
-        }
-        input.close();
-        ds.close();
-    }
-
-}</code></pre><p>计算机B编译运行UdpRecv.java程序，代码如下：</p>
-<pre><code>import java.net.*;
-public class UdpRecv
-{
-    public static void main(String[] args) throws Exception
-    {
-        byte[] buff = new byte[1024];
-        //占用一个端口，作用：数据通道
-        DatagramSocket ds = new DatagramSocket(8001);
-        //创建一个数据包，buff装数据。
-        DatagramPacket dp = new DatagramPacket(buff, buff.length);
-
-        String recvContent = &quot; &quot;; 
-        //接收方一直在8001端口等待接收数据
-        while(!&quot;quit&quot;.equalsIgnoreCase(recvContent)) {
-            System.out.println(&quot;UdpRecv：等待数据接收&quot;);
-            ds.receive(dp);
-            System.out.println(&quot;UdpRecv：消息接收完成&quot;);
-
-            //输出数据包中的部分信息
-            recvContent = new String(dp.getData(), 0, dp.getLength());
-            System.out.println(recvContent + &quot; form:&quot; + dp.getAddress().getHostAddress() + &quot;:&quot; + dp.getPort());
-        }
-        ds.close();
-    }
-
-
-}</code></pre><p><strong>操作步骤：</strong></p>
-<ol>
-<li>先运行接收端程序，线程将阻塞在端口接收数据的状态，直到端口有发送方传来的数据。当接收端受到的消息内容为quit时，关闭端口，结束程序。</li>
-<li>再运行发送端程序。</li>
-</ol>
-<p><strong>截图演示：</strong> 发送方： <a href="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_22dc96d10019ab30896fc59db9a75437.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_22dc96d10019ab30896fc59db9a75437.jpg" alt=""></a> 接收方： <a href="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_7e61ecbde6591cd3b1faa1cc2232211e.jpg" target="_blank" rel="noopener external nofollow noreferrer"><img src="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_7e61ecbde6591cd3b1faa1cc2232211e.jpg" alt=""></a></p>
-]]></content>
-      <tags>
-        <tag>java笔记</tag>
-        <tag>UDP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>请分别输入响铃次数和响铃间隔时间</title>
     <url>/archives/fd75f50c.html</url>
     <content><![CDATA[<p>#include&lt;stdio.h&gt;<br>#include &lt;unistd.h&gt;//包含sleep函数 </p>
@@ -2255,6 +2255,22 @@ return 0;</code></pre><p> }</p>
       <tags>
         <tag>C/C++笔记</tag>
         <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>链表中增加头结点的作用</title>
+    <url>/archives/10ef29c7.html</url>
+    <content><![CDATA[<p>理解单链表中头结点的作用，只需要了解对有头结点的单链表和无头结点的单链表操作的区别 下面写两个函数，删除单链表中的一个结点。</p>
+<h4 id="①、删除无头结点单链表中的一个结点"><a href="#①、删除无头结点单链表中的一个结点" class="headerlink" title="①、删除无头结点单链表中的一个结点"></a>①、删除无头结点单链表中的一个结点</h4><p><img src="https://scanf.top/wp-content/uploads/2020/02/fullsizerender5-300x84.jpg" alt=""></p>
+<p>[算法思想] 1、设要删除的结点为p。 2、如果p指向首元结点：L = p -&gt; next; 3、如果p指向的是除首元结点外其他任意结点，执行以下操作： Step 1: 获取p的前驱结点为s; Step 2: s -&gt; next = p -&gt; next.</p>
+<h4 id="②、删除有头结点单链表中的一个结点"><a href="#②、删除有头结点单链表中的一个结点" class="headerlink" title="②、删除有头结点单链表中的一个结点"></a>②、删除有头结点单链表中的一个结点</h4><p><img src="https://scanf.top/wp-content/uploads/2020/02/fullsizerender4-300x62.jpg" alt=""></p>
+<p>[算法思想] 1、设要删除的结点为p。 2、p指向的是任意结点（包括首元结点），执行以下操作： Step 1: 获取p的前驱结点为s; Step 2: s -&gt; next = p -&gt; next;</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a><strong>总结</strong>：</h3><p>在有头结点的情况下，无需特殊处理首元结点。设置头结点可以保证处理第一个结点和后面的结点时设计的算法相同，实现程序的高效性。</p>
+]]></content>
+      <tags>
+        <tag>数据结构与算法</tag>
+        <tag>链表</tag>
+        <tag>头结点</tag>
       </tags>
   </entry>
   <entry>
@@ -2321,22 +2337,6 @@ return 0;</code></pre><p> }</p>
       <tags>
         <tag>数据结构与算法</tag>
         <tag>顺序表</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>链表中增加头结点的作用</title>
-    <url>/archives/10ef29c7.html</url>
-    <content><![CDATA[<p>理解单链表中头结点的作用，只需要了解对有头结点的单链表和无头结点的单链表操作的区别 下面写两个函数，删除单链表中的一个结点。</p>
-<h4 id="①、删除无头结点单链表中的一个结点"><a href="#①、删除无头结点单链表中的一个结点" class="headerlink" title="①、删除无头结点单链表中的一个结点"></a>①、删除无头结点单链表中的一个结点</h4><p><img src="https://scanf.top/wp-content/uploads/2020/02/fullsizerender5-300x84.jpg" alt=""></p>
-<p>[算法思想] 1、设要删除的结点为p。 2、如果p指向首元结点：L = p -&gt; next; 3、如果p指向的是除首元结点外其他任意结点，执行以下操作： Step 1: 获取p的前驱结点为s; Step 2: s -&gt; next = p -&gt; next.</p>
-<h4 id="②、删除有头结点单链表中的一个结点"><a href="#②、删除有头结点单链表中的一个结点" class="headerlink" title="②、删除有头结点单链表中的一个结点"></a>②、删除有头结点单链表中的一个结点</h4><p><img src="https://scanf.top/wp-content/uploads/2020/02/fullsizerender4-300x62.jpg" alt=""></p>
-<p>[算法思想] 1、设要删除的结点为p。 2、p指向的是任意结点（包括首元结点），执行以下操作： Step 1: 获取p的前驱结点为s; Step 2: s -&gt; next = p -&gt; next;</p>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a><strong>总结</strong>：</h3><p>在有头结点的情况下，无需特殊处理首元结点。设置头结点可以保证处理第一个结点和后面的结点时设计的算法相同，实现程序的高效性。</p>
-]]></content>
-      <tags>
-        <tag>数据结构与算法</tag>
-        <tag>链表</tag>
-        <tag>头结点</tag>
       </tags>
   </entry>
   <entry>
