@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.scanf.top/about/index.html</loc>
+    
+    <lastmod>2020-07-24T01:14:58.556Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.scanf.top/archives/eea3a450.html</loc>
     
     <lastmod>2020-07-24T00:53:03.276Z</lastmod>
@@ -89,13 +96,6 @@
     <loc>http://blog.scanf.top/tags/index.html</loc>
     
     <lastmod>2020-07-19T08:54:11.061Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.scanf.top/about/index.html</loc>
-    
-    <lastmod>2020-07-19T08:53:09.792Z</lastmod>
     
   </url>
   
@@ -502,20 +502,6 @@
     <loc>http://blog.scanf.top/sitemap/index.html</loc>
     
     <lastmod>2020-07-19T08:13:10.047Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.scanf.top/aboutsite/index.html</loc>
-    
-    <lastmod>2020-07-19T08:13:10.035Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.scanf.top/aboutme/index.html</loc>
-    
-    <lastmod>2020-07-19T08:13:10.011Z</lastmod>
     
   </url>
   
