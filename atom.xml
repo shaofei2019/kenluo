@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://scanf.top/"/>
-  <updated>2020-07-26T06:36:06.255Z</updated>
+  <updated>2020-07-26T06:39:21.869Z</updated>
   <id>https://scanf.top/</id>
   
   <author>
@@ -21,11 +21,11 @@
     <link href="https://scanf.top/archives/f7ce96ca.html"/>
     <id>https://scanf.top/archives/f7ce96ca.html</id>
     <published>2020-07-26T10:36:46.000Z</published>
-    <updated>2020-07-26T06:36:06.255Z</updated>
+    <updated>2020-07-26T06:39:21.869Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;本文介绍了：IoC（ Inversion of Control ）一些概念，与及IoC获取一个对象的过程。&lt;/p&gt;
+      &lt;p&gt;本文介绍了：IoC（ Inversion of Control ）的一些概念，与及从IoC容器中获取一个对象的过程。&lt;/p&gt;
     
     </summary>
     
@@ -58,11 +58,11 @@
       <category term="Spring" scheme="https://scanf.top/categories/Java/Spring/"/>
     
     
-      <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
-    
       <category term="lifecycle" scheme="https://scanf.top/tags/lifecycle/"/>
     
       <category term="scope" scheme="https://scanf.top/tags/scope/"/>
+    
+      <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
     
   </entry>
   
@@ -85,9 +85,9 @@
       <category term="Spring" scheme="https://scanf.top/categories/Java/Spring/"/>
     
     
-      <category term="DI" scheme="https://scanf.top/tags/DI/"/>
-    
       <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
+    
+      <category term="DI" scheme="https://scanf.top/tags/DI/"/>
     
   </entry>
   
@@ -110,9 +110,9 @@
       <category term="Spring" scheme="https://scanf.top/categories/Java/Spring/"/>
     
     
-      <category term="IoC" scheme="https://scanf.top/tags/IoC/"/>
-    
       <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
+    
+      <category term="IoC" scheme="https://scanf.top/tags/IoC/"/>
     
   </entry>
   
@@ -141,11 +141,11 @@
       <category term="Spring" scheme="https://scanf.top/categories/Java/Spring/"/>
     
     
+      <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
+    
       <category term="DI" scheme="https://scanf.top/tags/DI/"/>
     
       <category term="IoC" scheme="https://scanf.top/tags/IoC/"/>
-    
-      <category term="Spring" scheme="https://scanf.top/tags/Spring/"/>
     
   </entry>
   
