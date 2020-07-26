@@ -1,59 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C语言中float类型的取值范围</title>
-    <url>/archives/eedadecf.html</url>
-    <content><![CDATA[<h2 id="一-float类型的取值范围"><a href="#一-float类型的取值范围" class="headerlink" title="一. float类型的取值范围"></a>一. float类型的取值范围</h2><p>范    围 [-3.4E+38,3.4E+38]</p>
-<h2 id="二-计算方法-前置概念"><a href="#二-计算方法-前置概念" class="headerlink" title="二. 计算方法: 前置概念"></a>二. 计算方法: 前置概念</h2><p>接下来会详细介绍这个范围是怎么计算出来的, 不过在介绍具体的计算方法前, 必须先了解一些概念. 只有了解了这些概念, 才能真正的理解浮点数的取值范围是如何计算出来的. 而理解这些概念之前, 请务必确定你已经对IEEE754的基础概念和浮点数在内存中的存储方式有所了解, 也可以参考本系列的第一篇文章: <a href="https://www.scanf.top/cnotes/80.html" target="_blank" rel="noopener external nofollow noreferrer">C语言中float类型的存储方式</a></p>
-<h3 id="概念一-subnormal-number"><a href="#概念一-subnormal-number" class="headerlink" title="概念一: subnormal number"></a>概念一: subnormal number</h3><p>根据IEEE754的规定, 按照尾数位隐藏的整数部分是1.还是0. 可以将浮点数划分为两类 下面以32位浮点数为例来解释这些概念. <strong>normal number:</strong> 尾数位隐藏的整数部分是<strong>1.</strong>的数, 叫做normal number, 即正常的数 一般来说, 我们遇到的都是normal number 比如20.5在内存中表示为: 0  1000 0011  <strong>0100 1000 0000 0000 000</strong> 其中尾数部分(即上面的加粗部分), 去掉后面补的零之后为: 01001 这其实表示尾数是: 1.01001, 因为前面省略了整数部分1. <strong>subnormal number:</strong> 尾数位隐藏的整数部分为<strong>0.</strong>的数, 叫做sunormal number, 也叫作denormal number, 即低于正常的数 之所以引入subnormal number这个概念, 是为了在浮点数下溢时, 可以逐位的损失精度, 以尽可能精确的表达0附近的极小数(如0.0000001) 为了表示subnormal number, IEEE754规定: <strong>如果将指数位全部填充为0, 则表示这个数是个subnormal number</strong> 即以32位float为例, 当你看到类似于 * <strong>00000000</strong> *********************** 这样内存状态的数时, (即指数位全部为0的数), 就应该知道, 这是个subnormal number, 此时这个数的尾数位隐藏的整数不是<strong>1.</strong>  而是<strong>0.</strong></p>
-<h3 id="概念二-non-number"><a href="#概念二-non-number" class="headerlink" title="概念二: non-number"></a>概念二: non-number</h3><p>和subnormal number类似, IEEE754对于指数位全为1的状态也做了特殊规定: <strong>当指数位全部被1填充, 即指数位表示的值为255时, 用于表示这个浮点数处在一种非正常数(non-number)的状态: 即这个数可能是±infinity或NaN.</strong> (Infinity和NaN是两个特殊值, 分别表示无穷和Not a Number)</p>
-<blockquote>
-<p>The biased-exponent field is filled with all 1 bits to indicate either infinity or an invalid result of a computation.</p>
-</blockquote>
-<h2 id="三-计算方法"><a href="#三-计算方法" class="headerlink" title="三. 计算方法"></a>三. 计算方法</h2><p>在了解了上面两个概念之后, 再看计算方法就很简单了. 如上所述, IEEE754规定, 当指数位全部为0或者全部为1时, 用于表示两种特殊状态的数: subnormal number 和 non-number, 所以现在可以得到如下示意图, 以32位单精度浮点数为例:</p>
-<p><img src="https://www.scanf.top/wp-content/uploads/2019/07/3856786-cdff01ea6080e00b.png" alt=""></p>
-<p>这就是理解单精度浮点数取值范围的关键: <strong>当我们讨论浮点数的取值范围时, 实际上讨论的是:</strong> <strong>normal number (上图中绿色部分)的范围.</strong> 可以看出, 32位浮点数的指数其实是无法取到-127和128的, 因为用于表示-127的0000 0000被用来表示subnormal number了, 而用于表示128的1111 1111被用来表示non-number了. <strong>所以实际上32位浮点数的指数部分只能取到只能取到[-126, 127]</strong> 下面来看看尾数: 对于normal number, 尾数前隐藏的整数部分始终保持1. 所以尾数(含隐藏的整数部分)表示值的范围其实是 [1.00…00, 1.11…11], 这个二进制数, 约等于十进制的[1, 2), 因为1.11..11非常逼近十进制的2 好啦, 现在我们知道, 对于32位flaot而言: 尾数(含隐藏的整数部分)的可取值为: [1 ,2), 指数位可取值[-126, 127] 且浮点数可正可负, 所以32位float的取值范围是: [-2*2^127,2*2^127] 约等于: [-3.4*10^38, 3.4 * 10^38] 浮点数的取值范围即这样计算出来的.</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>float</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C编译器如何读取并确定一个符号？</title>
-    <url>/archives/99ae3ea5.html</url>
-    <content><![CDATA[<p><strong>读取规则：每一个符号应该包含尽可能多的字符。</strong> 编译器读取符号的方法是，从左到右一个字符一个字符地读入，如果该字符可能组成一个符号，那么再读入下一个字符，判断已经读取的两个字符组成的字符串是否可能是一个符号的组成部分；如果可能，继续读入下一个字符，重复上述判断，直到读入的字符组成的字符串已不再可能组成一个有意义的符号。这个处理策略又是被称为“贪心法”。</p>
-<h4 id="分析：a-b"><a href="#分析：a-b" class="headerlink" title="分析：a- - -b;"></a><strong>分析：a- - -b;</strong></h4><p>编译器读取到第二个减号字符的时候判断“–”是否能组成一个符号，结果当然是可以的，编译器继续读取下一个字符‘-’，判断“_- - -_”能否组成一个符号？不能，那么<strong>a- - -b</strong>的含义是：<strong>a - -   - b</strong>，注意中减号中间的空格。</p>
-<h4 id="分析：y-x-p-p指向除数"><a href="#分析：y-x-p-p指向除数" class="headerlink" title="分析：y = x/*p;       /* p指向除数 */"></a><strong>分析：y = x/*p;       /* p指向除数 */</strong></h4><p>我们能看出该语句的本意似乎是x除以p所指向的值，所得的商赋值给变量y；而实际上编译器会把/*当作一段注释的开始。所以编译器不会理会/*后的代码。尽管你不小心写出了这样的代码，你应该会及时发现出问题了，因为至少编译时编译器会告诉你缺少句末的分号。这时只需要在/和*之间敲个空格就行了。</p>
-<blockquote>
-<p>整理自：《C Traps and Pitfalls》</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>贪心法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>*.c到*.exe经历了什么</title>
-    <url>/archives/78338158.html</url>
-    <content><![CDATA[<p>“*.c”是一个由C语言编程的源代码文件，“*.exe”是一个可执行文件。 .c到.exe经历了什么？阅读下图可知一二。 <img src="https://www.scanf.top/wp-content/uploads/2019/07/img-300x273.jpg" alt=""></p>
-<blockquote>
-<p>编译器：能将高级语言装换成计算机能理解的低级语言。 链接器：能把目标代码、系统的启动代码和库代码这三部分合成一个文件，即可执行文件。</p>
-</blockquote>
-<p>对于库代码（c编程中经常用到的scanf（）等函数就包含其中），链接器只会把程序中要用到的库代码函数提取出来。另外，目标文件和可执行文件都由机器语言指令组成。</p>
-<blockquote>
-<p>文中图1.4来自《 C primer plus 第六版》</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>可执行文件</tag>
-        <tag>库代码</tag>
-        <tag>链接器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C语言中float类型的存储方式</title>
     <url>/archives/1b55ca1d.html</url>
     <content><![CDATA[<h3 id="float类型在内存中的存储方式："><a href="#float类型在内存中的存储方式：" class="headerlink" title="float类型在内存中的存储方式："></a>float类型在内存中的存储方式：</h3><p>IEEE754标准提供了如何在计算机内存中, <strong>以二进制的方式存储十进制浮点数</strong>的具体标准, 这里以float类型(即32位单精度类型)为例, 这是其在内存中存储方式的示意图:</p>
@@ -78,6 +25,40 @@
       </tags>
   </entry>
   <entry>
+    <title>*.c到*.exe经历了什么</title>
+    <url>/archives/78338158.html</url>
+    <content><![CDATA[<p>“*.c”是一个由C语言编程的源代码文件，“*.exe”是一个可执行文件。 .c到.exe经历了什么？阅读下图可知一二。 <img src="https://www.scanf.top/wp-content/uploads/2019/07/img-300x273.jpg" alt=""></p>
+<blockquote>
+<p>编译器：能将高级语言装换成计算机能理解的低级语言。 链接器：能把目标代码、系统的启动代码和库代码这三部分合成一个文件，即可执行文件。</p>
+</blockquote>
+<p>对于库代码（c编程中经常用到的scanf（）等函数就包含其中），链接器只会把程序中要用到的库代码函数提取出来。另外，目标文件和可执行文件都由机器语言指令组成。</p>
+<blockquote>
+<p>文中图1.4来自《 C primer plus 第六版》</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>可执行文件</tag>
+        <tag>库代码</tag>
+        <tag>链接器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C编译器如何读取并确定一个符号？</title>
+    <url>/archives/99ae3ea5.html</url>
+    <content><![CDATA[<p><strong>读取规则：每一个符号应该包含尽可能多的字符。</strong> 编译器读取符号的方法是，从左到右一个字符一个字符地读入，如果该字符可能组成一个符号，那么再读入下一个字符，判断已经读取的两个字符组成的字符串是否可能是一个符号的组成部分；如果可能，继续读入下一个字符，重复上述判断，直到读入的字符组成的字符串已不再可能组成一个有意义的符号。这个处理策略又是被称为“贪心法”。</p>
+<h4 id="分析：a-b"><a href="#分析：a-b" class="headerlink" title="分析：a- - -b;"></a><strong>分析：a- - -b;</strong></h4><p>编译器读取到第二个减号字符的时候判断“–”是否能组成一个符号，结果当然是可以的，编译器继续读取下一个字符‘-’，判断“_- - -_”能否组成一个符号？不能，那么<strong>a- - -b</strong>的含义是：<strong>a - -   - b</strong>，注意中减号中间的空格。</p>
+<h4 id="分析：y-x-p-p指向除数"><a href="#分析：y-x-p-p指向除数" class="headerlink" title="分析：y = x/*p;       /* p指向除数 */"></a><strong>分析：y = x/*p;       /* p指向除数 */</strong></h4><p>我们能看出该语句的本意似乎是x除以p所指向的值，所得的商赋值给变量y；而实际上编译器会把/*当作一段注释的开始。所以编译器不会理会/*后的代码。尽管你不小心写出了这样的代码，你应该会及时发现出问题了，因为至少编译时编译器会告诉你缺少句末的分号。这时只需要在/和*之间敲个空格就行了。</p>
+<blockquote>
+<p>整理自：《C Traps and Pitfalls》</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>贪心法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言中int类型的取值范围</title>
     <url>/archives/f096cc51.html</url>
     <content><![CDATA[<p>在<a href="https://www.scanf.top/cnotes/48.html" target="_blank" rel="noopener external nofollow noreferrer">C语言</a>中，int表示整型变量，是一种数据类型，用于定义一个整型变量。 C语言中int能定义的整数的取值范围为：[-2147483648,2147483647]</p>
@@ -90,6 +71,68 @@
       <tags>
         <tag>C/C++笔记</tag>
         <tag>int</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言中float类型的取值范围</title>
+    <url>/archives/eedadecf.html</url>
+    <content><![CDATA[<h2 id="一-float类型的取值范围"><a href="#一-float类型的取值范围" class="headerlink" title="一. float类型的取值范围"></a>一. float类型的取值范围</h2><p>范    围 [-3.4E+38,3.4E+38]</p>
+<h2 id="二-计算方法-前置概念"><a href="#二-计算方法-前置概念" class="headerlink" title="二. 计算方法: 前置概念"></a>二. 计算方法: 前置概念</h2><p>接下来会详细介绍这个范围是怎么计算出来的, 不过在介绍具体的计算方法前, 必须先了解一些概念. 只有了解了这些概念, 才能真正的理解浮点数的取值范围是如何计算出来的. 而理解这些概念之前, 请务必确定你已经对IEEE754的基础概念和浮点数在内存中的存储方式有所了解, 也可以参考本系列的第一篇文章: <a href="https://www.scanf.top/cnotes/80.html" target="_blank" rel="noopener external nofollow noreferrer">C语言中float类型的存储方式</a></p>
+<h3 id="概念一-subnormal-number"><a href="#概念一-subnormal-number" class="headerlink" title="概念一: subnormal number"></a>概念一: subnormal number</h3><p>根据IEEE754的规定, 按照尾数位隐藏的整数部分是1.还是0. 可以将浮点数划分为两类 下面以32位浮点数为例来解释这些概念. <strong>normal number:</strong> 尾数位隐藏的整数部分是<strong>1.</strong>的数, 叫做normal number, 即正常的数 一般来说, 我们遇到的都是normal number 比如20.5在内存中表示为: 0  1000 0011  <strong>0100 1000 0000 0000 000</strong> 其中尾数部分(即上面的加粗部分), 去掉后面补的零之后为: 01001 这其实表示尾数是: 1.01001, 因为前面省略了整数部分1. <strong>subnormal number:</strong> 尾数位隐藏的整数部分为<strong>0.</strong>的数, 叫做sunormal number, 也叫作denormal number, 即低于正常的数 之所以引入subnormal number这个概念, 是为了在浮点数下溢时, 可以逐位的损失精度, 以尽可能精确的表达0附近的极小数(如0.0000001) 为了表示subnormal number, IEEE754规定: <strong>如果将指数位全部填充为0, 则表示这个数是个subnormal number</strong> 即以32位float为例, 当你看到类似于 * <strong>00000000</strong> *********************** 这样内存状态的数时, (即指数位全部为0的数), 就应该知道, 这是个subnormal number, 此时这个数的尾数位隐藏的整数不是<strong>1.</strong>  而是<strong>0.</strong></p>
+<h3 id="概念二-non-number"><a href="#概念二-non-number" class="headerlink" title="概念二: non-number"></a>概念二: non-number</h3><p>和subnormal number类似, IEEE754对于指数位全为1的状态也做了特殊规定: <strong>当指数位全部被1填充, 即指数位表示的值为255时, 用于表示这个浮点数处在一种非正常数(non-number)的状态: 即这个数可能是±infinity或NaN.</strong> (Infinity和NaN是两个特殊值, 分别表示无穷和Not a Number)</p>
+<blockquote>
+<p>The biased-exponent field is filled with all 1 bits to indicate either infinity or an invalid result of a computation.</p>
+</blockquote>
+<h2 id="三-计算方法"><a href="#三-计算方法" class="headerlink" title="三. 计算方法"></a>三. 计算方法</h2><p>在了解了上面两个概念之后, 再看计算方法就很简单了. 如上所述, IEEE754规定, 当指数位全部为0或者全部为1时, 用于表示两种特殊状态的数: subnormal number 和 non-number, 所以现在可以得到如下示意图, 以32位单精度浮点数为例:</p>
+<p><img src="https://www.scanf.top/wp-content/uploads/2019/07/3856786-cdff01ea6080e00b.png" alt=""></p>
+<p>这就是理解单精度浮点数取值范围的关键: <strong>当我们讨论浮点数的取值范围时, 实际上讨论的是:</strong> <strong>normal number (上图中绿色部分)的范围.</strong> 可以看出, 32位浮点数的指数其实是无法取到-127和128的, 因为用于表示-127的0000 0000被用来表示subnormal number了, 而用于表示128的1111 1111被用来表示non-number了. <strong>所以实际上32位浮点数的指数部分只能取到只能取到[-126, 127]</strong> 下面来看看尾数: 对于normal number, 尾数前隐藏的整数部分始终保持1. 所以尾数(含隐藏的整数部分)表示值的范围其实是 [1.00…00, 1.11…11], 这个二进制数, 约等于十进制的[1, 2), 因为1.11..11非常逼近十进制的2 好啦, 现在我们知道, 对于32位flaot而言: 尾数(含隐藏的整数部分)的可取值为: [1 ,2), 指数位可取值[-126, 127] 且浮点数可正可负, 所以32位float的取值范围是: [-2*2^127,2*2^127] 约等于: [-3.4*10^38, 3.4 * 10^38] 浮点数的取值范围即这样计算出来的.</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>float</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>i++和++i的区别</title>
+    <url>/archives/8fda38dd.html</url>
+    <content><![CDATA[<p>i++和++i是C语言运算符，i++是后缀递增的意思，++i是前缀递增的意思。 1、i++是后缀递增的意思，i++是先进行表达式运算，再进行自增运算。把i++的运算过程拆分开，等效于i=i+1可以看到运算结果是一致的。 x = i ++;    //先让x变成i的值，再让i加1 2、++i是前缀递增的意思，++i是先进行自增或者自减运算，再进行表达式运算。运算结果可以发现，仅从i的值来看，++i和i++最终的i值是一样的，都是i自增加了1。 x = ++i;    //先让i加1, 再让x变成i+1之后的值  </p>
+<p>#include &lt;stdio.h&gt;</p>
+<p>int main(void)<br>{<br>    int a_post=0,b_pre=0,i=1,o=1;</p>
+<pre><code>a\_post = i++;//先赋值再运算
+b\_pre  = ++o;//先运算再赋值
+printf(&quot;a\_post=%d,b\_pre=%d\\ni=%d,o=%d&quot;,a\_post,b\_pre,i,o);
+
+return 0;</code></pre><p>}</p>
+<p>而使用递减运算符 - - ，要达到相应的效果，直接代替++即可。</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>递增运算符</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>main()的参数argc和argv</title>
+    <url>/archives/ef3944df.html</url>
+    <content><![CDATA[<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><p>#include &lt;stdio.h&gt;<br>int main ( int argc, char *argv [] )<br>{<br>  printf(“argv[0]:%s\n”,argv[0]);<br>  printf(“argv[1]:%s\n”,argv[1]);<br>  printf(“argv[2]:%s\n”,argv[2]);<br>  printf(“argv[3]:%s\n”,argv[3]);<br>  printf(“一共有：%d个命令行参数”,argc);</p>
+<p>  return 0;<br>}</p>
+<h3 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/6203d7a613c7af69fac8a42f21ed4d6f.png" alt=""></p>
+<h3 id="相关说明："><a href="#相关说明：" class="headerlink" title="相关说明："></a>相关说明：</h3><p>argc：为命令行总的参数的个数 *argv[ ]：字符串数组，用来存放指向你的字符串参数的指针数组,每一个元素指向一个参数。 argv[0]:指向程序的全路径名 argv[1]:指向在DOS命令行中执行程序名后的第一个字符串 argv[2]:指向在DOS命令行中执行程序名后的第二个字符串 argv[3]:指向在DOS命令行中执行程序名后的第三个字符串</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>argc</tag>
+        <tag>argv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言的术语：数据对象、左值</title>
+    <url>/archives/2456e15a.html</url>
+    <content><![CDATA[<p>用于储存值的数据区域统称为<strong>数据对象（</strong><em>data object</em><strong>）。</strong> <strong>左值</strong>（_lvalue_）是C语言的术语，用于标识特定数据对象的名称或表达式。   对象指的是实际的数据存储，而左值是用于标识或定位存储位置的标签。</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>左值</tag>
+        <tag>数据对象</tag>
       </tags>
   </entry>
   <entry>
@@ -118,46 +161,15 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>main()的参数argc和argv</title>
-    <url>/archives/ef3944df.html</url>
-    <content><![CDATA[<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><p>#include &lt;stdio.h&gt;<br>int main ( int argc, char *argv [] )<br>{<br>  printf(“argv[0]:%s\n”,argv[0]);<br>  printf(“argv[1]:%s\n”,argv[1]);<br>  printf(“argv[2]:%s\n”,argv[2]);<br>  printf(“argv[3]:%s\n”,argv[3]);<br>  printf(“一共有：%d个命令行参数”,argc);</p>
-<p>  return 0;<br>}</p>
-<h3 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/6203d7a613c7af69fac8a42f21ed4d6f.png" alt=""></p>
-<h3 id="相关说明："><a href="#相关说明：" class="headerlink" title="相关说明："></a>相关说明：</h3><p>argc：为命令行总的参数的个数 *argv[ ]：字符串数组，用来存放指向你的字符串参数的指针数组,每一个元素指向一个参数。 argv[0]:指向程序的全路径名 argv[1]:指向在DOS命令行中执行程序名后的第一个字符串 argv[2]:指向在DOS命令行中执行程序名后的第二个字符串 argv[3]:指向在DOS命令行中执行程序名后的第三个字符串</p>
+    <title>scanf()和scanf_s()的简单区别</title>
+    <url>/archives/e698f6a9.html</url>
+    <content><![CDATA[<h4 id="简单介绍："><a href="#简单介绍：" class="headerlink" title="简单介绍："></a><strong>简单介绍：</strong></h4><p>scanf()函数是标准C中提供的标准输入函数，用于用户输入数据。 scanf_s()函数是Microsoft公司VS开发工具提供的一个功能相同的安全标准输入函数，从vc++2005开始，VS系统提供了scanf_s()。  </p>
+<h4 id="对比区别："><a href="#对比区别：" class="headerlink" title="对比区别："></a><strong>对比区别：</strong></h4><p>scanf()不会检查输入边界，可能造成数据溢出，scanf_s()会进行边界检查。 如name[5]， scanf(“%s”,name),如果输入abcdefgh，则会使得fgh溢出进入其他地方，造成程序错误， 容易被黑客利用；而scanf_s(“%s”,name),则会只会接收前5个输入，其后的无效，避免了程序的漏洞。</p>
 ]]></content>
       <tags>
         <tag>C/C++笔记</tag>
-        <tag>argc</tag>
-        <tag>argv</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>i++和++i的区别</title>
-    <url>/archives/8fda38dd.html</url>
-    <content><![CDATA[<p>i++和++i是C语言运算符，i++是后缀递增的意思，++i是前缀递增的意思。 1、i++是后缀递增的意思，i++是先进行表达式运算，再进行自增运算。把i++的运算过程拆分开，等效于i=i+1可以看到运算结果是一致的。 x = i ++;    //先让x变成i的值，再让i加1 2、++i是前缀递增的意思，++i是先进行自增或者自减运算，再进行表达式运算。运算结果可以发现，仅从i的值来看，++i和i++最终的i值是一样的，都是i自增加了1。 x = ++i;    //先让i加1, 再让x变成i+1之后的值  </p>
-<p>#include &lt;stdio.h&gt;</p>
-<p>int main(void)<br>{<br>    int a_post=0,b_pre=0,i=1,o=1;</p>
-<pre><code>a\_post = i++;//先赋值再运算
-b\_pre  = ++o;//先运算再赋值
-printf(&quot;a\_post=%d,b\_pre=%d\\ni=%d,o=%d&quot;,a\_post,b\_pre,i,o);
-
-return 0;</code></pre><p>}</p>
-<p>而使用递减运算符 - - ，要达到相应的效果，直接代替++即可。</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>递增运算符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言的术语：数据对象、左值</title>
-    <url>/archives/2456e15a.html</url>
-    <content><![CDATA[<p>用于储存值的数据区域统称为<strong>数据对象（</strong><em>data object</em><strong>）。</strong> <strong>左值</strong>（_lvalue_）是C语言的术语，用于标识特定数据对象的名称或表达式。   对象指的是实际的数据存储，而左值是用于标识或定位存储位置的标签。</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>左值</tag>
-        <tag>数据对象</tag>
+        <tag>scanf</tag>
+        <tag>scanf_s</tag>
       </tags>
   </entry>
   <entry>
@@ -214,6 +226,23 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
+    <title>sleep()函数的使用</title>
+    <url>/archives/d1b35c7c.html</url>
+    <content><![CDATA[<p><a href="https://baike.baidu.com/item/Sleep%E5%87%BD%E6%95%B0/6735027?fr=aladdin" target="_blank" rel="noopener external nofollow noreferrer">Sleep函数</a>可以使计算机程序（进程，任务或线程）进入休眠，使其在一段时间内处于非活动状态。当函数设定的计时器到期，或者接收到信号、程序发生中断都会导致程序继续执行。</p>
+<h4 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h4><p>sleep()函数包含在unistd.h头文件中，sleep()函数的<a href="https://www.scanf.top/cnotes/57.html" target="_blank" rel="noopener external nofollow noreferrer">调用</a>需要一个时间作为参数，代表程序执行挂起的时间间隔。通常参数的单位是秒，但在一些更加精确的操作系统中能以毫秒甚至是微秒为单位。</p>
+<h4 id="代码示例："><a href="#代码示例：" class="headerlink" title="代码示例："></a>代码示例：</h4><p>#include&lt;stdio.h&gt;<br>#include &lt;unistd.h&gt;<br>int main(void)<br>{<br>    int buyaoting=1;</p>
+<pre><code>printf(&quot;蜂鸣声\\7\\n&quot;);
+sleep(2); //等待一秒钟执行下一行代码 
+printf(&quot;蜂鸣声\\7\\n&quot;);
+
+return 0;</code></pre><p>}</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>sleep()</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【转载】C语言的优点和缺点</title>
     <url>/archives/c756a579.html</url>
     <content><![CDATA[<p>C语言现在已经很成熟，它的各种语法规则、思想都已经确立起来了，并对现在的很多语言产生很大的影响。但是任何事物都有其优点和缺点，C语言也不例外。下面我们分别来看一下。</p>
@@ -239,35 +268,6 @@ return 0;</code></pre><p>}</p>
         <tag>C/C++笔记</tag>
         <tag>C语言</tag>
         <tag>c语言优缺点</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>scanf()和scanf_s()的简单区别</title>
-    <url>/archives/e698f6a9.html</url>
-    <content><![CDATA[<h4 id="简单介绍："><a href="#简单介绍：" class="headerlink" title="简单介绍："></a><strong>简单介绍：</strong></h4><p>scanf()函数是标准C中提供的标准输入函数，用于用户输入数据。 scanf_s()函数是Microsoft公司VS开发工具提供的一个功能相同的安全标准输入函数，从vc++2005开始，VS系统提供了scanf_s()。  </p>
-<h4 id="对比区别："><a href="#对比区别：" class="headerlink" title="对比区别："></a><strong>对比区别：</strong></h4><p>scanf()不会检查输入边界，可能造成数据溢出，scanf_s()会进行边界检查。 如name[5]， scanf(“%s”,name),如果输入abcdefgh，则会使得fgh溢出进入其他地方，造成程序错误， 容易被黑客利用；而scanf_s(“%s”,name),则会只会接收前5个输入，其后的无效，避免了程序的漏洞。</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>scanf</tag>
-        <tag>scanf_s</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sleep()函数的使用</title>
-    <url>/archives/d1b35c7c.html</url>
-    <content><![CDATA[<p><a href="https://baike.baidu.com/item/Sleep%E5%87%BD%E6%95%B0/6735027?fr=aladdin" target="_blank" rel="noopener external nofollow noreferrer">Sleep函数</a>可以使计算机程序（进程，任务或线程）进入休眠，使其在一段时间内处于非活动状态。当函数设定的计时器到期，或者接收到信号、程序发生中断都会导致程序继续执行。</p>
-<h4 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h4><p>sleep()函数包含在unistd.h头文件中，sleep()函数的<a href="https://www.scanf.top/cnotes/57.html" target="_blank" rel="noopener external nofollow noreferrer">调用</a>需要一个时间作为参数，代表程序执行挂起的时间间隔。通常参数的单位是秒，但在一些更加精确的操作系统中能以毫秒甚至是微秒为单位。</p>
-<h4 id="代码示例："><a href="#代码示例：" class="headerlink" title="代码示例："></a>代码示例：</h4><p>#include&lt;stdio.h&gt;<br>#include &lt;unistd.h&gt;<br>int main(void)<br>{<br>    int buyaoting=1;</p>
-<pre><code>printf(&quot;蜂鸣声\\7\\n&quot;);
-sleep(2); //等待一秒钟执行下一行代码 
-printf(&quot;蜂鸣声\\7\\n&quot;);
-
-return 0;</code></pre><p>}</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>sleep()</tag>
       </tags>
   </entry>
   <entry>
@@ -298,26 +298,6 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>利用堆栈实现数制转换。</title>
-    <url>/archives/4149ca8d.html</url>
-    <content><![CDATA[<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a><strong>算法思想</strong></h3><p>① 定义一个结构体，其中包括栈顶指针、栈底指针和栈的最大可用容量。 ② 初始化一个空栈 Ⅰ.申请一块最大容量为MAXSIZE的数组内存，并将首地址返回给栈底指针。 Ⅱ.将栈设置为空栈，即栈顶指针初始化为栈底指针。 ③ 将处理后的数据压入栈中，判断是否栈满，如果栈满，则返回相应的状态信息；如果栈未满，将数据压入栈中，然后栈顶指针加1. ④ 出栈，判断栈是否为空，如果栈空，则返回相应的状态信息；如果栈非空，栈顶指针减1，再将栈顶元素赋给变量e。</p>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a><strong>具体实现</strong></h3><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt; //提供exit函数<br>#define MAXSIZE 100<br>#define OK 0<br>#define ERROR 1<br>#define OVERFLOW -2</p>
-<p>typedef int Status;<br>typedef struct{<br>  int *base;//栈底指针<br>  int *top;//栈顶指针<br>  int stacksize;//栈可用的最大容量<br>}SqStack;<br>Status InitStack ( SqStack &amp;S);//顺序栈的初始化–<br>Status Push ( SqStack &amp;S , int e );//顺序栈的入栈–<br>Status Pop ( SqStack &amp;S , int &amp;e);//顺序栈的出栈–<br>Status StackEmpty( SqStack &amp;S );//判断栈空– </p>
-<p>int main ( void )<br>{<br>  int N;<br>  SqStack S;</p>
-<p>  InitStack ( S );//初始化空栈<br>  printf( “请输入一个十进制数：” );<br>  scanf( “%d”, &amp;N );<br>  while ( N )<br>  {<br>    Push( S, N % 2 ); //将N除以2的余数压入栈中<br>    N = N / 2; //每次取余后都要更新N的值，供下次取余运算使用<br>  }<br>  while ( !StackEmpty(S) )<br>  {<br>    Pop( S, N );<br>    printf( “%d”, N );<br>  }</p>
-<p>  return 0;<br>}</p>
-<p>Status InitStack ( SqStack &amp;S )<br>{//顺序栈的初始化<br>  S.base = new int[MAXSIZE];//为顺序栈动态分配一个最大容量为MAXSIZE的数组空间<br>  if(!S.base) exit (OVERFLOW);//存储分配失败<br>  S.top = S.base; //top初始为base,空栈<br>  S.stacksize = MAXSIZE; //stacksize置为栈的最大容量MAXSIEZE </p>
-<p>  return OK;<br>}<br>Status Push ( SqStack &amp;S , int e )<br>{//顺序栈的入栈<br>  if( S.top - S.base == S.stacksize ) return ERROR;//栈满<br>  *S.top++ = e;//先压栈，再S.top加1 </p>
-<p>  return OK;<br>}<br>Status Pop ( SqStack &amp;S , int &amp;e)<br>{//顺序栈的出栈<br>  if ( S.top == S.base ) return ERROR;//判断是否为空栈<br>  e = *–S.top;//先S.top减1，再将栈顶元素赋给e<br>  *S.top = 0; </p>
-<p>  return OK;<br>}<br>Status StackEmpty( SqStack &amp;S )<br>{//判断栈空<br>  if( S.top == S.base ) return ERROR;<br>  else return OK;<br>}</p>
-<h3 id="程序演示"><a href="#程序演示" class="headerlink" title="程序演示"></a>程序演示</h3><p><img src="https://scanf.top/wp-content/uploads/2019/12/c1282ed5d73b7d359360daf05afc4b5f.png" alt=""></p>
-]]></content>
-      <tags>
-        <tag>数据结构与算法</tag>
-        <tag>堆栈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>利用scanf的返回值控制循环</title>
     <url>/archives/48e7aab4.html</url>
     <content><![CDATA[<p>我们知道，<a href="https://www.scanf.top/cnotes/109.html" target="_blank" rel="noopener external nofollow noreferrer">scanf</a>函数有返回值。我们可以利用scanf的返回值控制while循环。示例如下：</p>
@@ -338,24 +318,23 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>在创建指针时使用const</title>
-    <url>/archives/b7ebd473.html</url>
-    <content><![CDATA[<p>//原始<br>#include&lt;stdio.h&gt;<br>int main ( void )<br>{<br>    int rates[5]={1,2,3,4,5};<br>    int * pd =rates;<br>    *pd++;<br>    printf(“%d”,*pd);</p>
-<pre><code>return 0;</code></pre><p>}</p>
-<p>  我们知道，示例中的pd是一个指针，指向rates首元素的地址，*pd==rates[0]==1。</p>
-<h3 id="const用法一："><a href="#const用法一：" class="headerlink" title="const用法一："></a>const用法一：</h3><p>现在希望*pd不被修改，可将原始程序第五行修改如下：</p>
-<p>const int * pd =rates;</p>
-<p>const的作用，程序执行时将*pd视为一个常量，不可被修改。下面这个程序试图修改*pd，编译器编译时报错：<em>[Error] assignment of read-only location ‘*pd’</em></p>
-<p>//编译该程序看看会发生什么<br>#include&lt;stdio.h&gt;<br>int main ( void )<br>{<br>    int rates[5]={1,2,3,4,5};<br>    const int * pd =rates;<br>    *pd=1;<br>    printf(“%d”,*pd);</p>
-<pre><code>return 0;</code></pre><p>}</p>
-<h3 id="const用法二："><a href="#const用法二：" class="headerlink" title="const用法二："></a>const用法二：</h3><p>现在希望pd（其值为地址）不被修改，修改原始程序如下：</p>
-<p>//编译该程序看看会发生什么<br>#include&lt;stdio.h&gt;<br>int main ( void )<br>{<br>    int rates[5]={1,2,3,4,5};<br>    int * const pd =rates;<br>    *pd++;<br>    printf(“%d”,*pd);</p>
-<pre><code>return 0;</code></pre><p>}</p>
-<p>编译该程序，报错：<em>assignment of read-only location ‘*pd’</em> 要搞清楚为什么报错，需要了解“*pd++”中*和++的优先级，查阅运算符优先级表，发现*和++（运算符后置）优先级相同，但结合方向是从右到左的，所以*pd++等同于*(pd++)。程序视pd为常量，和1++同理，显然不对的。</p>
+    <title>利用堆栈实现数制转换。</title>
+    <url>/archives/4149ca8d.html</url>
+    <content><![CDATA[<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a><strong>算法思想</strong></h3><p>① 定义一个结构体，其中包括栈顶指针、栈底指针和栈的最大可用容量。 ② 初始化一个空栈 Ⅰ.申请一块最大容量为MAXSIZE的数组内存，并将首地址返回给栈底指针。 Ⅱ.将栈设置为空栈，即栈顶指针初始化为栈底指针。 ③ 将处理后的数据压入栈中，判断是否栈满，如果栈满，则返回相应的状态信息；如果栈未满，将数据压入栈中，然后栈顶指针加1. ④ 出栈，判断栈是否为空，如果栈空，则返回相应的状态信息；如果栈非空，栈顶指针减1，再将栈顶元素赋给变量e。</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a><strong>具体实现</strong></h3><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt; //提供exit函数<br>#define MAXSIZE 100<br>#define OK 0<br>#define ERROR 1<br>#define OVERFLOW -2</p>
+<p>typedef int Status;<br>typedef struct{<br>  int *base;//栈底指针<br>  int *top;//栈顶指针<br>  int stacksize;//栈可用的最大容量<br>}SqStack;<br>Status InitStack ( SqStack &amp;S);//顺序栈的初始化–<br>Status Push ( SqStack &amp;S , int e );//顺序栈的入栈–<br>Status Pop ( SqStack &amp;S , int &amp;e);//顺序栈的出栈–<br>Status StackEmpty( SqStack &amp;S );//判断栈空– </p>
+<p>int main ( void )<br>{<br>  int N;<br>  SqStack S;</p>
+<p>  InitStack ( S );//初始化空栈<br>  printf( “请输入一个十进制数：” );<br>  scanf( “%d”, &amp;N );<br>  while ( N )<br>  {<br>    Push( S, N % 2 ); //将N除以2的余数压入栈中<br>    N = N / 2; //每次取余后都要更新N的值，供下次取余运算使用<br>  }<br>  while ( !StackEmpty(S) )<br>  {<br>    Pop( S, N );<br>    printf( “%d”, N );<br>  }</p>
+<p>  return 0;<br>}</p>
+<p>Status InitStack ( SqStack &amp;S )<br>{//顺序栈的初始化<br>  S.base = new int[MAXSIZE];//为顺序栈动态分配一个最大容量为MAXSIZE的数组空间<br>  if(!S.base) exit (OVERFLOW);//存储分配失败<br>  S.top = S.base; //top初始为base,空栈<br>  S.stacksize = MAXSIZE; //stacksize置为栈的最大容量MAXSIEZE </p>
+<p>  return OK;<br>}<br>Status Push ( SqStack &amp;S , int e )<br>{//顺序栈的入栈<br>  if( S.top - S.base == S.stacksize ) return ERROR;//栈满<br>  *S.top++ = e;//先压栈，再S.top加1 </p>
+<p>  return OK;<br>}<br>Status Pop ( SqStack &amp;S , int &amp;e)<br>{//顺序栈的出栈<br>  if ( S.top == S.base ) return ERROR;//判断是否为空栈<br>  e = *–S.top;//先S.top减1，再将栈顶元素赋给e<br>  *S.top = 0; </p>
+<p>  return OK;<br>}<br>Status StackEmpty( SqStack &amp;S )<br>{//判断栈空<br>  if( S.top == S.base ) return ERROR;<br>  else return OK;<br>}</p>
+<h3 id="程序演示"><a href="#程序演示" class="headerlink" title="程序演示"></a>程序演示</h3><p><img src="https://scanf.top/wp-content/uploads/2019/12/c1282ed5d73b7d359360daf05afc4b5f.png" alt=""></p>
 ]]></content>
       <tags>
-        <tag>C/C++笔记</tag>
-        <tag>const</tag>
+        <tag>数据结构与算法</tag>
+        <tag>堆栈</tag>
       </tags>
   </entry>
   <entry>
@@ -383,15 +362,24 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>对比while和for循环中的continue语句</title>
-    <url>/archives/bd64a196.html</url>
-    <content><![CDATA[<p>我们知道，3中循环都可以使用continue语句，执行到该语句时，会跳过本次迭代的剩余部分，并进行下一轮迭代。你应该知道，continue只会影响包含该语句的内层循环，但是continue在while和for中的差别常常被人们忽略。</p>
-<h3 id="一、while和do-while中的continue"><a href="#一、while和do-while中的continue" class="headerlink" title="一、while和do while中的continue"></a>一、while和do while中的continue</h3><p>while中遇到continue，程序直接进入下一次迭代。</p>
-<h3 id="二、for中的continue"><a href="#二、for中的continue" class="headerlink" title="二、for中的continue"></a>二、for中的continue</h3><p>for循环中遇到continue，程序会跳过本次迭代剩余的部分，<strong>再更新表达式求值</strong>，再进入下一次迭代。</p>
+    <title>在创建指针时使用const</title>
+    <url>/archives/b7ebd473.html</url>
+    <content><![CDATA[<p>//原始<br>#include&lt;stdio.h&gt;<br>int main ( void )<br>{<br>    int rates[5]={1,2,3,4,5};<br>    int * pd =rates;<br>    *pd++;<br>    printf(“%d”,*pd);</p>
+<pre><code>return 0;</code></pre><p>}</p>
+<p>  我们知道，示例中的pd是一个指针，指向rates首元素的地址，*pd==rates[0]==1。</p>
+<h3 id="const用法一："><a href="#const用法一：" class="headerlink" title="const用法一："></a>const用法一：</h3><p>现在希望*pd不被修改，可将原始程序第五行修改如下：</p>
+<p>const int * pd =rates;</p>
+<p>const的作用，程序执行时将*pd视为一个常量，不可被修改。下面这个程序试图修改*pd，编译器编译时报错：<em>[Error] assignment of read-only location ‘*pd’</em></p>
+<p>//编译该程序看看会发生什么<br>#include&lt;stdio.h&gt;<br>int main ( void )<br>{<br>    int rates[5]={1,2,3,4,5};<br>    const int * pd =rates;<br>    *pd=1;<br>    printf(“%d”,*pd);</p>
+<pre><code>return 0;</code></pre><p>}</p>
+<h3 id="const用法二："><a href="#const用法二：" class="headerlink" title="const用法二："></a>const用法二：</h3><p>现在希望pd（其值为地址）不被修改，修改原始程序如下：</p>
+<p>//编译该程序看看会发生什么<br>#include&lt;stdio.h&gt;<br>int main ( void )<br>{<br>    int rates[5]={1,2,3,4,5};<br>    int * const pd =rates;<br>    *pd++;<br>    printf(“%d”,*pd);</p>
+<pre><code>return 0;</code></pre><p>}</p>
+<p>编译该程序，报错：<em>assignment of read-only location ‘*pd’</em> 要搞清楚为什么报错，需要了解“*pd++”中*和++的优先级，查阅运算符优先级表，发现*和++（运算符后置）优先级相同，但结合方向是从右到左的，所以*pd++等同于*(pd++)。程序视pd为常量，和1++同理，显然不对的。</p>
 ]]></content>
       <tags>
         <tag>C/C++笔记</tag>
-        <tag>continue</tag>
+        <tag>const</tag>
       </tags>
   </entry>
   <entry>
@@ -403,6 +391,32 @@ return 0;</code></pre><p>}</p>
       <tags>
         <tag>C/C++笔记</tag>
         <tag>函数声明</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>指针数组和数组指针</title>
+    <url>/archives/ea0c206d.html</url>
+    <content><![CDATA[<h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><p>（1）指针数组：它实际上是一个数组，数组的每个元素存放的是一个指针类型的元素。</p>
+<p>int* arr[8];<br>//优先级问题：[]的优先级比*高<br>//说明arr是一个数组，而int*是数组里面的内容<br>//这句话的意思就是：arr是一个含有8和int*的数组</p>
+<p>（2）数组指针：它实际上是一个指针，该指针指向一个数组。</p>
+<p>int (*arr)[8];<br>//由于[]的优先级比*高，因此在写数组指针的时候必须将*arr用括号括起来<br>//arr先和*结合，说明p是一个指针变量<br>//这句话的意思就是：指针arr指向一个大小为8个整型的数组。</p>
+<h3 id="二、传参"><a href="#二、传参" class="headerlink" title="二、传参"></a>二、传参</h3><h4 id="1、一维数组传参"><a href="#1、一维数组传参" class="headerlink" title="1、一维数组传参"></a>1、一维数组传参</h4><p>#include &lt;stdio.h&gt;<br>//传参方式正确<br>//用数组的形式传递参数，不需要指定参数的大小，因为在一维数组传参时，形参不会真实的创建数组，传的只是数组首元素的地址。（如果是变量的值传递，那么形参就是实参的一份拷贝）<br>void test(int arr[])<br>{}</p>
+<p>//传参方式正确<br>//不传参数可以，传递参数当然也可以<br>void test(int arr[10])<br>{}</p>
+<p>//传参方式正确<br>//一维数组传参退化，用指针进行接收，传的是数组首元素的地址<br>void test(int *arr)<br>{}</p>
+<p>//传参方式正确<br>//*arr[20]是指针数组，传过去的是数组名<br>void test2(int *arr[20])<br>{}</p>
+<p>//传参方式正确<br>//传过去是指针数组的数组名，代表首元素地址，首元素是个指针向数组的指针，再取地址，就表示二级指针，用二级指针接收<br>void test2(int **arr)<br>{}<br>int main()<br>{<br>int arr[10] = {0};<br>int *arr2[20] = {0};<br>test(arr);<br>test2(arr2);<br>}</p>
+<h4 id="2、二维数组传参"><a href="#2、二维数组传参" class="headerlink" title="2、二维数组传参"></a>2、二维数组传参</h4><p>//传参正确<br>//表明二维数组的大小，三行五列<br>void test(int arr[3][5])<br>{}</p>
+<p>//传参不正确<br>//二维数组的两个方括号，不能全部为空，也不能第二个为空，只能第一个为空<br>void test(int arr[][])<br>{}</p>
+<p>//传参正确<br>//可以写成如下这样传参形式，但是不能写int arr[3][]<br>void test(int arr[][5])<br>{}</p>
+<p>//传参不正确<br>//arr是一级指针，可以传给二维数组，但是不能正确读取<br>void test(int *arr)<br>{}</p>
+<p>//传参不正确<br>//这里的形参是指针数组，是一维的，可以传参，但是读取的数据不正确<br>void test(int* arr[5])<br>{}</p>
+<p>//传参正确<br>//传过去的是二维数组的数组名，即数组首元素的地址，也就是第一行的地址，第一行也是个数组，用一个数组指针接收<br>void test(int (*arr)[5])<br>{}</p>
+<p>//传参不正确<br>//可以传参，但是在读取的时候会有级别不同的问题<br>void test(int **arr)<br>{}<br>int main()<br>{<br>int arr[3][5] = {0};<br>test(arr);<br>}</p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>指针数组</tag>
+        <tag>数组指针</tag>
       </tags>
   </entry>
   <entry>
@@ -433,29 +447,15 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>指针数组和数组指针</title>
-    <url>/archives/ea0c206d.html</url>
-    <content><![CDATA[<h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><p>（1）指针数组：它实际上是一个数组，数组的每个元素存放的是一个指针类型的元素。</p>
-<p>int* arr[8];<br>//优先级问题：[]的优先级比*高<br>//说明arr是一个数组，而int*是数组里面的内容<br>//这句话的意思就是：arr是一个含有8和int*的数组</p>
-<p>（2）数组指针：它实际上是一个指针，该指针指向一个数组。</p>
-<p>int (*arr)[8];<br>//由于[]的优先级比*高，因此在写数组指针的时候必须将*arr用括号括起来<br>//arr先和*结合，说明p是一个指针变量<br>//这句话的意思就是：指针arr指向一个大小为8个整型的数组。</p>
-<h3 id="二、传参"><a href="#二、传参" class="headerlink" title="二、传参"></a>二、传参</h3><h4 id="1、一维数组传参"><a href="#1、一维数组传参" class="headerlink" title="1、一维数组传参"></a>1、一维数组传参</h4><p>#include &lt;stdio.h&gt;<br>//传参方式正确<br>//用数组的形式传递参数，不需要指定参数的大小，因为在一维数组传参时，形参不会真实的创建数组，传的只是数组首元素的地址。（如果是变量的值传递，那么形参就是实参的一份拷贝）<br>void test(int arr[])<br>{}</p>
-<p>//传参方式正确<br>//不传参数可以，传递参数当然也可以<br>void test(int arr[10])<br>{}</p>
-<p>//传参方式正确<br>//一维数组传参退化，用指针进行接收，传的是数组首元素的地址<br>void test(int *arr)<br>{}</p>
-<p>//传参方式正确<br>//*arr[20]是指针数组，传过去的是数组名<br>void test2(int *arr[20])<br>{}</p>
-<p>//传参方式正确<br>//传过去是指针数组的数组名，代表首元素地址，首元素是个指针向数组的指针，再取地址，就表示二级指针，用二级指针接收<br>void test2(int **arr)<br>{}<br>int main()<br>{<br>int arr[10] = {0};<br>int *arr2[20] = {0};<br>test(arr);<br>test2(arr2);<br>}</p>
-<h4 id="2、二维数组传参"><a href="#2、二维数组传参" class="headerlink" title="2、二维数组传参"></a>2、二维数组传参</h4><p>//传参正确<br>//表明二维数组的大小，三行五列<br>void test(int arr[3][5])<br>{}</p>
-<p>//传参不正确<br>//二维数组的两个方括号，不能全部为空，也不能第二个为空，只能第一个为空<br>void test(int arr[][])<br>{}</p>
-<p>//传参正确<br>//可以写成如下这样传参形式，但是不能写int arr[3][]<br>void test(int arr[][5])<br>{}</p>
-<p>//传参不正确<br>//arr是一级指针，可以传给二维数组，但是不能正确读取<br>void test(int *arr)<br>{}</p>
-<p>//传参不正确<br>//这里的形参是指针数组，是一维的，可以传参，但是读取的数据不正确<br>void test(int* arr[5])<br>{}</p>
-<p>//传参正确<br>//传过去的是二维数组的数组名，即数组首元素的地址，也就是第一行的地址，第一行也是个数组，用一个数组指针接收<br>void test(int (*arr)[5])<br>{}</p>
-<p>//传参不正确<br>//可以传参，但是在读取的时候会有级别不同的问题<br>void test(int **arr)<br>{}<br>int main()<br>{<br>int arr[3][5] = {0};<br>test(arr);<br>}</p>
+    <title>对比while和for循环中的continue语句</title>
+    <url>/archives/bd64a196.html</url>
+    <content><![CDATA[<p>我们知道，3中循环都可以使用continue语句，执行到该语句时，会跳过本次迭代的剩余部分，并进行下一轮迭代。你应该知道，continue只会影响包含该语句的内层循环，但是continue在while和for中的差别常常被人们忽略。</p>
+<h3 id="一、while和do-while中的continue"><a href="#一、while和do-while中的continue" class="headerlink" title="一、while和do while中的continue"></a>一、while和do while中的continue</h3><p>while中遇到continue，程序直接进入下一次迭代。</p>
+<h3 id="二、for中的continue"><a href="#二、for中的continue" class="headerlink" title="二、for中的continue"></a>二、for中的continue</h3><p>for循环中遇到continue，程序会跳过本次迭代剩余的部分，<strong>再更新表达式求值</strong>，再进入下一次迭代。</p>
 ]]></content>
       <tags>
         <tag>C/C++笔记</tag>
-        <tag>指针数组</tag>
-        <tag>数组指针</tag>
+        <tag>continue</tag>
       </tags>
   </entry>
   <entry>
@@ -480,17 +480,6 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>无缓冲输入和缓冲输入</title>
-    <url>/archives/d45baae6.html</url>
-    <content><![CDATA[<h3 id="什么是无缓冲输入和缓冲输入？"><a href="#什么是无缓冲输入和缓冲输入？" class="headerlink" title="什么是无缓冲输入和缓冲输入？"></a>什么是无缓冲输入和缓冲输入？</h3><p>无缓冲输入：用户输入字符后立即打印该字符。 缓冲输入：用户输入的字符被收集并存储在一个叫做缓冲区的临时存储区，按下<strong>Enter</strong>键后，程序才使用用户输入的字符。</p>
-<h3 id="为什么要有缓冲区？"><a href="#为什么要有缓冲区？" class="headerlink" title="为什么要有缓冲区？"></a>为什么要有缓冲区？</h3><p>首先，把若干字符作为一个块进行传输比逐个发送这些字符节约时间。其次，如果用户打错字符，可以直接通过键盘修正错误。当最后按下Enter键时，传输的是正确的输入。</p>
-]]></content>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>缓冲区</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>文本模式和二进制模式</title>
     <url>/archives/21d0fb11.html</url>
     <content><![CDATA[<h3 id="文件的定义：文件是在磁盘上一段已命名的存储区-。"><a href="#文件的定义：文件是在磁盘上一段已命名的存储区-。" class="headerlink" title="_文件的定义：文件是在磁盘上一段已命名的存储区_。"></a>_文件的定义：文件是在磁盘上一段已命名的<strong>存储区</strong>_。</h3><h3 id="一、疑惑"><a href="#一、疑惑" class="headerlink" title="一、疑惑"></a>一、疑惑</h3><p>在学习C语言读取文件的时候，首先学习到的是C语言读取文件时分文本模式和二进制模式。给好多人造成疑惑，文件存储时要分类？二进制存储和文本存储完全不相同？对于纯文本必须使用文本模式？对于纯数字必须使用二进制模式？如果你对这些有疑惑，这篇文章适合你，如果你是来看函数时如何使用的，可能你要另寻他处了。</p>
@@ -507,17 +496,15 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>理解函数递归调用的过程</title>
-    <url>/archives/9a3fe690.html</url>
-    <content><![CDATA[<p>C允许函数调用它自己，这种调用过程称为递归。</p>
-<h3 id="一、演示递归"><a href="#一、演示递归" class="headerlink" title="一、演示递归"></a>一、演示递归</h3><p>#include&lt;stdio.h&gt;<br>int ken(int b);<br>int main( void )<br>{<br>    int b,c;<br>    scanf(“%d”,&amp;b);<br>    c=ken(b);<br>    printf(“%d”,c);</p>
-<pre><code>return 0;</code></pre><p>}<br>int ken(int b)<br>{<br>    if(b&gt;1)<br>    {<br>        b=b*ken(b-1);<br>    printf(“%d\n”,b);<br>    }<br>    return b; //将b的值返回给上一级调用函数<br>}</p>
-<p>这是一个演示递归的程序，递归函数调用的过程如下图：</p>
-<p><img src="https://scanf.top/wp-content/uploads/2019/08/fullsizerender.jpg" alt=""></p>
+    <title>没有花括号的while循环</title>
+    <url>/archives/215d6fa0.html</url>
+    <content><![CDATA[<p>有如下一个while示例：</p>
+<p>while ( x &gt; 1 )<br>语句a;<br>语句b;<br>……</p>
+<p>这是一个没有花括号的while循环。圆括号中的条件一直为真就一直执行语句a，条件为假将跳过语句a，并跳出循环执行语句a下面的语句，本例中将执行从语句b开始以下的语句。</p>
 ]]></content>
       <tags>
         <tag>C/C++笔记</tag>
-        <tag>递归</tag>
+        <tag>while</tag>
       </tags>
   </entry>
   <entry>
@@ -542,25 +529,14 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>缓冲流的存在有什么意义？</title>
-    <url>/archives/4115c28f.html</url>
-    <content><![CDATA[<p>BufferedInputStream和BufferedoutputStream是FilterInputStream和FilterOutputStream的子类，可以避免每次发送或者写数据的时候，进行实际的写操作，使用的是缓冲区； 不应用缓冲区的时候，每次读取一个字节，写入一个字节，由于操作磁盘比内存慢的很多，所以不应用缓冲区效率很低； 应用缓冲区，可以一次读取多个字节，先不写入磁盘，而是放入内存之中，到了缓冲区大小的时候，在写入磁盘，减少了对磁盘的操作，效率高； 应用缓冲流，在结束的时候，调用flush和close方法，将缓冲区的数据都清理出来，，写入磁盘，否则可能无数据； 当写文件需要flush()的效果时，需要  FileOutputStream fos = new FileOutputStream(“c:\a.txt”);  BufferedOutputStream bos = new BufferedOutputStream(fos);  也就是说，需要将FileOutputStream作为BufferedOutputStream构造函数的参数传入，然后对BufferedOutputStream进行写入操作，才能利用缓冲及flush()。 1.BufferedOutputStream在close()时会自动flush  2.BufferedOutputStream在不调用close()的情况下，缓冲区不满，又需要把缓冲区的内容写入到文件或通过网络发送到别的机器时，才需要调用flush. ———————————————— 原文链接：<a href="https://blog.csdn.net/HEB\_ZZQ/java/article/details/80944570" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/HEB\_ZZQ/java/article/details/80944570</a></p>
-]]></content>
-      <tags>
-        <tag>java笔记</tag>
-        <tag>缓冲流</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>没有花括号的while循环</title>
-    <url>/archives/215d6fa0.html</url>
-    <content><![CDATA[<p>有如下一个while示例：</p>
-<p>while ( x &gt; 1 )<br>语句a;<br>语句b;<br>……</p>
-<p>这是一个没有花括号的while循环。圆括号中的条件一直为真就一直执行语句a，条件为假将跳过语句a，并跳出循环执行语句a下面的语句，本例中将执行从语句b开始以下的语句。</p>
+    <title>无缓冲输入和缓冲输入</title>
+    <url>/archives/d45baae6.html</url>
+    <content><![CDATA[<h3 id="什么是无缓冲输入和缓冲输入？"><a href="#什么是无缓冲输入和缓冲输入？" class="headerlink" title="什么是无缓冲输入和缓冲输入？"></a>什么是无缓冲输入和缓冲输入？</h3><p>无缓冲输入：用户输入字符后立即打印该字符。 缓冲输入：用户输入的字符被收集并存储在一个叫做缓冲区的临时存储区，按下<strong>Enter</strong>键后，程序才使用用户输入的字符。</p>
+<h3 id="为什么要有缓冲区？"><a href="#为什么要有缓冲区？" class="headerlink" title="为什么要有缓冲区？"></a>为什么要有缓冲区？</h3><p>首先，把若干字符作为一个块进行传输比逐个发送这些字符节约时间。其次，如果用户打错字符，可以直接通过键盘修正错误。当最后按下Enter键时，传输的是正确的输入。</p>
 ]]></content>
       <tags>
         <tag>C/C++笔记</tag>
-        <tag>while</tag>
+        <tag>缓冲区</tag>
       </tags>
   </entry>
   <entry>
@@ -577,6 +553,114 @@ return 0;</code></pre><p>}</p>
         <tag>数据结构与算法</tag>
         <tag>链表</tag>
         <tag>头结点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理解函数递归调用的过程</title>
+    <url>/archives/9a3fe690.html</url>
+    <content><![CDATA[<p>C允许函数调用它自己，这种调用过程称为递归。</p>
+<h3 id="一、演示递归"><a href="#一、演示递归" class="headerlink" title="一、演示递归"></a>一、演示递归</h3><p>#include&lt;stdio.h&gt;<br>int ken(int b);<br>int main( void )<br>{<br>    int b,c;<br>    scanf(“%d”,&amp;b);<br>    c=ken(b);<br>    printf(“%d”,c);</p>
+<pre><code>return 0;</code></pre><p>}<br>int ken(int b)<br>{<br>    if(b&gt;1)<br>    {<br>        b=b*ken(b-1);<br>    printf(“%d\n”,b);<br>    }<br>    return b; //将b的值返回给上一级调用函数<br>}</p>
+<p>这是一个演示递归的程序，递归函数调用的过程如下图：</p>
+<p><img src="https://scanf.top/wp-content/uploads/2019/08/fullsizerender.jpg" alt=""></p>
+]]></content>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>缓冲流的存在有什么意义？</title>
+    <url>/archives/4115c28f.html</url>
+    <content><![CDATA[<p>BufferedInputStream和BufferedoutputStream是FilterInputStream和FilterOutputStream的子类，可以避免每次发送或者写数据的时候，进行实际的写操作，使用的是缓冲区； 不应用缓冲区的时候，每次读取一个字节，写入一个字节，由于操作磁盘比内存慢的很多，所以不应用缓冲区效率很低； 应用缓冲区，可以一次读取多个字节，先不写入磁盘，而是放入内存之中，到了缓冲区大小的时候，在写入磁盘，减少了对磁盘的操作，效率高； 应用缓冲流，在结束的时候，调用flush和close方法，将缓冲区的数据都清理出来，，写入磁盘，否则可能无数据； 当写文件需要flush()的效果时，需要  FileOutputStream fos = new FileOutputStream(“c:\a.txt”);  BufferedOutputStream bos = new BufferedOutputStream(fos);  也就是说，需要将FileOutputStream作为BufferedOutputStream构造函数的参数传入，然后对BufferedOutputStream进行写入操作，才能利用缓冲及flush()。 1.BufferedOutputStream在close()时会自动flush  2.BufferedOutputStream在不调用close()的情况下，缓冲区不满，又需要把缓冲区的内容写入到文件或通过网络发送到别的机器时，才需要调用flush. ———————————————— 原文链接：<a href="https://blog.csdn.net/HEB\_ZZQ/java/article/details/80944570" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/HEB\_ZZQ/java/article/details/80944570</a></p>
+]]></content>
+      <tags>
+        <tag>java笔记</tag>
+        <tag>缓冲流</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初识Java多线程编程</title>
+    <url>/archives/22330b77.html</url>
+    <content><![CDATA[<blockquote>
+<p><strong>多线程的目的：</strong>较好的利用计算机CPU资源。</p>
+</blockquote>
+<h1 id="1-什么是线程、进程和多线程"><a href="#1-什么是线程、进程和多线程" class="headerlink" title="1 什么是线程、进程和多线程"></a><strong>1 什么是线程、进程和多线程</strong></h1><ul>
+<li>线程 &gt; 线程是进程的一个循序控制流。</li>
+<li>进程 &gt; 进程是程序运行的一个实例， 一个进程可以有多个线程。</li>
+<li>多线程 &gt; Java多线程编程是一种机制，它允许在程序中并发执行多个指令流，每个指令流都是一个线程，彼此之间相互独立。</li>
+</ul>
+<h1 id="2-线程的生命周期"><a href="#2-线程的生命周期" class="headerlink" title="2 线程的生命周期"></a><strong>2 线程的生命周期</strong></h1><p>线程可以有五个状态，新建、就绪、运行、阻塞和消亡状态。 <img src="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_bcfc7815219ad1201f5ca052e97f057e.jpg" alt="线程生命周期"> 1. 新建：采用new语句创建完成。 2. 就绪：执行Start()方法后。 3. 运行：执行run()方法后，占用CPU时间。 4. 阻塞：阻塞是指在运行的线程没有运行结束，但是让出了CPU资源，这时其他处于就绪状态的线程就可以获得CPU时间，从而进入运行状态。Java线程中sleep(),suspend(),wait()等可以让线程阻塞，阻塞完成后，不会直接进入运行状态，而是要进入就绪队列等待，得到CPU资源后才可以运行。</p>
+<h1 id="3-Java中实现多线程的两种方法"><a href="#3-Java中实现多线程的两种方法" class="headerlink" title="3 Java中实现多线程的两种方法"></a><strong>3 Java中实现多线程的两种方法</strong></h1><h2 id="3-1-方法一：继承Thread类，并覆写run-方法"><a href="#3-1-方法一：继承Thread类，并覆写run-方法" class="headerlink" title="3.1 方法一：继承Thread类，并覆写run()方法"></a><strong>3.1 方法一：继承Thread类，并覆写run()方法</strong></h2><p>代码演示：</p>
+<pre><code>package top.scanf.Demo;
+
+public class ThreadTest {
+    public static void main(String[] args) {
+        //Thread thread = new Thread(new Thread1(),&quot;线程一呀&quot;);
+        Thread1 thread1 = new Thread1();//新建一个线程
+        thread1.start();//让线程进入就绪状态
+        System.out.println(&quot;main线程结束&quot;);
+    }
+}
+class Thread1 extends Thread {
+    @Override
+    public void run() {
+        int time = 0;
+        while (time &lt;= 10) {
+            System.out.println(&quot;线程一运行中&quot; + time);
+            time++;
+            try {
+                Thread.sleep(100);//休眠100ms
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(&quot;线程一结束&quot;);
+    }
+}</code></pre><h2 id="3-2-方法二：实现Runnable接口，并实现run-方法"><a href="#3-2-方法二：实现Runnable接口，并实现run-方法" class="headerlink" title="3.2 方法二：实现Runnable接口，并实现run()方法"></a><strong>3.2 方法二：实现Runnable接口，并实现run()方法</strong></h2><p>代码演示：</p>
+<pre><code>package top.scanf.Demo;
+
+public class RunnableTest {
+    public static void main(String[] args) {
+        //新建一个MyRunnable对象，并将该对象包装成Thread对象
+        Thread newThread = new Thread(new MyRunnable(),&quot;Runnable1&quot;);
+        newThread.start();//让线程进入就绪状态
+        System.out.println(&quot;主线程结束&quot;);
+
+    }
+}
+class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        int time = 0;
+        while (time &lt; 10) {
+            System.out.println(&quot;线程一运行中&quot; + time);
+            time++;
+            try {
+                Thread.sleep(300);//休眠300ms
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(&quot;Runnable线程结束&quot;);
+    }
+}</code></pre><h1 id="4-线程的调度和同步问题"><a href="#4-线程的调度和同步问题" class="headerlink" title="4 线程的调度和同步问题"></a><strong>4 线程的调度和同步问题</strong></h1><h2 id="4-1-线程的调度"><a href="#4-1-线程的调度" class="headerlink" title="4.1 线程的调度"></a><strong>4.1 线程的调度</strong></h2><p>线程的调度模型：</p>
+<ol>
+<li><p>分时调度模型：所有线程轮流使用CPU的使用权，平均分配每个线程占用CPU的时间片。</p>
+</li>
+<li><p>抢占式调度模型：优先让优先级高的线程使用CPU,如果线程的优先级相同，则随机选择一个．</p>
+</li>
+</ol>
+<p><strong>Java使用抢占式调度模型:</strong>一共有10个级别的线程优先级,可取1-10之间的整数,数值越大优先级越高,默认优先级是5,优先级越高的线程越容易被操作系统选择执行,但是优先级高的不一定先执行.</p>
+<h2 id="4-2-线程的同步"><a href="#4-2-线程的同步" class="headerlink" title="4.2 线程的同步"></a><strong>4.2 线程的同步</strong></h2><p>为了解决多个线程访问同一个资源时可能会引发一些安全问题,需要实现多线程的同步,即限制某个资源在同一时刻只能被同一个线程访问. 经常使用synchronized关键字修饰同步方法或同步块. 被synchronized修饰的代码块或方法,同一时刻只能被一个线程调用,后来的线程必须等待第一个线程调用该方法结束后才能继续运行.</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>java笔记</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -668,26 +752,6 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>byte类型的取值为什么是-128~127</title>
-    <url>/archives/370b7f8.html</url>
-    <content><![CDATA[<p>Java的byte类型取值范围是-128~127为什么是-128到127呢 <img src="https://scanf.top/wp-content/uploads/2020/02/6d92da42982fdc702b0297ff13f4de64.png" alt=""></p>
-<h3 id="一、首先需要了解原码反码和补码"><a href="#一、首先需要了解原码反码和补码" class="headerlink" title="一、首先需要了解原码反码和补码"></a>一、首先需要了解原码反码和补码</h3><p>正数的原码反码补码是一样的 [+2]=[00000010]原=[00000010]反=[00000010]补 对于负数来说，它的原码反码补码就不相同 [-2]=[10000010]原=[11111101]反=[11111110]补 最高位表示符号位0代表正数1代表负数，负数计算反码的规则是符号位不变，其余位取反即1变成0,0变成1，补码就是反码再加1</p>
-<h3 id="二、为什么要设计出反码和补码"><a href="#二、为什么要设计出反码和补码" class="headerlink" title="二、为什么要设计出反码和补码"></a>二、为什么要设计出反码和补码</h3><p>因为计算机只有加法没有，减法，在做减法运算的时候，可以认为是加上一个负数，这样可以减少计算机电路的复杂度。 使用原码进行减法运算会出现问题，例如计算1-1，因为计算机没有加法只有减法，所以计算机自动换算成1+(-1) 1-1=1+(-1)=[00000001]原+[10000001]原=[10000010]原=-2 （符号位也参与运算） 而1-1的实际结果是0. 为了解决这个问题，于是使用反码运算 1-1=1+(-1)=[00000001]原+[10000001]原=[00000001]反+[11111110]反=[11111111]反=[10000000]原=-0 通过反码计算的结果是11111111在计算一次反就成原码了，得出的结果是正确的，但是有一个问题是 00000000可以代表+0。 10000000可以代表-0，其实是一样的，用2个编码实在是浪费。于是出现了补码解决0的符号以及两个编码的问题。 1-1=1+(-1)=[00000001]原+[10000001]原=[00000001]补+[11111111]补=[00000000]补=[00000000]原 这样0用[0000 0000]表示, 而以前出现问题的-0则不存在了.而且可以用[1000 0000]表示-128:但是注意<strong>因为实际上是使用以前的-0的补码来表示-128, 所以-128并没有原码和反码表示</strong>.(对-128的补码表示[1000 0000]补算出来的原码是[0000 0000]原, 这是不正确的) 使用补码，不仅仅修复了0的符号以及存在两个编码的问题，而且还能够多表示一个最低数。这就是为什么8位二进制，使用原码或者反码表示的范围是[-127<del>127],而使用补码表示的范围为[-128</del>127] <strong>总结：反码是为了解决减法运算，补码是为了解决反码产生的+-0的问题</strong>  </p>
-<h3 id="三、下面来分析为什么byte型的取值范围为什么是-128-127"><a href="#三、下面来分析为什么byte型的取值范围为什么是-128-127" class="headerlink" title="三、下面来分析为什么byte型的取值范围为什么是-128~127"></a>三、下面来分析为什么byte型的取值范围为什么是-128~127</h3><p>1，byte占用8位，每位用0或者1表示，能够表示258(2^8)个数据 2，这8位分为符号位（最高位）和数值位(剩余七位)，符号位0表示正数，1表示负数。 3，按上一步的理解，容易得到（+127：0111 1111、+1：0000 0001、+0：0000 0000、-0：1000 0000、-1：1000 0001、-127：1111 1111），计算机底层定义了+0（0000 0000）就是0，那么“可怜的-0”又该何去何从呢？计算机遇到这个二进制该如何处理呢？总不能把这两个都对应0吧，这显然是资源浪费。 4，到这里我们都认为最高位是不参与计算数值的，仅仅是一个符号位，按这种思路byte的八位是无论如何也表示不出-128。而“可怜的-0”又不知道自己代表谁，不得而知“可怜的-0”就是-128。 5，到这里我们已经很粗浅地回答了-128<del>127中的-128的由来，基本也回答了这个题目。 6，可是对于程序员来说，上诉的分析【首先】是结论正确，但是过程错了。错误在于，负数的二进制表示是错误的，比如-127：1111 1111，这是不对的。计算机发现了1111 1111会把它认为是-1而不是-127。【其次】没有解释为什么-0最后表示成-128。 7，计算机基础知识补充 &lt;1&gt;计算机存储有符号的整数是都是存储它们的补码。Java语言都是有符号位的。 &lt;2&gt;正数和0的补码、反码是本身原码；所以对于正数来说，可以理解为不存在反码和补码。 &lt;3&gt;负数的反码是是符号位不变，其它位取反；补码是在负数的基础上加1（符号位不变）。负数就是矫情啊！ &lt;4&gt;计算机中用补码进行减法运算。 8，接着从人的思考方式理解下当计算机处理1111 1111的过程，首位是1，自然是负数，而且这是补码，那么对应的原码就是，先减1，变成1111 1110，符号位不变，其他取反，变成1000 0001，也就是-1！所以从10000001到11111111依次表示-127到-1 9，最后来解决这-128为什么可以用100000000表示 这里我分析的是byte，它就8位。在无符号位的二进制中128的表示为1000 0000。有符号位的情况下byte好像无法表示+128或-128。 如果我们假设byte不是占用8位，而是9位，最高位是符号位。你们-128的表示为1 10000 0000，计算其补码也是1 1000 0000，很神奇吧，一样的。-128补码尾8位就是1000 0000。那就规定1000 0000是-128的补码，而-128是没有原码和反码的，即不能利用10000 0000反推其反码和原码。 10，如果你对9步的推导表示不太接受，那么<strong>简单就认为计算机规定了1000 0000就是-128</strong>，是一种人为设计没有什么道理可以言（据说是印度阿三设计的）。其实这么设计也是很巧妙的，在于： 【其一】对于如果大于8位的有符号整数数据类型，-128的补码尾八位刚好是1000 0000 【其二】比如127（0111 1111）加1（0000 0001）刚好得到-128（1000 0000），-128（1000 0000）加1（0000 00001）等于-127（1000 0001）这样从-128</del>127的反码首尾相连,形成了一个闭环，就像时钟一样。 【其三】在计算机中减法运算可以转换成加法运算，比如8-1——&gt;8+(-1)——&gt;补码运算：(0000 1000) + (1111 1111) = (0000 0111) 刚好是7。-128+127——&gt;(1000 0000) + (0111 1111) = （1111 1111）刚好是-1，-128的补码完美的适用于减法。 结论 【1】计算机中负数是用补码的形式保存、并用它参与加减法运算的，减法会被转换为加法，计算机中没有加法运算。 【2】反码是为了解决减法运算，补码是为了解决反码产生的±0的问题。参考(<a href="https://blog.csdn.net/boatalways/article/details/17027573" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/boatalways/article/details/17027573</a>) 【3】对人而言二进制所代表的值一定是从原码求出的，开头如果是1的二进制，一定要说明其实原码、反码还是补码。 【4】在原码、反码、补码相互转换以及求对应的十进制求值时，符号位是绝不参与的，但是在加减过程中，是参与位运算的。 【5】计算机中规定了-0对应的二进制就是0，那么-0就没有意义了，必须找一个数和它对应。 【6】byte的最小值-128、short的最小值-32768、int的最小值-2147483648都是用对应的-0的原码来进行表示，这是人为规定的、人为规定的、人为规定的。但是这么规定又很巧妙，妙在上述10中的三点。  </p>
-<blockquote>
-<p>本文转载自：<a href="https://www.cnblogs.com/minseo/p/11733782.html" target="_blank" rel="noopener external nofollow noreferrer">https://www.cnblogs.com/minseo/p/11733782.html</a> 参考：<a href="https://blog.csdn.net/qq_22771739/article/details/84496115" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/qq_22771739/article/details/84496115</a> <a href="https://blog.csdn.net/boatalways/article/details/17027573" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/boatalways/article/details/17027573</a> <a href="https://blog.csdn.net/zhiwen_a/article/details/81192087" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/zhiwen_a/article/details/81192087</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Java基础</category>
-      </categories>
-      <tags>
-        <tag>java笔记</tag>
-        <tag>整型byte</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>并发与并行的区别</title>
     <url>/archives/6292c650.html</url>
     <content><![CDATA[<p>你吃饭吃到一半，电话来了，你一直到吃完了以后才去接，这就说明你不支持并发也不支持并行。 你吃饭吃到一半，电话来了，你停了下来接了电话，接完后继续吃饭，这说明你支持并发。 你吃饭吃到一半，电话来了，你一边打电话一边吃饭，这说明你支持并行。 并发的关键是你有处理多个任务的能力，不一定要同时。并行的关键是你有同时处理多个任务的能力。所以我认为它们最关键的点就是：是否是『同时』。</p>
@@ -700,121 +764,6 @@ return 0;</code></pre><p>}</p>
         <tag>java笔记</tag>
         <tag>并发</tag>
         <tag>并行</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>初识Java多线程编程</title>
-    <url>/archives/22330b77.html</url>
-    <content><![CDATA[<blockquote>
-<p><strong>多线程的目的：</strong>较好的利用计算机CPU资源。</p>
-</blockquote>
-<h1 id="1-什么是线程、进程和多线程"><a href="#1-什么是线程、进程和多线程" class="headerlink" title="1 什么是线程、进程和多线程"></a><strong>1 什么是线程、进程和多线程</strong></h1><ul>
-<li>线程 &gt; 线程是进程的一个循序控制流。</li>
-<li>进程 &gt; 进程是程序运行的一个实例， 一个进程可以有多个线程。</li>
-<li>多线程 &gt; Java多线程编程是一种机制，它允许在程序中并发执行多个指令流，每个指令流都是一个线程，彼此之间相互独立。</li>
-</ul>
-<h1 id="2-线程的生命周期"><a href="#2-线程的生命周期" class="headerlink" title="2 线程的生命周期"></a><strong>2 线程的生命周期</strong></h1><p>线程可以有五个状态，新建、就绪、运行、阻塞和消亡状态。 <img src="https://scanf.top/wp-content/uploads/2020/04/wp_editor_md_bcfc7815219ad1201f5ca052e97f057e.jpg" alt="线程生命周期"> 1. 新建：采用new语句创建完成。 2. 就绪：执行Start()方法后。 3. 运行：执行run()方法后，占用CPU时间。 4. 阻塞：阻塞是指在运行的线程没有运行结束，但是让出了CPU资源，这时其他处于就绪状态的线程就可以获得CPU时间，从而进入运行状态。Java线程中sleep(),suspend(),wait()等可以让线程阻塞，阻塞完成后，不会直接进入运行状态，而是要进入就绪队列等待，得到CPU资源后才可以运行。</p>
-<h1 id="3-Java中实现多线程的两种方法"><a href="#3-Java中实现多线程的两种方法" class="headerlink" title="3 Java中实现多线程的两种方法"></a><strong>3 Java中实现多线程的两种方法</strong></h1><h2 id="3-1-方法一：继承Thread类，并覆写run-方法"><a href="#3-1-方法一：继承Thread类，并覆写run-方法" class="headerlink" title="3.1 方法一：继承Thread类，并覆写run()方法"></a><strong>3.1 方法一：继承Thread类，并覆写run()方法</strong></h2><p>代码演示：</p>
-<pre><code>package top.scanf.Demo;
-
-public class ThreadTest {
-    public static void main(String[] args) {
-        //Thread thread = new Thread(new Thread1(),&quot;线程一呀&quot;);
-        Thread1 thread1 = new Thread1();//新建一个线程
-        thread1.start();//让线程进入就绪状态
-        System.out.println(&quot;main线程结束&quot;);
-    }
-}
-class Thread1 extends Thread {
-    @Override
-    public void run() {
-        int time = 0;
-        while (time &lt;= 10) {
-            System.out.println(&quot;线程一运行中&quot; + time);
-            time++;
-            try {
-                Thread.sleep(100);//休眠100ms
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println(&quot;线程一结束&quot;);
-    }
-}</code></pre><h2 id="3-2-方法二：实现Runnable接口，并实现run-方法"><a href="#3-2-方法二：实现Runnable接口，并实现run-方法" class="headerlink" title="3.2 方法二：实现Runnable接口，并实现run()方法"></a><strong>3.2 方法二：实现Runnable接口，并实现run()方法</strong></h2><p>代码演示：</p>
-<pre><code>package top.scanf.Demo;
-
-public class RunnableTest {
-    public static void main(String[] args) {
-        //新建一个MyRunnable对象，并将该对象包装成Thread对象
-        Thread newThread = new Thread(new MyRunnable(),&quot;Runnable1&quot;);
-        newThread.start();//让线程进入就绪状态
-        System.out.println(&quot;主线程结束&quot;);
-
-    }
-}
-class MyRunnable implements Runnable {
-    @Override
-    public void run() {
-        int time = 0;
-        while (time &lt; 10) {
-            System.out.println(&quot;线程一运行中&quot; + time);
-            time++;
-            try {
-                Thread.sleep(300);//休眠300ms
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println(&quot;Runnable线程结束&quot;);
-    }
-}</code></pre><h1 id="4-线程的调度和同步问题"><a href="#4-线程的调度和同步问题" class="headerlink" title="4 线程的调度和同步问题"></a><strong>4 线程的调度和同步问题</strong></h1><h2 id="4-1-线程的调度"><a href="#4-1-线程的调度" class="headerlink" title="4.1 线程的调度"></a><strong>4.1 线程的调度</strong></h2><p>线程的调度模型：</p>
-<ol>
-<li><p>分时调度模型：所有线程轮流使用CPU的使用权，平均分配每个线程占用CPU的时间片。</p>
-</li>
-<li><p>抢占式调度模型：优先让优先级高的线程使用CPU,如果线程的优先级相同，则随机选择一个．</p>
-</li>
-</ol>
-<p><strong>Java使用抢占式调度模型:</strong>一共有10个级别的线程优先级,可取1-10之间的整数,数值越大优先级越高,默认优先级是5,优先级越高的线程越容易被操作系统选择执行,但是优先级高的不一定先执行.</p>
-<h2 id="4-2-线程的同步"><a href="#4-2-线程的同步" class="headerlink" title="4.2 线程的同步"></a><strong>4.2 线程的同步</strong></h2><p>为了解决多个线程访问同一个资源时可能会引发一些安全问题,需要实现多线程的同步,即限制某个资源在同一时刻只能被同一个线程访问. 经常使用synchronized关键字修饰同步方法或同步块. 被synchronized修饰的代码块或方法,同一时刻只能被一个线程调用,后来的线程必须等待第一个线程调用该方法结束后才能继续运行.</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Java基础</category>
-      </categories>
-      <tags>
-        <tag>java笔记</tag>
-        <tag>多线程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深入理解Java集合框架【转】</title>
-    <url>/archives/136b1ea2.html</url>
-    <content><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>关于_C++标准模板库(Standard Template Library, STL)_的书籍和资料有很多，关于_Java集合框架(Java Collections Framework, JCF)_的资料却很少，甚至很难找到一本专门介绍它的书籍，这给Java学习者们带来不小的麻烦。我深深的不解其中的原因。<strong>虽然JCF设计参考了STL，但其定位不是Java版的STL，而是要实现一个精简紧凑的容器框架</strong>，对STL的介绍自然不能替代对JCF的介绍。 本系列文章主要从<strong>数据结构和算法</strong>层面分析JCF中List, Set, Map, Stack, Queue等典型容器，<strong>结合生动图解和源代码，帮助读者对Java集合框架建立清晰而深入的理解</strong>。本文并不特意介绍Java的语言特性，但会在需要的时候做出简洁的解释。</p>
-<a id="more"></a>
-
-<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><p>具体内容安排如下：</p>
-<ol>
-<li><a href="http://www.cnblogs.com/CarpenterLee/p/5414253.html" target="_blank" rel="noopener external nofollow noreferrer">Java Collections Framework概览</a> 对Java Collections Framework，以及Java语言特性做出基本介绍。</li>
-<li><a href="http://www.cnblogs.com/CarpenterLee/p/5419880.html" target="_blank" rel="noopener external nofollow noreferrer">Java ArrayList源码剖析</a> 结合源码对_ArrayList_进行讲解。</li>
-<li><a href="http://www.cnblogs.com/CarpenterLee/p/5457150.html" target="_blank" rel="noopener external nofollow noreferrer">Java LinkedList源码剖析</a> 结合源码对_LinkedList_进行讲解。</li>
-<li><a href="http://www.cnblogs.com/CarpenterLee/p/5468803.html" target="_blank" rel="noopener external nofollow noreferrer">Java ArrayDeque源码剖析</a> 以_AarryDeque_为例讲解_Stack_和_Queue_。</li>
-<li><a href="http://www.cnblogs.com/CarpenterLee/p/5503882.html" target="_blank" rel="noopener external nofollow noreferrer">史上最清晰的红黑树讲解（上）</a>和<a href="http://www.cnblogs.com/CarpenterLee/p/5525688.html" target="_blank" rel="noopener external nofollow noreferrer">史上最清晰的红黑树讲解（下）</a> 结合源码对_TreeSet_和_TreeMap_进行讲解。</li>
-<li><a href="http://www.cnblogs.com/CarpenterLee/p/5440428.html" target="_blank" rel="noopener external nofollow noreferrer">Java HashSet和HashMap源码剖析</a> 结合源码对_HashSet_和_HashMap_进行讲解。</li>
-<li><a href="http://www.cnblogs.com/CarpenterLee/p/5541111.html" target="_blank" rel="noopener external nofollow noreferrer">Java集合框架源码剖析：LinkedHashSet 和 LinkedHashMap</a> 结合源码对_LinkedHashSet_和_LinkedHashMap_进行讲解。</li>
-<li><a href="http://www.cnblogs.com/CarpenterLee/p/5488070.html" target="_blank" rel="noopener external nofollow noreferrer">深入理解Java PriorityQueue</a> 结合源码对_PriorityQueue_进行讲解。</li>
-<li><a href="https://github.com/CarpenterLee/JCFInternals/blob/master/markdown/9-WeakHashMap.md" target="_blank" rel="noopener external nofollow noreferrer">浅谈WeakHashMap</a> 对_WeakHashMap_做出基本介绍。</li>
-</ol>
-<blockquote>
-<p>本文转载自：<a href="https://www.cnblogs.com/CarpenterLee/p/5545987.html" target="_blank" rel="noopener external nofollow noreferrer">https://www.cnblogs.com/CarpenterLee/p/5545987.html</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Java基础</category>
-      </categories>
-      <tags>
-        <tag>java笔记</tag>
-        <tag>集合</tag>
       </tags>
   </entry>
   <entry>
@@ -855,6 +804,57 @@ class MyRunnable implements Runnable {
         <tag>java笔记</tag>
         <tag>java</tag>
         <tag>JDK</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>byte类型的取值为什么是-128~127</title>
+    <url>/archives/370b7f8.html</url>
+    <content><![CDATA[<p>Java的byte类型取值范围是-128~127为什么是-128到127呢 <img src="https://scanf.top/wp-content/uploads/2020/02/6d92da42982fdc702b0297ff13f4de64.png" alt=""></p>
+<h3 id="一、首先需要了解原码反码和补码"><a href="#一、首先需要了解原码反码和补码" class="headerlink" title="一、首先需要了解原码反码和补码"></a>一、首先需要了解原码反码和补码</h3><p>正数的原码反码补码是一样的 [+2]=[00000010]原=[00000010]反=[00000010]补 对于负数来说，它的原码反码补码就不相同 [-2]=[10000010]原=[11111101]反=[11111110]补 最高位表示符号位0代表正数1代表负数，负数计算反码的规则是符号位不变，其余位取反即1变成0,0变成1，补码就是反码再加1</p>
+<h3 id="二、为什么要设计出反码和补码"><a href="#二、为什么要设计出反码和补码" class="headerlink" title="二、为什么要设计出反码和补码"></a>二、为什么要设计出反码和补码</h3><p>因为计算机只有加法没有，减法，在做减法运算的时候，可以认为是加上一个负数，这样可以减少计算机电路的复杂度。 使用原码进行减法运算会出现问题，例如计算1-1，因为计算机没有加法只有减法，所以计算机自动换算成1+(-1) 1-1=1+(-1)=[00000001]原+[10000001]原=[10000010]原=-2 （符号位也参与运算） 而1-1的实际结果是0. 为了解决这个问题，于是使用反码运算 1-1=1+(-1)=[00000001]原+[10000001]原=[00000001]反+[11111110]反=[11111111]反=[10000000]原=-0 通过反码计算的结果是11111111在计算一次反就成原码了，得出的结果是正确的，但是有一个问题是 00000000可以代表+0。 10000000可以代表-0，其实是一样的，用2个编码实在是浪费。于是出现了补码解决0的符号以及两个编码的问题。 1-1=1+(-1)=[00000001]原+[10000001]原=[00000001]补+[11111111]补=[00000000]补=[00000000]原 这样0用[0000 0000]表示, 而以前出现问题的-0则不存在了.而且可以用[1000 0000]表示-128:但是注意<strong>因为实际上是使用以前的-0的补码来表示-128, 所以-128并没有原码和反码表示</strong>.(对-128的补码表示[1000 0000]补算出来的原码是[0000 0000]原, 这是不正确的) 使用补码，不仅仅修复了0的符号以及存在两个编码的问题，而且还能够多表示一个最低数。这就是为什么8位二进制，使用原码或者反码表示的范围是[-127<del>127],而使用补码表示的范围为[-128</del>127] <strong>总结：反码是为了解决减法运算，补码是为了解决反码产生的+-0的问题</strong>  </p>
+<h3 id="三、下面来分析为什么byte型的取值范围为什么是-128-127"><a href="#三、下面来分析为什么byte型的取值范围为什么是-128-127" class="headerlink" title="三、下面来分析为什么byte型的取值范围为什么是-128~127"></a>三、下面来分析为什么byte型的取值范围为什么是-128~127</h3><p>1，byte占用8位，每位用0或者1表示，能够表示258(2^8)个数据 2，这8位分为符号位（最高位）和数值位(剩余七位)，符号位0表示正数，1表示负数。 3，按上一步的理解，容易得到（+127：0111 1111、+1：0000 0001、+0：0000 0000、-0：1000 0000、-1：1000 0001、-127：1111 1111），计算机底层定义了+0（0000 0000）就是0，那么“可怜的-0”又该何去何从呢？计算机遇到这个二进制该如何处理呢？总不能把这两个都对应0吧，这显然是资源浪费。 4，到这里我们都认为最高位是不参与计算数值的，仅仅是一个符号位，按这种思路byte的八位是无论如何也表示不出-128。而“可怜的-0”又不知道自己代表谁，不得而知“可怜的-0”就是-128。 5，到这里我们已经很粗浅地回答了-128<del>127中的-128的由来，基本也回答了这个题目。 6，可是对于程序员来说，上诉的分析【首先】是结论正确，但是过程错了。错误在于，负数的二进制表示是错误的，比如-127：1111 1111，这是不对的。计算机发现了1111 1111会把它认为是-1而不是-127。【其次】没有解释为什么-0最后表示成-128。 7，计算机基础知识补充 &lt;1&gt;计算机存储有符号的整数是都是存储它们的补码。Java语言都是有符号位的。 &lt;2&gt;正数和0的补码、反码是本身原码；所以对于正数来说，可以理解为不存在反码和补码。 &lt;3&gt;负数的反码是是符号位不变，其它位取反；补码是在负数的基础上加1（符号位不变）。负数就是矫情啊！ &lt;4&gt;计算机中用补码进行减法运算。 8，接着从人的思考方式理解下当计算机处理1111 1111的过程，首位是1，自然是负数，而且这是补码，那么对应的原码就是，先减1，变成1111 1110，符号位不变，其他取反，变成1000 0001，也就是-1！所以从10000001到11111111依次表示-127到-1 9，最后来解决这-128为什么可以用100000000表示 这里我分析的是byte，它就8位。在无符号位的二进制中128的表示为1000 0000。有符号位的情况下byte好像无法表示+128或-128。 如果我们假设byte不是占用8位，而是9位，最高位是符号位。你们-128的表示为1 10000 0000，计算其补码也是1 1000 0000，很神奇吧，一样的。-128补码尾8位就是1000 0000。那就规定1000 0000是-128的补码，而-128是没有原码和反码的，即不能利用10000 0000反推其反码和原码。 10，如果你对9步的推导表示不太接受，那么<strong>简单就认为计算机规定了1000 0000就是-128</strong>，是一种人为设计没有什么道理可以言（据说是印度阿三设计的）。其实这么设计也是很巧妙的，在于： 【其一】对于如果大于8位的有符号整数数据类型，-128的补码尾八位刚好是1000 0000 【其二】比如127（0111 1111）加1（0000 0001）刚好得到-128（1000 0000），-128（1000 0000）加1（0000 00001）等于-127（1000 0001）这样从-128</del>127的反码首尾相连,形成了一个闭环，就像时钟一样。 【其三】在计算机中减法运算可以转换成加法运算，比如8-1——&gt;8+(-1)——&gt;补码运算：(0000 1000) + (1111 1111) = (0000 0111) 刚好是7。-128+127——&gt;(1000 0000) + (0111 1111) = （1111 1111）刚好是-1，-128的补码完美的适用于减法。 结论 【1】计算机中负数是用补码的形式保存、并用它参与加减法运算的，减法会被转换为加法，计算机中没有加法运算。 【2】反码是为了解决减法运算，补码是为了解决反码产生的±0的问题。参考(<a href="https://blog.csdn.net/boatalways/article/details/17027573" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/boatalways/article/details/17027573</a>) 【3】对人而言二进制所代表的值一定是从原码求出的，开头如果是1的二进制，一定要说明其实原码、反码还是补码。 【4】在原码、反码、补码相互转换以及求对应的十进制求值时，符号位是绝不参与的，但是在加减过程中，是参与位运算的。 【5】计算机中规定了-0对应的二进制就是0，那么-0就没有意义了，必须找一个数和它对应。 【6】byte的最小值-128、short的最小值-32768、int的最小值-2147483648都是用对应的-0的原码来进行表示，这是人为规定的、人为规定的、人为规定的。但是这么规定又很巧妙，妙在上述10中的三点。  </p>
+<blockquote>
+<p>本文转载自：<a href="https://www.cnblogs.com/minseo/p/11733782.html" target="_blank" rel="noopener external nofollow noreferrer">https://www.cnblogs.com/minseo/p/11733782.html</a> 参考：<a href="https://blog.csdn.net/qq_22771739/article/details/84496115" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/qq_22771739/article/details/84496115</a> <a href="https://blog.csdn.net/boatalways/article/details/17027573" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/boatalways/article/details/17027573</a> <a href="https://blog.csdn.net/zhiwen_a/article/details/81192087" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/zhiwen_a/article/details/81192087</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>java笔记</tag>
+        <tag>整型byte</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深入理解Java集合框架【转】</title>
+    <url>/archives/136b1ea2.html</url>
+    <content><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>关于_C++标准模板库(Standard Template Library, STL)_的书籍和资料有很多，关于_Java集合框架(Java Collections Framework, JCF)_的资料却很少，甚至很难找到一本专门介绍它的书籍，这给Java学习者们带来不小的麻烦。我深深的不解其中的原因。<strong>虽然JCF设计参考了STL，但其定位不是Java版的STL，而是要实现一个精简紧凑的容器框架</strong>，对STL的介绍自然不能替代对JCF的介绍。 本系列文章主要从<strong>数据结构和算法</strong>层面分析JCF中List, Set, Map, Stack, Queue等典型容器，<strong>结合生动图解和源代码，帮助读者对Java集合框架建立清晰而深入的理解</strong>。本文并不特意介绍Java的语言特性，但会在需要的时候做出简洁的解释。</p>
+<a id="more"></a>
+
+<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><p>具体内容安排如下：</p>
+<ol>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5414253.html" target="_blank" rel="noopener external nofollow noreferrer">Java Collections Framework概览</a> 对Java Collections Framework，以及Java语言特性做出基本介绍。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5419880.html" target="_blank" rel="noopener external nofollow noreferrer">Java ArrayList源码剖析</a> 结合源码对_ArrayList_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5457150.html" target="_blank" rel="noopener external nofollow noreferrer">Java LinkedList源码剖析</a> 结合源码对_LinkedList_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5468803.html" target="_blank" rel="noopener external nofollow noreferrer">Java ArrayDeque源码剖析</a> 以_AarryDeque_为例讲解_Stack_和_Queue_。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5503882.html" target="_blank" rel="noopener external nofollow noreferrer">史上最清晰的红黑树讲解（上）</a>和<a href="http://www.cnblogs.com/CarpenterLee/p/5525688.html" target="_blank" rel="noopener external nofollow noreferrer">史上最清晰的红黑树讲解（下）</a> 结合源码对_TreeSet_和_TreeMap_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5440428.html" target="_blank" rel="noopener external nofollow noreferrer">Java HashSet和HashMap源码剖析</a> 结合源码对_HashSet_和_HashMap_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5541111.html" target="_blank" rel="noopener external nofollow noreferrer">Java集合框架源码剖析：LinkedHashSet 和 LinkedHashMap</a> 结合源码对_LinkedHashSet_和_LinkedHashMap_进行讲解。</li>
+<li><a href="http://www.cnblogs.com/CarpenterLee/p/5488070.html" target="_blank" rel="noopener external nofollow noreferrer">深入理解Java PriorityQueue</a> 结合源码对_PriorityQueue_进行讲解。</li>
+<li><a href="https://github.com/CarpenterLee/JCFInternals/blob/master/markdown/9-WeakHashMap.md" target="_blank" rel="noopener external nofollow noreferrer">浅谈WeakHashMap</a> 对_WeakHashMap_做出基本介绍。</li>
+</ol>
+<blockquote>
+<p>本文转载自：<a href="https://www.cnblogs.com/CarpenterLee/p/5545987.html" target="_blank" rel="noopener external nofollow noreferrer">https://www.cnblogs.com/CarpenterLee/p/5545987.html</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>java笔记</tag>
+        <tag>集合</tag>
       </tags>
   </entry>
   <entry>
@@ -1032,166 +1032,6 @@ public class UdpRecv
       </tags>
   </entry>
   <entry>
-    <title>实例化Bean的三种方式</title>
-    <url>/archives/da03f5c5.html</url>
-    <content><![CDATA[<h2 id="一、对相关概念的了解："><a href="#一、对相关概念的了解：" class="headerlink" title="一、对相关概念的了解："></a>一、对相关概念的了解：</h2><p>bean是应用的主要部分，并由IoC Container组装（assemble）、实例化（instantiate）和管理。 ApplicationContext代表IoC容器，它根据读取的“配置元数据”（Configuration matedata）来获取组装、实例化和管理bean的指令。配置元数据的表示方式有：XML配置文件、注解、Java程序。</p>
-<a id="more"></a>
-
-<h2 id="二、实例化bean的方法"><a href="#二、实例化bean的方法" class="headerlink" title="二、实例化bean的方法"></a>二、实例化bean的方法</h2><h3 id="1-用构造函数实例化"><a href="#1-用构造函数实例化" class="headerlink" title="1 用构造函数实例化"></a>1 用构造函数实例化</h3><p>此方法最为简单常用，仅需给出简单的bean类，并配置id即可直接实例化bean。 实例化类：</p>
-<pre><code>package com.example.demo.pojo;
-
-public class User {
-    public void show(){
-        System.out.println(&quot;hello,Spring&quot;);
-    }
-}</code></pre><p>配置文件：</p>
-<pre><code>&lt;bean id=&quot;user&quot; class=&quot;com.example.demo.pojo.User&quot;/&gt;</code></pre><p>测试方法：</p>
-<pre><code>public void test3(){
-        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);
-        User user = (User) context.getBean(&quot;user&quot;);
-        user.show();
-    }</code></pre><p>输出结果：</p>
-<pre><code>17:05:50.365 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
-17:05:50.488 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [service.xml]
-17:05:50.518 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
-17:05:50.528 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
-17:05:50.567 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user&apos;
-hello,Spring</code></pre><h3 id="2-用静态工厂方法实例化"><a href="#2-用静态工厂方法实例化" class="headerlink" title="2 用静态工厂方法实例化"></a>2 用静态工厂方法实例化</h3><p>该方法较为复杂，实例化的类中需包含一个静态的方法。该方法直接new一个类对象并返回，并在配置文件中声明该bean类，同时指明factory-method，即上述返回类对象的静态方法的名称。 实例化类：</p>
-<pre><code>package com.example.demo.pojo;
-
-public class User2 {
-    private User2() {}
-
-    public void show(){
-        System.out.println(&quot;hello,Spring&quot;);
-    }
-    public static User2 getInstance(){
-        return new User2();
-    }
-}</code></pre><p>配置文件：</p>
-<pre><code>&lt;bean id=&quot;user2&quot; class=&quot;com.example.demo.pojo.User2&quot; factory-method=&quot;getInstance&quot;/&gt;</code></pre><p>测试方法：</p>
-<pre><code>public void test4(){
-        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);
-        User2 user2 = (User2) context.getBean(&quot;user2&quot;);
-        user2.show();
-    }</code></pre><p>输出结果：</p>
-<pre><code>17:17:52.576 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
-17:17:52.691 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 4 bean definitions from class path resource [service.xml]
-17:17:52.723 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
-17:17:52.734 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
-17:17:52.760 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user&apos;
-17:17:52.760 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user2&apos;
-hello,Spring</code></pre><h3 id="3-用实例工厂方法实例化"><a href="#3-用实例工厂方法实例化" class="headerlink" title="3 用实例工厂方法实例化"></a>3 用实例工厂方法实例化</h3><p>该方法更为复杂，通过工厂类中的非静态方法实例化类对象。 实例化类：</p>
-<pre><code>package com.example.demo.pojo;
-
-public class User3 {
-    public void show(){
-        System.out.println(&quot;hello,Spring&quot;);
-    }
-
-}</code></pre><p>工厂类：</p>
-<pre><code>package com.example.demo.pojo;
-
-public class User3Factory {
-    public User3 getUser3(){
-        return new User3();
-    }
-}</code></pre><p>​    </p>
-<p>配置文件： 第一个bean标签指明工厂类。第二个bean标签指明实例化类，并说明工厂类和工厂类中的方法。</p>
-<pre><code>&lt;bean id=&quot;user3factory&quot; class=&quot;com.example.demo.pojo.User3Factory&quot;/&gt;
-&lt;bean id=&quot;user3&quot; factory-bean=&quot;user3factory&quot; factory-method=&quot;getUser3&quot; /&gt;</code></pre><p>测试方法：</p>
-<pre><code>public void test5(){
-        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);
-        User3 user3 = (User3) context.getBean(&quot;user3&quot;);
-        user3.show();
-    }</code></pre><p>输出结果：</p>
-<pre><code>17:34:53.967 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
-17:34:54.083 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 6 bean definitions from class path resource [service.xml]
-17:34:54.120 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
-17:34:54.132 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
-17:34:54.155 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user&apos;
-17:34:54.155 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user2&apos;
-17:34:54.157 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user3factory&apos;
-17:34:54.157 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user3&apos;
-hello,Spring</code></pre><h2 id="另外，如何给相关方法传递参数？？？"><a href="#另外，如何给相关方法传递参数？？？" class="headerlink" title="另外，如何给相关方法传递参数？？？"></a>另外，如何给相关方法传递参数？？？</h2><p>该部分可能涉及了依赖注入的知识，暂且搁置，应该会在后面的文章中体现。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>IoC</tag>
-        <tag>Spring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>依赖注入的两种方式</title>
-    <url>/archives/620ddfc8.html</url>
-    <content><![CDATA[<h2 id="一-什么是依赖注入"><a href="#一-什么是依赖注入" class="headerlink" title="一 什么是依赖注入"></a>一 什么是依赖注入</h2><p>依赖注入是一个过程，通过该过程可以解决对象依赖问题。现假设一个场景，有类A和类B，类A依赖类B，以往在我们实例化类A时，需要先拥有类B的实例化对象，利用这个对象才能完成类A的实例化。现在，类B的实例化任务由IoC容器接管了，我们可以直接获取类A的实例化对象，而无需顾及类B的实例化过程，我们需要做的仅是类A和类B的依赖关系的声明。</p>
-<a id="more"></a>
-
-<h2 id="二-依赖注入的两种方式"><a href="#二-依赖注入的两种方式" class="headerlink" title="二 依赖注入的两种方式"></a>二 依赖注入的两种方式</h2><p>有两种依赖注入的方式，其一基于非静态的setter方法，其二基于构造方法，下面列举两个实例。</p>
-<h3 id="1-setter-based-DI"><a href="#1-setter-based-DI" class="headerlink" title="1 setter-based DI"></a>1 setter-based DI</h3><p>实例化类和该类的相关依赖：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Person.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="keyword">private</span> Car car;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/* public Person(Integer id, Cat cat, Car car) &#123;</span></span><br><span class="line"><span class="comment">        this.id = id;</span></span><br><span class="line"><span class="comment">        this.cat = cat;</span></span><br><span class="line"><span class="comment">        this.car = car;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCat</span><span class="params">(Cat cat)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cat = cat;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCar</span><span class="params">(Car car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.car = car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        cat.work();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">carWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        car.work();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Cat.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"喵喵喵。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Car.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"汽车行驶中。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>配置文件：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Person"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"car"</span> <span class="attr">ref</span>=<span class="string">"car"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cat"</span> <span class="attr">ref</span>=<span class="string">"cat"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Cat"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"car"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Car"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-<p>测试方法:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">        Person person = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        person.catWork();</span><br><span class="line">        person.carWork();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">21:17:07.766 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd</span><br><span class="line">21:17:07.895 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]</span><br><span class="line">21:17:07.923 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;person&#39;</span><br><span class="line">21:17:07.968 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;car&#39;</span><br><span class="line">21:17:07.969 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;cat&#39;</span><br><span class="line">喵喵喵。。。</span><br><span class="line">汽车行驶中。。。</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="2-constructor-based-DI"><a href="#2-constructor-based-DI" class="headerlink" title="2 constructor-based DI"></a>2 constructor-based DI</h3><p>实例化类和该类的相关依赖：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Person.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="keyword">private</span> Car car;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(Integer id, Cat cat, Car car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.cat = cat;</span><br><span class="line">        <span class="keyword">this</span>.car = car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        cat.work();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">carWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        car.work();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Cat.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"喵喵喵。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Car.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"汽车行驶中。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>配置文件：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Person"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.Integer"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"cat"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"car"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Cat"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"car"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Car"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-<p>测试方法:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">        Person person = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        person.catWork();</span><br><span class="line">        person.carWork();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">21:06:07.375 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12d3a4e9</span><br><span class="line">21:06:07.483 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]</span><br><span class="line">21:06:07.514 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;person&#39;</span><br><span class="line">21:06:07.525 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;cat&#39;</span><br><span class="line">21:06:07.527 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;car&#39;</span><br><span class="line">喵喵喵。。。</span><br><span class="line">汽车行驶中。。。</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="三-区别"><a href="#三-区别" class="headerlink" title="三 区别"></a>三 区别</h2><p>两者可以混合使用，可将Constructor-based用于强制性依赖项，Setter-based用于可选性依赖性。可在setter方法上标注<code>@Required</code>注解，使其成为必需依赖项。</p>
-<h2 id="四-循环依赖问题"><a href="#四-循环依赖问题" class="headerlink" title="四 循环依赖问题"></a>四 循环依赖问题</h2><p>假设一个会出现循环依赖问题的场景，类A通过构造方法注入类B的实例，类B通过构造方法注入类A的实例。如果你为类A和类B的相互注入而配置了bean，则Spring IoC容器回在运行时检测到循环引用，抛出<code>BeanCurrentlyInCreationException</code>异常，如下所示。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WARN org.springframework.context.support.ClassPathXmlApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;a&#39; defined in class path resource [spring.xml]: Cannot resolve reference to bean &#39;b&#39; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;b&#39; defined in class path resource [spring.xml]: Cannot resolve reference to bean &#39;a&#39; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name &#39;a&#39;: Requested bean is currently in creation: Is there an unresolvable circular reference?</span><br></pre></td></tr></table></figure>
-
-
-<p>解决这个问题的方案是，修改类A和类B的依赖注入方式，从构造方法注入修改为setter注入，实例如下。 相关类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//A.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> B b;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*public A(String name, B b) &#123;</span></span><br><span class="line"><span class="comment">        this.name = name;</span></span><br><span class="line"><span class="comment">        this.b = b;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setB</span><span class="params">(B b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.b = b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"FROM-A: A.name = "</span> + <span class="keyword">this</span>.name + <span class="string">" B.name = "</span> + b.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//B.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> A a;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*  public B(String name, A a) &#123;</span></span><br><span class="line"><span class="comment">        this.name = name;</span></span><br><span class="line"><span class="comment">        this.a = a;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">(A a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.a = a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"FROM-B: B.name = "</span> + <span class="keyword">this</span>.name + <span class="string">" A.name = "</span> + a.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>配置文件：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"a"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.A"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"A"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"b"</span> <span class="attr">ref</span>=<span class="string">"b"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"b"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.B"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"B"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"a"</span> <span class="attr">ref</span>=<span class="string">"a"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-<p>测试方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">        A a = (A)context.getBean(<span class="string">"a"</span>);</span><br><span class="line">        a.work();</span><br><span class="line">        B b = (B)context.getBean(<span class="string">"b"</span>);</span><br><span class="line">        b.work();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>测试结果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">10:15:09.428 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd</span><br><span class="line">10:15:09.549 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 2 bean definitions from class path resource [spring.xml]</span><br><span class="line">10:15:09.580 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;a&#39;</span><br><span class="line">10:15:09.620 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;b&#39;</span><br><span class="line">FROM-A: A.name &#x3D; A B.name &#x3D; B</span><br><span class="line">FROM-B: B.name &#x3D; B A.name &#x3D; A</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
-        <tag>DI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bean的作用范围</title>
     <url>/archives/eea3a450.html</url>
     <content><![CDATA[<p>了解bean的作用范围：singleton、prototype、request、session、application、websocket</p>
@@ -1282,9 +1122,169 @@ public void test1(){
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>lifecycle</tag>
         <tag>scope</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>依赖注入的两种方式</title>
+    <url>/archives/620ddfc8.html</url>
+    <content><![CDATA[<h2 id="一-什么是依赖注入"><a href="#一-什么是依赖注入" class="headerlink" title="一 什么是依赖注入"></a>一 什么是依赖注入</h2><p>依赖注入是一个过程，通过该过程可以解决对象依赖问题。现假设一个场景，有类A和类B，类A依赖类B，以往在我们实例化类A时，需要先拥有类B的实例化对象，利用这个对象才能完成类A的实例化。现在，类B的实例化任务由IoC容器接管了，我们可以直接获取类A的实例化对象，而无需顾及类B的实例化过程，我们需要做的仅是类A和类B的依赖关系的声明。</p>
+<a id="more"></a>
+
+<h2 id="二-依赖注入的两种方式"><a href="#二-依赖注入的两种方式" class="headerlink" title="二 依赖注入的两种方式"></a>二 依赖注入的两种方式</h2><p>有两种依赖注入的方式，其一基于非静态的setter方法，其二基于构造方法，下面列举两个实例。</p>
+<h3 id="1-setter-based-DI"><a href="#1-setter-based-DI" class="headerlink" title="1 setter-based DI"></a>1 setter-based DI</h3><p>实例化类和该类的相关依赖：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Person.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="keyword">private</span> Car car;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/* public Person(Integer id, Cat cat, Car car) &#123;</span></span><br><span class="line"><span class="comment">        this.id = id;</span></span><br><span class="line"><span class="comment">        this.cat = cat;</span></span><br><span class="line"><span class="comment">        this.car = car;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCat</span><span class="params">(Cat cat)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cat = cat;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCar</span><span class="params">(Car car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.car = car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        cat.work();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">carWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        car.work();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Cat.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"喵喵喵。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Car.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"汽车行驶中。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>配置文件：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Person"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"car"</span> <span class="attr">ref</span>=<span class="string">"car"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cat"</span> <span class="attr">ref</span>=<span class="string">"cat"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Cat"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"car"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Car"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>测试方法:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">        Person person = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        person.catWork();</span><br><span class="line">        person.carWork();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">21:17:07.766 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd</span><br><span class="line">21:17:07.895 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]</span><br><span class="line">21:17:07.923 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;person&#39;</span><br><span class="line">21:17:07.968 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;car&#39;</span><br><span class="line">21:17:07.969 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;cat&#39;</span><br><span class="line">喵喵喵。。。</span><br><span class="line">汽车行驶中。。。</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-constructor-based-DI"><a href="#2-constructor-based-DI" class="headerlink" title="2 constructor-based DI"></a>2 constructor-based DI</h3><p>实例化类和该类的相关依赖：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Person.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="keyword">private</span> Car car;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(Integer id, Cat cat, Car car)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.cat = cat;</span><br><span class="line">        <span class="keyword">this</span>.car = car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        cat.work();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">carWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        car.work();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Cat.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"喵喵喵。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Car.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"汽车行驶中。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>配置文件：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Person"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"java.lang.Integer"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"cat"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"car"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Cat"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"car"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.Car"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>测试方法:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">        Person person = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        person.catWork();</span><br><span class="line">        person.carWork();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">21:06:07.375 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@12d3a4e9</span><br><span class="line">21:06:07.483 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [spring.xml]</span><br><span class="line">21:06:07.514 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;person&#39;</span><br><span class="line">21:06:07.525 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;cat&#39;</span><br><span class="line">21:06:07.527 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;car&#39;</span><br><span class="line">喵喵喵。。。</span><br><span class="line">汽车行驶中。。。</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="三-区别"><a href="#三-区别" class="headerlink" title="三 区别"></a>三 区别</h2><p>两者可以混合使用，可将Constructor-based用于强制性依赖项，Setter-based用于可选性依赖性。可在setter方法上标注<code>@Required</code>注解，使其成为必需依赖项。</p>
+<h2 id="四-循环依赖问题"><a href="#四-循环依赖问题" class="headerlink" title="四 循环依赖问题"></a>四 循环依赖问题</h2><p>假设一个会出现循环依赖问题的场景，类A通过构造方法注入类B的实例，类B通过构造方法注入类A的实例。如果你为类A和类B的相互注入而配置了bean，则Spring IoC容器回在运行时检测到循环引用，抛出<code>BeanCurrentlyInCreationException</code>异常，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WARN org.springframework.context.support.ClassPathXmlApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;a&#39; defined in class path resource [spring.xml]: Cannot resolve reference to bean &#39;b&#39; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;b&#39; defined in class path resource [spring.xml]: Cannot resolve reference to bean &#39;a&#39; while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name &#39;a&#39;: Requested bean is currently in creation: Is there an unresolvable circular reference?</span><br></pre></td></tr></table></figure>
+
+
+<p>解决这个问题的方案是，修改类A和类B的依赖注入方式，从构造方法注入修改为setter注入，实例如下。 相关类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//A.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> B b;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*public A(String name, B b) &#123;</span></span><br><span class="line"><span class="comment">        this.name = name;</span></span><br><span class="line"><span class="comment">        this.b = b;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setB</span><span class="params">(B b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.b = b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"FROM-A: A.name = "</span> + <span class="keyword">this</span>.name + <span class="string">" B.name = "</span> + b.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//B.java</span></span><br><span class="line"><span class="keyword">package</span> com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> A a;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*  public B(String name, A a) &#123;</span></span><br><span class="line"><span class="comment">        this.name = name;</span></span><br><span class="line"><span class="comment">        this.a = a;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">(A a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.a = a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"FROM-B: B.name = "</span> + <span class="keyword">this</span>.name + <span class="string">" A.name = "</span> + a.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>配置文件：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"a"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.A"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"A"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"b"</span> <span class="attr">ref</span>=<span class="string">"b"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"b"</span> <span class="attr">class</span>=<span class="string">"com.example.demo.pojo.B"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"B"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"a"</span> <span class="attr">ref</span>=<span class="string">"a"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>测试方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">        A a = (A)context.getBean(<span class="string">"a"</span>);</span><br><span class="line">        a.work();</span><br><span class="line">        B b = (B)context.getBean(<span class="string">"b"</span>);</span><br><span class="line">        b.work();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>测试结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">10:15:09.428 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd</span><br><span class="line">10:15:09.549 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 2 bean definitions from class path resource [spring.xml]</span><br><span class="line">10:15:09.580 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;a&#39;</span><br><span class="line">10:15:09.620 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &#39;b&#39;</span><br><span class="line">FROM-A: A.name &#x3D; A B.name &#x3D; B</span><br><span class="line">FROM-B: B.name &#x3D; B A.name &#x3D; A</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>DI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>实例化Bean的三种方式</title>
+    <url>/archives/da03f5c5.html</url>
+    <content><![CDATA[<h2 id="一、对相关概念的了解："><a href="#一、对相关概念的了解：" class="headerlink" title="一、对相关概念的了解："></a>一、对相关概念的了解：</h2><p>bean是应用的主要部分，并由IoC Container组装（assemble）、实例化（instantiate）和管理。 ApplicationContext代表IoC容器，它根据读取的“配置元数据”（Configuration matedata）来获取组装、实例化和管理bean的指令。配置元数据的表示方式有：XML配置文件、注解、Java程序。</p>
+<a id="more"></a>
+
+<h2 id="二、实例化bean的方法"><a href="#二、实例化bean的方法" class="headerlink" title="二、实例化bean的方法"></a>二、实例化bean的方法</h2><h3 id="1-用构造函数实例化"><a href="#1-用构造函数实例化" class="headerlink" title="1 用构造函数实例化"></a>1 用构造函数实例化</h3><p>此方法最为简单常用，仅需给出简单的bean类，并配置id即可直接实例化bean。 实例化类：</p>
+<pre><code>package com.example.demo.pojo;
+
+public class User {
+    public void show(){
+        System.out.println(&quot;hello,Spring&quot;);
+    }
+}</code></pre><p>配置文件：</p>
+<pre><code>&lt;bean id=&quot;user&quot; class=&quot;com.example.demo.pojo.User&quot;/&gt;</code></pre><p>测试方法：</p>
+<pre><code>public void test3(){
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);
+        User user = (User) context.getBean(&quot;user&quot;);
+        user.show();
+    }</code></pre><p>输出结果：</p>
+<pre><code>17:05:50.365 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+17:05:50.488 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 3 bean definitions from class path resource [service.xml]
+17:05:50.518 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
+17:05:50.528 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
+17:05:50.567 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user&apos;
+hello,Spring</code></pre><h3 id="2-用静态工厂方法实例化"><a href="#2-用静态工厂方法实例化" class="headerlink" title="2 用静态工厂方法实例化"></a>2 用静态工厂方法实例化</h3><p>该方法较为复杂，实例化的类中需包含一个静态的方法。该方法直接new一个类对象并返回，并在配置文件中声明该bean类，同时指明factory-method，即上述返回类对象的静态方法的名称。 实例化类：</p>
+<pre><code>package com.example.demo.pojo;
+
+public class User2 {
+    private User2() {}
+
+    public void show(){
+        System.out.println(&quot;hello,Spring&quot;);
+    }
+    public static User2 getInstance(){
+        return new User2();
+    }
+}</code></pre><p>配置文件：</p>
+<pre><code>&lt;bean id=&quot;user2&quot; class=&quot;com.example.demo.pojo.User2&quot; factory-method=&quot;getInstance&quot;/&gt;</code></pre><p>测试方法：</p>
+<pre><code>public void test4(){
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);
+        User2 user2 = (User2) context.getBean(&quot;user2&quot;);
+        user2.show();
+    }</code></pre><p>输出结果：</p>
+<pre><code>17:17:52.576 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+17:17:52.691 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 4 bean definitions from class path resource [service.xml]
+17:17:52.723 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
+17:17:52.734 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
+17:17:52.760 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user&apos;
+17:17:52.760 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user2&apos;
+hello,Spring</code></pre><h3 id="3-用实例工厂方法实例化"><a href="#3-用实例工厂方法实例化" class="headerlink" title="3 用实例工厂方法实例化"></a>3 用实例工厂方法实例化</h3><p>该方法更为复杂，通过工厂类中的非静态方法实例化类对象。 实例化类：</p>
+<pre><code>package com.example.demo.pojo;
+
+public class User3 {
+    public void show(){
+        System.out.println(&quot;hello,Spring&quot;);
+    }
+
+}</code></pre><p>工厂类：</p>
+<pre><code>package com.example.demo.pojo;
+
+public class User3Factory {
+    public User3 getUser3(){
+        return new User3();
+    }
+}</code></pre><p>​    </p>
+<p>配置文件： 第一个bean标签指明工厂类。第二个bean标签指明实例化类，并说明工厂类和工厂类中的方法。</p>
+<pre><code>&lt;bean id=&quot;user3factory&quot; class=&quot;com.example.demo.pojo.User3Factory&quot;/&gt;
+&lt;bean id=&quot;user3&quot; factory-bean=&quot;user3factory&quot; factory-method=&quot;getUser3&quot; /&gt;</code></pre><p>测试方法：</p>
+<pre><code>public void test5(){
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);
+        User3 user3 = (User3) context.getBean(&quot;user3&quot;);
+        user3.show();
+    }</code></pre><p>输出结果：</p>
+<pre><code>17:34:53.967 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3dd3bcd
+17:34:54.083 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 6 bean definitions from class path resource [service.xml]
+17:34:54.120 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;person&apos;
+17:34:54.132 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;cat&apos;
+17:34:54.155 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user&apos;
+17:34:54.155 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user2&apos;
+17:34:54.157 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user3factory&apos;
+17:34:54.157 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean &apos;user3&apos;
+hello,Spring</code></pre><h2 id="另外，如何给相关方法传递参数？？？"><a href="#另外，如何给相关方法传递参数？？？" class="headerlink" title="另外，如何给相关方法传递参数？？？"></a>另外，如何给相关方法传递参数？？？</h2><p>该部分可能涉及了依赖注入的知识，暂且搁置，应该会在后面的文章中体现。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>IoC</tag>
       </tags>
   </entry>
   <entry>
@@ -1297,9 +1297,9 @@ public void test1(){
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>IoC</tag>
         <tag>Spring</tag>
         <tag>DI</tag>
+        <tag>IoC</tag>
       </tags>
   </entry>
   <entry>
@@ -1392,6 +1392,18 @@ public void test1(){
       </tags>
   </entry>
   <entry>
+    <title>汇总基于XML文件的Bean管理-初探SSM系列</title>
+    <url>/archives/6baaf8e7.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Java</category>
+        <category>初探SSM系列</category>
+      </categories>
+      <tags>
+        <tag>初探SSM,Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用嵌套循环，按照指定格式打印字母（一）</title>
     <url>/archives/4d8caefc.html</url>
     <content><![CDATA[<p>设计程序，使用嵌套循环，按照以下格式打印字母：</p>
@@ -1419,6 +1431,29 @@ public void test1(){
         <tag>C/C++练习</tag>
         <tag>for</tag>
         <tag>嵌套循环</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用指针在函数间通信</title>
+    <url>/archives/20fd2522.html</url>
+    <content><![CDATA[<h3 id="一、初识指针"><a href="#一、初识指针" class="headerlink" title="一、初识指针"></a>一、初识指针</h3><p>指针是一个值为内存地址的变量（或数据对象）。正如int类型变量的值是整数，指针变量的值是地址。</p>
+<h3 id="二、地址运算符-amp-和"><a href="#二、地址运算符-amp-和" class="headerlink" title="二、地址运算符&amp;和*"></a>二、地址运算符&amp;和*</h3><h4 id="地址运算符：-amp"><a href="#地址运算符：-amp" class="headerlink" title="地址运算符：&amp;"></a>地址运算符：&amp;</h4><p>一般注解：后跟一个变量名时，&amp;给出该变量的地址。 示例：&amp;test表示变量test的地址</p>
+<h4 id="地址运算符："><a href="#地址运算符：" class="headerlink" title="地址运算符：*"></a>地址运算符：*</h4><p>一般注解：后跟一个指针名或地址时，*给出存储在指针指向地址的值。 示例： test=1； ptr=&test;//指向test的指针 num=*ptr;//把ptr指针指向的地址上的值赋给num 最终结果是将test值1赋给num。</p>
+<h3 id="三、声明指针"><a href="#三、声明指针" class="headerlink" title="三、声明指针"></a>三、声明指针</h3><p>声明指针变量时必须指定指针所指向变量的类型，因为不同的变量类型占用不同的存储空间，即使占用的存储空间相同，存储的数据也可能不同。一些指针的声明示例如下： int * pi;    //pi是指向int类型变量的指针 char * pc, * pd;    //pc和pd都是是指向char类型变量的指针 其中星号（*）表面声明的变量是一个指针。 <em>注：*和指针名之间的变量可有可无。通常，人们在声明时使用空格，在解引用变量时省略空格。</em></p>
+<h3 id="四、使用指针在函数间通信"><a href="#四、使用指针在函数间通信" class="headerlink" title="四、使用指针在函数间通信"></a>四、使用指针在函数间通信</h3><p>我们知道函数中retrun语句只能返回一个数值，当被调用函数需要向调用函数传递多个数值时，就要使用指针。 如下程序演示了，使用指针在两函数中通信，交换两整数的值：</p>
+<p>#include&lt;stdio.h&gt;</p>
+<p>void swap(int * a,int * b);<br>int main ( void )<br>{<br>    int x=5,y=10;<br>    printf(“原本：x=%d，y=%d\n”,x,y);<br>    swap(&amp;x,&amp;y);//将x，y的地址传给swap函数<br>    printf(“现在：x=%d，y=%d\n”,x,y);</p>
+<pre><code>return 0;</code></pre><p>}<br>void swap(int * a,int * b)<br>{<br>    int temp;<br>    temp=*a;//temp获取指针a所指向地址（&amp;x）的值<br>    *a=*b;<br>    *b=temp;<br>}</p>
+<p>main函数把需要处理的变量的地址发送给swap函数，swap函数根据相应的地址影响变量。</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+        <category>编程练习</category>
+      </categories>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>指针</tag>
+        <tag>地址运算符</tag>
       </tags>
   </entry>
   <entry>
@@ -1464,17 +1499,69 @@ return 0;</code></pre><p>}</p>
       </tags>
   </entry>
   <entry>
-    <title>使用指针在函数间通信</title>
-    <url>/archives/20fd2522.html</url>
-    <content><![CDATA[<h3 id="一、初识指针"><a href="#一、初识指针" class="headerlink" title="一、初识指针"></a>一、初识指针</h3><p>指针是一个值为内存地址的变量（或数据对象）。正如int类型变量的值是整数，指针变量的值是地址。</p>
-<h3 id="二、地址运算符-amp-和"><a href="#二、地址运算符-amp-和" class="headerlink" title="二、地址运算符&amp;和*"></a>二、地址运算符&amp;和*</h3><h4 id="地址运算符：-amp"><a href="#地址运算符：-amp" class="headerlink" title="地址运算符：&amp;"></a>地址运算符：&amp;</h4><p>一般注解：后跟一个变量名时，&amp;给出该变量的地址。 示例：&amp;test表示变量test的地址</p>
-<h4 id="地址运算符："><a href="#地址运算符：" class="headerlink" title="地址运算符：*"></a>地址运算符：*</h4><p>一般注解：后跟一个指针名或地址时，*给出存储在指针指向地址的值。 示例： test=1； ptr=&test;//指向test的指针 num=*ptr;//把ptr指针指向的地址上的值赋给num 最终结果是将test值1赋给num。</p>
-<h3 id="三、声明指针"><a href="#三、声明指针" class="headerlink" title="三、声明指针"></a>三、声明指针</h3><p>声明指针变量时必须指定指针所指向变量的类型，因为不同的变量类型占用不同的存储空间，即使占用的存储空间相同，存储的数据也可能不同。一些指针的声明示例如下： int * pi;    //pi是指向int类型变量的指针 char * pc, * pd;    //pc和pd都是是指向char类型变量的指针 其中星号（*）表面声明的变量是一个指针。 <em>注：*和指针名之间的变量可有可无。通常，人们在声明时使用空格，在解引用变量时省略空格。</em></p>
-<h3 id="四、使用指针在函数间通信"><a href="#四、使用指针在函数间通信" class="headerlink" title="四、使用指针在函数间通信"></a>四、使用指针在函数间通信</h3><p>我们知道函数中retrun语句只能返回一个数值，当被调用函数需要向调用函数传递多个数值时，就要使用指针。 如下程序演示了，使用指针在两函数中通信，交换两整数的值：</p>
-<p>#include&lt;stdio.h&gt;</p>
-<p>void swap(int * a,int * b);<br>int main ( void )<br>{<br>    int x=5,y=10;<br>    printf(“原本：x=%d，y=%d\n”,x,y);<br>    swap(&amp;x,&amp;y);//将x，y的地址传给swap函数<br>    printf(“现在：x=%d，y=%d\n”,x,y);</p>
-<pre><code>return 0;</code></pre><p>}<br>void swap(int * a,int * b)<br>{<br>    int temp;<br>    temp=*a;//temp获取指针a所指向地址（&amp;x）的值<br>    *a=*b;<br>    *b=temp;<br>}</p>
-<p>main函数把需要处理的变量的地址发送给swap函数，swap函数根据相应的地址影响变量。</p>
+    <title>用C程序将图书信息写入文件</title>
+    <url>/archives/37ff2814.html</url>
+    <content><![CDATA[<h3 id="程序设计思路："><a href="#程序设计思路：" class="headerlink" title="程序设计思路："></a>程序设计思路：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/56937a30607fb606b3f6b4d9b9c6f832.png" alt=""></p>
+<h3 id="程序完整代码："><a href="#程序完整代码：" class="headerlink" title="程序完整代码："></a>程序完整代码：</h3><p>//diy_in.h<br>char * s_gets( char * p, int n )//自定义函数的定义<br>{<br>  char * ret_val;<br>  char *find;</p>
+<p>  ret_val = fgets( p, n , stdin );<br>  if(ret_val)<br>  {<br>    find = strchr( p, ‘\n’); //查找换行符的内存地址<br>    if (find)                //如果地址不是NULL<br>      *find = ‘\0’;       //将换行符换成空字符<br>    else<br>    while( getchar() != ‘\n’)<br>      continue;   //处理输入行中剩下的字符<br>   }<br>   return ret_val; //返回的是当前字符串的地址。<br>}</p>
+<p>//main.c<br>#include&lt;stdio.h&gt;<br>#include&lt;string.h&gt;<br>#include”diy_in.h”<br>#define LEN 20</p>
+<p>struct book<br>{<br>  char name[LEN];<br>  char author[LEN];<br>  float value;<br>};</p>
+<p>int main ( void )<br>{<br>  int flag = 1;<br>  int n = 0, m = 0, i = 0, l = 0;<br>  char filename[LEN];<br>  char filename_quality[LEN+2];<br>  int quality[1];<br>  FILE * fp;<br>  FILE * fpn;<br>  struct book bookn[LEN];</p>
+<p>  printf(“将图书信息保存到那个文件？（包含文件后缀和文件路径）”);<br>  s_gets(filename,LEN);<br>  fp  = fopen( filename,”a+”);<br>  while ( fp == NULL )<br>    {<br>      printf(“文件名不合法或路径错误或无操作权限，请重新输入：”,filename);<br>      s_gets(filename,LEN);<br>      fp = fopen( filename,”a+”) ;<br>    }<br>    fclose(fp);<br>  while( filename[m] != ‘\0’)<br>  {<br>    filename_quality[m] = filename[m];<br>    m++;<br>  }<br>  if ( fp != NULL )<br>  {</p>
+<pre><code>//创建第二个文件，用于保存书本数量
+m = strlen(filename) - 4;
+filename\_quality\[m+5\] = filename\[m+3\];
+filename\_quality\[m+4\] = filename\[m+2\];
+filename\_quality\[m+3\] = filename\[m+1\];
+filename\_quality\[m+2\] = filename\[m\];
+filename\_quality\[m\]   = &apos;m&apos;;
+filename\_quality\[m+1\] = &apos;n&apos;;
+fpn = fopen ( filename\_quality,&quot;r&quot;);
+if( fpn == NULL )//如果该文件不存在，则创建一个 
+{
+  fpn = fopen( filename\_quality,&quot;w&quot;);
+  quality\[0\]=0;
+}
+fseek(fpn,9L,SEEK\_SET);//一个中文两个字节 
+fscanf( fpn, &quot;%d&quot;, &amp;quality\[0\]);
+n = quality\[0\];
+fclose(fpn);</code></pre><p>  } </p>
+<p>  fp = fopen( filename,”a+”);<br>  while( flag == 1 )<br>  {<br>  fprintf( fp, “【第%d本书】”,n+1 );<br>    printf(“请输入第%d本书的名字:”, n+1 );<br>    s_gets(bookn[n].name,LEN);<br>  fprintf( fp, “书名：%-20s”,bookn[n].name);<br>    printf(“请输入第%d本书的作者:”, n+1 );<br>    s_gets(bookn[n].author,LEN);<br>  fprintf( fp, “作者：%-20s”,bookn[n].author);<br>    printf(“请输入第%d本书的价钱:”, n+1 );<br>    scanf(“%f”,&amp;bookn[n].value);<br>  fprintf( fp, “价格：%-7.2f\n”,bookn[n].value);</p>
+<pre><code>printf(&quot;已经成功录入%d本书的信息\\n&quot;,n+1);
+printf(&quot;输入任意字符继续添加图书，输入0保存退出：&quot;); 
+scanf(&quot;%d&quot;,&amp;flag);
+while( getchar() != &apos;\\n&apos;)
+  continue;
+if( flag != 0)
+{
+  n++;
+  l++;
+}</code></pre><p>  }<br>  fclose(fp);<br>  fpn = fopen ( filename_quality,”w”);<br>  fprintf( fpn, “书本数量:%d”, n+1 );<br>  fclose(fpn); </p>
+<p>  printf(“本次，共成功录入%d本书，总数%d已经保存到：%s”, l+1, n+1, filename_quality);</p>
+<p>  return 0;<br>}</p>
+<h3 id="程序演示："><a href="#程序演示：" class="headerlink" title="程序演示："></a>程序演示：</h3><p>[video width=”1920” height=”1080” mp4=”<a href="https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]">https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]</a></p>
+]]></content>
+      <categories>
+        <category>其他</category>
+        <category>编程练习</category>
+      </categories>
+      <tags>
+        <tag>C/C++练习</tag>
+        <tag>文件</tag>
+        <tag>结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>全局变量在多个c文件中公用的方法</title>
+    <url>/archives/afe73244.html</url>
+    <content><![CDATA[<h3 id="一、项目文件结构："><a href="#一、项目文件结构：" class="headerlink" title="一、项目文件结构："></a>一、项目文件结构：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/QQ%E6%88%AA%E5%9B%BE20191002202138-300x209.png" alt=""></p>
+<h3 id="二、个文件代码："><a href="#二、个文件代码：" class="headerlink" title="二、个文件代码："></a>二、个文件代码：</h3><p>//main.c<br>#include&lt;stdio.h&gt;<br>#include”diy.h”</p>
+<p>int num = 100;//定义了一个全局变量<br>int main ( void )<br>{</p>
+<p>  printf(“From main.c:%d\n”,num);<br>  fuc();</p>
+<p>  return 0;<br>}</p>
+<p>//diy.h<br>int fuc();</p>
+<p>//diy.c<br>#include &lt;stdio.h&gt;<br>#include “diy.h”<br>int fuc()<br>{<br>  extern int num;//声明，num引用外部的变量<br>  printf(“From  diy.c:%d”,num);<br>}</p>
+<h3 id="三、相关说明："><a href="#三、相关说明：" class="headerlink" title="三、相关说明："></a>三、相关说明：</h3><p>变量定义和变量声明的区别，变量定义使用“数据类型+变量名称”的形式，编译器需要给他分配内存单元的；而变量声明使用“extern 变量类型+变量名称”的形式，是告诉编译器我这个变量将在其他外部c文件中定义，我这里只是在外部用它。编译器就不给他分配内存空间，而等到真正遇到变量定义的时候再给他分配内存空间。</p>
 ]]></content>
       <categories>
         <category>其他</category>
@@ -1482,8 +1569,7 @@ return 0;</code></pre><p>}</p>
       </categories>
       <tags>
         <tag>C/C++笔记</tag>
-        <tag>指针</tag>
-        <tag>地址运算符</tag>
+        <tag>全局变量</tag>
       </tags>
   </entry>
   <entry>
@@ -1562,6 +1648,29 @@ printf(&quot;\\n数组中最小的数是：%d&quot;,min);</code></pre><p>​<br>
       </tags>
   </entry>
   <entry>
+    <title>教学实习编程必做题二： 输出三角形的九九乘法口诀表</title>
+    <url>/archives/8e3b9ebd.html</url>
+    <content><![CDATA[<p>编程要求：输出三角形的九九乘法口诀表，如图所示：</p>
+<p><img src="https://scanf.top/wp-content/uploads/2019/09/1.png" alt=""></p>
+<h3 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h3><p>//第二题，输出三角形的九九乘法口诀表<br>//整体实现思路：采用嵌套for循环<br>//一行一行，一句一句打印，从上到下，从左到右<br>#include&lt;stdio.h&gt;</p>
+<p>int main ( void )<br>{<br>  int row,first,second,third;//first被乘数，second乘数，third乘积 </p>
+<p>  for ( row = 1; row &lt;= 9; row++ )//循环一次打印一行内容<br>  {<br>    for ( first = 1; first &lt;= row; first++ )//循环一次打印一句<br>    {<br>      second = row;// 乘数等于当前行数<br>      third = first * second;<br>      printf(“%d*%d=%2d  “,first,second,third);</p>
+<pre><code>}
+printf(&quot;\\n&quot;);//行末换行 </code></pre><p>   } </p>
+<p>  return 0;<br>}</p>
+<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>整体思路：采用嵌套for循环，一行一行，一句一句打印，从上到下，从左到右 需要说明的是：first被乘数，second乘数，third乘积 更多解释请看代码后的注释。</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+        <category>编程练习</category>
+      </categories>
+      <tags>
+        <tag>C/C++练习</tag>
+        <tag>嵌套for循环</tag>
+        <tag>教学实习编程必做题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>已知一个增序顺序表，插入一个新元素后，使其仍然有序</title>
     <url>/archives/6e74351d.html</url>
     <content><![CDATA[<h3 id="算法思想："><a href="#算法思想：" class="headerlink" title="算法思想："></a>算法思想：</h3><ul>
@@ -1608,80 +1717,6 @@ return 0;</code></pre><p>}</p>
       <tags>
         <tag>数据结构与算法</tag>
         <tag>顺序表插入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>全局变量在多个c文件中公用的方法</title>
-    <url>/archives/afe73244.html</url>
-    <content><![CDATA[<h3 id="一、项目文件结构："><a href="#一、项目文件结构：" class="headerlink" title="一、项目文件结构："></a>一、项目文件结构：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/QQ%E6%88%AA%E5%9B%BE20191002202138-300x209.png" alt=""></p>
-<h3 id="二、个文件代码："><a href="#二、个文件代码：" class="headerlink" title="二、个文件代码："></a>二、个文件代码：</h3><p>//main.c<br>#include&lt;stdio.h&gt;<br>#include”diy.h”</p>
-<p>int num = 100;//定义了一个全局变量<br>int main ( void )<br>{</p>
-<p>  printf(“From main.c:%d\n”,num);<br>  fuc();</p>
-<p>  return 0;<br>}</p>
-<p>//diy.h<br>int fuc();</p>
-<p>//diy.c<br>#include &lt;stdio.h&gt;<br>#include “diy.h”<br>int fuc()<br>{<br>  extern int num;//声明，num引用外部的变量<br>  printf(“From  diy.c:%d”,num);<br>}</p>
-<h3 id="三、相关说明："><a href="#三、相关说明：" class="headerlink" title="三、相关说明："></a>三、相关说明：</h3><p>变量定义和变量声明的区别，变量定义使用“数据类型+变量名称”的形式，编译器需要给他分配内存单元的；而变量声明使用“extern 变量类型+变量名称”的形式，是告诉编译器我这个变量将在其他外部c文件中定义，我这里只是在外部用它。编译器就不给他分配内存空间，而等到真正遇到变量定义的时候再给他分配内存空间。</p>
-]]></content>
-      <categories>
-        <category>其他</category>
-        <category>编程练习</category>
-      </categories>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>全局变量</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用C程序将图书信息写入文件</title>
-    <url>/archives/37ff2814.html</url>
-    <content><![CDATA[<h3 id="程序设计思路："><a href="#程序设计思路：" class="headerlink" title="程序设计思路："></a>程序设计思路：</h3><p><img src="https://scanf.top/wp-content/uploads/2019/10/56937a30607fb606b3f6b4d9b9c6f832.png" alt=""></p>
-<h3 id="程序完整代码："><a href="#程序完整代码：" class="headerlink" title="程序完整代码："></a>程序完整代码：</h3><p>//diy_in.h<br>char * s_gets( char * p, int n )//自定义函数的定义<br>{<br>  char * ret_val;<br>  char *find;</p>
-<p>  ret_val = fgets( p, n , stdin );<br>  if(ret_val)<br>  {<br>    find = strchr( p, ‘\n’); //查找换行符的内存地址<br>    if (find)                //如果地址不是NULL<br>      *find = ‘\0’;       //将换行符换成空字符<br>    else<br>    while( getchar() != ‘\n’)<br>      continue;   //处理输入行中剩下的字符<br>   }<br>   return ret_val; //返回的是当前字符串的地址。<br>}</p>
-<p>//main.c<br>#include&lt;stdio.h&gt;<br>#include&lt;string.h&gt;<br>#include”diy_in.h”<br>#define LEN 20</p>
-<p>struct book<br>{<br>  char name[LEN];<br>  char author[LEN];<br>  float value;<br>};</p>
-<p>int main ( void )<br>{<br>  int flag = 1;<br>  int n = 0, m = 0, i = 0, l = 0;<br>  char filename[LEN];<br>  char filename_quality[LEN+2];<br>  int quality[1];<br>  FILE * fp;<br>  FILE * fpn;<br>  struct book bookn[LEN];</p>
-<p>  printf(“将图书信息保存到那个文件？（包含文件后缀和文件路径）”);<br>  s_gets(filename,LEN);<br>  fp  = fopen( filename,”a+”);<br>  while ( fp == NULL )<br>    {<br>      printf(“文件名不合法或路径错误或无操作权限，请重新输入：”,filename);<br>      s_gets(filename,LEN);<br>      fp = fopen( filename,”a+”) ;<br>    }<br>    fclose(fp);<br>  while( filename[m] != ‘\0’)<br>  {<br>    filename_quality[m] = filename[m];<br>    m++;<br>  }<br>  if ( fp != NULL )<br>  {</p>
-<pre><code>//创建第二个文件，用于保存书本数量
-m = strlen(filename) - 4;
-filename\_quality\[m+5\] = filename\[m+3\];
-filename\_quality\[m+4\] = filename\[m+2\];
-filename\_quality\[m+3\] = filename\[m+1\];
-filename\_quality\[m+2\] = filename\[m\];
-filename\_quality\[m\]   = &apos;m&apos;;
-filename\_quality\[m+1\] = &apos;n&apos;;
-fpn = fopen ( filename\_quality,&quot;r&quot;);
-if( fpn == NULL )//如果该文件不存在，则创建一个 
-{
-  fpn = fopen( filename\_quality,&quot;w&quot;);
-  quality\[0\]=0;
-}
-fseek(fpn,9L,SEEK\_SET);//一个中文两个字节 
-fscanf( fpn, &quot;%d&quot;, &amp;quality\[0\]);
-n = quality\[0\];
-fclose(fpn);</code></pre><p>  } </p>
-<p>  fp = fopen( filename,”a+”);<br>  while( flag == 1 )<br>  {<br>  fprintf( fp, “【第%d本书】”,n+1 );<br>    printf(“请输入第%d本书的名字:”, n+1 );<br>    s_gets(bookn[n].name,LEN);<br>  fprintf( fp, “书名：%-20s”,bookn[n].name);<br>    printf(“请输入第%d本书的作者:”, n+1 );<br>    s_gets(bookn[n].author,LEN);<br>  fprintf( fp, “作者：%-20s”,bookn[n].author);<br>    printf(“请输入第%d本书的价钱:”, n+1 );<br>    scanf(“%f”,&amp;bookn[n].value);<br>  fprintf( fp, “价格：%-7.2f\n”,bookn[n].value);</p>
-<pre><code>printf(&quot;已经成功录入%d本书的信息\\n&quot;,n+1);
-printf(&quot;输入任意字符继续添加图书，输入0保存退出：&quot;); 
-scanf(&quot;%d&quot;,&amp;flag);
-while( getchar() != &apos;\\n&apos;)
-  continue;
-if( flag != 0)
-{
-  n++;
-  l++;
-}</code></pre><p>  }<br>  fclose(fp);<br>  fpn = fopen ( filename_quality,”w”);<br>  fprintf( fpn, “书本数量:%d”, n+1 );<br>  fclose(fpn); </p>
-<p>  printf(“本次，共成功录入%d本书，总数%d已经保存到：%s”, l+1, n+1, filename_quality);</p>
-<p>  return 0;<br>}</p>
-<h3 id="程序演示："><a href="#程序演示：" class="headerlink" title="程序演示："></a>程序演示：</h3><p>[video width=”1920” height=”1080” mp4=”<a href="https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]">https://scanf.top/wp-content/uploads/2019/10/i4AirPlayer-1.mp4&quot;\]\[/video\]</a></p>
-]]></content>
-      <categories>
-        <category>其他</category>
-        <category>编程练习</category>
-      </categories>
-      <tags>
-        <tag>C/C++练习</tag>
-        <tag>文件</tag>
-        <tag>结构</tag>
       </tags>
   </entry>
   <entry>
@@ -1752,29 +1787,6 @@ for( s = N-n-1; s &gt;= n+1; s-- )//N-n-1是当前边框中第一个数字的下
         <tag>C/C++练习</tag>
         <tag>二维数组</tag>
         <tag>螺旋矩阵</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>教学实习编程必做题二： 输出三角形的九九乘法口诀表</title>
-    <url>/archives/8e3b9ebd.html</url>
-    <content><![CDATA[<p>编程要求：输出三角形的九九乘法口诀表，如图所示：</p>
-<p><img src="https://scanf.top/wp-content/uploads/2019/09/1.png" alt=""></p>
-<h3 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h3><p>//第二题，输出三角形的九九乘法口诀表<br>//整体实现思路：采用嵌套for循环<br>//一行一行，一句一句打印，从上到下，从左到右<br>#include&lt;stdio.h&gt;</p>
-<p>int main ( void )<br>{<br>  int row,first,second,third;//first被乘数，second乘数，third乘积 </p>
-<p>  for ( row = 1; row &lt;= 9; row++ )//循环一次打印一行内容<br>  {<br>    for ( first = 1; first &lt;= row; first++ )//循环一次打印一句<br>    {<br>      second = row;// 乘数等于当前行数<br>      third = first * second;<br>      printf(“%d*%d=%2d  “,first,second,third);</p>
-<pre><code>}
-printf(&quot;\\n&quot;);//行末换行 </code></pre><p>   } </p>
-<p>  return 0;<br>}</p>
-<h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>整体思路：采用嵌套for循环，一行一行，一句一句打印，从上到下，从左到右 需要说明的是：first被乘数，second乘数，third乘积 更多解释请看代码后的注释。</p>
-]]></content>
-      <categories>
-        <category>其他</category>
-        <category>编程练习</category>
-      </categories>
-      <tags>
-        <tag>C/C++练习</tag>
-        <tag>嵌套for循环</tag>
-        <tag>教学实习编程必做题</tag>
       </tags>
   </entry>
   <entry>
@@ -1864,90 +1876,6 @@ return 0;</code></pre><p> }</p>
         <tag>C/C++练习</tag>
         <tag>蜂鸣器</tag>
         <tag>模块化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>递归的优缺点</title>
-    <url>/archives/ecfdb445.html</url>
-    <content><![CDATA[<p>递归既有有点也有缺点。优点是递归为某些编程问题提供了最简单的解决方案。缺点是一些递归算法会快速消耗计算机的内存资源，很可能导致程序崩溃，并且递归不方便阅读和维护。</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-        <category>递归</category>
-      </categories>
-      <tags>
-        <tag>C/C++笔记</tag>
-        <tag>递归</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>顺序表中基本操作的实现</title>
-    <url>/archives/62da627e.html</url>
-    <content><![CDATA[<h1 id="顺序表的存储结构"><a href="#顺序表的存储结构" class="headerlink" title="顺序表的存储结构"></a>顺序表的存储结构</h1><p>#define MAXSIZE 100<br>typedef struct<br>{<br>  ElemType *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;//顺序表的结构类型为SqList</p>
-<h2 id="一、初始化"><a href="#一、初始化" class="headerlink" title="一、初始化"></a><strong>一、初始化</strong></h2><blockquote>
-<p>顺序表的初始化操作就是构造一个空的顺序表。</p>
-</blockquote>
-<h4 id="算法步骤"><a href="#算法步骤" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 为顺序表L动态分配一个预定义大小的数组空间，使elem指向这段空间基地址。 ② 将表的当前长度设为0。</p>
-<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new ElemType[MAXSIZE];//为顺序表分配一个大小为MAXSIZE的数组空间<br>  if ( !L.elem ) exit(OVERFLOW);//存储分配失败退出<br>  L.length = 0;<br>  return OK;<br>}</p>
-<h4 id="DEMO"><a href="#DEMO" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0</p>
-<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>int main ( void )<br>{<br>  SqList L;</p>
-<p>  if (InitList(L) == OK ) printf(“成功构造了一个空的顺序表，该顺序表的基地址是：%X”,L.elem);<br>  else printf(“存储分配失败”);</p>
-<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}</p>
-<h2 id="二、取值"><a href="#二、取值" class="headerlink" title="二、取值"></a>二、取值</h2><blockquote>
-<p>取值操作是根据指定的位置序号i，获取顺序表中第i个数据元素的值。</p>
-</blockquote>
-<h4 id="算法步骤-1"><a href="#算法步骤-1" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 判断指定位置序号i值是否合理（ 1 ≤ i ≤ L.length ）， 若不合理，返回ERROR。 ② 若i值合理，则将第i个数据元素L.elem[i-1]赋给参数e，通过e返回第i个数据元素的值 注：参数e为引用，实参和形参值的传递是双向的，即形参值的改变会引起实参值的改变。</p>
-<h4 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status GetElem ( SqList &amp;L, int i, ElemType &amp;e )<br>{<br>  if ( i &lt; 1 || i &gt; L.length ) return ERROR; //判断i值是否合理<br>  e = L.elem[i-1];//将第i个元素传给e</p>
-<p>  return OK;<br>}</p>
-<h4 id="DEMO-1"><a href="#DEMO-1" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0<br>#define ERROR 1</p>
-<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;</p>
-<p>Status InitList ( SqList &amp;L );//初始化顺序表函数的声明<br>Status GetElem ( SqList &amp;L, int i, int &amp;e );//顺序表取值函数的声明 </p>
-<p>int main ( void )<br>{<br>  int GetStaus,i,e;<br>  SqList L;</p>
-<p>  if ( InitList(L) == OVERFLOW )<br>  {<br>    printf(“存储分配失败”);<br>  }<br>  else<br>  {<br>    L.elem[0] = 1;<br>    L.elem[1] = 3;<br>    L.elem[2] = 2;<br>    L.elem[3] = 5;<br>    L.elem[4] = 4;<br>    L.length = 5;<br>    printf(“请输入数据元素的序号：”);<br>    scanf(“%d”,&amp;i);<br>    GetStaus = GetElem(L,i,e);<br>  }<br>  if ( GetStaus == ERROR ) printf(“i值不合理”);<br>  else printf(“第%d个元素是：%d”,i,e);</p>
-<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )//初始化顺序表函数的定义<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>Status GetElem ( SqList &amp;L, int i, int &amp;e )//顺序表取值函数的定义<br>{<br>  if ( i &lt; 1 || i &gt; L.length ) return ERROR;<br>  e = L.elem[i-1];</p>
-<p>  return OK;<br>}</p>
-<h2 id="三、查找"><a href="#三、查找" class="headerlink" title="三、查找"></a>三、查找</h2><blockquote>
-<p>查找操作是根据指定的元素值e，查找顺序表中第1个与e相等的元素。若查找成功，则返回该元素在表中的位置序号；查找失败返回0。</p>
-</blockquote>
-<h4 id="算法步骤-2"><a href="#算法步骤-2" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 从第一元素起，依次和e相比较，若找到与e相等的元素L.elem[i]，则查找成功，返回该元素的序号i+1。 ② 若查遍整个顺序表都没有找到，则查找失败，返回0。</p>
-<h4 id="算法描述-2"><a href="#算法描述-2" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>int LocateElem ( SqList L, ElemType e )<br>{<br>  for ( i = 0; i &lt; L.length; i++ )<br>    if ( L.elem[i] == e ) return i+1;</p>
-<p>   return 0;<br>}</p>
-<h4 id="DEMO-2"><a href="#DEMO-2" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0</p>
-<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>int LocateElem ( SqList &amp;L, int e );<br>int main ( void )<br>{<br>  int e,locate;<br>  SqList L;</p>
-<p>  if ( InitList(L) == OK )<br>  {<br>    L.elem[0] = 1;<br>    L.elem[1] = 3;<br>    L.elem[2] = 2;<br>    L.elem[3] = 5;<br>    L.elem[4] = 4;<br>    L.length = 5;<br>    printf(“你要找哪个数字的位置呀？”);<br>    scanf(“%d”,&amp;e);<br>    locate = LocateElem(L,e);<br>    if( locate != 0 )<br>    {<br>      printf(“你要找的数字%d的序号是：%d”,e,LocateElem(L,e));<br>    }<br>    else<br>    {<br>      printf(“查无此数”);<br>    }</p>
-<p>  }<br>  else printf(“存储分配失败”);</p>
-<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>int LocateElem ( SqList &amp;L, int e )<br>{<br>  int i;<br>  for ( i = 0; i &lt; L.length; i++ )<br>    if ( L.elem[i] == e) return i+1;<br>  return 0;<br>}</p>
-<h2 id="四、插入"><a href="#四、插入" class="headerlink" title="四、插入"></a>四、插入</h2><blockquote>
-<p>线性表的插入操作是指在表的第i个位置插入一个新的数据元素e，使长度为n的线性表变成长度为n+1的线性表。</p>
-</blockquote>
-<h4 id="算法步骤-3"><a href="#算法步骤-3" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 判断插入位置i是否合理（ 1 ≤ i ≤ n+1 ），若不合理则返回ERROR。 ② 判断顺序表的存储空间是否已满，若满则返回ERROR。 ③ 将第n个至第i个位置的元素依次向后移动一个位置，空出第i个位置，当i = n +1时无需移动。 ④ 将要插入的新元素e放入第i个位置。 ⑤ 表长加1。</p>
-<h4 id="算法描述-3"><a href="#算法描述-3" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status ListInsert ( SqList &amp;L, int i, ElemType e )<br>{<br>  if( (i &lt; 1) || (i &gt; L.length + 1) ) return ERROR;//i值不合理<br>  if ( L.length == MAXSIZE ) return ERROR;//存储空间已满<br>  for ( j = L.length - 1; j &gt;= i-1; j– )<br>    L.elem[j+1] = L.elem[j];//元素后移<br>  L.elem[i-1] = e;//插入新元素<br>  ++L.length;/表长加1</p>
-<p>  return 0;<br>}</p>
-<h4 id="DEMO-3"><a href="#DEMO-3" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0<br>#define ERROR 1</p>
-<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>Status ListInsert ( SqList &amp;L, int i, int e );<br>int main ( void )<br>{<br>  int e,i;<br>  SqList L;<br>  if (InitList(L) == OK )<br>  {<br>    L.elem[0] = 2;<br>    L.elem[1] = 4;<br>    L.elem[2] = 6;<br>    L.elem[3] = 8;<br>    L.elem[4] = 10;<br>    L.length = 5;<br>    printf(“存储分配成功,请输入需要插入的数字和位置：”);<br>    scanf(“%d%d”,&amp;e,&amp;i);<br>    if ( ListInsert(L,i,e) == ERROR ) printf(“插入位置不合法或者线性表已满”);<br>    else<br>    {<br>      printf(“插入前的线性表中的元素为：2  4  6  8  10\n”);<br>      printf(“插入后的线性表中的元素为：”);<br>      for ( i = 0; i &lt;= L.length-1; i++ )<br>      printf(“%-2d “,L.elem[i]);<br>    }<br>  }<br>  else printf(“存储分配失败”);</p>
-<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>Status ListInsert ( SqList &amp;L, int i, int e )<br>{<br>  int j;<br>  if ( (i &lt; 1) || (i &gt; L.length+1) ) return ERROR;<br>  if ( L.length == MAXSIZE ) return ERROR;<br>  if( i == L.length + 1 )<br>  {<br>    L.elem[i] = e;<br>  }<br>  else<br>  {<br>    for ( j = L.length -1; j &gt;= i-1; j– )<br>    L.elem[j+1] = L.elem[j];<br>  }</p>
-<p>  L.elem[i-1] = e;<br>  ++L.length;</p>
-<p>  return OK;<br>}</p>
-<h2 id="五、删除"><a href="#五、删除" class="headerlink" title="五、删除"></a>五、删除</h2><blockquote>
-<p>线性表的删除操作是指将表的第i个元素删去，将长度为n的线性表变成长度为n-1的线性表</p>
-</blockquote>
-<h4 id="算法步骤-4"><a href="#算法步骤-4" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 判断删除位置i是否合法（ 1 ≤ i ≤ L.length ），若不合法则返回ERROR。 ② 将第i+1个至第L.length个的元素依次向前移动一个位置，当i=L.length时无需移动。 ③ 表长+1。</p>
-<h4 id="算法描述-4"><a href="#算法描述-4" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status ListDelete ( SqList &amp;L, int i )<br>{<br>  if ( (i &lt; 1) || (i &gt; L.length) ) return ERROR;//i值不合法<br>  for ( j = i; j &lt;= L.length -1; j– )<br>    L.elem[j-1] = L.elem[j];//被删元素之后d额元素前移<br>  –L.length;//表长减一</p>
-<p>  return 0;<br>}</p>
-<p><strong>[DEMO]</strong></p>
-<p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0<br>#define ERROR 1 </p>
-<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>Status ListDelete ( SqList &amp;L, int i );<br>int main ( void )<br>{<br>  int i;<br>  SqList L;<br>  if (InitList(L) == OK )<br>  {<br>    L.elem[0] = 2;<br>    L.elem[1] = 4;<br>    L.elem[2] = 6;<br>    L.elem[3] = 8;<br>    L.elem[4] = 10;<br>    L.length = 5;<br>    printf(“线性表初始化成功,请输入被删除元素的位置：”);<br>    scanf(“%d”,&amp;i);<br>    if ( ListDelete(L,i) == ERROR ) printf(“位置不合法”);<br>    else<br>    {<br>      printf(“的线性表中的元素为：2  4  6  8  10\n”);<br>      printf(“插入后的线性表中的元素为：”);<br>      for ( i = 0; i &lt;= L.length-1; i++ )<br>      printf(“%-2d “,L.elem[i]);<br>    }<br>  }<br>  else printf(“存储分配失败”);</p>
-<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>Status ListDelete ( SqList &amp;L, int i )<br>{<br>  int j;</p>
-<p>  if ( (i &lt; 1) || (i &gt; L.length) ) return ERROR;<br>  for ( j = i; j &lt;= L.length -1; j++ )<br>    L.elem[j-1] = L.elem[j];<br>  –L.length;</p>
-<p>  return OK;<br>}</p>
-]]></content>
-      <categories>
-        <category>数据结构</category>
-        <category>表</category>
-      </categories>
-      <tags>
-        <tag>数据结构与算法</tag>
-        <tag>顺序表</tag>
       </tags>
   </entry>
   <entry>
@@ -2063,6 +1991,20 @@ return 0;</code></pre><p> }</p>
       </tags>
   </entry>
   <entry>
+    <title>递归的优缺点</title>
+    <url>/archives/ecfdb445.html</url>
+    <content><![CDATA[<p>递归既有有点也有缺点。优点是递归为某些编程问题提供了最简单的解决方案。缺点是一些递归算法会快速消耗计算机的内存资源，很可能导致程序崩溃，并且递归不方便阅读和维护。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>递归</category>
+      </categories>
+      <tags>
+        <tag>C/C++笔记</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>初识“编译器”及其工作原理</title>
     <url>/archives/178506b4.html</url>
     <content><![CDATA[<h2 id="1、编译器是什么？"><a href="#1、编译器是什么？" class="headerlink" title="1、编译器是什么？"></a>1、编译器是什么？</h2><p><strong>编译器</strong>（compiler①）是一个程序，能把高级计算机语言翻译成计算机能理解的机器语言指令集。 <strong>反编译器</strong>用来从由高级语言生成的低级语言代码重新生成高级语言代码，简单地说就是将已编译好的编程语言还原到未编译的状态。</p>
@@ -2082,6 +2024,76 @@ return 0;</code></pre><p> }</p>
         <tag>C/C++笔记</tag>
         <tag>反编译器</tag>
         <tag>编译器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>顺序表中基本操作的实现</title>
+    <url>/archives/62da627e.html</url>
+    <content><![CDATA[<h1 id="顺序表的存储结构"><a href="#顺序表的存储结构" class="headerlink" title="顺序表的存储结构"></a>顺序表的存储结构</h1><p>#define MAXSIZE 100<br>typedef struct<br>{<br>  ElemType *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;//顺序表的结构类型为SqList</p>
+<h2 id="一、初始化"><a href="#一、初始化" class="headerlink" title="一、初始化"></a><strong>一、初始化</strong></h2><blockquote>
+<p>顺序表的初始化操作就是构造一个空的顺序表。</p>
+</blockquote>
+<h4 id="算法步骤"><a href="#算法步骤" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 为顺序表L动态分配一个预定义大小的数组空间，使elem指向这段空间基地址。 ② 将表的当前长度设为0。</p>
+<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new ElemType[MAXSIZE];//为顺序表分配一个大小为MAXSIZE的数组空间<br>  if ( !L.elem ) exit(OVERFLOW);//存储分配失败退出<br>  L.length = 0;<br>  return OK;<br>}</p>
+<h4 id="DEMO"><a href="#DEMO" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0</p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>int main ( void )<br>{<br>  SqList L;</p>
+<p>  if (InitList(L) == OK ) printf(“成功构造了一个空的顺序表，该顺序表的基地址是：%X”,L.elem);<br>  else printf(“存储分配失败”);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}</p>
+<h2 id="二、取值"><a href="#二、取值" class="headerlink" title="二、取值"></a>二、取值</h2><blockquote>
+<p>取值操作是根据指定的位置序号i，获取顺序表中第i个数据元素的值。</p>
+</blockquote>
+<h4 id="算法步骤-1"><a href="#算法步骤-1" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 判断指定位置序号i值是否合理（ 1 ≤ i ≤ L.length ）， 若不合理，返回ERROR。 ② 若i值合理，则将第i个数据元素L.elem[i-1]赋给参数e，通过e返回第i个数据元素的值 注：参数e为引用，实参和形参值的传递是双向的，即形参值的改变会引起实参值的改变。</p>
+<h4 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status GetElem ( SqList &amp;L, int i, ElemType &amp;e )<br>{<br>  if ( i &lt; 1 || i &gt; L.length ) return ERROR; //判断i值是否合理<br>  e = L.elem[i-1];//将第i个元素传给e</p>
+<p>  return OK;<br>}</p>
+<h4 id="DEMO-1"><a href="#DEMO-1" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0<br>#define ERROR 1</p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;</p>
+<p>Status InitList ( SqList &amp;L );//初始化顺序表函数的声明<br>Status GetElem ( SqList &amp;L, int i, int &amp;e );//顺序表取值函数的声明 </p>
+<p>int main ( void )<br>{<br>  int GetStaus,i,e;<br>  SqList L;</p>
+<p>  if ( InitList(L) == OVERFLOW )<br>  {<br>    printf(“存储分配失败”);<br>  }<br>  else<br>  {<br>    L.elem[0] = 1;<br>    L.elem[1] = 3;<br>    L.elem[2] = 2;<br>    L.elem[3] = 5;<br>    L.elem[4] = 4;<br>    L.length = 5;<br>    printf(“请输入数据元素的序号：”);<br>    scanf(“%d”,&amp;i);<br>    GetStaus = GetElem(L,i,e);<br>  }<br>  if ( GetStaus == ERROR ) printf(“i值不合理”);<br>  else printf(“第%d个元素是：%d”,i,e);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )//初始化顺序表函数的定义<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>Status GetElem ( SqList &amp;L, int i, int &amp;e )//顺序表取值函数的定义<br>{<br>  if ( i &lt; 1 || i &gt; L.length ) return ERROR;<br>  e = L.elem[i-1];</p>
+<p>  return OK;<br>}</p>
+<h2 id="三、查找"><a href="#三、查找" class="headerlink" title="三、查找"></a>三、查找</h2><blockquote>
+<p>查找操作是根据指定的元素值e，查找顺序表中第1个与e相等的元素。若查找成功，则返回该元素在表中的位置序号；查找失败返回0。</p>
+</blockquote>
+<h4 id="算法步骤-2"><a href="#算法步骤-2" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 从第一元素起，依次和e相比较，若找到与e相等的元素L.elem[i]，则查找成功，返回该元素的序号i+1。 ② 若查遍整个顺序表都没有找到，则查找失败，返回0。</p>
+<h4 id="算法描述-2"><a href="#算法描述-2" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>int LocateElem ( SqList L, ElemType e )<br>{<br>  for ( i = 0; i &lt; L.length; i++ )<br>    if ( L.elem[i] == e ) return i+1;</p>
+<p>   return 0;<br>}</p>
+<h4 id="DEMO-2"><a href="#DEMO-2" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0</p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>int LocateElem ( SqList &amp;L, int e );<br>int main ( void )<br>{<br>  int e,locate;<br>  SqList L;</p>
+<p>  if ( InitList(L) == OK )<br>  {<br>    L.elem[0] = 1;<br>    L.elem[1] = 3;<br>    L.elem[2] = 2;<br>    L.elem[3] = 5;<br>    L.elem[4] = 4;<br>    L.length = 5;<br>    printf(“你要找哪个数字的位置呀？”);<br>    scanf(“%d”,&amp;e);<br>    locate = LocateElem(L,e);<br>    if( locate != 0 )<br>    {<br>      printf(“你要找的数字%d的序号是：%d”,e,LocateElem(L,e));<br>    }<br>    else<br>    {<br>      printf(“查无此数”);<br>    }</p>
+<p>  }<br>  else printf(“存储分配失败”);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>int LocateElem ( SqList &amp;L, int e )<br>{<br>  int i;<br>  for ( i = 0; i &lt; L.length; i++ )<br>    if ( L.elem[i] == e) return i+1;<br>  return 0;<br>}</p>
+<h2 id="四、插入"><a href="#四、插入" class="headerlink" title="四、插入"></a>四、插入</h2><blockquote>
+<p>线性表的插入操作是指在表的第i个位置插入一个新的数据元素e，使长度为n的线性表变成长度为n+1的线性表。</p>
+</blockquote>
+<h4 id="算法步骤-3"><a href="#算法步骤-3" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 判断插入位置i是否合理（ 1 ≤ i ≤ n+1 ），若不合理则返回ERROR。 ② 判断顺序表的存储空间是否已满，若满则返回ERROR。 ③ 将第n个至第i个位置的元素依次向后移动一个位置，空出第i个位置，当i = n +1时无需移动。 ④ 将要插入的新元素e放入第i个位置。 ⑤ 表长加1。</p>
+<h4 id="算法描述-3"><a href="#算法描述-3" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status ListInsert ( SqList &amp;L, int i, ElemType e )<br>{<br>  if( (i &lt; 1) || (i &gt; L.length + 1) ) return ERROR;//i值不合理<br>  if ( L.length == MAXSIZE ) return ERROR;//存储空间已满<br>  for ( j = L.length - 1; j &gt;= i-1; j– )<br>    L.elem[j+1] = L.elem[j];//元素后移<br>  L.elem[i-1] = e;//插入新元素<br>  ++L.length;/表长加1</p>
+<p>  return 0;<br>}</p>
+<h4 id="DEMO-3"><a href="#DEMO-3" class="headerlink" title="[DEMO]"></a><strong>[DEMO]</strong></h4><p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0<br>#define ERROR 1</p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>Status ListInsert ( SqList &amp;L, int i, int e );<br>int main ( void )<br>{<br>  int e,i;<br>  SqList L;<br>  if (InitList(L) == OK )<br>  {<br>    L.elem[0] = 2;<br>    L.elem[1] = 4;<br>    L.elem[2] = 6;<br>    L.elem[3] = 8;<br>    L.elem[4] = 10;<br>    L.length = 5;<br>    printf(“存储分配成功,请输入需要插入的数字和位置：”);<br>    scanf(“%d%d”,&amp;e,&amp;i);<br>    if ( ListInsert(L,i,e) == ERROR ) printf(“插入位置不合法或者线性表已满”);<br>    else<br>    {<br>      printf(“插入前的线性表中的元素为：2  4  6  8  10\n”);<br>      printf(“插入后的线性表中的元素为：”);<br>      for ( i = 0; i &lt;= L.length-1; i++ )<br>      printf(“%-2d “,L.elem[i]);<br>    }<br>  }<br>  else printf(“存储分配失败”);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>Status ListInsert ( SqList &amp;L, int i, int e )<br>{<br>  int j;<br>  if ( (i &lt; 1) || (i &gt; L.length+1) ) return ERROR;<br>  if ( L.length == MAXSIZE ) return ERROR;<br>  if( i == L.length + 1 )<br>  {<br>    L.elem[i] = e;<br>  }<br>  else<br>  {<br>    for ( j = L.length -1; j &gt;= i-1; j– )<br>    L.elem[j+1] = L.elem[j];<br>  }</p>
+<p>  L.elem[i-1] = e;<br>  ++L.length;</p>
+<p>  return OK;<br>}</p>
+<h2 id="五、删除"><a href="#五、删除" class="headerlink" title="五、删除"></a>五、删除</h2><blockquote>
+<p>线性表的删除操作是指将表的第i个元素删去，将长度为n的线性表变成长度为n-1的线性表</p>
+</blockquote>
+<h4 id="算法步骤-4"><a href="#算法步骤-4" class="headerlink" title="[算法步骤]"></a><strong>[算法步骤]</strong></h4><p>① 判断删除位置i是否合法（ 1 ≤ i ≤ L.length ），若不合法则返回ERROR。 ② 将第i+1个至第L.length个的元素依次向前移动一个位置，当i=L.length时无需移动。 ③ 表长+1。</p>
+<h4 id="算法描述-4"><a href="#算法描述-4" class="headerlink" title="[算法描述]"></a><strong>[算法描述]</strong></h4><p>Status ListDelete ( SqList &amp;L, int i )<br>{<br>  if ( (i &lt; 1) || (i &gt; L.length) ) return ERROR;//i值不合法<br>  for ( j = i; j &lt;= L.length -1; j– )<br>    L.elem[j-1] = L.elem[j];//被删元素之后d额元素前移<br>  –L.length;//表长减一</p>
+<p>  return 0;<br>}</p>
+<p><strong>[DEMO]</strong></p>
+<p>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#define MAXSIZE 100<br>#define OVERFLOW -1<br>#define OK 0<br>#define ERROR 1 </p>
+<p>typedef int Status;<br>typedef struct<br>{<br>  int *elem;//存储空间的基地址<br>  int length;//当前长度<br>}SqList;<br>Status InitList ( SqList &amp;L );<br>Status ListDelete ( SqList &amp;L, int i );<br>int main ( void )<br>{<br>  int i;<br>  SqList L;<br>  if (InitList(L) == OK )<br>  {<br>    L.elem[0] = 2;<br>    L.elem[1] = 4;<br>    L.elem[2] = 6;<br>    L.elem[3] = 8;<br>    L.elem[4] = 10;<br>    L.length = 5;<br>    printf(“线性表初始化成功,请输入被删除元素的位置：”);<br>    scanf(“%d”,&amp;i);<br>    if ( ListDelete(L,i) == ERROR ) printf(“位置不合法”);<br>    else<br>    {<br>      printf(“的线性表中的元素为：2  4  6  8  10\n”);<br>      printf(“插入后的线性表中的元素为：”);<br>      for ( i = 0; i &lt;= L.length-1; i++ )<br>      printf(“%-2d “,L.elem[i]);<br>    }<br>  }<br>  else printf(“存储分配失败”);</p>
+<p>  return 0;<br>}<br>Status InitList ( SqList &amp;L )<br>{<br>  L.elem = new int[MAXSIZE];<br>  if ( !L.elem ) exit(OVERFLOW);<br>  L.length = 0;<br>  return OK;<br>}<br>Status ListDelete ( SqList &amp;L, int i )<br>{<br>  int j;</p>
+<p>  if ( (i &lt; 1) || (i &gt; L.length) ) return ERROR;<br>  for ( j = i; j &lt;= L.length -1; j++ )<br>    L.elem[j-1] = L.elem[j];<br>  –L.length;</p>
+<p>  return OK;<br>}</p>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>表</category>
+      </categories>
+      <tags>
+        <tag>数据结构与算法</tag>
+        <tag>顺序表</tag>
       </tags>
   </entry>
 </search>
