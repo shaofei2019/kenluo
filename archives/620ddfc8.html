@@ -28,10 +28,10 @@
 <meta property="og:description" content="一 什么是依赖注入依赖注入是一个过程，通过该过程可以解决对象依赖问题。现假设一个场景，有类A和类B，类A依赖类B，以往在我们实例化类A时，需要先拥有类B的实例化对象，利用这个对象才能完成类A的实例化。现在，类B的实例化任务由IoC容器接管了，我们可以直接获取类A的实例化对象，而无需顾及类B的实例化过程，我们需要做的仅是类A和类B的依赖关系的声明。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-17T10:18:15.000Z">
-<meta property="article:modified_time" content="2020-07-23T16:30:59.660Z">
+<meta property="article:modified_time" content="2020-07-26T02:57:45.350Z">
 <meta property="article:author" content="Ken Luo">
-<meta property="article:tag" content="Spring">
 <meta property="article:tag" content="DI">
+<meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://scanf.top/archives/620ddfc8.html">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-23 16:30:59" itemprop="dateModified" datetime="2020-07-23T16:30:59Z">2020-07-23</time>
+                <time title="修改时间：2020-07-26 02:57:45" itemprop="dateModified" datetime="2020-07-26T02:57:45Z">2020-07-26</time>
               </span>
               <br>
             <span class="post-meta-item">
@@ -244,7 +244,7 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/SSM/" itemprop="url" rel="index"><span itemprop="name">SSM</span></a>
+                  <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
                 </span>
             </span>
 
@@ -357,8 +357,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Spring/" rel="tag"># Spring</a>
               <a href="/tags/DI/" rel="tag"># DI</a>
+              <a href="/tags/Spring/" rel="tag"># Spring</a>
           </div>
 
         
@@ -432,7 +432,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-什么是依赖注入"><span class="nav-number">1.</span> <span class="nav-text">一 什么是依赖注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-依赖注入的两种方式"><span class="nav-number">2.</span> <span class="nav-text">二 依赖注入的两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-setter-based-DI"><span class="nav-number">2.1.</span> <span class="nav-text">1 setter-based DI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-constructor-based-DI"><span class="nav-number">2.2.</span> <span class="nav-text">2 constructor-based DI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-区别"><span class="nav-number">3.</span> <span class="nav-text">三 区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-循环依赖问题"><span class="nav-number">4.</span> <span class="nav-text">四 循环依赖问题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-什么是依赖注入"><span class="nav-text">一 什么是依赖注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-依赖注入的两种方式"><span class="nav-text">二 依赖注入的两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-setter-based-DI"><span class="nav-text">1 setter-based DI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-constructor-based-DI"><span class="nav-text">2 constructor-based DI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-区别"><span class="nav-text">三 区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-循环依赖问题"><span class="nav-text">四 循环依赖问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -448,20 +448,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">86</span>
+        <span class="site-state-item-count">84</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -506,13 +506,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">79k</span>
+    <span title="站点总字数">75k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:12</span>
+    <span title="站点阅读时长">1:08</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
